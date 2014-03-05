@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load i18n %}
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		
+		<meta name="description" content="{% block meta_description %}Unbabel News{% endblock %}">
+
+		<!--  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
+		<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
+		<title>{% block title %}{% endblock %}</title>
+
+		<!-- Fav Icon -->
+		<link rel="icon" href="{{ STATIC_URL }}img/favicon.ico" type="image/x-icon"> 
+		<link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.ico" type="image/x-icon">
+
+		<!-- Import Less -->
+		<link rel="stylesheet/less" type="text/css" href="{{ STATIC_URL }}less/reset.less" />
+		<link rel="stylesheet/less" type="text/css" href="{{ STATIC_URL }}less/common.less" />
+		<!-- <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}less/palindrome_{{ app_env }}.less" charset="utf-8"> -->
+		<script src="{{ STATIC_URL }}js/plugins/less-1.7.0.min.js"></script>
+	    
+     	{% block extracss %}{% endblock %}
+	</head>
+	
+	<body>
+
+		{% include "general/header.html" %}
+		<div id="content">{% block body %}{% endblock %}</div>
+		{% include "general/footer.html" %}
+        
+		
+		<!-- Load jQuery / plugins -->
+		<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/jquery-2.1.0.min.js"></script>
+		<!-- <script src="{{ STATIC_URL }}js/plugins/jquery.cookie.js"></script> -->
+		<!-- Allow STATIC_URL in javascript -->
+		<script type="text/javascript">var STATIC_URL = "{{ STATIC_URL }}";</script>
+		
+		<!-- General javascript file -->
+		<script src="{{ STATIC_URL }}js/andreffs.js"></script>
+		
+		{% block extrajs %}{% endblock %}
+	</body>
+</html>
