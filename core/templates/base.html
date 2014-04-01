@@ -17,8 +17,7 @@
 		<link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.ico" type="image/x-icon">
 
 		<!-- Import Less -->
-		<link rel="stylesheet/less" type="text/css" href="{{ STATIC_URL }}less/reset.less" />
-		<link rel="stylesheet/less" type="text/css" href="{{ STATIC_URL }}less/common.less" />
+		<link rel="stylesheet/less" type="text/css" href="{{ STATIC_URL }}less/includes.less" />
 		<!-- <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}less/palindrome_{{ app_env }}.less" charset="utf-8"> -->
 
 		<!-- Import google font -->
@@ -51,6 +50,7 @@
 
 		<!-- Load jQuery / plugins -->
 		<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/jquery-2.1.0.min.js"></script>
+
 		<!-- <script src="{{ STATIC_URL }}js/plugins/jquery.cookie.js"></script> -->
 		<!-- Allow STATIC_URL in javascript -->
 		<script type="text/javascript">var STATIC_URL = "{{ STATIC_URL }}";</script>
