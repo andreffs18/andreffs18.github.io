@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-<!-- Blog page  -->
+<!-- Blog Detail page  -->
 {% block meta_description %}{% endblock %}
 {% block title %}andreffs{% endblock %}
 
@@ -9,24 +9,34 @@
 <div id="blog">
 	
 	<div id="blog-article-wrapper" class="pull-left">
-	{% for entrie in entries %}
-		<div class="blog-article">
-			<small>{{ entrie.date }} | {{ entrie.comments }} comments</small>
-			<a href="{{ entrie.slug }}"><h1>{{ entrie.title }}</h1></a>
-			<p>{{ entrie.body|truncatechars:200 }}</p>
+	
+		<div class="blog-article-detail">
+
+			<h1>{{ entry.title }}</h1>
+			<small>{{ entry.date }} | {{ entry.comments }} comments | {{ entry.timereading }}min reading</small>
+			<p>{{ entry.body }}</p>
+
+			<hr/>
+			
+			<h4>Comments</h4>
+			{% for comment in comments %}
+			<div class="blog-article-comment-box">
+				<small>{{ comment.date }}, {{ comment.hour }} | <a href="mailto:{{ comment.email }}">{{ comment.author }}</a></small>
+				<span>{{ comment.message }}</span>
+			</div>
+			{% endfor %}
+
+
+			<h4>Leave me a comment</h4>
+
+			<form method="POST" action="#"> 
+				<input type="text" placeholder="Name" value="" name="" />
+				<input type="text" placeholder="E-mail" value="" name="" />
+				<textarea placeholder="Your message" value="" name=""></textarea>
+				<input type="button" class="theme-color btn pull-right" value="Send" name="" />
+			</form>
+ 
 		</div>
-	{% endfor %}
-
-	http://expresso.sapo.pt/licoes-de-vida-que-vai-aprender-ate-aos-30=f864581
-
-
-	{% if entries.has_previous %}
-	<a href="?page={{ entries.previous_page_number }}" class="btn theme-color pull-right">Recent Articles &rarr;</a>
-	{% endif %}
-
-	{% if entries.has_next %}
-	<a href="?page={{ entries.next_page_number }}" class="btn theme-color pull-left">&larr; Previous Articles</a>
-	{% endif %}
 
 	</div>
 	<div id="blog-left-bar" class="pull-right">
