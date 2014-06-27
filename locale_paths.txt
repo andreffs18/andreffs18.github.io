@@ -1,1 +1,1 @@
-locale/en/LC_MESSAGE/
+locale/en/LC_MESSAGES/
