@@ -7,9 +7,9 @@
 {% block body %}
 
 <div id="blog">
-	
+
 	<div id="blog-article-wrapper" class="pull-left">
-	
+
 		<div class="blog-article-detail">
 
 			<h1>{{ entry.title }}</h1>
@@ -17,7 +17,7 @@
 			<p>{{ entry.body }}</p>
 
 			<hr/>
-			
+
 			<h4>Comments</h4>
 			{% for comment in comments %}
 			<div class="blog-article-comment-box">
@@ -29,13 +29,13 @@
 
 			<h4>Leave me a comment</h4>
 
-			<form method="POST" action="#"> 
+			<form method="POST" action="#">
 				<input type="text" placeholder="Name" value="" name="" />
 				<input type="text" placeholder="E-mail" value="" name="" />
 				<textarea placeholder="Your message" value="" name=""></textarea>
 				<input type="button" class="theme-color btn pull-right" value="Send" name="" />
 			</form>
- 
+
 		</div>
 
 	</div>

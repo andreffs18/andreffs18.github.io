@@ -1,5 +1,5 @@
-/*** 
-André Silva 1st April 2014  
+/***
+André Silva 1st April 2014
 ***/
 
 $(document).ready(function(){
@@ -20,7 +20,7 @@ $(document).ready(function(){
 		//(this).children('.portSecRollOver').css("display","none");
 		$('.h-link').not(this).animate({opacity:1},{queue:false,duration:100});
 	});
-	
+
 
 	// Opacity effect on footer nav bar
 	$('#footer .fa').css({opacity:0.5});

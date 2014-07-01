@@ -1,5 +1,5 @@
-/*** 
-André Silva 1st April 2014  
+/***
+André Silva 1st April 2014
 ***/
 
 
@@ -10,7 +10,7 @@ $('img.bgfade').hide();
 	var dg_W = $(window).width();
 
 	$('#wrap').css( {'height':dg_H,'width':dg_W} );
-	
+
 	function anim() {
 		$("#wrap img.bgfade").first().appendTo('#wrap').fadeOut(1000);
 		$("#wrap img").first().fadeIn(1000);
