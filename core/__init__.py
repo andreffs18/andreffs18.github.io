@@ -1,10 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-'''
-André Silva 1st April 2014  
-'''
-
 LOG_CONFIG = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -36,3 +29,6 @@ import logging
 from logging.config import dictConfig
 dictConfig(LOG_CONFIG)
 logger = logging.getLogger()
+
+# import logging
+# logger = logging.getLogger('andreffs.' + __name__)

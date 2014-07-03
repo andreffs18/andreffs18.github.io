@@ -33,10 +33,12 @@
 	</head>
 
 	<body>
-		<div id="content-wrapper">
-			{% include "general/header.html" %}
-			<div id="content" class="content-block">{% block body %}{% endblock %}</div>
-		</div>
+        {% block header %}{% endblock %}
+		<section id="content-wrapper">
+			<div class="content-block">
+				{% block body %}{% endblock %}
+			</div>
+		</section>
 		{% include "general/footer.html" %}
 
         <!-- Load Facebook widget capability -->

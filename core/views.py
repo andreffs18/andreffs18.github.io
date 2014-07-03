@@ -1,11 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-'''
-André Silva 1st April 2014
-'''
-
-
 import json
 from django.template.loader import get_template
 from django.template.context import Context
@@ -20,8 +12,13 @@ from django.contrib.auth.decorators import login_required
 from django.http.response import HttpResponse, Http404
 from django.utils.decorators import method_decorator
 from django.shortcuts import redirect
-import logging
-logger = logging.getLogger('andreffs.' + __name__)
+
+class AboutView(TemplateView):
+    template_name = "about.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(AboutView, self).get_context_data(**kwargs)
+        return context
 
 
 class ProjectsView(TemplateView):
@@ -37,7 +34,6 @@ class ProjectsView(TemplateView):
         context["projects"] = projects
 
         return context
-
 
 
 class AdminView(TemplateView, FormView):

@@ -1,6 +1,3 @@
-
-
-
 '''
     Creates a url readable link
 '''

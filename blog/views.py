@@ -3,15 +3,19 @@ from blog.models import BlogPost
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.views.generic.base import TemplateView
 
+import logging
+logger = logging.getLogger('andreffs.' + __name__)
+
+
 class BlogView(TemplateView):
     template_name = "blog2.html"
 
     def get_context_data(self, **kwargs):
         context = super(BlogView, self).get_context_data(**kwargs)
 
-        args = {"title" : "Hello World!",
-                "subtitle" : "Comming from where you least expect!",
-                "content" : "yada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yada"}
+        #args = {"title" : "Hello World!",
+        #        "subtitle" : "Comming from where you least expect!",
+        #        "content" : "yada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yadayada yada yada"}
 
         articles = BlogPost.objects.all()
 

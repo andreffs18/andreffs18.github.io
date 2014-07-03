@@ -1,5 +1,3 @@
-__author__ = 'andresilva'
-
 from django.conf.urls import patterns, include, url
 from blog.views import BlogView, BlogDetailView
 

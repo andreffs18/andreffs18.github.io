@@ -4,22 +4,17 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 
 from blog.views import BlogView, BlogDetailView
-from core.views import ProjectsView, AdminView
-
-
-import logging
-
+from core.views import ProjectsView, AdminView, AboutView
 
 admin.autodiscover()
-logger = logging.getLogger()
 
 urlpatterns = patterns('',
 
-
-    url(r'explore/^$', TemplateView.as_view(template_name="home.html"), name='home'),
-
     url(r'^$', TemplateView.as_view(template_name="welcome.html"), name='welcome'),
-    url(r'^about/$', TemplateView.as_view(template_name="about.html"), name='about'),
+
+
+    url(r'^about/$', AboutView.as_view(), name='about'),
+
 
     url(r'^blog/$', include('blog.urls'), name='blog'),
 
@@ -28,10 +23,7 @@ urlpatterns = patterns('',
     url(r'^projects/$', ProjectsView.as_view(), name='projects'),
     url(r'^contacts/$', TemplateView.as_view(template_name="contacts.html"), name='contacts'),
 
-
     url(r'^admin/$', AdminView.as_view(), name="admin"),
-
     # url(r'^blog/', include('blog.urls')),
-
-    #url(r'^admin/', include(admin.site.urls)),
+    # url(r'^admin/', include(admin.site.urls)),
 )
