@@ -1,7 +1,7 @@
-from blog.models import BlogPost
-
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.views.generic.base import TemplateView
+
+from blog.models import BlogPost
 
 import logging
 logger = logging.getLogger('andreffs.' + __name__)
