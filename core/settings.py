@@ -44,7 +44,6 @@ MIDDLEWARE_CLASSES = (
 
 )
 
-
 ## See more at http://django-debug-toolbar.readthedocs.org/en/1.0/panels.html
 DEBUG_TOOLBAR_PATCH_SETTINGS = False
 DEBUG_TOOLBAR_PANELS = (
@@ -62,7 +61,6 @@ DEBUG_TOOLBAR_PANELS = (
     'debug_toolbar.panels.redirects.RedirectsPanel',
 )
 
-
 ROOT_URLCONF = 'core.urls'
 WSGI_APPLICATION = 'core.wsgi.application'
 
@@ -77,7 +75,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 STATIC_URL = '/static/'
-
 
 # Database Connection
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
