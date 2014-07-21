@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+<!-- Blog Detail page  -->
+{% block meta_description %}{% endblock %}
+{% block title %}andreffs{% endblock %}
+
+{% block extraless %}<link rel="stylesheet/less" type="text/css" href="{{ STATIC_URL }}less/blog.less" />{% endblock %}
+{% block body %}
+
+<div id="blog">
+	
+	<div id="blog-article-wrapper" class="pull-left">
+	
+		<div class="blog-article-detail">
+
+			<h1>{{ entry.title }}</h1>
+			<small>{{ entry.date }} | {{ entry.comments }} comments | {{ entry.timereading }}min reading</small>
+			<p>{{ entry.body }}</p>
+
+			<hr/>
+			
+			<h4>Comments</h4>
+			{% for comment in comments %}
+			<div class="blog-article-comment-box">
+				<small>{{ comment.date }}, {{ comment.hour }} | <a href="mailto:{{ comment.email }}">{{ comment.author }}</a></small>
+				<span>{{ comment.message }}</span>
+			</div>
+			{% endfor %}
+
+
+			<h4>Leave me a comment</h4>
+
+			<form method="POST" action="#"> 
+				<input type="text" placeholder="Name" value="" name="" />
+				<input type="text" placeholder="E-mail" value="" name="" />
+				<textarea placeholder="Your message" value="" name=""></textarea>
+				<input type="button" class="theme-color btn pull-right" value="Send" name="" />
+			</form>
+ 
+		</div>
+
+	</div>
+	<div id="blog-left-bar" class="pull-right">
+		<!-- Search -->
+		<div class="blog-module">
+			<input type="text" placeholder="Search" name="search-article" />
+			<i class="fa fa-search"></i>
+		</div>
+
+		<!-- About -->
+		<div class="blog-module">
+			<h1>About</h1>
+			<p>Every person should have some place to write their opinions, discoverys and/or resolutions. This blog is for my problem/solutions type of content. And stuf.</p>
+		</div>
+
+		<!-- Blog Posts -->
+		<div class="blog-module">
+			<h1>Recent Blog Posts</h1>
+			<ul>
+				{% for post in recent_posts %}
+				<li><a href="#">&bull;&nbsp;&nbsp;{{ post|truncatechars:35 }}</a></li>
+				{% endfor %}
+			</ul>
+		</div>
+
+		<!-- Categories -->
+		<div class="blog-module">
+			<h1>Categories</h1>
+			<div class="tag-wrapper">
+				{% for tag in tags %}
+				<a href="#" class="pull-left">{{ tag }}</a>
+				{% endfor %}
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+
+</div>
+
+{% endblock %}
+{% block extrajs %}<!--<script src="{{ STATIC_URL }}js/projects.js"></script>-->{% endblock %}

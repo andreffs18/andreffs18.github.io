@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+<!-- Contacts page -->
+{% block meta_description %}{% endblock %}
+{% block title %}{% endblock %}
+{% block header %}<header></header>{% endblock %}
+{% block extraless %}<link rel="stylesheet/less" type="text/css" href="{{ STATIC_URL }}less/contacts.less" />{% endblock %}
+{% block body %}
+
+<div id="contacts">
+	<ul class="pull-left">
+		<h1>Be my friend!</h1>
+		<li><a target="_blank" title="linkedin" href="http://pt.linkedin.com/pub/andré-silva/7b/21a/450/"><i class="fa fa-linkedin-square linkedin"></i><span>linkedin</span></a></li>
+		<li><a target="_blank" title="github" href="https://github.com/andreffs18"><i class="fa fa-github-square github"></i><span>github</span></a></li>
+		<li><a target="_blank" title="facebook" href="https://www.facebook.com/andreffs18"><i class="fa fa-facebook-square facebook"></i><span>facebook</span></a></li>
+		<li><a target="_blank" title="twitter" href="https://twitter.com/andreffs18"><i class="fa fa-twitter-square twitter"></i><span>twitter</span></a></li>
+		<li><a target="_blank" title="instagram" href="#instagram/andreffs18"><i class="fa fa-instagram instagram"></i><span>instagram</span></a></li>
+		<li><a target="_blank" title="googleplus" href="https://plus.google.com/u/0/108978750836996449852/"><i class="fa fa-google-plus-square google-plus"></i><span>google +</span></a></li>
+	</ul>
+	<form class="pull-right">
+		<h1>Talk to me!</h1>
+		<input type="text" placeholder="Name" value="" name="" />
+		<input type="text" placeholder="E-mail" value="" name="" />
+		<textarea type="text" placeholder="Message" value="" rows="2" name=""></textarea>
+		<input type="button" class="theme-color pull-right" value="Send" name="" />
+	</form>
+
+	<div class="clearfix"></div>
+
+</div>
+
+{% endblock %}
+{% block extrajs %}{% endblock %}
