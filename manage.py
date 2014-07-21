@@ -2,7 +2,10 @@
 import os
 import re
 import sys
-
+import logging
+from core import settings
+from logging.config import dictConfig
+from django.core.management import execute_from_command_line
 
 '''
     Reads all available enviroment variables on the .env
@@ -30,7 +33,11 @@ def read_env():
 
 
 if __name__ == "__main__":
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "core.settings")
 
-    from django.core.management import execute_from_command_line
-    execute_from_command_line(sys.argv)
+	read_env()
+
+	dictConfig(settings.LOG_CONFIG)
+	logger = logging.getLogger()
+
+	os.environ.setdefault("DJANGO_SETTINGS_MODULE", "core.settings")
+	execute_from_command_line(sys.argv)
