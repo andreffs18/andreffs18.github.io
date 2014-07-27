@@ -8,7 +8,27 @@
 
 <div id="admin">
 
-	<h1>Who is?</h1>
+	<h1 class="title">My Post's</h1>
+	<table>
+		<thead>
+			<td>Title</td>
+			<td>Date</td>
+			<td>Time</td>
+		</thead>
+		<tbody>
+			{% for post in articles %}
+			<tr>
+				<td>{{ post.title }}</td>
+				<td>{{ post.date }}</td>
+				<td>{{ post.time }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<h2 class="subtitle">Add blog post</h2>
+	
+
 	
 </div>
 

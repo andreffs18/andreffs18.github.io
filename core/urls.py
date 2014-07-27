@@ -29,7 +29,7 @@ urlpatterns = patterns('',
 	url(r'^projects/$', ProjectsView.as_view(), name='projects'),
 
 
-	url(r'^contacts/$', TemplateView.as_view(template_name="contacts.html"), name='contacts'),
+	url(r'^contacts/$', TemplateView.as_view(template_name="contacts/contacts.html"), name='contacts'),
 
 
 	url(r'^admin/$', AdminView.as_view(), name="admin"),

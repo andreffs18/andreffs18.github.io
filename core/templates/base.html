@@ -22,10 +22,6 @@
 
 		<!-- Import vector icons -->
 		<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-
-		<!-- Import google font -->
-		<link href='http://fonts.googleapis.com/css?family=Titillium+Web:200,300,400,700' rel='stylesheet' type='text/css'>
-		<link href='http://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
 		
 		<script src="{{ STATIC_URL }}js/plugins/less-1.7.0.min.js"></script>
 	    
@@ -33,11 +29,10 @@
 	</head>
 	
 	<body>
+		{% include "general/header.html" %}
 		{% block header %}{% endblock %}
-		<section id="content-wrapper">
-			<div class="content-block">
+		<section id="content-wrapper" class="content-block">
 			{% block body %}{% endblock %}
-			</div>
 		</section>
 		{% include "general/footer.html" %}
         
