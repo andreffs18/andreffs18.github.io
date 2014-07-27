@@ -7,6 +7,44 @@ $(document).ready(function(){
 
 	var image_name = $('header').data('image');
 	$('header').css('background-image', 'url('+STATIC_URL+'img/'+image_name+')');
+
+
+    $('#trigger-dialog-signin').click(function(){
+        $.fancybox($('#dialog-signin'),{
+            "scrolling": "yes",
+            "autoResize": true,
+            "autoCenter": true,
+            "fitToView": true,
+            "closeBtn": true,
+            "padding": 30,
+            afterShow: function () {
+                // ajax call
+                $.ajax({
+                    url: 'update_special_price/',
+                    type: 'GET',
+                    data: { 'special_price' : new_price, 'username' : username },
+                    contentType: 'application/json',
+                    dataType: 'json',
+
+                    complete: function(response){
+                        overlay.find('img.loading').removeClass('loading').addClass('success');
+                        setTimeout(function(){
+                            $.fancybox.close();
+                        }, 1000);
+                        location.reload(true);
+                    }
+                });
+            },
+            afterClose: function(){}
+        });
+    });
+
+
+
+
+
+
+
 			 //   	.find('h1')
 			 //   	.fadeIn(1500, function(){
 			 //   		$(this).animate({  letterSpacing: '25px' }, {

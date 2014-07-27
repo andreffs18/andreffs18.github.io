@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load filters %}
 <!-- Blog page  -->
 {% block meta_description %}{% endblock %}
 {% block title %}andreffs | My Blog{% endblock %}
@@ -13,13 +14,13 @@
 
 <div id="blog">
 	<div id="blog-article-wrapper" class="pull-left">
-		{% for entrie in entries %}
+		{% for article in articles %}
 		<div class="blog-article">
 			<!---->
-			<a href="{{ entrie.slug }}"><h1 class="title">{{ entrie.title }}</h1></a>
-			<h2 class="subtitle">{{ entrie.date }} | <a href="#">{{ entrie.comments }} comments</a> | &plusmn; 3min</h2>
+			<a href="{{ article.slug }}"><h1 class="title">{{ article.title }}</h1></a>
+			<h2 class="subtitle">{{ article.timestamp|timestamp }} | <a href="#">{{ article.comments }} comments</a> | &plusmn; {{ article.read_time }}min</h2>
 			<hr />
-			<p class="text">{{ entrie.body|truncatechars:320 }}</p>
+			<p class="text">{{ article.content|truncatechars:320 }}</p>
 			<a href="#" class="button pull-right">Continue reading</a>
 		</div>
 		{% endfor %}
@@ -27,12 +28,12 @@
 	
 
 
-		{% if entries.has_previous %}
-		<a href="?page={{ entries.previous_page_number }}" class="button pull-right">Recent Articles &rarr;</a>
+		{% if articles.has_previous %}
+		<a href="?page={{ articles.previous_page_number }}#blog-article-wrapper" class="button pull-right">Recent Articles &rarr;</a>
 		{% endif %}
 
-		{% if entries.has_next %}
-		<a href="?page={{ entries.next_page_number }}" class="button pull-left">&larr; Previous Articles</a>
+		{% if articles.has_next %}
+		<a href="?page={{ articles.next_page_number }}#blog-article-wrapper" class="button pull-left">&larr; Previous Articles</a>
 		{% endif %}
 
 	</div>

@@ -19,7 +19,7 @@
 			<tr>
 				<td>{{ post.title }}</td>
 				<td>{{ post.date }}</td>
-				<td>{{ post.time }}</td>
+				<td>{{ post.read_time }}</td>
 			</tr>
 			{% endfor %}
 		</tbody>
@@ -27,7 +27,11 @@
 
 	<h2 class="subtitle">Add blog post</h2>
 
-    {{ form }}
+    <form action="" method="POST" >
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit Post" />
+    </form>
 
 </div>
 

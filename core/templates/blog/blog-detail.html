@@ -1,10 +1,11 @@
 {% extends "base.html" %}
+{% load filters %}
 <!-- Blog Detail page  -->
 {% block meta_description %}{% endblock %}
-{% block title %}andreffs | {{ entry.title }} written by Andr&eacute; Silva{% endblock %}
+{% block title %}andreffs | {{ article.title }} written by Andr&eacute; Silva{% endblock %}
 {% block header %}<header data-image="blog.jpg">
 	<div>
-		{{ entry.title }}<br/>
+		{{ article.title }}<br/>
 		<span>written by Andr&eacute; Silva</span>
 	</div>
 	<span class="ref">&copy; André Silva</span>
@@ -13,11 +14,11 @@
 {% block body %}
 <div id="blog">
 	<div id="blog-article-wrapper" class="pull-left">
-	
+
 		<div class="blog-article-detail">
-			<h1 class="title">{{ entry.title }}</h1>
-			<h2 class="subtitle">{{ entry.date }}</h3>
-			<p class="text">{{ entry.body }}</p>
+			<h1 class="title">{{ article.title }}</h1>
+			<h2 class="subtitle">{{ article.timestamp|timestamp}}</h2>
+			<p class="text">{{ article.content }}</p>
 
 			<hr/>
 

@@ -25,6 +25,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
+    'admin',
+    'core',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -93,4 +95,5 @@ LOG_CONFIG = {
             'level':'DEBUG'
     },
 }
-
+import logging
+logger = logging.getLogger('andreffs.' + __name__)

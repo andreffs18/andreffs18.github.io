@@ -1,6 +1,6 @@
 <div id="footer" class="content-block">
 	<div id="footer-wrapper">
-		<p class="pull-left">&copy; 2014 <a href="/admin">A</a>ndr&eacute; Silva</p>
+		<p class="pull-left">&copy; 2014 <a href="#" id="trigger-dialog-signin">A</a>ndr&eacute; Silva</p>
 
 		<div class="social-wrapper pull-left">
 			<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
@@ -25,4 +25,14 @@
 
 		<div class="clearfix"></div>
 	</div>
+
+    <div id="dialog-signin" hidden>
+        <h1>Sign in</h1>
+        <form action="/signin/" method="POST">
+            {% csrf_token %}
+            <input type="text" value="" placeholder="Username" name="username" id=""/>
+            <input type="password" value="" placeholder="Password" name="password" id=""""/>
+            <input type="submit" value="Log in" name="submit" id=""/>
+        </form>
+    </div>
 </div>

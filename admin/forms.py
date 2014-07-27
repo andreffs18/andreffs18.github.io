@@ -1,5 +1,6 @@
-
 from django import forms
+
+
 
 # from django.forms import ModelForm
 # from contact.models import Sugestion
@@ -11,5 +12,5 @@ from django import forms
 
 class BlogAddPostForm(forms.Form):
     title = forms.CharField(label="Title")
-    subtitle = forms.CharField(label="Subtitle")
-    text = forms.CharField(label="Text", widget=forms.Textarea)
+    subtitle = forms.CharField(label="Subtitle", required=False)
+    content = forms.CharField(label="content", widget=forms.Textarea)

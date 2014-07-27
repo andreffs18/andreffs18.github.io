@@ -34,10 +34,10 @@ def read_env():
 
 if __name__ == "__main__":
 
-	read_env()
+    read_env()
 
-	dictConfig(settings.LOG_CONFIG)
-	logger = logging.getLogger()
+    dictConfig(settings.LOG_CONFIG)
+    logger = logging.getLogger()
 
-	os.environ.setdefault("DJANGO_SETTINGS_MODULE", "core.settings")
-	execute_from_command_line(sys.argv)
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "core.settings")
+    execute_from_command_line(sys.argv)
