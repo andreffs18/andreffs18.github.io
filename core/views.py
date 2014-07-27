@@ -121,24 +121,3 @@ class ProjectsView(TemplateView):
 
 
 
-class AdminView(TemplateView, FormView):
-	template_name = "admin/admin.html"
-
-	def get_context_data(self, **kwargs):
-		context = super(AdminView, self).get_context_data(**kwargs)
-
-
-		article = { "title" : "Something about something", 
-			"slug" : "12/08/2013/something-about-something/",	
-			"date" : "12 August 2013, 13h30",
-			"body" : "I work swell, i sd jasldk njasoidkl jasdk asmdshad the luck to become a internshipjjjjjjjjjjjjjjjjjjjjjjjj on the first Portugues Startup to enter in YCombinator.. Unbabel! The just make a way for machine translation and a human have a baby and awesome text birth fromave a baby and awesome text birth fromave a baby and awesome text birth from it's windows",
-			"comments" : "12",
-			"time" : "3",
-			"categories" : ["aha", "beads", "hasd", "ajsd"] 
-			} 
-
-		entries = []
-		for i in range(10):
-			entries.append(article)
-		context['articles'] = entries
-		return context
