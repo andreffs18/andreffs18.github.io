@@ -24,6 +24,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'debug_toolbar',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -55,11 +56,12 @@ STATIC_URL = '/static/'
 
 # Database Connection
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-DATABASES={}
-# Parse database configuration from $DATABASE_URL
-import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
-
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.environ.get('SQL_DATABASE_NAME', 'dbtest'),
+    }
+}
 import mongoengine
 mongoengine.connect(os.environ.get("MONGO_DATABASE_NAME"), host=os.environ.get("MONGO_DATABASE_URL"))
 
