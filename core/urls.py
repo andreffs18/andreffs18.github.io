@@ -19,7 +19,7 @@ urlpatterns = patterns('',
 
     url(r'^about/$', TemplateView.as_view(template_name="about/about.html"), name='about'),
 	url(r'^work/$', TemplateView.as_view(template_name="work.html"), name='work'),
-	url(r'^college/$', TemplateView.as_view(template_name="college.html"), name='college'),
+	url(r'^education/$', TemplateView.as_view(template_name="education/education.html"), name='education'),
 	url(r'^projects/$', ProjectsView.as_view(), name='projects'),
 	url(r'^contacts/$', TemplateView.as_view(template_name="contacts/contacts.html"), name='contacts'),
 
