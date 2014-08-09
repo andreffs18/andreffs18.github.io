@@ -97,3 +97,7 @@ LOG_CONFIG = {
 }
 import logging
 logger = logging.getLogger('andreffs.' + __name__)
+
+
+## GLOBAL VARS ##
+AVG_WORDS_PER_MINUTE = 250

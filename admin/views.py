@@ -32,3 +32,7 @@ class AdminBlogView(FormView):
         logger.debug("Form valid")
         BlogArticle.create_article(**form.cleaned_data)
         return super(AdminBlogView, self).form_valid(form)
+
+
+class AdminEditBlogArticleView(FormView):
+    pass

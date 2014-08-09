@@ -18,9 +18,9 @@
 		<div class="blog-article">
 			<!---->
 			<a href="{{ article.slug }}"><h1 class="title">{{ article.title }}</h1></a>
-			<h2 class="subtitle">{{ article.timestamp|timestamp }} | <a href="#">{{ article.comments }} comments</a> | &plusmn; {{ article.read_time }}min</h2>
+			<h2 class="subtitle">{{ article.timestamp|timestamp }} | <a href="#">{{ article.comments }} comments</a> | &plusmn; {{ article.read_time }}</h2>
 			<hr />
-			<p class="text">{{ article.content|truncatechars:320 }}</p>
+			<p class="text">{{ article.content|truncatechars:265 }}</p>
 			<a href="#" class="button pull-right">Continue reading</a>
 		</div>
 		{% endfor %}
