@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.views.generic import TemplateView
 
-from core.views import BlogView, ProjectsView, BlogDetailView, SignInView
+from core.views import BlogView, ProjectsView, BlogDetailView, SignInView, ContactView
 
 from core.settings import logger
 logger.debug("LoL")
@@ -21,7 +21,7 @@ urlpatterns = patterns('',
 	url(r'^work/$', TemplateView.as_view(template_name="work.html"), name='work'),
 	url(r'^education/$', TemplateView.as_view(template_name="education/education.html"), name='education'),
 	url(r'^projects/$', ProjectsView.as_view(), name='projects'),
-	url(r'^contacts/$', TemplateView.as_view(template_name="contacts/contacts.html"), name='contacts'),
+	url(r'^contacts/$', ContactView.as_view(), name='contacts'),
 
 
 	url(r'^admin/', include('admin.urls'), name="admin"),

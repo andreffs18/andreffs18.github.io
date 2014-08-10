@@ -15,6 +15,8 @@ from core.settings import logger
 
 from admin.models import BlogArticle
 
+from core.forms import ContactForm
+
 class BlogView(TemplateView):
 	template_name = "blog/blog.html"
 
@@ -65,3 +67,8 @@ class ProjectsView(TemplateView):
 
 class SignInView():
     pass
+
+class ContactView(FormView):
+    template_name = "contacts/contacts.html"
+    form_class = ContactForm
+    success_url = '?state=added'

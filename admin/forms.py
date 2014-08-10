@@ -12,4 +12,4 @@ from django import forms
 
 class BlogAddPostForm(forms.Form):
     title = forms.CharField(label="Title")
-    content = forms.CharField(label="content", widget=forms.Textarea)
+    content = forms.CharField(label="Text", widget=(forms.Textarea))

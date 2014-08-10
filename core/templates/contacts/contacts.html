@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 <!-- Contacts page -->
 {% block meta_description %}{% endblock %}
-{% block title %}{% endblock %}
+{% block title %}andreffs | Contacts{% endblock %}
 {% block header %}<header data-image="blog.jpg">
 	<div>
 		Contacts<br/>
@@ -24,10 +24,8 @@
 
 	<form class="pull-right">
 		<h1 class="title">Talk to me!</h1>
-		<input type="text" placeholder="Name" value="" name="" />
-		<input type="text" placeholder="E-mail" value="" name="" />
-		<textarea type="text" placeholder="Message" value="" rows="2" name=""></textarea>
-		<input type="button" class="pull-right" value="Send" name="" />
+        {{ form }}
+        <input type="submit" class="pull-right" value="Send" name="" />
 	</form>
 </div>
 {% endblock %}
