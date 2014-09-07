@@ -5,7 +5,16 @@ from django.views.generic import TemplateView
 from core.views import BlogView, ProjectsView, BlogDetailView, SignInView, ContactView
 
 from core.settings import logger
-logger.debug("LoL")
+logger.debug('''
+========================================================================
+
+        WELCOME TO MY PORTFOLIO DUMBASS! YOU SHOULDN'T BE HERE..
+
+                            last update
+                           04 - 09 - 2014
+
+========================================================================
+''')
 
 urlpatterns = patterns('',
 

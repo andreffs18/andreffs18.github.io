@@ -33,6 +33,12 @@ class AdminBlogView(FormView):
         BlogArticle.create_article(**form.cleaned_data)
         return super(AdminBlogView, self).form_valid(form)
 
+class FeedsView(TemplateView):
+    template_name = "admin/feeds.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(FeedsView, self).get_context_data(**kwargs)
+        return context
 
 class AdminEditBlogArticleView(FormView):
     pass
