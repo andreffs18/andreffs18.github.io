@@ -1,0 +1,13 @@
+Django==1.8.1
+dj-database-url==0.3.0
+-e git+https://github.com/django-debug-toolbar/django-debug-toolbar.git@1bc51edd7612f43a7fa49f44d8650f512002a0f8#egg=django_debug_toolbar-dev
+django-debug-toolbar-mongo==0.1.10
+gnureadline==6.3.3
+ipython==2.1.0
+mongoengine==0.8.7
+psycopg2==2.6
+pymongo==2.7.1
+requests==2.2.1
+sqlparse==0.1.11
+unbabel-py==0.25
+wsgiref==0.1.2
