@@ -1,66 +1,32 @@
 <!DOCTYPE html>
-{% load staticfiles %}
-{% load i18n %}
+{% load filters %}
+<html lang="{{ LANGUAGE_CODE }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="Andre Silva">
+        <!-- <link rel="shortcut icon" href="/static/img/favicon.png"> -->
+        <title></title>
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="/static/js/html5shiv.js"></script>
+            <script src="/static/js/respond.min.js"></script>
+        <![endif]-->
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		
-		<meta name="description" content="{% block meta_description %}{% endblock %}">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet/less" type="text/css" href="{{ STATIC_URL }}less/includes_localhost.less" charset="utf-8"/>
 
-		<!--  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
-		<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
-		<title>{% block title %}{% endblock %}</title>
+        <script src="{{ STATIC_URL }}js/less.min.js"></script>
+    </head>
 
-		<!-- Fav Icon -->
-		<link rel="icon" href="{{ STATIC_URL }}img/favicon.ico" type="image/x-icon"> 
-		<link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.ico" type="image/x-icon">
-
-		<!-- Import Less -->
-		<link rel="stylesheet/less" type="text/css" href="{{ STATIC_URL }}less/includes.less" />
-	    <link rel="stylesheet/less" type="text/css" href="{{ STATIC_URL }}js/plugins/fancybox/jquery.fancybox.less" />
-		{% block extraless %}{% endblock %}
-
-		<!-- Import vector icons -->
-		<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-		
-		<script src="{{ STATIC_URL }}js/plugins/less-1.7.0.min.js"></script>
-	    
-     	{% block extracss %}{% endblock %}
-	</head>
-	
-	<body>
-		{% include "general/header.html" %}
-		{% block header %}{% endblock %}
-		<section id="content-wrapper" class="content-block">
-			{% block body %}{% endblock %}
-		</section>
-		{% include "general/footer.html" %}
-        
-        <!-- Load Facebook widget capability -->
-        <div id="fb-root"></div>
-		<script>(function(d, s, id) {
-			var js, fjs = d.getElementsByTagName(s)[0];
-			if (d.getElementById(id)) return;
-			js = d.createElement(s); js.id = id;
-			js.src = "//connect.facebook.net/pt_PT/all.js#xfbml=1&appId=262506040490886";
-			fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));</script>
-		
-		<!-- Load Twitter widget capability -->
-		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-
-		<!-- Load jQuery / plugins -->
-		<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/jquery-2.1.0.min.js"></script>
-        <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/fancybox/jquery.fancybox.js"></script>
-		<!-- <script src="{{ STATIC_URL }}js/plugins/jquery.cookie.js"></script> -->
-
-		<!-- Allow STATIC_URL in javascript -->
-		<script type="text/javascript">var STATIC_URL = "{{ STATIC_URL }}";</script>
-		
-		<!-- General javascript file -->
-		<script src="{{ STATIC_URL }}js/andreffs.js"></script>
-		
-		{% block extrajs %}{% endblock %}
-	</body>
+    <body>
+        {% block body %}{% endblock %}
+        {% include "footer.html" %}
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        {% block extrajs %}{% endblock %}
+    </body>
 </html>

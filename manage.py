@@ -2,17 +2,13 @@
 import os
 import re
 import sys
-import logging
-from core import settings
-from logging.config import dictConfig
-from django.core.management import execute_from_command_line
 
-'''
-    Reads all available enviroment variables on the .env
-'''
 def read_env():
-    """Pulled from Honcho code with minor updates, reads local default environment
-    variables from a .env file located in the project root directory."""
+    '''
+    Reads all available enviroment variables on the .env
+    Pulled from Honcho code with minor updates, reads local default environment
+    variables from a .env file located in the project root directory.
+    '''
     try:
         with open('.env') as f:
             content = f.read()
@@ -32,12 +28,12 @@ def read_env():
             os.environ.setdefault(key, val)
 
 
-if __name__ == "__main__":
 
+if __name__ == "__main__":
     read_env()
 
-    dictConfig(settings.LOG_CONFIG)
-    logger = logging.getLogger()
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "andreffs.settings")
 
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "core.settings")
+    from django.core.management import execute_from_command_line
+
     execute_from_command_line(sys.argv)

@@ -1,1 +1,3 @@
-__author__ = 'andresilva'
+from django import template
+
+register = template.Library()
