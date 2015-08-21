@@ -1,8 +1,10 @@
 # project wide urls
+import settings
 from django.conf.urls import patterns, include, url
 from django.views.generic import RedirectView
 from django.views.generic.base import TemplateView, View
 from django.core.urlresolvers import reverse
+from django.conf.urls.static import static
 from django.contrib import admin
 
 admin.autodiscover()
@@ -30,3 +32,8 @@ urlpatterns = patterns('',
     # catch all, redirect to core home view
     # url(r'', RedirectView.as_view(url='/core/home')),
 )
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
