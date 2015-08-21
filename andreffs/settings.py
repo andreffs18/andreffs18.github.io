@@ -9,7 +9,7 @@ ADMINS = (
      os.environ.get('ADMIN_EMAIL', 'your_email@example.com')),
 )
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*',]
 
 MANAGERS = ADMINS
 
