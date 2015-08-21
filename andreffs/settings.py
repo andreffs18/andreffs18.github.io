@@ -15,8 +15,9 @@ ADMINS = (
 )
 MANAGERS = ADMINS
 
-DATABASES = {}
-DATABASES['default'] = dj_database_url.config()
+DATABASES = {
+    "default": dj_database_url.config(default='postgres://localhost'),
+}
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -114,11 +115,10 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'andreffs',
-    'core',
     'blog',
 )
 
-SITE_URL = "http://127.0.0.1:8000"
+SITE_URL = ""
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".

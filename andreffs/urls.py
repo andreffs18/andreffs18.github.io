@@ -7,10 +7,14 @@ from django.contrib import admin
 
 admin.autodiscover()
 
+import andreffs.views as coreviews
+
 # import your urls from each app here, as needed
 urlpatterns = patterns('',
 
-    url(r'', include('core.urls')),
+    url(r'^$', coreviews.HomepageView.as_view(), name="core_homepage_view"),
+    url(r'^about/$', coreviews.AboutpageView.as_view(), name="core_aboutpage_view"),
+    url(r'^work/$', coreviews.WorkpageView.as_view(), name="core_workpage_view"),
     url(r'', include('blog.urls')),
 
 
