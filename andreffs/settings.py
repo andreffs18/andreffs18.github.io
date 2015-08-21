@@ -1,5 +1,6 @@
 # Django settings for andreffs
 import os
+import dj_database_url
 # this folder path
 SITE_ROOT = os.path.abspath(os.path.dirname(__file__))
 # project path
@@ -14,23 +15,8 @@ ADMINS = (
 )
 MANAGERS = ADMINS
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-    }
-}
+DATABASES = {}
+DATABASES['default'] = dj_database_url.config()
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -140,8 +126,6 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.\
    os.path.join(SITE_ROOT, "templates"),
 )
-print TEMPLATE_DIRS
-
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
