@@ -1,7 +1,9 @@
 Django==1.8.1
 dj-database-url==0.3.0
+dj-static==0.0.6
 -e git+https://github.com/django-debug-toolbar/django-debug-toolbar.git@1bc51edd7612f43a7fa49f44d8650f512002a0f8#egg=django_debug_toolbar-dev
 django-debug-toolbar-mongo==0.1.10
+django-toolbelt==0.0.1
 gnureadline==6.3.3
 gunicorn==19.3.0
 ipython==2.1.0
@@ -10,5 +12,6 @@ psycopg2==2.6
 pymongo==2.7.1
 requests==2.2.1
 sqlparse==0.1.11
+static3==0.6.1
 unbabel-py==0.25
 wsgiref==0.1.2
