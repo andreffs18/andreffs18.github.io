@@ -5,7 +5,8 @@ import dj_database_url
 # SITE_ROOT = os.path.abspath(os.path.dirname(__file__))
 # project path
 # BASE_DIR = os.path.abspath(os.path.join(SITE_ROOT, ".."))
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.getcwd()
+#BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 DEBUG = os.environ.get('DEBUG', False) == 'True'
 TEMPLATE_DEBUG = DEBUG
