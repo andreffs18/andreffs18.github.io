@@ -2,13 +2,14 @@
 import os
 import dj_database_url
 # this folder path
-SITE_ROOT = os.path.abspath(os.path.dirname(__file__))
+# SITE_ROOT = os.path.abspath(os.path.dirname(__file__))
 # project path
-BASE_DIR = os.path.abspath(os.path.join(SITE_ROOT, ".."))
+# BASE_DIR = os.path.abspath(os.path.join(SITE_ROOT, ".."))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 DEBUG = os.environ.get('DEBUG', False) == 'True'
 TEMPLATE_DEBUG = DEBUG
-ALLOWED_HOSTS = ('*', )
+
 ADMINS = (
     (os.environ.get('ADMIN_NAME', 'your_name'),
      os.environ.get('ADMIN_EMAIL', 'your_email@example.com')),
@@ -18,6 +19,10 @@ MANAGERS = ADMINS
 DATABASES = {
     "default": dj_database_url.config(default='postgres://localhost'),
 }
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+ALLOWED_HOSTS = ['*']
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -55,7 +60,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_ROOT = "staticfiles"
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -66,7 +71,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(SITE_ROOT, "static"),
+    os.path.join(BASE_DIR, "andreffs/static"),
     # os.path.join(os.getcwd(), "static"),
 
 )
@@ -125,7 +130,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.\
-   os.path.join(SITE_ROOT, "templates"),
+   os.path.join(BASE_DIR, "andreffs/templates"),
 )
 
 # A sample logging configuration. The only tangible logging
