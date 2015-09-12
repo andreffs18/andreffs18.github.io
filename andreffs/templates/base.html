@@ -15,6 +15,7 @@
         <![endif]-->
 
         <!-- Latest compiled and minified CSS -->
+
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link rel="stylesheet/less" type="text/css" href="{{ STATIC_URL }}less/includes_localhost.less" charset="utf-8"/>
@@ -25,8 +26,11 @@
     <body>
         {% block body %}{% endblock %}
         {% include "footer.html" %}
+{#        <script src="{{ STATIC_URL }}js/jquery-2.1.0.min.js"></script>#}
+
         <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
         {% block extrajs %}{% endblock %}
     </body>
 </html>

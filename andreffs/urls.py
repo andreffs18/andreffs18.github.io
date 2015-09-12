@@ -16,8 +16,8 @@ urlpatterns = patterns('',
 
     url(r'^$', coreviews.HomepageView.as_view(), name="core_homepage_view"),
     url(r'^about/$', coreviews.AboutpageView.as_view(), name="core_aboutpage_view"),
-    url(r'^work/$', coreviews.WorkpageView.as_view(), name="core_workpage_view"),
-    url(r'', include('blog.urls')),
+    # url(r'^work/$', coreviews.WorkpageView.as_view(), name="core_workpage_view"),
+    # url(r'', include('blog.urls')),
 
 
     # urls specific to this app

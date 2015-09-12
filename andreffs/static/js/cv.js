@@ -37,6 +37,7 @@ $(document).ready(function(){
     //var cv = JSON.parse($('input[type="hidden"][name="cv"]').val());
     var html = "";
     cv.forEach(function(el, index){
+        console.log("Building cv section \"" + el+ "\"");
         html += build_section(el, index);
     });
 
