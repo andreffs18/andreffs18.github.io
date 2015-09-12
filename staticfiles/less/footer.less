@@ -1,0 +1,55 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+@footer-height: 50px;
+@footer-background-color: #f5f5f5;
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: @footer-height;
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: @footer-height;
+  background-color: @footer-background-color;
+  line-height: @footer-height;
+
+  .row{ background-color: @footer-background-color; }
+  .text-muted{ margin-bottom: 0px; }
+  .copy{ margin-left: 10px; }
+}
+
+div.btn-group {
+  height: @footer-height;
+  button {
+    height: @footer-height;
+    border: 0px;
+    background-color: whitesmoke;
+  }
+
+  &.tabs{
+    button {
+      padding: 0px;
+      min-width: 36px;
+      color: #337ab7;
+
+      &.bullet{
+        min-width: 20px;
+        i {
+          font-size: 6px;
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+  &.contacts{
+    button { min-width: 36px; }
+    i { font-size: 18px; }
+  }
+
+}
