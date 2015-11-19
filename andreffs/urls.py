@@ -18,7 +18,7 @@ urlpatterns = patterns('',
     url(r'^about/$', coreviews.AboutpageView.as_view(), name="core_aboutpage_view"),
     # url(r'^work/$', coreviews.WorkpageView.as_view(), name="core_workpage_view"),
     # url(r'', include('blog.urls')),
-
+    url(r'^countdown/$', coreviews.CountdownView.as_view(), name="core_countdown_view"),
 
     # urls specific to this app
 

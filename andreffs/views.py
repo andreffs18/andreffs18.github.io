@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 from django.views.generic.base import TemplateView, View
 import andreffs.utils as affsutils
+import datetime
 import json
 
 class HomepageView(TemplateView):
@@ -10,6 +11,76 @@ class HomepageView(TemplateView):
     def get_context_data(self, **kwargs):
         ctx = super(HomepageView, self).get_context_data(**kwargs)
         ctx['cv'] = affsutils.generate_cv()
+        return ctx
+
+
+class CountdownView(TemplateView):
+    template_name = "countdown.html"
+
+    def get_context_data(self, **kwargs):
+        ctx = super(CountdownView, self).get_context_data(**kwargs)
+        ctx['stuffs'] = [
+            {
+                'name': 'Projecto CG 4º Entrega',
+                'deadline': datetime.datetime(2015, 11, 23, 12, 00).strftime(
+                    "%Y/%m/%d/%H/%M/%S"),
+            },
+            {
+                'name': 'Projecto IA 2º Entrega',
+                'deadline': datetime.datetime(2015, 11, 30, 12, 30).strftime(
+                    "%Y/%m/%d/%H/%M/%S"),
+            },
+            {
+                'name': 'Projecto IA 3º Entrega',
+                'deadline': datetime.datetime(2015, 12, 9, 12, 30).strftime(
+                    "%Y/%m/%d/%H/%M/%S"),
+            },
+            {
+                'name': '2º Teste de ACED',
+                'deadline': datetime.datetime(2015, 12, 19, 11, 00).strftime(
+                    "%Y/%m/%d/%H/%M/%S"),
+            },
+            {
+                'name': '2º Teste de PE',
+                'deadline': datetime.datetime(2016, 1, 7, 9, 00).strftime(
+                    "%Y/%m/%d/%H/%M/%S"),
+            },
+            {
+                'name': 'Exame de Redes',
+                'deadline': datetime.datetime(2016, 1, 9, 11, 30).strftime(
+                    "%Y/%m/%d/%H/%M/%S"),
+            },
+            {
+                'name': '2º Teste de IA',
+                'deadline': datetime.datetime(2016, 1, 14, 18, 30).strftime(
+                    "%Y/%m/%d/%H/%M/%S"),
+            },
+            {
+                'name': 'Exame de CG (Repescagem 2º Teste)',
+                'deadline': datetime.datetime(2016, 1, 16, 9, 00).strftime(
+                    "%Y/%m/%d/%H/%M/%S"),
+            },
+            {
+                'name': 'Exame de ACED',
+                'deadline': datetime.datetime(2016, 1, 25, 15, 00).strftime(
+                    "%Y/%m/%d/%H/%M/%S"),
+            },
+            {
+                'name': 'Exame de PE (Repescagem)',
+                'deadline': datetime.datetime(2016, 1, 26, 15, 00).strftime(
+                    "%Y/%m/%d/%H/%M/%S"),
+            },
+            {
+                'name': 'Exame de Redes (Repescagem)',
+                'deadline': datetime.datetime(2016, 1, 27, 8, 00).strftime(
+                    "%Y/%m/%d/%H/%M/%S"),
+            },
+            {
+                'name': 'Exame de IA (Repescagem)',
+                'deadline': datetime.datetime(2016, 1, 29, 18, 00).strftime(
+                    "%Y/%m/%d/%H/%M/%S"),
+            }
+        ]
         return ctx
 
 

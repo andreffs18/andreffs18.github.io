@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load filters %}
+{% block body %}
+
+<style type="text/css">
+.countpage{
+    margin-top: 75px;
+}
+.clock{
+    text-align: center;
+}
+.clock small{
+    font-size: 20px;
+    text-decoration: underline;
+    text-transform: uppercase;
+}
+</style>
+
+<nav class="navbar navbar-fixed-top">
+    <div class="container"></div>
+</nav>
+
+<div class="container countpage">
+{% for stuff in stuffs %}
+    <div class="alert alert-hover clock clock-{{ forloop.counter }}"
+         data-description="{{ stuff.name }}"
+         data-deadline="{{ stuff.deadline }}">
+    </div>
+{% endfor %}
+
+</div>
+{% endblock %}
+
+{% block extrajs %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/jquery.countdown.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    var $clock = $('.clock');
+
+
+    if($clock.length == 0){
+       $('.countpage').html("<h1>FUCKING FINALLY!</h1>");
+    }
+
+    $($clock).each(function() {
+        var $this = $(this),
+            desc = $this.data('description'),
+            _deadline = $this.data('deadline'),  // "28/11/2015/23/59/00"
+            deadline = _deadline.split("/"),
+            _date = new Date(),
+            date = _date.toLocaleString().split(", "),
+            _today = date[0].split("/").concat(date[1].split(" ")[0].split(":")),
+            today = _today.slice(0, 3).reverse().concat(_today.slice(3, 6)),
+            today = [today[0], today[2], today[1]].concat(today.slice(3, 6)),
+            diff = deadline[2] - today[2];
+
+        // se faltar mais de 3 dias continua azul
+        if(diff > 3)
+            $(this).addClass('alert-info');
+        // se faltar 3 dias muda de cor para amarelo
+        else if(diff <= 3 && diff > 1)
+            $(this).addClass('alert-warning');
+        // se faltar 1 dia muda para vermelho
+        else if(diff <= 1 && diff > 0)
+            $(this).addClass('alert-danger');
+        else if(diff <= 0)
+            $(this).remove();
+
+        $this.countdown(deadline.slice(0, 3).join("/"), function(event) {
+            var html = '<h1>%H:%M:%S, <strong>%-n day%!n left</strong></h1>' +
+                       '<small class="text-center">'+desc+'</small>';
+            $this.html(event.strftime(html));
+        });
+    });
+});
+</script>
+{% endblock %}
