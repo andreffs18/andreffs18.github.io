@@ -37,7 +37,6 @@
 $(document).ready(function(){
     var $clock = $('.clock');
 
-
     if($clock.length == 0){
        $('.countpage').html("<h1>FUCKING FINALLY!</h1>");
     }
@@ -66,7 +65,7 @@ $(document).ready(function(){
         else if(diff <= 0)
             $(this).remove();
 
-        $this.countdown(deadline.slice(0, 3).join("/"), function(event) {
+        $this.countdown(deadline.slice(0, 3).join("/") + " " + deadline.slice(3, 6).join(":"), function(event) {
             var html = '<h1>%H:%M:%S, <strong>%-D day%!D left</strong></h1>' +
                        '<small class="text-center">'+desc+'</small>';
             $this.html(event.strftime(html));
