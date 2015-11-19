@@ -67,7 +67,7 @@ $(document).ready(function(){
             $(this).remove();
 
         $this.countdown(deadline.slice(0, 3).join("/"), function(event) {
-            var html = '<h1>%H:%M:%S, <strong>%-D day%!d left</strong></h1>' +
+            var html = '<h1>%H:%M:%S, <strong>%-D day%!D left</strong></h1>' +
                        '<small class="text-center">'+desc+'</small>';
             $this.html(event.strftime(html));
         });
