@@ -10,7 +10,6 @@ class HomepageView(TemplateView):
 
     def get_context_data(self, **kwargs):
         ctx = super(HomepageView, self).get_context_data(**kwargs)
-        ctx['cv'] = affsutils.generate_cv()
         return ctx
 
 
@@ -89,7 +88,6 @@ class AboutpageView(TemplateView):
 
     def get_context_data(self, **kwargs):
         ctx = super(AboutpageView, self).get_context_data(**kwargs)
-        ctx['about'] = affsutils.generate_about()
         return ctx
 
 
