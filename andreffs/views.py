@@ -51,13 +51,13 @@ class CountdownView(TemplateView):
                     "%Y/%m/%d/%H/%M/%S"),
             },
             {
-                'name': '2º Teste de IA',
-                'deadline': datetime.datetime(2016, 1, 14, 18, 30).strftime(
+                'name': 'Exame de CG (Repescagem 2º Teste)',
+                'deadline': datetime.datetime(2016, 1, 12, 15, 00).strftime(
                     "%Y/%m/%d/%H/%M/%S"),
             },
             {
-                'name': 'Exame de CG (Repescagem 2º Teste)',
-                'deadline': datetime.datetime(2016, 1, 16, 9, 00).strftime(
+                'name': '2º Teste de IA',
+                'deadline': datetime.datetime(2016, 1, 14, 18, 30).strftime(
                     "%Y/%m/%d/%H/%M/%S"),
             },
             {
