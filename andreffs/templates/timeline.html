@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load filters %}
+{% block body %}
+{% block extracss %}
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/timeline.css">
+{% endblock %}
+
+<style type="text/css">
+#mytimeline{
+    height: 400px;
+    margin-top:100px;
+}
+</style>
+<nav class="navbar navbar-fixed-top">
+    <div class="container"></div>
+</nav>
+
+<div class="container timeline">
+    <div id="mytimeline"></div>
+</div>
+{% endblock %}
+
+
+{% block extrajs %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/jsapi.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/timeline.js"></script>
+
+<script type="text/javascript">
+// Called when the Visualization API is loaded.
+function drawVisualization() {
+    var arr = [];
+    for(var i =0; i< 10; i++){
+        arr.push(
+            [new Date(2015,10,18, 9+i, 30), new Date(2015,10,18, 9+i+1, 30), 'Conversation<br>' + '<img src="{{ STATIC_URL }}img/timeline/comments-icon.png" style="width:32px; height:32px;">']
+        );
+    }
+
+
+    // Create and populate a data table.
+    var data = new google.visualization.DataTable();
+    data.addColumn('datetime', 'start');
+    data.addColumn('datetime', 'end');
+    data.addColumn('string', 'content');
+    data.addRows(arr);
+{#            [#}
+{#        [new Date(2010,7,23), , 'Conversation<br>' + '<img src="{{ STATIC_URL }}img/timeline/comments-icon.png" style="width:32px; height:32px;">'],#}
+{#        [new Date(2010,7,23,23,0,0), , 'Mail from boss<br>' + '<img src="{{ STATIC_URL }}img/timeline/mail-icon.png" style="width:32px; height:32px;">'],#}
+{#        [new Date(2010,7,24,16,0,0), , 'Report'],#}
+{#        [new Date(2010,7,26), new Date(2010,8,2), 'Traject A'],#}
+{#        [new Date(2010,7,28), , 'Memo<br>' + '<img src="{{ STATIC_URL }}img/timeline/notes-edit-icon.png" style="width:48px; height:48px;">'],#}
+{#        [new Date(2010,7,29), , 'Phone call<br>' + '<img src="{{ STATIC_URL }}img/timeline/Hardware-Mobile-Phone-icon.png" style="width:32px; height:32px;">'],#}
+{#        [new Date(2010,7,31), new Date(2010,8,3), 'Traject B'],#}
+{#        [new Date(2010,8,4,12,0,0), , 'Report<br>' + '<img src="{{ STATIC_URL }}img/timeline/attachment-icon.png" style="width:32px; height:32px;">']#}
+{#    ]);#}
+
+
+    // Instantiate our timeline object.
+    var timeline = new links.Timeline(document.getElementById('mytimeline'));
+
+    // Draw our timeline with the created data and options
+    timeline.draw(data,  {
+        "width": "100%",
+        "height": "99%",
+        "style": "box"
+    });
+
+}
+
+google.load("visualization", "1");
+
+// Set callback to run when API is loaded
+google.setOnLoadCallback(drawVisualization);
+
+</script>
+{% endblock %}

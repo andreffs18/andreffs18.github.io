@@ -82,6 +82,13 @@ class CountdownView(TemplateView):
         ]
         return ctx
 
+class TimelineView(TemplateView):
+    template_name = "timeline.html"
+
+    def get_context_data(self, **kwargs):
+        ctx = super(TimelineView, self).get_context_data(**kwargs)
+        return ctx
+
 
 class AboutpageView(TemplateView):
     template_name = "about.html"
