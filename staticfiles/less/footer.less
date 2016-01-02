@@ -20,36 +20,36 @@ footer {
   line-height: @footer-height;
 
   .row{ background-color: @footer-background-color; }
-  .text-muted{ margin-bottom: 0px; }
-  .copy{ margin-left: 10px; }
-}
-
-div.btn-group {
-  height: @footer-height;
-  button {
-    height: @footer-height;
-    border: 0px;
-    background-color: whitesmoke;
+  .copy{
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 15px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
   }
 
-  &.tabs{
-    button {
-      padding: 0px;
-      min-width: 36px;
-      color: #337ab7;
-
-      &.bullet{
-        min-width: 20px;
-        i {
-          font-size: 6px;
-          margin-bottom: 10px;
-        }
-      }
+  ul.social, ul.navbar{
+    display: inline-block;
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    li{ display: inline-block; }
+  }
+  ul.social li{
+    font-size: 20px;
+    padding: 0px 5px;
+  }
+  ul.navbar li{
+    text-transform: uppercase;
+    padding: 0px 0px 0px 10px;
+    position: relative;
+    &.active > a:after {
+      color: #337AB7;
+      content: '▾';
+      position: absolute;
+      left: 50%;
+      margin-top: -25px;
     }
   }
-  &.contacts{
-    button { min-width: 36px; }
-    i { font-size: 18px; }
-  }
-
 }
