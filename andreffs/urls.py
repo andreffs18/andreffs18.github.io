@@ -10,14 +10,15 @@ from django.contrib import admin
 admin.autodiscover()
 
 import andreffs.views as coreviews
+import blog.views as blogviews
 
 # import your urls from each app here, as needed
-urlpatterns = patterns('',
 
+urlpatterns = patterns('',
     url(r'^$', coreviews.HomepageView.as_view(), name="core_homepage_view"),
     url(r'^about/$', coreviews.AboutpageView.as_view(), name="core_aboutpage_view"),
-    # url(r'^work/$', coreviews.WorkpageView.as_view(), name="core_workpage_view"),
-    # url(r'', include('blog.urls')),
+    url(r'^work/$', coreviews.WorkpageView.as_view(), name="core_workpage_view"),
+    url(r'^blog/', include('blog.urls')),
     url(r'^countdown/$', coreviews.CountdownView.as_view(), name="core_countdown_view"),
     url(r'^timeline/$', coreviews.TimelineView.as_view(), name="core_timeline_view"),
 

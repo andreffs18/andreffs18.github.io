@@ -7,7 +7,7 @@
         <meta name="description" content="">
         <meta name="author" content="Andre Silva">
         <!-- <link rel="shortcut icon" href="/static/img/favicon.png"> -->
-        <title></title>
+        <title>{% block title %}{% endblock %}</title>
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
             <script src="/static/js/html5shiv.js"></script>
@@ -23,16 +23,14 @@
         {% block extracss %}{% endblock %}
 
         <script src="{{ STATIC_URL }}js/less.min.js"></script>
+
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     </head>
 
     <body>
         {% block body %}{% endblock %}
         {% include "footer.html" %}
-{#        <script src="{{ STATIC_URL }}js/jquery-2.1.0.min.js"></script>#}
-
-        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
         {% block extrajs %}{% endblock %}
     </body>
 </html>

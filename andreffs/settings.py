@@ -5,6 +5,8 @@ import dj_database_url
 # SITE_ROOT = os.path.abspath(os.path.dirname(__file__))
 # project path
 # BASE_DIR = os.path.abspath(os.path.join(SITE_ROOT, ".."))
+APP_ENV = os.environ.get('APP_ENV')
+
 BASE_DIR = os.getcwd()
 #BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -17,9 +19,18 @@ ADMINS = (
 )
 MANAGERS = ADMINS
 
-DATABASES = {
-    "default": dj_database_url.config(default='postgres://localhost'),
-}
+import pymongo
+client = pymongo.MongoClient(os.environ.get('MONGODB_URL'))
+db = client[os.environ.get('MONGODB_NAME')]
+
+
+DATABASES = {}
+if APP_ENV == 'localhost':
+    DATABASES["default"] = dj_database_url.config(
+        default='postgres://localhost')
+else:
+    DATABASES['default'] =  dj_database_url.config()
+
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -121,8 +132,10 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'django_extensions',
     'andreffs',
     'blog',
+
 )
 
 SITE_URL = ""

@@ -18,7 +18,7 @@ class CountdownView(TemplateView):
 
     def get_context_data(self, **kwargs):
         ctx = super(CountdownView, self).get_context_data(**kwargs)
-        ctx['stuffs'] = [
+        todolist = [
             {
                 'name': 'Projecto CG 4º Entrega',
                 'deadline': datetime.datetime(2015, 11, 23, 12, 00).strftime(
@@ -80,6 +80,31 @@ class CountdownView(TemplateView):
                     "%Y/%m/%d/%H/%M/%S"),
             }
         ]
+
+        stuffs = []
+        now = datetime.datetime.now()
+        for stuff in todolist:
+            date = datetime.datetime.strptime(stuff['deadline'],
+                                              "%Y/%m/%d/%H/%M/%S")
+            if date < now:
+                continue
+
+            delta = date - now
+
+            if delta.days < 2:
+                alert = 'danger'
+            elif delta.days < 5:
+                alert = 'warning'
+            else:
+                alert = 'success'
+
+            stuffs.append({
+                'name': stuff['name'],
+                'deadline': stuff['deadline'],
+                'alert': alert
+            })
+
+        ctx['stuffs'] = stuffs
         return ctx
 
 class TimelineView(TemplateView):

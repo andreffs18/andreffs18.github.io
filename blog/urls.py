@@ -6,6 +6,6 @@ from django.core.urlresolvers import reverse
 import blog.views as blogviews
 
 urlpatterns = patterns('',
-    url(r'^blog/$', blogviews.BlogpageView.as_view(), name="blog_blogpage_view"),
-
+    url(r'^$', blogviews.BlogPageView.as_view(), name="blog_view"),
+    url(r'^(?P<slug>[\w-]+)/$', blogviews.BlogDetailView.as_view(), name="blog_detail_view"),
 )
