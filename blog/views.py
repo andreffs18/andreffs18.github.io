@@ -6,11 +6,11 @@ import blog.services as blogservices
 import blog.models as blogmodels
 
 
-class BlogPageView(TemplateView):
-    template_name = "blog/blog.html"
+class BlogListView(TemplateView):
+    template_name = "blog/list.html"
 
     def get_context_data(self, **kwargs):
-        ctx = super(BlogPageView, self).get_context_data(**kwargs)
+        ctx = super(BlogListView, self).get_context_data(**kwargs)
 
         articles = blogmodels.Articles.all()
         ctx["articles"] = list(articles)
@@ -19,7 +19,7 @@ class BlogPageView(TemplateView):
 
 
 class BlogDetailView(TemplateView):
-    template_name = "blog/blog-detail.html"
+    template_name = "blog/detail.html"
 
     def get_context_data(self, **kwargs):
         ctx = super(BlogDetailView, self).get_context_data(**kwargs)

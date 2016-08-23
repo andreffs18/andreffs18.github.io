@@ -4,11 +4,9 @@ import re
 import sys
 
 def read_env():
-    '''
-    Reads all available enviroment variables on the .env
+    """Reads all available enviroment variables on the .env
     Pulled from Honcho code with minor updates, reads local default environment
-    variables from a .env file located in the project root directory.
-    '''
+    variables from a .env file located in the project root directory."""
     try:
         with open('.env') as f:
             content = f.read()
@@ -32,7 +30,7 @@ def read_env():
 if __name__ == "__main__":
     read_env()
 
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "andreffs.settings")
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "core.settings")
 
     from django.core.management import execute_from_command_line
 
