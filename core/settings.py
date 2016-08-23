@@ -2,7 +2,7 @@
 import os
 import dj_database_url
 # this folder path
-# SITE_ROOT = os.path.abspath(os.path.dirname(__file__))
+SITE_ROOT = os.path.abspath(os.path.dirname(__file__))
 # project path
 # BASE_DIR = os.path.abspath(os.path.join(SITE_ROOT, ".."))
 APP_ENV = os.environ.get('APP_ENV')
@@ -73,8 +73,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = "staticfiles"
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
 STATIC_URL = '/static/'
