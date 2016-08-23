@@ -1,14 +1,13 @@
 # Django settings for andreffs
 import os
 import dj_database_url
-# this folder path
-SITE_ROOT = os.path.abspath(os.path.dirname(__file__))
-# project path
-# BASE_DIR = os.path.abspath(os.path.join(SITE_ROOT, ".."))
-APP_ENV = os.environ.get('APP_ENV')
 
-BASE_DIR = os.getcwd()
-#BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+# this project root path ~/
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+# this folder path /core
+CORE_ROOT = os.path.dirname(os.path.abspath(__file__))
+
+APP_ENV = os.environ.get('APP_ENV')
 
 DEBUG = os.environ.get('DEBUG', False) == 'True'
 TEMPLATE_DEBUG = DEBUG
@@ -83,7 +82,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(BASE_DIR, "core/static"),
+    os.path.join(CORE_ROOT, "static"),
     # os.path.join(os.getcwd(), "static"),
 
 )
@@ -144,7 +143,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.\
-   os.path.join(BASE_DIR, "core/templates"),
+   os.path.join(CORE_ROOT, "templates"),
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
