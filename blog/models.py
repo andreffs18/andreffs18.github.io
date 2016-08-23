@@ -1,6 +1,6 @@
 from django.db import models
 import os
-from andreffs.settings import db as DB
+from core.settings import db as DB
 from django.utils import timezone
 from bson.objectid import ObjectId
 import blog.services as blogservices

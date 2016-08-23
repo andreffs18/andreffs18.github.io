@@ -1,0 +1,39 @@
+# project wide urls
+from django.views.generic import RedirectView
+from django.conf.urls import patterns, include, url
+# from django.contrib import admin
+# admin.autodiscover()
+
+import views as v
+
+urlpatterns = patterns('',
+    url(r'^$', v.HomePageView.as_view(), name="home"),
+
+    url(r'^login/$', 'django.contrib.auth.views.login', name='login'),
+    url(r'^logout/$', 'django.contrib.auth.views.logout', name='logout',
+        kwargs={'next_page': '/'}),
+    # url(r'^', include('django.contrib.auth.urls')),
+
+    url(r'^about/$', v.AboutPageView.as_view(), name="about"),
+    url(r'^work/$', v.WorkPageView.as_view(), name="work"),
+    url(r'^blog/', include('blog.urls', namespace="blog")),
+
+    url(r'^countdown/$', v.CountdownView.as_view(), name="countdown"),
+
+
+    # urls specific to this app
+
+    # url(r'^/$', TemplateView.as_view(template_name="home.html"), name="core_home_view"),
+
+    # Uncomment the admin/doc line below to enable admin documentation:
+    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    # url(r'^admin/', include('django.contrib.admin.urls')),
+
+    # catch all, redirect to core home view
+    # url(r'', RedirectView.as_view(url='/')),
+)
+# from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+#
+# urlpatterns += staticfiles_urlpatterns()
+# if not settings.DEBUG:
+#     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

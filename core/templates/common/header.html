@@ -1,0 +1,19 @@
+<div class="page-header">
+    <h1 class="text3d text-right text-uppercase"><span id="okshadow">André Silva</span><br/></h1>
+    <small class="letterpress text-right text-uppercase">23 y/old workaholic student from Lisbon.</small>
+</div>
+
+{% block extrajs %}
+<script type="text/javascript">
+$(function(){
+    $('#okshadow').okshadow({
+        color: '#555',
+        textShadow: true,
+        xMax: 2,
+        yMax: 2,
+        fuzzMin: 2,
+        fuzzMax: 8
+    });
+});
+</script>
+{% endblock %}
