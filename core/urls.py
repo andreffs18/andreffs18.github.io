@@ -21,11 +21,6 @@ urlpatterns = patterns('',
 
     url(r'^countdown/$', v.CountdownView.as_view(), name="countdown"),
 
-
-    # urls specific to this app
-
-    # url(r'^/$', TemplateView.as_view(template_name="home.html"), name="core_home_view"),
-
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     # url(r'^admin/', include('django.contrib.admin.urls')),
@@ -37,7 +32,7 @@ urlpatterns = patterns('',
 
 # from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 # urlpatterns += staticfiles_urlpatterns()
-if not settings.DEBUG:
+if settings.DEBUG:
     urlpatterns += patterns('',
         (r'^static/(?P<path>.*)$', 'django.views.static.serve',
          {'document_root': settings.STATIC_ROOT}),
