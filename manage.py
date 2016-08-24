@@ -26,7 +26,6 @@ def read_env():
             os.environ.setdefault(key, val)
 
 
-
 if __name__ == "__main__":
     read_env()
 
