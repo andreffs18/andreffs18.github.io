@@ -32,8 +32,8 @@ urlpatterns = patterns('',
 
 # from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 # urlpatterns += staticfiles_urlpatterns()
-if not settings.DEBUG:
-    urlpatterns += patterns('',
-        (r'^static/(?P<path>.*)$', 'django.views.static.serve',
-         {'document_root': settings.STATIC_ROOT}),
-    )
+# if not settings.DEBUG:
+#     urlpatterns += patterns('',
+#         (r'^static/(?P<path>.*)$', 'django.views.static.serve',
+#          {'document_root': settings.STATIC_ROOT}),
+#     )
