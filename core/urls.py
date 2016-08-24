@@ -1,5 +1,6 @@
 # project wide urls
 from django.views.generic import RedirectView
+from django.conf import settings
 from django.conf.urls import patterns, include, url
 # from django.contrib import admin
 # admin.autodiscover()
@@ -32,8 +33,12 @@ urlpatterns = patterns('',
     # catch all, redirect to core home view
     # url(r'', RedirectView.as_view(url='/')),
 )
+
+
 # from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-#
 # urlpatterns += staticfiles_urlpatterns()
-# if not settings.DEBUG:
-#     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+if not settings.DEBUG:
+    urlpatterns += patterns('',
+        (r'^static/(?P<path>.*)$', 'django.views.static.serve',
+         {'document_root': settings.STATIC_ROOT}),
+    )
