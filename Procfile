@@ -1,2 +1,2 @@
 # web: waitress-serve --port=$PORT andreffs.wsgi:application
-web: gunicorn core.wsgi --log-file -
+web: python manage.py collectstatic --noinput; gunicorn core.wsgi --log-file

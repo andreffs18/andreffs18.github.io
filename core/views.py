@@ -25,7 +25,7 @@ class CountdownView(TemplateView):
             'deadline': '2016/03/11/18/00/00',
             'name': ('Teste de An\xc3\xa1lise e Modela\xc3\xa7\xc3\xa3o de '
                      'Sistemas - 1\xc2\xba Teste - Alameda')
-        }]
+            },]
 
         stuffs = []
         now = datetime.datetime.now()
