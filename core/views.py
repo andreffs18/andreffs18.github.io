@@ -1,7 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from django.views.generic.base import TemplateView
+import os
+import json
 import datetime
+from django.views.generic.base import TemplateView
+
 
 class HomePageView(TemplateView):
     template_name = "home.html"
@@ -20,12 +23,8 @@ class CountdownView(TemplateView):
 
     def get_context_data(self, **kwargs):
         ctx = super(CountdownView, self).get_context_data(**kwargs)
-
-        todolist = [{
-            'deadline': '2016/03/11/18/00/00',
-            'name': ('Teste de An\xc3\xa1lise e Modela\xc3\xa7\xc3\xa3o de '
-                     'Sistemas - 1\xc2\xba Teste - Alameda')
-            },]
+        jfile = open(os.getcwd() + "/core/media/countdown.json", "r")
+        todolist = json.loads(jfile.read())
 
         stuffs = []
         now = datetime.datetime.now()
@@ -47,7 +46,8 @@ class CountdownView(TemplateView):
             stuffs.append({
                 'name': stuff['name'],
                 'deadline': stuff['deadline'],
-                'alert': alert
+                'alert': alert,
+                'url': stuff['url'],
             })
 
         ctx['stuffs'] = stuffs

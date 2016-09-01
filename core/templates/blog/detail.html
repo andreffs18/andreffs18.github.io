@@ -2,28 +2,20 @@
 {% load filters %}
 {% load markdown_filter %}
 {% block body %}
-<nav class="navbar navbar-fixed-top">
-    <div class="container"></div>
-</nav>
+<div class="blog-header">
+    <img src="http://www.livefortech.com/wp-content/uploads/2016/05/Zendesk-Logo-1024x576.png" />
+</div>
 
-<div class="container">
-    {% include "common/header.html" %}
+<div class="container blog-post">
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <a href="{{ article.slug }}">
-                <h3 class="panel-title">{{ article.title }}</h3>
-            </a>
-        </div>
-        <div class="panel-body">
-            {{ article.body|markdownify|safe }}
-        </div>
-        <div class="panel-footer">{{ article.creation_date }}</div>
-    </div>
-
+    <div class="col-sm-10 col-md-10 col-lg8">{{ post.body|markdownify|safe }}</div>
 </div>
 {% endblock %}
 
 {% block extrajs %}
-{#    <script type="text/javascript" src="{{ STATIC_URL }}js/.js"></script>#}
+<script type="text/javascript">
+$(document).ready(function(e){
+
+});
+</script>
 {% endblock %}

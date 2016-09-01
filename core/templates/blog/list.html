@@ -8,20 +8,13 @@
 
 <div class="container">
     {% include "common/header.html" %}
-
-    {% for article in articles %}
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <a href="{{ article.slug }}">
-                <h3 class="panel-title">{{ article.title }}</h3>
-            </a>
-        </div>
-        <div class="panel-body">
-            {{ article.body|markdownify|safe|truncatewords_html:25 }}
-        </div>
-        <div class="panel-footer">{{ article.creation_date }}</div>
-    </div>
+    <ul class="">
+    {% for post in posts %}
+        <li>
+            <small>{{ post.creation_date }}</small> <a href="{% url "blog:detail" post.slug %}"><p>{{ post.title }}</p></a>
+        </li>
     {% endfor %}
+    </ul>
 
 </div>
 {% endblock %}

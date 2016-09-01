@@ -1,9 +1,8 @@
-from django.shortcuts import render
+from mongoengine.errors import DoesNotExist
+from django.shortcuts import Http404
 from django.views.generic.base import TemplateView, View
 # Create your views here.
-
-import blog.services as blogservices
-import blog.models as blogmodels
+from models import Post
 
 
 class BlogListView(TemplateView):
@@ -11,10 +10,8 @@ class BlogListView(TemplateView):
 
     def get_context_data(self, **kwargs):
         ctx = super(BlogListView, self).get_context_data(**kwargs)
-
-        articles = blogmodels.Articles.all()
-        ctx["articles"] = list(articles)
-
+        from blog.migrations import publish_articles; publish_articles()
+        ctx["posts"] = Post.objects.all()
         return ctx
 
 
@@ -23,8 +20,9 @@ class BlogDetailView(TemplateView):
 
     def get_context_data(self, **kwargs):
         ctx = super(BlogDetailView, self).get_context_data(**kwargs)
-
-        article = blogmodels.Articles.filter(**{'slug': kwargs.get('slug')})
-        ctx["article"] = article
-
+        try:
+            ctx["post"] = Post.objects.get(slug=kwargs.get('slug'))
+        except DoesNotExist:
+            Http404()
         return ctx
+

@@ -18,11 +18,6 @@ ADMINS = (
 )
 MANAGERS = ADMINS
 
-import pymongo
-client = pymongo.MongoClient(os.environ.get('MONGODB_URL'))
-db = client[os.environ.get('MONGODB_NAME')]
-
-
 DATABASES = {}
 if APP_ENV == 'localhost':
     DATABASES["default"] = dj_database_url.config(
@@ -30,6 +25,10 @@ if APP_ENV == 'localhost':
 else:
     DATABASES['default'] = dj_database_url.config()
 
+import mongoengine
+MONGODB_NAME = os.environ.get('MONGODB_NAME')
+MONGODB_URL = os.environ.get('MONGODB_URL')
+mongoengine.connect(MONGODB_NAME, host=MONGODB_URL)
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = None
