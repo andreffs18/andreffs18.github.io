@@ -21,8 +21,9 @@
 <div class="container countpage">
     {% for stuff in stuffs %}
         <div class="text-center alert alert-{{ stuff.alert }}"
+             data-date="{{ stuff.date }}"
              data-countdown="{{ stuff.deadline }}"
-             data-description="{{ stuff.name }}",
+             data-description="{{ stuff.name }}"
              data-url="{{ stuff.url }}"></div>
     {% endfor %}
 </div>
@@ -34,6 +35,7 @@
 $(document).ready(function(){
     $('[data-countdown]').each(function() {
         var $this = $(this),
+            actualDate = $(this).data('date'),
             finalDate = $(this).data('countdown').split("/"),
             finalDesc = $(this).data('description'),
             url = $(this).data('url');
@@ -41,7 +43,11 @@ $(document).ready(function(){
         var str = finalDate.slice(0, 3).join("/") + " " + finalDate.slice(3, 6).join(":");
         $this.countdown(str, function(event) {
             var html = '<h1>'+event.strftime('%D days %H:%M:%S')+'</h1>';
-            html    += '<small><a href="'+url+'" target="_blank">'+finalDesc+'</a></small>';
+            html += '<small>';
+            html += '<a href="'+url+'" target="_blank">'+finalDesc+'</a>';
+            html += '<br/>';
+            html += '<p>'+actualDate+'</p>';
+            html += '</small>';
             $this.html(html);
         });
     });
