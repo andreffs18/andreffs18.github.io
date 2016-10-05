@@ -3,7 +3,7 @@
 ### <a href="https://www.unbabel.com/" target="_blank">Unbabel</a> @Lisboa, Portugal
 #### June 2013 - Present
 
-<p>Full-Stack Engineer <a href="https://www.unbabel.com/" target="_blank">@Unbabel</a>. Working with the <strong>Quality</strong> and <strong>Community Team</strong> developing software and tools to help improving quality of translations and automatize the curation and evaluation of editors.</p>
+<p>Full-Stack Engineer. Working with the <strong>Quality</strong> and <strong>Community Team</strong> developing software and tools to help improving quality of translations and automatize the curation and evaluation of editors.</p>
 <p>Was also in the <strong>Integrations Team</strong> that built <a href="http://translations.unbabel.com/zendesk/" target="_blank">Unbabel for Zendesk Help Center</a>, <a href="https://unbabel.com/products/#ZendeskSection" target="_blank">Unbabel for Zendesk Tickets</a> and <a href="https://unbabel.com/products/#MailchimpSection" target="_blank">Unbabel for Mailchimp</a>.</p>
 <p>Build the first version of the Unbabel Android App. You can find <a href="https://play.google.com/store/apps/details?id=com.unbabel" target="_blank">here</a> the most recent version of the app.</p>
 <!--<p>Played around a bit on some research fields like Automatic Term Extraction and Transcription. This is useful to build glossaries. Also was apart the team that worked on TRATAHI, Seomthignt isad, that you can find here.</p>-->
