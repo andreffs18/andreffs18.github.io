@@ -1,36 +1,42 @@
-import mongoengine as me
+from django.db import models
+from django.contrib.postgres.fields import ArrayField
+from django.utils.timezone import now
+
 from slugify import slugify
 
-class Post(me.Document):
-    title = me.StringField(max_length=255, required=True)
-    slug = me.StringField(max_length=255, required=True)
-    body = me.StringField(required=True)
-    tags = me.ListField(me.StringField(), default=[])
+import logging
+logger = logging.getLogger()
 
-    meta = {
-        'allow_inheritance': True,
-        'indexes': ['-id', 'slug'],
-        'ordering': ['-id']
-    }
+
+class Post(models.Model):
+    title = models.CharField(max_length=255)
+    slug = models.CharField(max_length=255, blank=True)
+    body = models.CharField(max_length=10000)
+    tags = ArrayField(models.CharField(max_length=255), blank=True, null=True)
+
+    creation_date = models.DateTimeField(blank=True)
+    last_update_at = models.DateTimeField(blank=True)
+
+    class Meta:
+        ordering = ['-id']
 
     def __str__(self):
-        return "{}".format(self.title)
-
-    def __repr__(self):
-        return u"<Post: {}>".format(str(self))
-
-    def __unicode__(self):
-        return unicode(self.id)
-
-    @property
-    def creation_date(self):
-        """Return creation date from object id"""
-        return self.id.generation_time
+        return u"{}".format(self.title)
 
     @classmethod
-    def create(cls, title, body, slug=None):
+    def create(cls, title, body, **kwargs):
         """Create Blog Post object"""
-        slug = slugify(title)
-        post = Post(title=title, body=body, slug=slug)
+        post = Post(title=title, body=body, **kwargs)
         post.save()
         return post
+
+    def save(self, *args, **kwargs):
+        """On save, update timestamps"""
+        if not self.id:
+            self.creation_date = now()
+
+        if not self.slug:
+            self.slug = slugify(self.title)
+
+        self.last_update_at = now()
+        return super(Post, self).save(*args, **kwargs)

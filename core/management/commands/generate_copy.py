@@ -112,7 +112,7 @@ class Command(BaseCommand):
                     .format(len(parsed_cv_html)))
 
     def generate_about_html_file(self, source_file_path="about.md",
-                                target_file_path="about.html"):
+                                 target_file_path="about.html"):
         """"""
         logger.info("Updating {} file.".format(target_file_path))
         parsed_about_html = []

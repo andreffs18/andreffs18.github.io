@@ -2,10 +2,13 @@
 from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls import patterns, include, url
-# from django.contrib import admin
-# admin.autodiscover()
+from django.contrib import admin
+
+admin.autodiscover()
+
 
 import views as v
+
 
 urlpatterns = patterns('',
     url(r'^$', v.HomePageView.as_view(), name="home"),
@@ -21,14 +24,11 @@ urlpatterns = patterns('',
 
     url(r'^countdown/$', v.CountdownView.as_view(), name="countdown"),
 
+
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-    # url(r'^admin/', include('django.contrib.admin.urls')),
-
-    # catch all, redirect to core home view
-    # url(r'', RedirectView.as_view(url='/')),
+    url(r'^admin/', include(admin.site.urls)),
 )
-
 
 # from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 # urlpatterns += staticfiles_urlpatterns()

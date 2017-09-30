@@ -19,11 +19,7 @@ ADMINS = (
 MANAGERS = ADMINS
 
 DATABASES = {}
-if APP_ENV == 'localhost':
-    DATABASES["default"] = dj_database_url.config(
-        default='postgres://localhost')
-else:
-    DATABASES['default'] = dj_database_url.config()
+DATABASES["default"] = dj_database_url.config()
 
 import mongoengine
 MONGODB_NAME = os.environ.get('MONGODB_NAME')
@@ -39,7 +35,7 @@ ALLOWED_HOSTS = ['*']
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'Europe/Lisbon'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -130,13 +126,18 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
+    'django.contrib.admindocs',
     'django_extensions',
     'core',
     'blog',
-
+    'rest_framework',
 )
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [],
+    'PAGE_SIZE': 10
+}
 
 SITE_URL = "http://127.0.0.1:8000"
 
@@ -154,7 +155,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     #'django.core.context_processors.csrf',
     "django.core.context_processors.i18n",
     "django.core.context_processors.static",
-    'django.template.context_processors.tz',
+    "django.template.context_processors.tz",
     "django.core.context_processors.media",
     "django.core.context_processors.request",
     "core.context_processors.app_env",
@@ -208,24 +209,3 @@ LOGGING = {
 LOGIN_URL = "/login/"
 LOGOUT_REDIRECT_URL = "/"
 LOGIN_REDIRECT_URL = "/"
-
-# API SETTINGS
-# Twitter Integration
-TWITTER_INTEGRATION_ENABLED = True
-TWITTER_API_URL = 'https://api.twitter.com/'
-TWITTER_USER_ID = 'andreffs18'
-TWITTER_CONSUMER_KEY = os.environ.get('TWITTER_CONSUMER_KEY')
-TWITTER_CONSUMER_SECRET = os.environ.get('TWITTER_CONSUMER_SECRET')
-TWITTER_ACCESS_TOKEN = os.environ.get('TWITTER_ACCESS_TOKEN')
-TWITTER_ACCESS_TOKEN_SECRET = os.environ.get('TWITTER_ACCESS_TOKEN_SECRET')
-# Facebook Integration
-FACEBOOK_INTEGRATION_ENABLED = False
-
-# Instagram Integration
-INSTAGRAM_INTEGRATION_ENABLED = True
-INSTAGRAM_API_URL = 'https://api.instagram.com/v1/'
-INSTAGRAM_USER_ID = 'andreffs18'
-INSTAGRAM_CLIENT_ID = os.environ.get('INSTAGRAM_CLIENT_ID')
-INSTAGRAM_CLIENT_SECRET = os.environ.get('INSTAGRAM_CLIENT_SECRET')
-INSTAGRAM_CLIENT_RESPONSE_CODE = os.environ.get('INSTAGRAM_CLIENT_RESPONSE_CODE')
-INSTAGRAM_ACCESS_TOKEN = os.environ.get('INSTAGRAM_ACCESS_TOKEN')

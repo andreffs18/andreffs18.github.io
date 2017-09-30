@@ -4,6 +4,7 @@ import markdown
 
 register = template.Library()
 
+
 @register.filter
 def markdownify(text):
     """safe_mode governs how the function handles raw HTML"""
