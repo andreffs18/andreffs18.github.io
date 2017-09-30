@@ -50,8 +50,6 @@ sqlparse==0.1.16
 static3==0.6.1
 tornado==4.3
 tqdm==4.14.0
-udf==0.114
-unbabel-py==0.25
 Unidecode==0.4.18
 waitress==0.8.9
 whitenoise==3.2.1
