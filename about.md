@@ -1,4 +1,4 @@
-## <h3 class="lead text-left">My name is André Silva, I'm a 23 y/old guy from Lisbon, that likes Startups, Artificial Intelligence, Surf and TV Shows.</h3>
+## <h3 class="lead text-left">My name is André Silva, I'm a {{ my_age }} y/old guy from Lisbon, that likes Startups, Artificial Intelligence, Surf and TV Shows.</h3>
 
 <p>I consider myself to be one of the few lucky ones to have got the
 opportunity to work with the most hard working and passionate people that

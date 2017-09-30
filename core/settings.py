@@ -128,9 +128,12 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
     'django_extensions',
+    # core apps
     'core',
     'blog',
+    # third party apps
     'rest_framework',
+    'mathfilters',
 )
 
 
@@ -158,7 +161,9 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.template.context_processors.tz",
     "django.core.context_processors.media",
     "django.core.context_processors.request",
+    # custom context processor utils
     "core.context_processors.app_env",
+    "core.context_processors.my_age",
 )
 
 # A sample logging configuration. The only tangible logging

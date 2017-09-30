@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import os
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 from django.views.generic.base import TemplateView
 
 
@@ -32,9 +32,12 @@ class CountdownView(TemplateView):
                 return {}
 
             delta = date - today
-            if delta.days < 2: alert = 'danger'
-            elif delta.days < 5: alert = 'warning'
-            else: alert = 'success'
+            if delta.days < 2:
+                alert = 'danger'
+            elif delta.days < 5:
+                alert = 'warning'
+            else:
+                alert = 'success'
 
             return dict([
                 ('name', row['name']),
@@ -47,6 +50,15 @@ class CountdownView(TemplateView):
         # get all rows from my media countdown generated file
         jfile = open(os.getcwd() + "/core/media/countdown.json", "r")
         rows = json.loads(jfile.read())
-        ctx['stuffs'] = filter(lambda x: x, map(get_stuffs, rows))
+        stuffs = filter(lambda x: x, map(get_stuffs, rows))
+        if not len(stuffs):
+            stuffs.append(dict([
+                ('name', "No schedule events"),
+                ('deadline', datetime.now().strftime("%Y/%m/%d/%H/%M/%S")),
+                ('url', "#"),
+                ('alert', 'success'),
+                ('date', datetime.now()),
+            ]))
+        ctx['stuffs'] = stuffs
         return ctx
 
