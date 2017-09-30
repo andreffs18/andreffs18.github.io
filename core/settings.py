@@ -132,15 +132,8 @@ INSTALLED_APPS = (
     'core',
     'blog',
     # third party apps
-    'rest_framework',
-    'mathfilters',
 )
 
-
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [],
-    'PAGE_SIZE': 10
-}
 
 SITE_URL = "http://127.0.0.1:8000"
 
