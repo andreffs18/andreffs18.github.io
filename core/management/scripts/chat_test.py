@@ -9,9 +9,6 @@ from openpyxl import load_workbook
 import logging
 logger = logging.getLogger()
 
-
-easyjet_sheets = load_workbook('20180307_360_agent.xlsx')
-
 CHAT_ENDPOINT = os.environ.get("CHAT_ENDPOINT")  # "https://chat.unbabel.com"
 CHAT_CUSTOMER = os.environ.get("CHAT_CUSTOMER")  # '5a831f06aa8af31d75695e38'
 CHAT_SLEEP_TIME = os.environ.get("CHAT_SLEEP_TIME", 13.5)
@@ -73,6 +70,9 @@ def create_message(conversation_id, text, source_language, target_language):
 
 def run_test():
     # generate test tab names
+    filepath = os.path.join(os.getcwd(), '20180307_360_agent.xlsx')
+    easyjet_sheets = load_workbook(filepath)
+
     sheet_names = ["Test{}".format(sheet_number)
                    for sheet_number in range(CHAT_START_TAB, CHAT_END_TAB)]
 
