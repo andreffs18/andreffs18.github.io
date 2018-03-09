@@ -11,16 +11,8 @@ import logging
 logger = logging.getLogger()
 
 
-def timed_job():
-    print('This job is run every three minutes.')
-
-
-def scheduled_job():
-    print('This job is run every weekday at 5pm.')
-
-
 def minute_job():
-    logger.info("MODAFOQUING {} CLICk".format(datetime.utcnow()))
+    logger.info("Heartbeat {}".format(datetime.utcnow()))
 
 
 class Command(BaseCommand):
@@ -31,8 +23,6 @@ class Command(BaseCommand):
         sched = BlockingScheduler()
 
         sched.add_job(minute_job, 'interval', minutes=1)
-        # sched.add_job(timed_job, 'interval', minutes=3)
-        # sched.add_job(scheduled_job, 'cron', day_of_week='mon-fri', hour=17)
-        sched.add_job(run_test, 'cron', hour=19, minutes=30)
+        sched.add_job(run_test, 'cron', hour=8, minute=0)
         sched.start()
 

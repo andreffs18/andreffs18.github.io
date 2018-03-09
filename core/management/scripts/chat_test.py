@@ -11,9 +11,9 @@ logger = logging.getLogger()
 
 CHAT_ENDPOINT = os.environ.get("CHAT_ENDPOINT")  # "https://chat.unbabel.com"
 CHAT_CUSTOMER = os.environ.get("CHAT_CUSTOMER")  # '5a831f06aa8af31d75695e38'
-CHAT_SLEEP_TIME = os.environ.get("CHAT_SLEEP_TIME", 13.5)
-CHAT_START_TAB = os.environ.get("CHAT_START_TAB", 1)
-CHAT_END_TAB = os.environ.get("CHAT_END_TAB", 361)
+CHAT_SLEEP_TIME = float(os.environ.get("CHAT_SLEEP_TIME", 13.5))
+CHAT_START_TAB = int(os.environ.get("CHAT_START_TAB", 1))
+CHAT_END_TAB = int(os.environ.get("CHAT_END_TAB", 361))
 
 
 def create_chat(customer_id, chat_name):
@@ -69,8 +69,11 @@ def create_message(conversation_id, text, source_language, target_language):
 
 
 def run_test():
+    logger.info("Running CHAT TEST on {} for customer \"{}\" with a timeout "
+                "of \"{}\" seconds".format(CHAT_ENDPOINT, CHAT_CUSTOMER,
+                                           CHAT_SLEEP_TIME))
     # generate test tab names
-    filepath = os.path.join(os.getcwd(), '20180307_360_agent.xlsx')
+    filepath = os.path.join(os.getcwd(), 'core/management/scripts/20180309_all_agent.xlsx')  # noqa
     easyjet_sheets = load_workbook(filepath)
 
     sheet_names = ["Test{}".format(sheet_number)
