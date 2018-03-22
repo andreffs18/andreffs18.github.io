@@ -5,8 +5,6 @@ from datetime import datetime
 
 from apscheduler.schedulers.blocking import BlockingScheduler
 
-from core.management.scripts.chat_test import run_test
-
 import logging
 logger = logging.getLogger()
 
@@ -23,6 +21,5 @@ class Command(BaseCommand):
         sched = BlockingScheduler()
 
         sched.add_job(minute_job, 'interval', minutes=1)
-        sched.add_job(run_test, 'cron', hour=8, minute=0)
         sched.start()
 
