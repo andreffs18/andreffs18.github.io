@@ -4,9 +4,11 @@ import re
 import sys
 
 def read_env():
-    """Reads all available enviroment variables on the .env
+    """
+    Reads all available enviroment variables on the .env
     Pulled from Honcho code with minor updates, reads local default environment
-    variables from a .env file located in the project root directory."""
+    variables from a .env file located in the project root directory.
+    """
     try:
         with open('.env') as f:
             content = f.read()
