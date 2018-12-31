@@ -1,21 +1,13 @@
-## <h3 class="lead text-left">My name is André Silva, I'm a {{ my_age }} y/old guy from Lisbon, that likes Startups, Artificial Intelligence, Surf and TV Shows.</h3>
+## <h3 class="lead text-left">I'm André Silva, a {{ my_age }} y/old guy from Lisbon, that likes Startups, Coding, Surf and TV Shows.</h3>
 
-<p>I consider myself to be one of the few lucky ones to have got the 
-opportunity to work with the most hard working and passionate people that 
-creates and builds Unbabel everyday. As a Backend Engineer (wannabe Full-Stack) 
-in one of the firsts Portuguese Startups to enter Y-combinator, I care 
-about turning complex problems into simple ones, understanding all the systems 
-architecture, front the backend to the frontend user experience.</p>
+<p>
+I consider myself one of the few lucky ones to have got the opportunity to work with the most hard working and passionate people that creates and builds Unbabel everyday. As a Tech Lead Engineer in one of the first Portuguese Startups to enter Y-combinator, I care deeply about turning complex problems into simple ones, fully understanding the system's architecture, from the backend to the frontend user experience.
+</p>
 
-<p>Although I work as a Backend Engineer @ one of the best Startups in Portugal, 
-I'm also currently enrolled in the best engineering school of portugal, Instituto 
-Superior Técnico, in a Bologna Degree in Information Systems and Computer Science 
-Engineering. I'm planning on enrolling in a MSc in Intelligent Systems some 
-time in the future.</p>
+<p>
+I was also enrolled in one of the best engineering schools of Portugal, Instituto Superior Técnico, in a Bologna Degree in Information Systems and Computer Science Engineering. Even though I have not started my masters degree, I'm planning on enrolling on a MSc in Intelligent Systems and Distribuited Systems some time in the future.
+</p>
 
-<p>As a full time worker/student, I find myself without much time to procrastinate, 
-so when I'm not working or studying, you'll find me in the gym, training self 
-defense, "hackathoning" or just enjoying the amazing waves that Lisbon can give you.</p>
-
-<!-- My passion lies in Artificial Intelligence. The naive idea of making the 
-machine do all your work the minimum effort, learning by itself, is something that always intrigued me.-->
+<p>
+As working on a startup can be super time consuming, I find myself without much time to procrastinate. So when I'm not at Unbabel, you'll probably find me in the Gym or training Self Defense (DPKC), "hackathoning" or just enjoying the great waves that Lisbon can give you.
+</p>
