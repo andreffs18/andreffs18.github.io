@@ -1,0 +1,15 @@
+.env
+.idea
+.project
+.pydevproject
+.ipynb_checkpoints
+
+*.DS_Store
+*.pyc
+*.bak
+
+db.sqlite3
+dbtest
+deploy.sh
+
+notebooks/
