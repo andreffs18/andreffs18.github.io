@@ -1,16 +1,20 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
-"""Created by andresilva on 8/22/16"""
+
 import os
 import json
+import logging
+
 from icalendar import Calendar
+
 from django.core.management.base import BaseCommand
 
-import logging
 logger = logging.getLogger()
 
+
 class Command(BaseCommand):
-    help = ('Generates countdown dictionary for countdown page.')
+
+    help = 'Generates countdown dictionary for countdown page.'
 
     def handle(self, *args, **options):
         """"""
@@ -30,11 +34,9 @@ class Command(BaseCommand):
         file = open(filepath, 'rb')
         cal = Calendar.from_ical(file.read())
         data = map(get_fields, cal.walk('vevent'))
-        logger.info("Extracted {} events . Saving to \"countdown\" json file"
-                    "".format(len(data)))
-        countdown = [dict(
-            [('deadline', deadline), ('name', description), ('url', url)]
-        ) for deadline, description, url in data]
+        logger.info("Extracted {} events . Saving to \"countdown\" json file".format(len(data)))
+        countdown = [dict([('deadline', deadline), ('name', description), ('url', url)])
+                     for deadline, description, url in data]
 
         # order by ascending date
         countdown = sorted(countdown, key=lambda x: x['deadline'])
@@ -45,8 +47,3 @@ class Command(BaseCommand):
         with open(filepath, "w+") as fjson:
             fjson.write(json.dumps(countdown))
         logger.info("\"{}\" created successfully!".format(filepath))
-
-
-__author__ = "andresilva"
-__email__ = "andre@unbabel.com"
-

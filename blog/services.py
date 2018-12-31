@@ -1,10 +1,8 @@
 # !/usr/bin/python
-# """ Created by andresilva on 12/9/15"""
 
 import os
 from slugify import slugify
 from blog.models import Post
-# list of files to publish
 
 
 def publish_articles():

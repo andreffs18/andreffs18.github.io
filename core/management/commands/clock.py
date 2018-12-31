@@ -1,11 +1,12 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
-from django.core.management.base import BaseCommand
+import logging
 from datetime import datetime
+
+from django.core.management.base import BaseCommand
 
 from apscheduler.schedulers.blocking import BlockingScheduler
 
-import logging
 logger = logging.getLogger()
 
 
@@ -18,8 +19,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         """"""
-        sched = BlockingScheduler()
+        scheduler = BlockingScheduler()
 
-        sched.add_job(minute_job, 'interval', minutes=1)
-        sched.start()
+        scheduler.add_job(minute_job, 'interval', minutes=1)
+        scheduler.start()
 
