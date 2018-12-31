@@ -14,6 +14,7 @@ django-appconf==1.0.1
 django-debug-toolbar==1.2.1
 django-debug-toolbar-mongo==0.1.10
 django-extensions==1.6.1
+
 django-toolbelt==0.0.1
 docutils==0.12
 gnureadline==6.3.3
