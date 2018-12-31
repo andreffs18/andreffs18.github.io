@@ -1,5 +1,5 @@
 ---
 title: Refactor management commands to be SRP complaint
-merge_request:
+merge_request: 5
 author: andreffs18
 type: changed
