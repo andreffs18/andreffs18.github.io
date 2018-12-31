@@ -2,7 +2,7 @@ from mongoengine.errors import DoesNotExist
 from django.shortcuts import Http404
 from django.views.generic.base import TemplateView, View
 # Create your views here.
-from models import Post
+from blog.models import Post
 
 
 class BlogListView(TemplateView):
