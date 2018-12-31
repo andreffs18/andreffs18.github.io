@@ -33,7 +33,7 @@ class CountdownHandler:
         # get all rows from my media countdown generated file
         jfile = open(os.getcwd() + "/core/media/countdown.json", "r")
         rows = json.loads(jfile.read())
-        stuffs = filter(lambda x: x, map(get_stuffs, rows))
+        stuffs = list(filter(lambda x: x, map(get_stuffs, rows)))
         if not len(stuffs):
             stuffs.append(dict([
                 ('name', "No schedule events"),
@@ -42,5 +42,5 @@ class CountdownHandler:
                 ('alert', 'success'),
                 ('date', datetime.now()),
             ]))
-
-        return context.update({'stuffs': stuffs})
+        context.update({'stuffs': stuffs})
+        return context

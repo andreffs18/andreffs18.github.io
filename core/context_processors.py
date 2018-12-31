@@ -5,11 +5,15 @@ from datetime import datetime
 
 
 def app_env(request):
-    """Adds app-environment to the context."""
+    """
+    Adds app-environment to the context.
+    """
     return {'APP_ENV': settings.APP_ENV}
 
 
 def my_age(request):
-    """Adds app-environment to the context."""
+    """
+    Adds my age to the context.
+    """
     return {'my_age': datetime.now().year - 1993}
 

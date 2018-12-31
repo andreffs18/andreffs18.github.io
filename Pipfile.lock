@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "0889b0abe1e4f2b25f2c9bc15f137267ba8a7d8b3ba4b44d2453d38925e96bc9"
+            "sha256": "1f09fcb8d0fc87d5cc98a2d016349902dca507886bfcd38d495ef707da8d3775"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -217,6 +217,14 @@
             ],
             "index": "pypi",
             "version": "==19.3.0"
+        },
+        "icalendar": {
+            "hashes": [
+                "sha256:07c2447a1d44cbb27c90b8c6a5c98e890cc1853c6223e2a52195cddec26c6356",
+                "sha256:83f7248b7485ddd29c7d69b706b21c441e34855d9c1d888939fd24aefdd9d19b"
+            ],
+            "index": "pypi",
+            "version": "==4.0.3"
         },
         "ipdb": {
             "hashes": [
@@ -444,6 +452,13 @@
             ],
             "index": "pypi",
             "version": "==2.1.10"
+        },
+        "python-dateutil": {
+            "hashes": [
+                "sha256:063df5763652e21de43de7d9e00ccf239f953a832941e37be541614732cdfc93",
+                "sha256:88f9287c0174266bb0d8cedd395cfba9c58e87e5ad86b2ce58859bc11be3cf02"
+            ],
+            "version": "==2.7.5"
         },
         "python-slugify": {
             "hashes": [
