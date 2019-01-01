@@ -11,7 +11,7 @@
     <ul class="">
     {% for post in posts %}
         <li>
-            <small>{{ post.creation_date }}</small> <a href="{% url "blog:detail" post.slug %}"><p>{{ post.title }}</p></a>
+            <small>{{ post.creation_date }}</small> <a href="{% url "blog:detail" post.year post.month post.day post.title %}"><p>{{ post.title }}</p></a>
         </li>
     {% endfor %}
     </ul>
