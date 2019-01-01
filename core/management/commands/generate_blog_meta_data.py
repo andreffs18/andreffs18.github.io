@@ -12,14 +12,10 @@ logger = logging.getLogger()
 class Command(BaseCommand):
     help = 'Generates _meta.md on blog/articles folder to optimize pagination'
 
-    BLACKLIST = ['.DS_Store']
-
     def _get_all_articles(self, filepath):
         articles = []
         for f in os.listdir(filepath):
             if not os.path.isfile(os.path.join(filepath, f)):
-                continue
-            if f in self.BLACKLIST:
                 continue
             if not f.endswith(".md"):
                 continue

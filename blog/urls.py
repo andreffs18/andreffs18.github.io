@@ -1,9 +1,8 @@
-# app specific urls
-from django.conf.urls import patterns, include, url
-from django.views.generic import RedirectView
-from django.core.urlresolvers import reverse
+from django.conf.urls import patterns, url
 
-from blog.views import BlogDetailView, BlogListView
+from blog.views.blog_list_view import  BlogListView
+from blog.views.blog_detail_view import BlogDetailView
+
 
 urlpatterns = patterns('',
     url(r'^$', BlogListView.as_view(), name="list"),
