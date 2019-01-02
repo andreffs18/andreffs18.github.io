@@ -1,6 +1,8 @@
 .env
 .idea
+.cache
 .project
+.coverage
 .pydevproject
 .ipynb_checkpoints
 
