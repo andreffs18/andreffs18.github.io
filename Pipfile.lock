@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "0889b0abe1e4f2b25f2c9bc15f137267ba8a7d8b3ba4b44d2453d38925e96bc9"
+            "sha256": "e4ad46a44a98636df4f55164f67dc82d63a4877c0b7cb82d3c5ae337d9976feb"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -265,6 +265,14 @@
             "index": "pypi",
             "version": "==0.23"
         },
+        "mock": {
+            "hashes": [
+                "sha256:5ce3c71c5545b472da17b72268978914d0252980348636840bd34a00b5cc96c1",
+                "sha256:b158b6df76edd239b8208d481dc46b6afd45a846b7812ff0ce58971cf5bc8bba"
+            ],
+            "index": "pypi",
+            "version": "==2.0.0"
+        },
         "mongoengine": {
             "hashes": [
                 "sha256:41eb88fd97e1d733eae696abf115e312b82aacef0263de2e02f02d174d5b4b10",
@@ -296,6 +304,13 @@
             ],
             "index": "pypi",
             "version": "==2.5.0"
+        },
+        "pbr": {
+            "hashes": [
+                "sha256:f59d71442f9ece3dffc17bc36575768e1ee9967756e6b6535f0ee1f0054c3d68",
+                "sha256:f6d5b23f226a2ba58e14e49aa3b1bfaf814d0199144b95d78458212444de1387"
+            ],
+            "version": "==5.1.1"
         },
         "pillow": {
             "hashes": [

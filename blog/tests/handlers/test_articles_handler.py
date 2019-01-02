@@ -21,15 +21,13 @@ class ArticleFinderTestCase(TestCase):
         Ensure that get_articles() is returning the expected response
         """
         mock_get_articles_list.return_value = [self.article_filename]
-        mock_get_article.return_value = [self.article]
+        mock_get_article.return_value = self.article
         expected_response = {"posts": [self.article]}
 
         self.assertEqual(expected_response, ArticlesHandler.get_articles())
-        mock_get_articles_list.assert_called_with()
+
         self.assertTrue(mock_get_articles_list.called)
         self.assertEqual(mock_get_articles_list.call_count, 1)
-
-        mock_get_article.assert_called_with(self.article_filename)
         self.assertTrue(mock_get_article.called)
         self.assertEqual(mock_get_article.call_count, 1)
 
@@ -38,10 +36,9 @@ class ArticleFinderTestCase(TestCase):
         """
         Ensure that get_article_from_title() is retuning the expected article response
         """
-        mock_get_article.return_value = [self.article]
+        mock_get_article.return_value = self.article
         expected_response = {"post": self.article}
         self.assertEqual(expected_response, ArticlesHandler.get_article_from_title(self.article.get('title')))
 
-        mock_get_article.assert_called_with(self.article_filename)
         self.assertTrue(mock_get_article.called)
         self.assertEqual(mock_get_article.call_count, 1)

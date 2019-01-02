@@ -25,6 +25,11 @@ class ArticleValue(ValueComposite):
         self.serialize_with(body=body)
         self.serialize_with(creation_date=creation_date)
         self.serialize_with(hour=hour.replace("-", "h"))
+
+        title = title.replace("-", " ")
+        if title.endswith(".md"):
+            title = title.replace(".md", "")
+
         self.serialize_with(title=title)
 
     def _serialize_image(self, details):

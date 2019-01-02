@@ -7,7 +7,7 @@ class GetArticleService:
 
     def __init__(self, slug, articles_filepath=None):
         self.slug = slug
-        self.articles_filepath = articles_filepath or os.getcwd() + '/blog/articles'
+        self.articles_filepath = articles_filepath or os.path.join(os.getcwd(), 'blog/articles')
 
     def call(self):
         if not os.path.isfile(os.path.join(self.articles_filepath, self.slug)):

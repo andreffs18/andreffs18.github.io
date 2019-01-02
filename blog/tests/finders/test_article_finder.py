@@ -20,7 +20,7 @@ class ArticleFinderTestCase(TestCase):
         Ensure that using "by_title()" is raising ValueError if multiple articles were found with the same title
         """
         mock_get_articles.return_value = ["2000-01-01-00-00-Hello-World!.md", "2000-01-01-00-00-Hello-World!.md"]
-        self.assertRaises(ValueError, ArticleFinder.by_title("Hello-World!.md"))
+        self.assertRaises(ValueError, ArticleFinder.by_title, "Hello-World!.md")
 
     @patch("blog.services.get_articles_list_service.GetArticlesListService.call")
     def test_by_title_success(self, mock_get_articles):

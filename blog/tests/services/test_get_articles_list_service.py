@@ -1,4 +1,5 @@
 import os
+import json
 from mock import patch
 from django.test import TestCase
 
@@ -18,12 +19,12 @@ class GetArticlesListServiceTestCase(TestCase):
         service = GetArticlesListService()
         self.assertEqual(service.filepath, os.path.join(os.getcwd(), "blog/articles/meta.json"))
 
-    @patch("open.read")
+    @patch("blog.services.get_articles_list_service.open")
     def test_call_success(self, mock_meta_json):
         """
         Ensure that service call is working properly and returning expected article value
         """
-        mock_meta_json.return_value = [{"articles": ["2000-01-01-00-00-Hello-World!.md"]}]
+        mock_meta_json.read.return_value = [json.dumps([{"articles": ["2000-01-01-00-00-Hello-World!.md"]}])]
 
         self.assertEqual(["2000-01-01-00-00-Hello-World!.md"], GetArticlesListService(self.article_filename).call())
         mock_meta_json.assert_called_with(self.article_filename)
