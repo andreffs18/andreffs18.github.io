@@ -1,4 +1,4 @@
-# Django settings for andreffs
+# Django settings for website
 import os
 import dj_database_url
 
@@ -18,7 +18,7 @@ ADMINS = (
 )
 MANAGERS = ADMINS
 
-DATABASES = {}
+DATABASES = dict()
 DATABASES["default"] = dj_database_url.config()
 
 import mongoengine
@@ -33,7 +33,7 @@ ALLOWED_HOSTS = ['*']
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
-# although not all choices may be available on all operating systems.
+# Although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
 TIME_ZONE = 'Europe/Lisbon'
 
@@ -43,12 +43,10 @@ LANGUAGE_CODE = 'en-us'
 
 SITE_ID = 1
 
-# If you set this to False, Django will make some optimizations so as not
-# to load the internationalization machinery.
+# If you set this to False, Django will make some optimizations so as not to load the internationalization machinery.
 USE_I18N = True
 
-# If you set this to False, Django will not format dates, numbers and
-# calendars according to the current locale.
+# If you set this to False, Django will not format dates, numbers and calendars according to the current locale.
 USE_L10N = True
 
 # If you set this to False, Django will not use timezone-aware datetimes.
@@ -58,8 +56,7 @@ USE_TZ = True
 # Example: "/home/media/media.lawrence.com/media/"
 MEDIA_ROOT = ''
 
-# URL that handles the media served from MEDIA_ROOT. Make sure to use a
-# trailing slash.
+# URL that handles the media served from MEDIA_ROOT. Make sure to use a trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
 MEDIA_URL = ''
 
@@ -78,16 +75,14 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    #os.path.join(CORE_ROOT, "static"),
     os.path.join(CORE_ROOT, "static"),
 )
 
-# List of finder classes that know how to find static files in
-# various locations.
+# List of finder classes that know how to find static files in various locations.
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 # STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
@@ -132,16 +127,18 @@ INSTALLED_APPS = (
     'core',
     'blog',
     # third party apps
+    'django_nose',
 )
 
 
-SITE_URL = "http://127.0.0.1:8000"
+SITE_URL = os.environ.get("SITE_URL", "http://127.0.0.1:8000")
+
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.\
-   os.path.join(CORE_ROOT, "templates"),
+    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(CORE_ROOT, "templates"),
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -159,10 +156,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "core.context_processors.my_age",
 )
 
-# A sample logging configuration. The only tangible logging
-# performed by this configuration is to send an email to
-# the site admins on every HTTP 500 error when DEBUG=False.
-# See http://docs.djangoproject.com/en/dev/topics/logging for
+# A sample logging configuration. The only tangible logging performed by this configuration is to send an email to
+# the site admins on every HTTP 500 error when DEBUG=False. See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
 LOGGING = {
     'version': 1,
@@ -181,7 +176,6 @@ LOGGING = {
         'console': {
             'level': 'INFO',
             'class': 'logging.StreamHandler',
-            # 'formatter': 'simple'
         },
 
     },
@@ -193,13 +187,11 @@ LOGGING = {
         },
         'core': {
             'level': "DEBUG",
-            # 'formatter': "simple",
         },
     },
     'root': {
         'handlers': ['console'],
         'level': 'INFO',
-        #"formatter": "simple",
     }
 }
 
@@ -207,3 +199,13 @@ LOGGING = {
 LOGIN_URL = "/login/"
 LOGOUT_REDIRECT_URL = "/"
 LOGIN_REDIRECT_URL = "/"
+
+# Use nose to run all tests
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+# Tell nose to measure coverage on the 'foo' and 'bar' apps
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-package=core,blog',
+    '--cover-min-percentage=80'
+]
