@@ -206,6 +206,7 @@ TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 # Tell nose to measure coverage on the 'foo' and 'bar' apps
 NOSE_ARGS = [
     '--with-coverage',
+    '--cover-xml',
     '--cover-package=core,blog',
     '--cover-min-percentage=80'
 ]
