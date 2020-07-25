@@ -1,0 +1,93 @@
+{{ define "main" }}
+
+{{- if .Params.Plotly }}
+<script src="https://cdn.plot.ly/plotly-1.50.0.min.js"></script>
+{{- end }}
+
+<main class="row blog">
+    <section class="col-12 col-xl-9">
+        <header>
+            <h1 class="">{{ .Title | markdownify }}</h1>
+
+            {{ if .Params.Subtitle }}
+            <h2 class="font-weight-light font-italic mb-3">{{ .Params.Subtitle | markdownify }}</h2>
+            {{ end }}
+
+            <a class="text-muted mt-3">
+                <a class="text-muted" href="{{ .Permalink }}">Published {{ .Date.Format "January 2, 2006"  }}</a>
+
+                {{ with .Params.tags }}
+                    <span>|</span>
+                    {{ range . }}
+                    <a class="text-muted" href="{{ "/tags/" | relURL }}{{ . | urlize }}">#{{ . }}</a>
+                    {{ end }}
+                {{ end }}
+                <span>|</span>
+                <a class="text-muted text-decoration-none">± {{ .ReadingTime }} min{{ if not (eq .ReadingTime 1) }}s{{ end }}</a>
+            </p>
+        </header>
+        <article class="markdown-body">
+            {{ .Content }}
+        </article>
+    </section>
+
+    <aside class="col-12 col-xl-3">
+        <div class="d-none d-xl-block">
+            {{ if and (gt (len .TableOfContents) 200) ( .Params.TOC )}}
+                <div class="toc">
+                    <h5>Table of contents</h5>
+                    {{ .TableOfContents }}
+                </div>
+            {{ else }}
+                <div class="tags">
+                    <h5>Tags</h5>
+                    <ul class="list-unstyled">
+                        {{ range $.Site.Taxonomies.tags }}
+                        <li><a class="text-secondary" href="{{ .Page.Permalink }}">{{ .Page.Title }}</a></li>
+                        {{ end }}
+                    </ul>
+                </div>
+            {{ end }}
+        </div>
+    </aside>
+</main>
+
+<hr>
+
+{{ template "_internal/disqus.html" . }}
+
+<hr>
+{{ if or .Next .Prev }}
+<div class="pt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 text-left">
+                {{ if and (.Prev) }}
+                Previous Post: ◀ <a href="{{ .Prev.URL | relURL}}">{{ .Prev.Title | markdownify }}</a>
+                {{ end }}
+            </div>
+            <div class="col-md-6 text-right">
+                {{ if and (.Next)  }}
+                Next Post: ▶ <a href="{{ .Next.URL | relURL }}">{{ .Next.Title | markdownify }}</a>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</div>
+{{ end }}
+
+
+
+<script>
+function addAnchor(element) {
+    element.innerHTML = `<a class="anchor" href="#${element.id}" aria-hidden="true"><span class="octicon octicon-link"></span></a>${element.innerText}`
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    var headers = document.querySelectorAll('.blog article h2, .blog article h3, .blog article h4, .blog article h5, .blog article h6')
+    if (headers) {
+        headers.forEach(addAnchor)
+    }
+})
+</script>
+{{ end }}

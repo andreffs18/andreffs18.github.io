@@ -1,0 +1,27 @@
+{{ define "main" }}
+<div class="container cv">
+   {{ range $.Site.Data.cv }}
+    <div class="row section">
+        <div class="col-md-2">
+            <h3 class="text-uppercase">{{.name}}</h3>
+        </div>
+        <div class="col-md-10">
+            {{ range .sections }}
+            <div class="row">
+                <div class="col-md-6">
+                    <h4 class="text-left text-md-right"><a href="{{ .url }}" target="_blank">{{ .name }}</a> {{ .location }}</h4>
+                    <h5 class="text-left text-md-right">{{ .timeframe }}</h5>
+                </div>
+                <div class="col-md-6 text-left description">
+                    {{ range .description }}
+                        <p>{{ . | markdownify }}</p>
+                    {{ end }}
+                </div>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+    {{ end }}
+</div>
+{{ end }}
+

@@ -1,0 +1,25 @@
+{{ $currentPage := . }}
+<footer>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <ul class="navbar menu pull-left">
+                    {{ range .Site.Menus.main }}
+                        <li class="nav-item {{ if eq $currentPage.RelPermalink .URL }}active{{ end }}">
+                            <a class="nav-link" href="{{ .URL | relURL }}" title="{{ .Title }}">{{ .Name }}</a>
+                        </li>
+                    {{ end }}
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <ul class="navbar social pull-right">
+                    {{ range .Site.Menus.social }}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ .URL }}" target="_blank"><i class="{{ .Post }}"></i></a>
+                        </li>
+                    {{ end }}
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>

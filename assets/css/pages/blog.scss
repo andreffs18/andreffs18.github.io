@@ -1,0 +1,47 @@
+/*  Blog Page style
+-------------------------------------------------- */
+.blog {
+	article p, article ul, article ol, article blockquote {
+		max-width: 54em;
+	}
+
+	//article p:first-child {
+	//	font-size: 1.25em;
+	//	font-weight: 300;
+	//		max-width: 43em; /* 45 / 1.25 */
+	//}
+
+	// tweek hightlight shortcut to make it more pleasing to see
+	div.highlight pre {
+		padding: 10px;
+		border-radius: 5px;
+	}
+
+	// add config for look alike github css
+	.markdown-body {
+		box-sizing: border-box;
+		min-width: 200px;
+		max-width: 980px;
+		margin: 0 auto;
+		padding: 0px;
+		table{
+			display: inline-table;
+		}
+		h1:before {
+			content: "# "
+		}
+		h2:before{
+			content: "## "
+		}
+	}
+
+	aside {
+		padding: 0px;
+		.toc {
+
+		}
+		.tags {
+			text-align: right;
+		}
+	}
+}

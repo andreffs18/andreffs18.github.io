@@ -1,0 +1,27 @@
+/* CV Page styles
+-------------------------------------------------- */
+.cv{
+  a {
+    color: #337ab7;
+    text-decoration: none;
+  }
+
+  h3{
+    color: $gray;
+    font-size: 24px;
+  }
+  h4{
+    color: $blueDark;
+    font-size: 18px;
+  }
+  h5{
+    color: $blue;
+    font-size: 16px;
+  }
+  .section{
+    &:not(:last-child){ border-bottom: 1px #dbdbdb dashed; }
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+  }
+  .description{ margin-top:5px; font-size:16px; line-height: 24px; }
+}

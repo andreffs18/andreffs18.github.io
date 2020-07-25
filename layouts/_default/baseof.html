@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    {{ partial "head.html" . }}
+    <body>
+        <div class="container pb-5">
+            {{ partial "header.html" . }}
+            {{ block "main" . }}{{ end }}
+        </div>
+        {{ partial "footer.html" . }}
+    </body>
+
+    {{ template "_internal/google_analytics.html" . }}
+</html>
