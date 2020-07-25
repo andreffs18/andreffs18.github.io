@@ -4,12 +4,32 @@
   
   <url>
     <loc>https://andreffs18.github.io/website/</loc>
-    <lastmod>2015-12-10T13:38:09+00:00</lastmod>
+    <lastmod>2017-07-03T17:44:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://andreffs18.github.io/website/blog/</loc>
-    <lastmod>2015-12-10T13:38:09+00:00</lastmod>
+    <lastmod>2017-07-03T17:44:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andreffs18.github.io/website/tags/finance/</loc>
+    <lastmod>2017-07-03T17:44:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andreffs18.github.io/website/tags/plotly/</loc>
+    <lastmod>2017-07-03T17:44:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andreffs18.github.io/website/tags/</loc>
+    <lastmod>2017-07-03T17:44:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andreffs18.github.io/website/blog/personal-finance/</loc>
+    <lastmod>2017-07-03T17:44:00+00:00</lastmod>
   </url>
   
   <url>
@@ -19,16 +39,6 @@
   
   <url>
     <loc>https://andreffs18.github.io/website/tags/nfc/</loc>
-    <lastmod>2015-12-10T13:38:09+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://andreffs18.github.io/website/tags/plotly/</loc>
-    <lastmod>2015-12-10T13:38:09+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://andreffs18.github.io/website/tags/</loc>
     <lastmod>2015-12-10T13:38:09+00:00</lastmod>
   </url>
   
@@ -52,6 +62,10 @@
   
   <url>
     <loc>https://andreffs18.github.io/website/cv/</loc>
+  </url>
+  
+  <url>
+    <loc>https://andreffs18.github.io/website/projects/</loc>
   </url>
   
 </urlset>

@@ -1,15 +1,14 @@
-baseURL = "https://andreffs18.github.io/website/"
+baseURL = "https://andreffs.com"
 languageCode = "en-us"
 title = "ANDREFFS"
-
-# theme = ["hugo-debugprint"]
 publishDir = "docs"
 tags = ["tags"]
-
 disqusShortname = "andreffs"
-
 googleAnalytics = "UA-123-45"
-
+ignorefiles = [
+  "content/blog/_draft/.*" 
+]
+# theme = ["hugo-debugprint"]
 
 [markup]
   [markup.tableOfContents]
@@ -33,7 +32,6 @@ googleAnalytics = "UA-123-45"
     fontUnit = "em"
     largestFontSize = 2.5
     smallestFontSize = 1
-
 
 [menu]
   [[menu.main]]
@@ -102,8 +100,8 @@ googleAnalytics = "UA-123-45"
     url="mailto:andreffs18@gmail.com"
     post="fa fa-envelope"
 
-  [[menu.social]]
-    identifier="rss"
-    title="rss"
-    url="/rss"
-    post="fa fa-rss"
+  #[[menu.social]]
+  #  identifier="rss"
+  #  title="rss"
+  #  url="/rss"
+  #  post="fa fa-rss"

@@ -25,6 +25,5 @@
 
     {{ $style := resources.Get "/css/main.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
     <link rel="stylesheet" href="{{ $style.Permalink }}">
-    <script src="/js/okshadow.min.js"></script>
 
 </head>

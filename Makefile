@@ -1,4 +1,4 @@
-.PHONY: build plotly
+.PHONY: build plotly deploy
 SHELL := /bin/bash
 
 build:
@@ -13,6 +13,12 @@ plotly:
 	open $$URL && \
 	docker logs -t myplotly
 
+deploy:
+	hugo --baseUrl https://andreffs18.github.io/website && \
+	touch docs/.nojekyll && \
+	git add docs/ && \
+	git commit -m "📌 Deploy website!" && \
+	git push origin master
 
 # Get last tagged version that was pushed to repository or if non existent, use first commit of tree
 # Then get logs from $TAG until now and run then through our generate-changelog.py script

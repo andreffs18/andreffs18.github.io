@@ -6,10 +6,20 @@
     <description>Recent content in Blogs on ANDREFFS</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 10 Dec 2015 13:38:09 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 03 Jul 2017 17:44:00 +0000</lastBuildDate>
     
 	<atom:link href="https://andreffs18.github.io/website/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>💰Personal Finance</title>
+      <link>https://andreffs18.github.io/website/blog/personal-finance/</link>
+      <pubDate>Mon, 03 Jul 2017 17:44:00 +0000</pubDate>
+      
+      <guid>https://andreffs18.github.io/website/blog/personal-finance/</guid>
+      <description>Well, after reading a couple of books on the topic, they all talk about the same thing: you should diversify your portfolio.
+Code could not finish, this are some reasons why this happen. - Plot name not defined. The first parameter of the shortcode is the name. - There is a syntax error. check browser console.   function draw(){ test = document.getElementById(&#34;piechart&#34;); if (test == null){ console.log(&#34;The plot name is not defined&#34;</description>
+    </item>
     
     <item>
       <title>Get Paid For Pooping</title>
