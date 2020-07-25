@@ -3,7 +3,7 @@ languageCode = "en-us"
 title = "ANDREFFS"
 
 # theme = ["hugo-debugprint"]
-
+publishDir = "docs"
 tags = ["tags"]
 
 disqusShortname = "andreffs"
