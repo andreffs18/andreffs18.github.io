@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ANDREFFS</title>
-    <link>http://example.org/</link>
+    <link>https://andreffs18.github.io/website/</link>
     <description>Recent content on ANDREFFS</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 10 Dec 2015 13:38:09 +0000</lastBuildDate>
     
-	<atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://andreffs18.github.io/website/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Get Paid For Pooping</title>
-      <link>http://example.org/blog/get-paid-for-pooping/</link>
+      <link>https://andreffs18.github.io/website/blog/get-paid-for-pooping/</link>
       <pubDate>Thu, 10 Dec 2015 13:38:09 +0000</pubDate>
       
-      <guid>http://example.org/blog/get-paid-for-pooping/</guid>
+      <guid>https://andreffs18.github.io/website/blog/get-paid-for-pooping/</guid>
       <description>Yes I know it sounds dumb but, if during your working hours you go to the toilet, technically, you are getting paid for it. 💩
 Use case Alright, lets say you you earn $10 an hour and during those 8 hours of daily work, you go twice to the bathroom, for around 10 minutes each time.
 Then a simple multiplication shows that your &amp;ldquo;poop time&amp;rdquo; is worth around $3.34 per day!</description>
@@ -24,10 +24,10 @@ Then a simple multiplication shows that your &amp;ldquo;poop time&amp;rdquo; is 
     
     <item>
       <title>Hello World</title>
-      <link>http://example.org/blog/hello-world/</link>
+      <link>https://andreffs18.github.io/website/blog/hello-world/</link>
       <pubDate>Wed, 09 Dec 2015 00:24:09 +0000</pubDate>
       
-      <guid>http://example.org/blog/hello-world/</guid>
+      <guid>https://andreffs18.github.io/website/blog/hello-world/</guid>
       <description>Hello 😃
 So this is the mandatory &amp;ldquo;Hello World&amp;rdquo; blog post.
 The intent of this blog is just to keep track of my achievements, projects and also
@@ -36,10 +36,10 @@ The intent of this blog is just to keep track of my achievements, projects and a
     
     <item>
       <title>About</title>
-      <link>http://example.org/about/</link>
+      <link>https://andreffs18.github.io/website/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/about/</guid>
+      <guid>https://andreffs18.github.io/website/about/</guid>
       <description>👋 My name is André Silva and I&amp;rsquo;m a 27 y/old Portuguese Software Engineer from Lisbon that likes to code.
 # A little bit about me I wasn&amp;rsquo;t always focused on the development world.
 During high school I got the change to internship on a consulting firm in my hometown, mainly working with setting up data centers, and configuring network systems.
@@ -48,10 +48,10 @@ After high school I went to college to take a Computer Science Bachelor.</descri
     
     <item>
       <title>Curriculum Vitae</title>
-      <link>http://example.org/cv/</link>
+      <link>https://andreffs18.github.io/website/cv/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/cv/</guid>
+      <guid>https://andreffs18.github.io/website/cv/</guid>
       <description></description>
     </item>
     
