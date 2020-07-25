@@ -19,7 +19,7 @@
             {{ if ne $year $lastYear }}
             <p class="text-muted mt-5">&nbsp;</p>
             {{ end }}
-            <a class="text-body" href="{{ .URL | relURL }}">
+            <a class="text-body" href="{{ .URL | absURL }}">
                 {{ if .Draft }}📝 <span style="color: salmon">DRAFT:</span>{{ end }}
                 {{ .Title | markdownify }}
             </a>

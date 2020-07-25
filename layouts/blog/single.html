@@ -19,7 +19,7 @@
                 {{ with .Params.tags }}
                     <span>|</span>
                     {{ range . }}
-                    <a class="text-muted" href="{{ "/tags/" | relURL }}{{ . | urlize }}">#{{ . }}</a>
+                    <a class="text-muted" href="{{ "/tags/" | absURL }}{{ . | urlize }}">#{{ . }}</a>
                     {{ end }}
                 {{ end }}
                 <span>|</span>
@@ -63,12 +63,12 @@
         <div class="row">
             <div class="col-md-6 text-left">
                 {{ if and (.Prev) }}
-                Previous Post: ◀ <a href="{{ .Prev.URL | relURL}}">{{ .Prev.Title | markdownify }}</a>
+                Previous Post: ◀ <a href="{{ .Prev.URL | absURL}}">{{ .Prev.Title | markdownify }}</a>
                 {{ end }}
             </div>
             <div class="col-md-6 text-right">
                 {{ if and (.Next)  }}
-                Next Post: ▶ <a href="{{ .Next.URL | relURL }}">{{ .Next.Title | markdownify }}</a>
+                Next Post: ▶ <a href="{{ .Next.URL | absURL }}">{{ .Next.Title | markdownify }}</a>
                 {{ end }}
             </div>
         </div>
