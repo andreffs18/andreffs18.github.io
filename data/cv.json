@@ -1,0 +1,129 @@
+[
+ {
+  "name": "employment",
+  "sections": [
+   {
+    "name": "Unbabel",
+    "url": "https://www.unbabel.com/",
+    "timeframe": "January 2014 - Present",
+    "location": "@Lisboa, Portugal",
+    "description": [
+     "Full-Stack become Tech Lead Engineer.",
+     "Currently working on supporting internal operations team, developing processes and tools to help improving quality of translations and reduce cost.",
+     "Previously part of team that architected and implemented the new portal for Unbabel Customers.",
+     "Also worked as Service Engineer, onboarding new customers into Unbabel ecosystem, developing custom software and processes to accomodate their needs"
+    ]
+   },
+   {
+    "name": "Dezine",
+    "url": "https://dezine.com/",
+    "timeframe": "June 2013 - September 2013",
+    "location": "@Lisboa, Portugal",
+    "description": [
+     "Internship as Full-Stack Software Developer.",
+     "Mainly developing frontend app to display clothing products, in a 'pinterest-like' board.",
+     "Also developed backend API to serve as BFF for main products page."
+    ]
+   },
+   {
+    "name": "Vitopal Informatica Lda",
+    "url": "http://vitopal.pt/",
+    "timeframe": "June 2010 - August 2011",
+    "location": "@Samora Correia, Portugal",
+    "description": [
+     "Internship as Systems Technician and IT clerk.",
+     "Setting up servers and networks in Windows Server and Ubuntu Server.",
+     "Also involved in upgrading and troubleshooting the company systems."
+    ]
+   }
+  ]
+ },
+ {
+  "name": "education",
+  "sections": [
+   {
+    "name": "Instituto Superior Tecnico",
+    "url": "http://tecnico.ulisboa.pt/",
+    "timeframe": "September 2012 - Present",
+    "location": "@Lisboa, Portugal",
+    "description": [
+     "Bachelor's Degree in [Information Systems and Computer Science Engineering](https://fenix.tecnico.ulisboa.pt/cursos/leic-a)",
+     "Areas of interests include C++, Java, Python, Node and Git."
+    ]
+   },
+   {
+    "name": "Escola Secundária de Benavente",
+    "url": "",
+    "timeframe": "September 2008 - June 2012",
+    "location": "@Benavente, Portugal",
+    "description": [
+     "Curso Prof. de Tecnico de Gestão e Programação de Sistemas Informáticos.",
+     "Where first learn how to code. Mostly C, C++ and C# projects.",
+     "First web projects written in PHP."
+    ]
+   }
+  ]
+ },
+ {
+  "name": "experience",
+  "sections": [
+   {
+    "name": "",
+    "url": "",
+    "timeframe": "",
+    "location": "",
+    "description": [
+     "Have been going to [Pixel's Camp Competition](https://pixels.camp/) @LX Factory, Lisbon since 2016.",
+     "Participated in the last two years of [Codebits](https://codebits.eu/?lang=pt) @ Lisbon, Portugal.",
+     "Organized [Unbabel Hackathon 2015](https://blog.unbabel.com/2015/03/04/the-results-are-in-unbabels-first-hackathon-winners/) @ [SINFO XXII](http://sinfo.org/) [Startup Rush Hackathon](https://blog.unbabel.com/2015/02/26/unbabel-sponsors-sinfos-startup-rush-hackathon/)."
+    ]
+   }
+  ]
+ },
+ {
+  "name": "skills",
+  "sections": [
+   {
+    "name": "",
+    "url": "",
+    "timeframe": "Programming Languages",
+    "location": "",
+    "description": [
+     "Bash, Python, Ruby, Elixir, CSS, HTML, Javascript"
+    ]
+   },
+   {
+    "name": "",
+    "url": "",
+    "timeframe": "Libraries & Frameworks",
+    "location": "",
+    "description": [
+     "Django, Flask, Ruby on Rails, Phoenix, jQuery, Vue.js, Hugo, Jekyll"
+    ]
+   },
+   {
+    "name": "",
+    "url": "",
+    "timeframe": "Tools & Platforms",
+    "location": "",
+    "description": [
+     "PyCharm, Docker, Git (Github & Gitlab), Heroku, GCP, AWS, Netlify"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "interests",
+  "sections": [
+   {
+    "name": "",
+    "url": "",
+    "timeframe": "",
+    "location": "",
+    "description": [
+     "Cooking, TV shows, Reading, Gym, Surfing."
+    ]
+   }
+  ]
+ }
+]

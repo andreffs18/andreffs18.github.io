@@ -1,0 +1,70 @@
+/* Base Style
+-------------------------------------------------- */
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic");
+@import url("https://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic");
+@import url("https://fonts.googleapis.com/css?family=Titillium+Web:400,400italic,600,600italic,700,700italic");
+
+/* Common Stuff
+-------------------------------------------------- */
+@import "common/variables";
+@import "common/header";
+@import "common/footer";
+
+/* Pages
+-------------------------------------------------- */
+@import "pages/cv";
+@import "pages/about";
+@import "pages/blog";
+
+
+// temporary for now, since I dont even know if I will use this
+// just adds bootstrap .img-fluid styles to hugo {{< figure >}}
+figure.img-fluid img {
+  max-width: 100%;
+  height: auto;
+}
+
+
+.cloud {
+  display: inline-block;
+  list-style-type: none;
+  width: 400px;
+}
+
+.cloud li {
+  list-style: none;
+  display: inline;
+}
+
+.quote {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 40px;
+  position: relative;
+}
+
+
+.f0f {
+  margin-top: 120px;
+
+  p {
+    font-size: 32px;
+    font-weight: 100;
+
+    span.number {
+      font-weight: 100;
+      color: #337ab7;
+    }
+
+    span.separator {
+      color: #337ab7;
+      border-right: 1px solid;
+      font-size: 44px;
+      position: relative;
+      top: 5px;
+    }
+
+    span.message {
+      font-weight: 100;
+    }
+  }
+}

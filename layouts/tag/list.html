@@ -1,0 +1,57 @@
+{{ define "main" }}
+
+<div class="container">
+    <div class="row" {{ if eq .Kind "taxonomyTerm" }}style="margin-top:120px;"{{ end }}>
+        <div class="cloud col-6 offset-3 align-self-center mb-5">
+            {{ if ne (len $.Site.Taxonomies.tags) 0 }}
+                {{ $fontUnit := $.Site.Params.fontUnit }}
+                {{ $largestFontSize := $.Site.Params.largestFontSize }}
+                {{ $smallestFontSize := $.Site.Params.smallestFontSize }}
+                {{ $fontSpread := sub $largestFontSize $smallestFontSize }}
+                {{ $max := add (len (index $.Site.Taxonomies.tags.ByCount 0).Pages) 1 }}
+                {{ $min := len (index $.Site.Taxonomies.tags.ByCount.Reverse 0).Pages }}
+                {{ $spread := sub $max $min }}
+                {{ $fontStep := div $fontSpread $spread }}
+                {{ range $name, $taxonomy := $.Site.Taxonomies.tags }}
+                    {{ $currentTagCount := len $taxonomy.Pages }}
+                    {{ $currentFontSize := (add $smallestFontSize (mul (sub $currentTagCount $min) $fontStep)) }}
+                    {{ $count := len $taxonomy.Pages }}
+                    {{ $weigth := div (sub (math.Log $count) (math.Log $min)) (sub (math.Log $max) (math.Log $min)) }}
+                    {{ $currentFontSize := (add $smallestFontSize (mul (sub $largestFontSize $smallestFontSize) $weigth)) }}
+                    {{ with $.Site.GetPage (printf "/tags/%s" $name) }}
+                        <li>
+                            <a href="{{ .RelPermalink }}" title="{{ $currentTagCount }} Articles" style="font-size: {{ $currentFontSize }}{{ $fontUnit }}">{{ .LinkTitle | default .Data.Term | default $name }}</a>
+                        </li>
+                    {{ end }}
+                {{ end }}
+            {{ end }}
+        </div>
+    </div>
+
+    {{ if not (eq .Kind "taxonomyTerm") }}
+        <h1 class="text-center">
+            <span class="quote">“</span>{{ .Name | humanize }}<span class="quote">”</span>
+        </h1>
+
+        {{ $dateFormat := default "Jan 2" (index .Site.Params "date_format") }}
+        {{ $.Scratch.Set "lastYear" ""}}
+        {{ range .Pages }}
+            {{ $year := .Date.Year }}
+            {{ $lastYear := $.Scratch.Get "lastYear"}}
+            <div class="row mt-2">
+                <div class="d-none d-sm-block col-sm-2 mt-auto offset-sm-2 text-right">
+                    <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+                </div>
+                <div class="col">
+                    {{ if ne $year $lastYear }}
+                        <p class="text-muted mt-5">{{ $year }}</p>
+                        {{ $.Scratch.Set "lastYear" $year }}
+                    {{ end }}
+                    <a class="text-body" href="{{ .URL | relURL }}">{{ if .Draft }}DRAFT:{{ end }}{{ .Title | markdownify }}</a>
+                </div>
+            </div>
+        {{ end }}
+    {{ end }}
+
+</div>
+{{ end }}

@@ -1,0 +1,61 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+$footer-height: 42px;
+$footer-background-color: #f5f5f5;
+$footer-border-color: #337AB7;
+$footer-border-size: 3px;
+
+html {
+  position: relative;
+  min-height: 100%;
+  bottom: $footer-border-size;
+}
+body {
+  margin-bottom: $footer-height;
+}
+
+footer {
+	background-color: $footer-background-color;
+	border-top: $footer-border-size solid $footer-border-color;
+	height: $footer-height;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+
+	.row{
+		background-color: $footer-background-color;
+
+		ul.navbar {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			display: inline-block;
+			text-transform: uppercase;
+			li {
+				display: inline-block;
+				font-size: 14px;
+				a {
+					color: $footer-border-color;
+					height: $footer-height;
+					padding: 10px 5px;
+				}
+			}
+		}
+
+		ul.menu li {
+			&.active {
+				background-color: $footer-border-color;
+				a {
+					color: $footer-background-color;
+				}
+			}
+		}
+
+		ul.social li {
+			font-size: 20px;
+			a {
+				padding: 5px;
+			}
+		}
+	}
+}
