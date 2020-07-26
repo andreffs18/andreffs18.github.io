@@ -9,10 +9,7 @@ googleAnalytics = "UA-123-45"
 ignorefiles = [
   "content/blog/_draft/.*" 
 ]
-
-# theme = [
-  "hugo-debugprint"
-]
+# theme = ["hugo-debugprint"]
 
 [markup]
   [markup.tableOfContents]

@@ -45,6 +45,18 @@ The intent of this blog is just to keep track of my achievements, projects and a
     </item>
     
     <item>
+      <title></title>
+      <link>https://andreffs18.github.io/website/projects/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://andreffs18.github.io/website/projects/</guid>
+      <description>Some of my side projects:    Flask Template Bootstrap Flask project to use in Hackathons.
+ python       Santosbot Motivational Slack bot that mimic cliché sentences from Portuguese guru, Gustavo Santos.
+ python3 async heroku vuejs      andreffs.com This website, build with Hugo.
+ hugo go jupyter notebooks static hosting      Sheetsu Python SDK I had the luck of being feature for building Sheetsu&amp;#39;s Python SDK.</description>
+    </item>
+    
+    <item>
       <title>About</title>
       <link>https://andreffs18.github.io/website/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -63,22 +75,6 @@ After high school I went to college to take a Computer Science Bachelor.</descri
       
       <guid>https://andreffs18.github.io/website/cv/</guid>
       <description></description>
-    </item>
-    
-    <item>
-      <title>projects</title>
-      <link>https://andreffs18.github.io/website/projects/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://andreffs18.github.io/website/projects/</guid>
-      <description> this is america yup
-   this is america yup
-   this is america yup
-   this is america yup
-   this is america yup
-   this is america yup
-   this is america yup
-   </description>
     </item>
     
   </channel>
