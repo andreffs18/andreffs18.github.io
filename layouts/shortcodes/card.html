@@ -1,7 +1,7 @@
 <!-- source: https://codepen.io/reklamarsiv/pen/vgPLLv -->
 
 <div class="card">
-    <img class="card-img-top" src="{{ .Get "image" }}" alt="{{ .Get "image" }}">
+    <img class="card-img-top" src="{{ .Site.BaseURL }}{{ .Get "image" }}" alt="{{ .Get "image" }}">
     <ul class="card-social navbar py-1">
         <li class="nav-item">
             {{ if .Get "website-url" }}
