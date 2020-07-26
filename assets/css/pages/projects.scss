@@ -4,7 +4,6 @@
 .projects{
 	margin-top: 40px;
 	display: grid;
-	grid-template-columns: repeat(auto-fit, 320px);
 	gap: 20px;
 	justify-content: center;
 	
@@ -48,4 +47,19 @@
 		list-style: none;
 	}
 }
-	
+
+@media (min-width: 768px) {
+	.projects{
+		grid-template-columns: repeat(auto-fit, 100%);
+	}
+}
+@media (min-width: 992px) {
+	.projects{
+		grid-template-columns: repeat(auto-fit, 380px);
+	}
+}
+@media (min-width: 1200px) {
+	.projects{
+		grid-template-columns: repeat(auto-fit, 320px);
+	}
+}

@@ -17,7 +17,7 @@ deploy:
 	hugo --baseUrl https://andreffs18.github.io/website && \
 	touch docs/.nojekyll && \
 	git add docs/ && \
-	git commit -m "📌 Deploy website!" && \
+	git commit --amend --no-edit && \
 	git push origin master
 
 # Get last tagged version that was pushed to repository or if non existent, use first commit of tree
