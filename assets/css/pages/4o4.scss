@@ -1,0 +1,30 @@
+/*	404 Page style
+-------------------------------------------------- */
+
+.f0f {
+	margin-top: 120px;
+	
+	p {
+		font-size: 32px;
+		font-weight: 100;
+	
+		span.number {
+			font-weight: 100;
+			color: #337ab7;
+		}
+	
+		span.separator {
+			color: #337ab7;
+			border-right: 1px solid;
+			font-size: 44px;
+			position: relative;
+			top: 5px;
+		}
+	
+		span.message {
+			font-weight: 100;
+		}
+	}
+}
+	
+	

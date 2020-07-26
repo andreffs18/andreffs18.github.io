@@ -1,7 +1,9 @@
 {{ define "main" }}
-<div class="container">
-  <h1>{{ .Title | markdownify}}</h1>
-
+<div class="container {{ .Params.class }}">
+  {{ if isset .Params "title" }}
+    <h1>{{ .Title | markdownify }}</h1>
+  {{ end}}
+  
   {{ .Content }}
 </div>
 {{ end }}

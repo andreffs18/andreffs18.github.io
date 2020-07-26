@@ -5,10 +5,14 @@ publishDir = "docs"
 tags = ["tags"]
 disqusShortname = "andreffs"
 googleAnalytics = "UA-123-45"
+
 ignorefiles = [
   "content/blog/_draft/.*" 
 ]
-# theme = ["hugo-debugprint"]
+
+# theme = [
+  "hugo-debugprint"
+]
 
 [markup]
   [markup.tableOfContents]
@@ -52,11 +56,11 @@ ignorefiles = [
     url = "/blog/"
     weight = 3
 
-  #[[menu.main]]
-  #  identifier = "projects"
-  #  name = "Projects"
-  #  url = "/projects/"
-  #  weight = 4
+  [[menu.main]]
+    identifier = "projects"
+    name = "Projects"
+    url = "/projects/"
+    weight = 4
 
   #[[menu.main]]
   #  identifier = "talks"
@@ -99,9 +103,3 @@ ignorefiles = [
     title="e-mail"
     url="mailto:andreffs18@gmail.com"
     post="fa fa-envelope"
-
-  #[[menu.social]]
-  #  identifier="rss"
-  #  title="rss"
-  #  url="/rss"
-  #  post="fa fa-rss"

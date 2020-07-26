@@ -1,11 +1,27 @@
 <!-- source: https://codepen.io/reklamarsiv/pen/vgPLLv -->
 
-<div class="col-4 mb-3">
-    <div class="card">
-        <img class="card-img-top" src="{{ .Get "image" }}" alt="{{ .Get "image" }}">
-        <div class="card-block">
-            <h4 class="card-title">{{ .Get "title" }}</h4>
-            <p class="card-text">{{ .Get "description" }}</p>
-        </div>
+<div class="card">
+    <img class="card-img-top" src="{{ .Get "image" }}" alt="{{ .Get "image" }}">
+    <ul class="card-social navbar py-1">
+        <li class="nav-item">
+            {{ if .Get "website-url" }}
+            <a class="nav-link" href="{{ .Get "website-url" }}" target="_blank"><i class="fa fa-external-link"></i></a>
+            {{ end }}
+            {{ if .Get "github-url" }}
+            <a class="nav-link" href="{{ .Get "github-url" }}" target="_blank"><i class="fa fa-github"></i></a>
+            {{ end }}
+            {{ if .Get "blog-url" }}
+            <a class="nav-link" href="{{ .Get "blog-url" }}" target="_blank"><i class="fa fa-book"></i></a>
+            {{ end }}
+        </li>
+    </ul>
+    <div class="card-block px-3 py-1 pb-3">
+        <h4 class="card-title">{{ .Get "title" }}</h4>
+        <p class="card-text">{{ .Get "description" }}</p>
     </div>
+    <ul class="card-skills navbar">
+        {{ range $skill := split (.Get "skills") "," }}
+            <li class="nav-item"><span class="badge badge-dark">{{ $skill }}</span></li>
+        {{ end }}
+    </ul>
 </div>
