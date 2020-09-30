@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta name="generator" content="Hugo 0.67.1" />
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="https://andreffs18.github.io/website/favicon.png">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ANDREFFS | SSH ForwardAgent Gotchas</title>
+
+    <meta name="author" content="">
+    <meta name="description" content="">
+    <link rel="canonical" href="https://andreffs18.github.io/website/blog/ssh-forwardagent-gotchas/">
+
+    
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+
+    
+    <link rel="stylesheet" href="https://andreffs18.github.io/website/css/main.min.f5f14dcd72dd9ee5070f5d2968136c42e73a09e174706907854b3120ca7a290b.css">
+
+</head>
+    <body>
+        <div class="container pb-5">
+            <header>
+    <div class="page-header pb-4 mt-5 mb-4">
+        
+            <a href="https://andreffs18.github.io/website" class="text-decoration-none">
+                <h1 class="text3d text-right text-uppercase"><span id="">André Silva</span><br/></h1>
+            </a>
+            <small class="letterpress text-right text-uppercase">27 y/old workaholic from Lisbon.</small>
+        
+    </div>
+</header>
+            
+
+<main class="row blog">
+    <section class="col-12 col-xl-9">
+        <header>
+            <h1 class="">SSH ForwardAgent Gotchas</h1>
+
+            
+
+            <a class="text-muted mt-3">
+                <a class="text-muted" href="https://andreffs18.github.io/website/blog/ssh-forwardagent-gotchas/">Published February 5, 2019</a>
+
+                
+                    <span>|</span>
+                    
+                    <a class="text-muted" href="https://andreffs18.github.io/tags/ssh">#ssh</a>
+                    
+                    <a class="text-muted" href="https://andreffs18.github.io/tags/tips">#tips</a>
+                    
+                    <a class="text-muted" href="https://andreffs18.github.io/tags/gotchas">#gotchas</a>
+                    
+                
+                <span>|</span>
+                <a class="text-muted text-decoration-none">± 2 mins</a>
+            </p>
+        </header>
+        <article class="markdown-body">
+            <p>So, you’re trying to create an SSH Tunnel to your remote machine to make some gitlab/github clones.</p>
+<p>That’s all fine and well until you don’t want to post your password on to the terminal.</p>
+<p>First, look at you <code>~/.ssh/config</code> file and add the <strong>“ForwardAgent yes”</strong> to that machines ip.</p>
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">1</span>Host 35.242.133.24
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">2</span>  IdentityFile ~/.ssh/id_rsa
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">3</span>  ForwardAgent yes</code></pre></div>
+<p>That says to use your local private key as identification when accessing gitlab on your remote’s machine.
+Then, just try to check your GitHub/Gitlab connectivity, but first, don’t forget to add you private key to your ssh-agent:</p>
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">1</span>$ ssh-add -K
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">2</span>Identity added: /Users/me/.ssh/id_rsa (/Users/me/.ssh/id_rsa)
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">3</span>$ ssh-add -l
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">4</span><span style="color:#00afaf">2048</span> SHA256:vt6nnixTeh5lJpupm8H5+cAuIcxy46LAYdYhfo+WL0E /Users/me/.ssh/id_rsa (RSA)</code></pre></div>
+<p>Now, inside your machine try to check if you can authenticate on Gitlab/Github</p>
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">1</span>$ ssh -v ubuntu@35.242.133.24
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">2</span>ubuntu@instance-1:~$ ssh-add -l
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">3</span><span style="color:#00afaf">2048</span> SHA256:vt6nnixTeh5lJpupm8H5+cAuIcxy46LAYdYhfo+WL0E /Users/me/.ssh/id_rsa (RSA)
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">4</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">5</span>ubuntu@instance-1:~/load-test$ ssh -T git@github.com
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">6</span>Hi andreffs18! You&#39;ve successfully authenticated, but GitHub does not provide shell access.
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">7</span>ubuntu@instance-1:~/load-test$ ssh -T git@gitlab.com
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">8</span>Welcome to GitLab, @andreffs18!</code></pre></div>
+<p>Now, let’s try to clone our project</p>
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">1</span>ubuntu@instance-1:~/load-test$ git pull origin master
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">2</span>Username <span style="color:#5f8700">for</span> <span style="color:#00afaf">&#39;https://gitlab.com&#39;</span>: ^C</code></pre></div>
+<p>What?! I don’t want to put my credentials! Isn’t the <strong>ForwardAgent</strong> for this?</p>
+<p>Okay, let’s look at our remotes:</p>
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">1</span>ubuntu@instance-1:~/load-test$ git remote -v
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">2</span>origin    https://gitlab.com/andreffs18/load-test.git (fetch)
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">3</span>origin    https://gitlab.com/andreffs18/load-test.git (push)</code></pre></div>
+<p>⚠️ If you work with HTTPs urls, it will always ask for your username/password.</p>
+<p>If you&rsquo;re correctly using SSH when cloning / setting remotes.
+Then make sure you have a ssh-agent to remember your password.
+That way, you&rsquo;ll only enter your passphrase once by terminal session.</p>
+<p>If it is still too annoying, then simply set a ssh-key without passphrase.</p>
+<p>Just change it:</p>
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">1</span>$ git remote set-url origin git@gitlab.com:andreffs18/load-test.git</code></pre></div>
+<p>And now, on your remote machine you should be able to pull everything from your repo:
+<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 1</span>ubuntu@instance-1:~/load-test$ git pull origin master
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 2</span>debug1: client_input_channel_open: ctype auth-agent@openssh.com rchan <span style="color:#00afaf">2</span> win <span style="color:#00afaf">65536</span> max <span style="color:#00afaf">16384</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 3</span>debug1: channel 1: new [authentication agent connection]
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 4</span>debug1: confirm auth-agent@openssh.com
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 5</span>From gitlab.com:andreffs18/load-test
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 6</span> * branch            master     -&gt; FETCH_HEAD
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 7</span>debug1: channel 1: FORCE input drain
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 8</span>Updating 16f56eb..f661b58
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 9</span>Fast-forward
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">10</span> jmeter/test.jmx                                      | <span style="color:#00afaf">344</span> ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">11</span> python/__init__.py                     |   <span style="color:#00afaf">2</span> +-
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">12</span> python/uwsgi.ini                       |   <span style="color:#00afaf">7</span> ++
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">13</span> elixir/config/config.exs               |   <span style="color:#00afaf">1</span> +
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">14</span> elixir/config/dev.exs                  |   <span style="color:#00afaf">3</span> +-
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">15</span> go/cmd/main.go                         |   <span style="color:#00afaf">2</span> +-
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">16</span> <span style="color:#00afaf">6</span> files changed, <span style="color:#00afaf">355</span> insertions(+), <span style="color:#00afaf">4</span> deletions(-)
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">17</span> create mode <span style="color:#00afaf">100644</span> jmeter/test.jmx
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">18</span> create mode <span style="color:#00afaf">100644</span> go/cmd/main.go</code></pre></div></p>
+<p>That’s it 👋.</p>
+
+        </article>
+    </section>
+
+    <aside class="col-12 col-xl-3">
+        <div class="d-none d-xl-block">
+            
+                
+            
+        </div>
+    </aside>
+</main>
+
+<hr>
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "andreffs" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<hr>
+
+<div class="pt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 text-left">
+                
+                Previous Post: ◀ <a href="https://andreffs18.github.io/website/blog/postgres-is-now-running/">Postgres Is Now Running</a>
+                
+            </div>
+            <div class="col-md-6 text-right">
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+function addAnchor(element) {
+    element.innerHTML = `<a class="anchor" href="#${element.id}" aria-hidden="true"><span class="octicon octicon-link"></span></a>${element.innerText}`
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    var headers = document.querySelectorAll('.blog article h2, .blog article h3, .blog article h4, .blog article h5, .blog article h6')
+    if (headers) {
+        headers.forEach(addAnchor)
+    }
+})
+</script>
+
+        </div>
+        
+<footer>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <ul class="navbar menu pull-left">
+                    
+                        <li class="nav-item ">
+                            <a class="nav-link" href="https://andreffs18.github.io/website/cv/" title="">CV</a>
+                        </li>
+                    
+                        <li class="nav-item ">
+                            <a class="nav-link" href="https://andreffs18.github.io/website/about/" title="">About</a>
+                        </li>
+                    
+                        <li class="nav-item ">
+                            <a class="nav-link" href="https://andreffs18.github.io/website/blog/" title="">Blog</a>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <ul class="navbar social pull-right">
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="mailto:andreffs18@gmail.com" target="_blank"><i class="fa fa-envelope"></i></a>
+                        </li>
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://www.facebook.com/andreffs18" target="_blank"><i class="fa fa-facebook"></i></a>
+                        </li>
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://github.com/andreffs18" target="_blank"><i class="fa fa-github"></i></a>
+                        </li>
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://instagram.com/andreffs18" target="_blank"><i class="fa fa-instagram"></i></a>
+                        </li>
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://pt.linkedin.com/in/andreffs18" target="_blank"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://twitter.com/andreffs18" target="_blank"><i class="fa fa-twitter"></i></a>
+                        </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+    </body>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-123-45', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</html>

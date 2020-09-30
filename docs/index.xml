@@ -6,10 +6,33 @@
     <description>Recent content on ANDREFFS</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 03 Jul 2017 17:44:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 05 Feb 2019 20:07:00 +0000</lastBuildDate>
     
 	<atom:link href="https://andreffs18.github.io/website/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>SSH ForwardAgent Gotchas</title>
+      <link>https://andreffs18.github.io/website/blog/ssh-forwardagent-gotchas/</link>
+      <pubDate>Tue, 05 Feb 2019 20:07:00 +0000</pubDate>
+      
+      <guid>https://andreffs18.github.io/website/blog/ssh-forwardagent-gotchas/</guid>
+      <description>So, you’re trying to create an SSH Tunnel to your remote machine to make some gitlab/github clones.
+That’s all fine and well until you don’t want to post your password on to the terminal.
+First, look at you ~/.ssh/config file and add the “ForwardAgent yes” to that machines ip.
+1Host 35.242.133.24 2 IdentityFile ~/.ssh/id_rsa 3 ForwardAgent yes That says to use your local private key as identification when accessing gitlab on your remote’s machine.</description>
+    </item>
+    
+    <item>
+      <title>Postgres Is Now Running</title>
+      <link>https://andreffs18.github.io/website/blog/postgres-is-now-running/</link>
+      <pubDate>Wed, 20 Sep 2017 10:53:00 +0000</pubDate>
+      
+      <guid>https://andreffs18.github.io/website/blog/postgres-is-now-running/</guid>
+      <description>My macbook has OSX Mavericks installed and sometimes it crashes for no reason, breaking my local postgres server. After restarting and running again &amp;quot;$ brew services postgres&amp;quot;, Postgres becomes yellow and I end up spending sometime looking confused and frustrated.
+Looking at the logs you can get a sense of whats happening:
+1$ tail -f /usr/local/var/postgres/server.log 2FATAL: lock file &amp;#34;postmaster.pid&amp;#34; already exists Simply removing the lock file that Postgres generates solves this issue:</description>
+    </item>
     
     <item>
       <title>💰Personal Finance</title>
@@ -19,6 +42,20 @@
       <guid>https://andreffs18.github.io/website/blog/personal-finance/</guid>
       <description>Well, after reading a couple of books on the topic, they all talk about the same thing: you should diversify your portfolio.
 Code could not finish, this are some reasons why this happen. - Plot name not defined. The first parameter of the shortcode is the name. - There is a syntax error. check browser console.   function draw(){ test = document.getElementById(&#34;piechart&#34;); if (test == null){ console.log(&#34;The plot name is not defined&#34;</description>
+    </item>
+    
+    <item>
+      <title>SEO Tips</title>
+      <link>https://andreffs18.github.io/website/blog/seo-tips/</link>
+      <pubDate>Fri, 17 Feb 2017 00:45:32 +0000</pubDate>
+      
+      <guid>https://andreffs18.github.io/website/blog/seo-tips/</guid>
+      <description>My key takeaways from making this website &amp;ldquo;SEO friendly&amp;rdquo;:
+  Use link &amp;ldquo;tree structure&amp;rdquo; from homepage. This way, bots and crawlers can find every page on the website
+  Good titles, under 65 characters
+  Meta tags with good keywords under 100 characters
+  Add &amp;ldquo;alt&amp;rdquo; tag to images
+  1&amp;lt;img alt=&amp;#34;About me picture&amp;#34; src=&amp;#34;/images/about.jpeg&amp;#34;&amp;gt; External Resources Below is a list of free tools that help you analyze your website and see what can be improved:</description>
     </item>
     
     <item>
@@ -63,7 +100,7 @@ The intent of this blog is just to keep track of my achievements, projects and a
       
       <guid>https://andreffs18.github.io/website/about/</guid>
       <description>👋 My name is André Silva and I&amp;rsquo;m a 27 y/old Portuguese Software Engineer from Lisbon that likes to code.
-# A little bit about me I wasn&amp;rsquo;t always focused on the development world.
+# A bit about me I wasn&amp;rsquo;t always focused on the development world.
 During high school I got the change to internship on a consulting firm in my hometown, mainly working with setting up data centers, and configuring network systems.
 After high school I went to college to take a Computer Science Bachelor.</description>
     </item>

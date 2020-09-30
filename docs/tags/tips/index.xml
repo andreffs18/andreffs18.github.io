@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tips on ANDREFFS</title>
+    <link>https://andreffs18.github.io/website/tags/tips/</link>
+    <description>Recent content in tips on ANDREFFS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 05 Feb 2019 20:07:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://andreffs18.github.io/website/tags/tips/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>SSH ForwardAgent Gotchas</title>
+      <link>https://andreffs18.github.io/website/blog/ssh-forwardagent-gotchas/</link>
+      <pubDate>Tue, 05 Feb 2019 20:07:00 +0000</pubDate>
+      
+      <guid>https://andreffs18.github.io/website/blog/ssh-forwardagent-gotchas/</guid>
+      <description>So, you’re trying to create an SSH Tunnel to your remote machine to make some gitlab/github clones.
+That’s all fine and well until you don’t want to post your password on to the terminal.
+First, look at you ~/.ssh/config file and add the “ForwardAgent yes” to that machines ip.
+1Host 35.242.133.24 2 IdentityFile ~/.ssh/id_rsa 3 ForwardAgent yes That says to use your local private key as identification when accessing gitlab on your remote’s machine.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -4,12 +4,47 @@
   
   <url>
     <loc>https://andreffs18.github.io/website/</loc>
-    <lastmod>2017-07-03T17:44:00+00:00</lastmod>
+    <lastmod>2019-02-05T20:07:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://andreffs18.github.io/website/blog/</loc>
-    <lastmod>2017-07-03T17:44:00+00:00</lastmod>
+    <lastmod>2019-02-05T20:07:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andreffs18.github.io/website/tags/gotchas/</loc>
+    <lastmod>2019-02-05T20:07:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andreffs18.github.io/website/tags/ssh/</loc>
+    <lastmod>2019-02-05T20:07:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andreffs18.github.io/website/blog/ssh-forwardagent-gotchas/</loc>
+    <lastmod>2019-02-05T20:07:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andreffs18.github.io/website/tags/</loc>
+    <lastmod>2019-02-05T20:07:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andreffs18.github.io/website/tags/tips/</loc>
+    <lastmod>2019-02-05T20:07:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andreffs18.github.io/website/tags/postgres/</loc>
+    <lastmod>2017-09-20T10:53:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andreffs18.github.io/website/blog/postgres-is-now-running/</loc>
+    <lastmod>2017-09-20T10:53:00+00:00</lastmod>
   </url>
   
   <url>
@@ -23,13 +58,18 @@
   </url>
   
   <url>
-    <loc>https://andreffs18.github.io/website/tags/</loc>
+    <loc>https://andreffs18.github.io/website/blog/personal-finance/</loc>
     <lastmod>2017-07-03T17:44:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://andreffs18.github.io/website/blog/personal-finance/</loc>
-    <lastmod>2017-07-03T17:44:00+00:00</lastmod>
+    <loc>https://andreffs18.github.io/website/tags/seo/</loc>
+    <lastmod>2017-02-17T00:45:32+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andreffs18.github.io/website/blog/seo-tips/</loc>
+    <lastmod>2017-02-17T00:45:32+00:00</lastmod>
   </url>
   
   <url>
