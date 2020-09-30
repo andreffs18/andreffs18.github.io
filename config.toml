@@ -53,11 +53,11 @@ ignorefiles = [
     url = "/blog/"
     weight = 3
 
-  [[menu.main]]
-    identifier = "projects"
-    name = "Projects"
-    url = "/projects/"
-    weight = 4
+  #[[menu.main]]
+  #  identifier = "projects"
+  #  name = "Projects"
+  #  url = "/projects/"
+  #  weight = 4
 
   #[[menu.main]]
   #  identifier = "talks"
