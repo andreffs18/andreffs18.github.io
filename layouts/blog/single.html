@@ -39,14 +39,14 @@
                     {{ .TableOfContents }}
                 </div>
             {{ else }}
-                <div class="tags">
+                <!--div class="tags">
                     <h5>Tags</h5>
                     <ul class="list-unstyled">
                         {{ range $.Site.Taxonomies.tags }}
                         <li><a class="text-secondary" href="{{ .Page.Permalink }}">{{ .Page.Title }}</a></li>
                         {{ end }}
                     </ul>
-                </div>
+                </div-->
             {{ end }}
         </div>
     </aside>
@@ -62,12 +62,12 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 text-left">
-                {{ if and (.Prev) }}
+                {{ if (eq .Prev.Type "blog") }}
                 Previous Post: ◀ <a href="{{ .Prev.URL | absURL}}">{{ .Prev.Title | markdownify }}</a>
                 {{ end }}
             </div>
             <div class="col-md-6 text-right">
-                {{ if and (.Next)  }}
+                {{ if .Next  }}
                 Next Post: ▶ <a href="{{ .Next.URL | absURL }}">{{ .Next.Title | markdownify }}</a>
                 {{ end }}
             </div>
