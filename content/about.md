@@ -7,7 +7,7 @@ type: about
 
 My name is André Silva and I'm a {{< my_age >}} y/old Portuguese Software Engineer from Lisbon that likes to code.
 
-### # A little bit about me
+### # A bit about me
 
 I wasn't always focused on the development world.
 
@@ -33,6 +33,6 @@ I mostly develop web base applications, but I'm also interested in the operation
 * writing maintainable, modular software,
 * and creating pleasant and clear documentation  
 
-### # How about hobbies?
+### # Hobbies?
 
 When I'm not working, I'm probably either cooking, watching tv shows, going to the gym or surfing.
