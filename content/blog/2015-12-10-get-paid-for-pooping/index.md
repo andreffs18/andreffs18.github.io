@@ -98,5 +98,5 @@ fig = {"data":[{"legendgroup":"Time in seconds","marker":{"color":"rgb(31, 119, 
 {{< /plotly >}}
 
 
-> Dont know why you would want this, but if you want to check the original data, you can download the dump here: [nfc_log.tsv](nfc_log.tsv).
+> Dont know why you would want this, but if you want to check the original data, you can download the _dump_ here 😅: [nfc_log.tsv](nfc_log.tsv).
 
