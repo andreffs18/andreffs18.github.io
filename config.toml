@@ -23,9 +23,9 @@ ignorefiles = [
     hl_Lines = ""
     lineNoStart = 1
     lineNos = true
-    lineNumbersInTable = false
+    lineNumbersInTable = true
     noClasses = true
-    style = "solarized-dark256"
+    style = "monokai"
     tabWidth = 4
 
 [params]
