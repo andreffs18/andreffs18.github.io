@@ -6,10 +6,28 @@
     <description>Recent content in Tags on ANDREFFS</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 05 Feb 2019 20:07:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 25 May 2020 06:37:00 +0000</lastBuildDate>
     
 	<atom:link href="https://andreffs18.github.io/website/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>debugging</title>
+      <link>https://andreffs18.github.io/website/tags/debugging/</link>
+      <pubDate>Mon, 25 May 2020 06:37:00 +0000</pubDate>
+      
+      <guid>https://andreffs18.github.io/website/tags/debugging/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hugo</title>
+      <link>https://andreffs18.github.io/website/tags/hugo/</link>
+      <pubDate>Mon, 25 May 2020 06:37:00 +0000</pubDate>
+      
+      <guid>https://andreffs18.github.io/website/tags/hugo/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>gotchas</title>

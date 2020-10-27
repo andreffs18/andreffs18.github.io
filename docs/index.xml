@@ -6,10 +6,21 @@
     <description>Recent content on ANDREFFS</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 05 Feb 2019 20:07:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 25 May 2020 06:37:00 +0000</lastBuildDate>
     
 	<atom:link href="https://andreffs18.github.io/website/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Debug in Hugo</title>
+      <link>https://andreffs18.github.io/website/blog/debug-in-hugo/</link>
+      <pubDate>Mon, 25 May 2020 06:37:00 +0000</pubDate>
+      
+      <guid>https://andreffs18.github.io/website/blog/debug-in-hugo/</guid>
+      <description>While building this website I needed to understand a bit more about the internals and its variables. Eventhough Hugo&amp;rsquo;s documentation about debugging is pretty &amp;ldquo;okay&amp;rdquo;, there are a lot of attributes that are really hard to figure out, specially if you can&amp;rsquo;t see them on the documentation.
+So I started to look online for something to help me out debugging Hugo templates and the usual 3 options were:
+ 🖨 printing the dot on Hugo&amp;rsquo;s templates 📝 console.</description>
+    </item>
     
     <item>
       <title>SSH ForwardAgent Gotchas</title>
@@ -20,7 +31,7 @@
       <description>So, you’re trying to create an SSH Tunnel to your remote machine to make some gitlab/github clones.
 That’s all fine and well until you don’t want to post your password on to the terminal.
 First, look at you ~/.ssh/config file and add the “ForwardAgent yes” to that machines ip.
-1Host 35.242.133.24 2 IdentityFile ~/.ssh/id_rsa 3 ForwardAgent yes That says to use your local private key as identification when accessing gitlab on your remote’s machine.</description>
+1 2 3  Host 35.241.133.24 IdentityFile ~/.ssh/id_rsa ForwardAgent yes   That says to use your local private key as identification when accessing gitlab on your remote’s machine.</description>
     </item>
     
     <item>
@@ -31,7 +42,7 @@ First, look at you ~/.ssh/config file and add the “ForwardAgent yes” to that
       <guid>https://andreffs18.github.io/website/blog/postgres-is-now-running/</guid>
       <description>My macbook has OSX Mavericks installed and sometimes it crashes for no reason, breaking my local postgres server. After restarting and running again &amp;quot;$ brew services postgres&amp;quot;, Postgres becomes yellow and I end up spending sometime looking confused and frustrated.
 Looking at the logs you can get a sense of whats happening:
-1$ tail -f /usr/local/var/postgres/server.log 2FATAL: lock file &amp;#34;postmaster.pid&amp;#34; already exists Simply removing the lock file that Postgres generates solves this issue:</description>
+1 2  $ tail -f /usr/local/var/postgres/server.log FATAL: lock file &amp;#34;postmaster.pid&amp;#34; already exists   Simply removing the lock file that Postgres generates solves this issue:</description>
     </item>
     
     <item>

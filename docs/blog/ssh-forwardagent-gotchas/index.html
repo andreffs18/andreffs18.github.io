@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
 
     
-    <link rel="stylesheet" href="https://andreffs18.github.io/website/css/main.min.f5f14dcd72dd9ee5070f5d2968136c42e73a09e174706907854b3120ca7a290b.css">
+    <link rel="stylesheet" href="https://andreffs18.github.io/website/css/main.min.41fa805a0161632b1934964c0c91e9aa9671b6037b1fb87e2c5e7eb0bb4983e3.css">
 
 </head>
     <body>
@@ -71,58 +71,139 @@
             <p>So, you’re trying to create an SSH Tunnel to your remote machine to make some gitlab/github clones.</p>
 <p>That’s all fine and well until you don’t want to post your password on to the terminal.</p>
 <p>First, look at you <code>~/.ssh/config</code> file and add the <strong>“ForwardAgent yes”</strong> to that machines ip.</p>
-<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">1</span>Host 35.242.133.24
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">2</span>  IdentityFile ~/.ssh/id_rsa
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">3</span>  ForwardAgent yes</code></pre></div>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Host 35.241.133.24
+  IdentityFile ~/.ssh/id_rsa
+  ForwardAgent yes</code></pre></td></tr></table>
+</div>
+</div>
 <p>That says to use your local private key as identification when accessing gitlab on your remote’s machine.
 Then, just try to check your GitHub/Gitlab connectivity, but first, don’t forget to add you private key to your ssh-agent:</p>
-<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">1</span>$ ssh-add -K
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">2</span>Identity added: /Users/me/.ssh/id_rsa (/Users/me/.ssh/id_rsa)
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">3</span>$ ssh-add -l
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">4</span><span style="color:#00afaf">2048</span> SHA256:vt6nnixTeh5lJpupm8H5+cAuIcxy46LAYdYhfo+WL0E /Users/me/.ssh/id_rsa (RSA)</code></pre></div>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ssh-add -K
+Identity added: /Users/me/.ssh/id_rsa <span style="color:#f92672">(</span>/Users/me/.ssh/id_rsa<span style="color:#f92672">)</span>
+$ ssh-add -l
+<span style="color:#ae81ff">2048</span> SHA256:vt6nnixlJpupm8H5+cAuIcxy46LAYdYhfo+WL0E /Users/me/.ssh/id_rsa <span style="color:#f92672">(</span>RSA<span style="color:#f92672">)</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>Now, inside your machine try to check if you can authenticate on Gitlab/Github</p>
-<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">1</span>$ ssh -v ubuntu@35.242.133.24
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">2</span>ubuntu@instance-1:~$ ssh-add -l
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">3</span><span style="color:#00afaf">2048</span> SHA256:vt6nnixTeh5lJpupm8H5+cAuIcxy46LAYdYhfo+WL0E /Users/me/.ssh/id_rsa (RSA)
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">4</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">5</span>ubuntu@instance-1:~/load-test$ ssh -T git@github.com
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">6</span>Hi andreffs18! You&#39;ve successfully authenticated, but GitHub does not provide shell access.
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">7</span>ubuntu@instance-1:~/load-test$ ssh -T git@gitlab.com
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">8</span>Welcome to GitLab, @andreffs18!</code></pre></div>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ssh -v ubuntu@35.242.133.24
+ubuntu@instance-1:~$ ssh-add -l
+<span style="color:#ae81ff">2048</span> SHA256:vt6nnixlJpupm8H5+cAuIcxy46LAYdYhfo+WL0E /Users/me/.ssh/id_rsa <span style="color:#f92672">(</span>RSA<span style="color:#f92672">)</span>
+
+ubuntu@instance-1:~/load-test$ ssh -T git@github.com
+Hi andreffs18! You<span style="color:#960050;background-color:#1e0010">&#39;</span>ve successfully authenticated, but GitHub does not provide shell access.
+ubuntu@instance-1:~/load-test$ ssh -T git@gitlab.com
+Welcome to GitLab, @andreffs18!</code></pre></td></tr></table>
+</div>
+</div>
 <p>Now, let’s try to clone our project</p>
-<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">1</span>ubuntu@instance-1:~/load-test$ git pull origin master
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">2</span>Username <span style="color:#5f8700">for</span> <span style="color:#00afaf">&#39;https://gitlab.com&#39;</span>: ^C</code></pre></div>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ubuntu@instance-1:~/load-test$ git pull origin master
+Username <span style="color:#66d9ef">for</span> <span style="color:#e6db74">&#39;https://gitlab.com&#39;</span>: ^C</code></pre></td></tr></table>
+</div>
+</div>
 <p>What?! I don’t want to put my credentials! Isn’t the <strong>ForwardAgent</strong> for this?</p>
 <p>Okay, let’s look at our remotes:</p>
-<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">1</span>ubuntu@instance-1:~/load-test$ git remote -v
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">2</span>origin    https://gitlab.com/andreffs18/load-test.git (fetch)
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">3</span>origin    https://gitlab.com/andreffs18/load-test.git (push)</code></pre></div>
-<p>⚠️ If you work with HTTPs urls, it will always ask for your username/password.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ubuntu@instance-1:~/load-test$ git remote -v
+origin    https://gitlab.com/andreffs18/load-test.git <span style="color:#f92672">(</span>fetch<span style="color:#f92672">)</span>
+origin    https://gitlab.com/andreffs18/load-test.git <span style="color:#f92672">(</span>push<span style="color:#f92672">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>⚠️  If you work with HTTPs urls, it will always ask for your username/password!</p>
 <p>If you&rsquo;re correctly using SSH when cloning / setting remotes.
 Then make sure you have a ssh-agent to remember your password.
 That way, you&rsquo;ll only enter your passphrase once by terminal session.</p>
 <p>If it is still too annoying, then simply set a ssh-key without passphrase.</p>
 <p>Just change it:</p>
-<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">1</span>$ git remote set-url origin git@gitlab.com:andreffs18/load-test.git</code></pre></div>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ git remote set-url origin git@gitlab.com:andreffs18/load-test.git</code></pre></td></tr></table>
+</div>
+</div>
 <p>And now, on your remote machine you should be able to pull everything from your repo:
-<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 1</span>ubuntu@instance-1:~/load-test$ git pull origin master
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 2</span>debug1: client_input_channel_open: ctype auth-agent@openssh.com rchan <span style="color:#00afaf">2</span> win <span style="color:#00afaf">65536</span> max <span style="color:#00afaf">16384</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 3</span>debug1: channel 1: new [authentication agent connection]
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 4</span>debug1: confirm auth-agent@openssh.com
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 5</span>From gitlab.com:andreffs18/load-test
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 6</span> * branch            master     -&gt; FETCH_HEAD
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 7</span>debug1: channel 1: FORCE input drain
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 8</span>Updating 16f56eb..f661b58
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 9</span>Fast-forward
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">10</span> jmeter/test.jmx                                      | <span style="color:#00afaf">344</span> ++++++++++++++++++++++++++++++++++++++++++++++++++++++
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">11</span> python/__init__.py                     |   <span style="color:#00afaf">2</span> +-
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">12</span> python/uwsgi.ini                       |   <span style="color:#00afaf">7</span> ++
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">13</span> elixir/config/config.exs               |   <span style="color:#00afaf">1</span> +
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">14</span> elixir/config/dev.exs                  |   <span style="color:#00afaf">3</span> +-
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">15</span> go/cmd/main.go                         |   <span style="color:#00afaf">2</span> +-
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">16</span> <span style="color:#00afaf">6</span> files changed, <span style="color:#00afaf">355</span> insertions(+), <span style="color:#00afaf">4</span> deletions(-)
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">17</span> create mode <span style="color:#00afaf">100644</span> jmeter/test.jmx
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">18</span> create mode <span style="color:#00afaf">100644</span> go/cmd/main.go</code></pre></div></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ubuntu@instance-1:~/load-test$ git pull origin master
+debug1: client_input_channel_open: ctype auth-agent@openssh.com rchan <span style="color:#ae81ff">2</span> win <span style="color:#ae81ff">65536</span> max <span style="color:#ae81ff">16384</span>
+debug1: channel 1: new <span style="color:#f92672">[</span>authentication agent connection<span style="color:#f92672">]</span>
+debug1: confirm auth-agent@openssh.com
+From gitlab.com:andreffs18/load-test
+ * branch            master     -&gt; FETCH_HEAD
+debug1: channel 1: FORCE input drain
+Updating 16f56eb..f661b58
+Fast-forward
+ jmeter/test.jmx                                      | <span style="color:#ae81ff">344</span> ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ python/__init__.py                     |   <span style="color:#ae81ff">2</span> +-
+ python/uwsgi.ini                       |   <span style="color:#ae81ff">7</span> ++
+ elixir/config/config.exs               |   <span style="color:#ae81ff">1</span> +
+ elixir/config/dev.exs                  |   <span style="color:#ae81ff">3</span> +-
+ go/cmd/main.go                         |   <span style="color:#ae81ff">2</span> +-
+ <span style="color:#ae81ff">6</span> files changed, <span style="color:#ae81ff">355</span> insertions<span style="color:#f92672">(</span>+<span style="color:#f92672">)</span>, <span style="color:#ae81ff">4</span> deletions<span style="color:#f92672">(</span>-<span style="color:#f92672">)</span>
+ create mode <span style="color:#ae81ff">100644</span> jmeter/test.jmx
+ create mode <span style="color:#ae81ff">100644</span> go/cmd/main.go</code></pre></td></tr></table>
+</div>
+</div></p>
 <p>That’s it 👋.</p>
 
         </article>
@@ -171,6 +252,8 @@ That way, you&rsquo;ll only enter your passphrase once by terminal session.</p>
                 
             </div>
             <div class="col-md-6 text-right">
+                
+                Next Post: ▶ <a href="https://andreffs18.github.io/website/blog/debug-in-hugo/">Debug in Hugo</a>
                 
             </div>
         </div>

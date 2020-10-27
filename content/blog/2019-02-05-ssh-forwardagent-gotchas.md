@@ -16,7 +16,7 @@ That’s all fine and well until you don’t want to post your password on to th
 First, look at you `~/.ssh/config` file and add the **“ForwardAgent yes”** to that machines ip.
 
 {{< highlight bash >}}
-Host 35.242.133.24
+Host 35.241.133.24
   IdentityFile ~/.ssh/id_rsa
   ForwardAgent yes
 {{< /highlight >}}
@@ -28,7 +28,7 @@ Then, just try to check your GitHub/Gitlab connectivity, but first, don’t forg
 $ ssh-add -K
 Identity added: /Users/me/.ssh/id_rsa (/Users/me/.ssh/id_rsa)
 $ ssh-add -l
-2048 SHA256:vt6nnixTeh5lJpupm8H5+cAuIcxy46LAYdYhfo+WL0E /Users/me/.ssh/id_rsa (RSA)
+2048 SHA256:vt6nnixlJpupm8H5+cAuIcxy46LAYdYhfo+WL0E /Users/me/.ssh/id_rsa (RSA)
 {{< /highlight >}}
 
 Now, inside your machine try to check if you can authenticate on Gitlab/Github
@@ -36,7 +36,7 @@ Now, inside your machine try to check if you can authenticate on Gitlab/Github
 {{< highlight bash >}}
 $ ssh -v ubuntu@35.242.133.24
 ubuntu@instance-1:~$ ssh-add -l
-2048 SHA256:vt6nnixTeh5lJpupm8H5+cAuIcxy46LAYdYhfo+WL0E /Users/me/.ssh/id_rsa (RSA)
+2048 SHA256:vt6nnixlJpupm8H5+cAuIcxy46LAYdYhfo+WL0E /Users/me/.ssh/id_rsa (RSA)
 
 ubuntu@instance-1:~/load-test$ ssh -T git@github.com
 Hi andreffs18! You've successfully authenticated, but GitHub does not provide shell access.
@@ -61,7 +61,7 @@ origin    https://gitlab.com/andreffs18/load-test.git (fetch)
 origin    https://gitlab.com/andreffs18/load-test.git (push)
 {{< /highlight >}}
 
-⚠️ If you work with HTTPs urls, it will always ask for your username/password.
+⚠️  If you work with HTTPs urls, it will always ask for your username/password!
 
 If you're correctly using SSH when cloning / setting remotes. 
 Then make sure you have a ssh-agent to remember your password. 

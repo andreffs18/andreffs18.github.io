@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
 
     
-    <link rel="stylesheet" href="https://andreffs18.github.io/website/css/main.min.f5f14dcd72dd9ee5070f5d2968136c42e73a09e174706907854b3120ca7a290b.css">
+    <link rel="stylesheet" href="https://andreffs18.github.io/website/css/main.min.41fa805a0161632b1934964c0c91e9aa9671b6037b1fb87e2c5e7eb0bb4983e3.css">
 
 </head>
     <body>
@@ -90,10 +90,10 @@ so I just decide to play around with those.</p>
 <p>Since I didnt want to fill a Google Spreadsheet every time I went to the bathroom, I end up creating a <a href="https://zapier.com/apps/">Zapier</a> integration
 with Google Spreadsheets, that would have an exposed web hook, which would be used by tapping the NFC tag.</p>
 <p>It was a simple webhook that would store something like this:</p>
-<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="display:block;width:100%;background-color:#323232"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">1</span>creation_datetime	nfc_id	event_name	event_value
-</span><span style="display:block;width:100%;background-color:#323232"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">2</span>2017-03-25 17:11:49	04:2d:d1:62:a1:48:80	take-a-shit	TRUE
-</span><span style="display:block;width:100%;background-color:#323232"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">3</span>2017-03-25 17:14:53	04:2d:d1:62:a1:48:80	take-a-shit	FALSE
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">4</span>(...)</code></pre></div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span>creation_datetime	nfc_id	event_name	event_value
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span>2017-03-25 17:11:49	04:2d:d1:62:a1:48:80	take-a-shit	TRUE
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span>2017-03-25 17:14:53	04:2d:d1:62:a1:48:80	take-a-shit	FALSE
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span style="color:#f92672">(</span>...<span style="color:#f92672">)</span></code></pre></div>
 <p>The important part is the <code> event_value</code> which would work as a toggle, in which <strong>True</strong> means &ldquo;Going to the bathroom&rdquo; and <strong>False</strong> &ldquo;Coming back&rdquo;.</p>
 <h2 id="nfc-tag">NFC Tag</h2>
 <p>I just wanted to have one tag, which I would tap with my phone and make the POST request to the Zapier wehbook.</p>

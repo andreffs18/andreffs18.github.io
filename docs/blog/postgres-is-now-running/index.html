@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
 
     
-    <link rel="stylesheet" href="https://andreffs18.github.io/website/css/main.min.f5f14dcd72dd9ee5070f5d2968136c42e73a09e174706907854b3120ca7a290b.css">
+    <link rel="stylesheet" href="https://andreffs18.github.io/website/css/main.min.41fa805a0161632b1934964c0c91e9aa9671b6037b1fb87e2c5e7eb0bb4983e3.css">
 
 </head>
     <body>
@@ -67,16 +67,38 @@
             <p>My macbook has OSX Mavericks installed and sometimes it crashes for no reason, breaking my local postgres server.
 After restarting and running again <code>&quot;$ brew services postgres&quot;</code>, Postgres becomes <em>yellow</em> and I end up spending sometime looking confused and frustrated.</p>
 <p>Looking at the logs you can get a sense of whats happening:</p>
-<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">1</span>$ tail -f /usr/local/var/postgres/server.log
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">2</span>FATAL:  lock file <span style="color:#00afaf">&#34;postmaster.pid&#34;</span> already exists</code></pre></div>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ tail -f /usr/local/var/postgres/server.log
+FATAL:  lock file <span style="color:#e6db74">&#34;postmaster.pid&#34;</span> already exists</code></pre></td></tr></table>
+</div>
+</div>
 <p>Simply removing the lock file that Postgres generates solves this issue:</p>
-<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">1</span>$ rm -f /usr/local/var/postgres/postmaster.pid</code></pre></div>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ rm -f /usr/local/var/postgres/postmaster.pid</code></pre></td></tr></table>
+</div>
+</div>
 <blockquote>
 <p>If you can&rsquo;t find your <code>postmaster.pid</code>, just run the following snippet on your terminal:</p>
 <p><code>$ find ~ -name postmaster.pid\* </code></p>
 </blockquote>
 <p>Now a simple restart puts the server back online!</p>
-<div class="highlight"><pre style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">1</span>$ brew services start postgresql</code></pre></div>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ brew services start postgresql</code></pre></td></tr></table>
+</div>
+</div>
 <h3 id="why-do-we-need-to-do-this">Why do we need to do this?</h3>
 <p>If your computer crashes and Postgres it's abruptly stopped, its cleanup procedures don&rsquo;t run so the <code>postmaster.pid</code> file is kept intact on your local hard drive.</p>
 <p>Also, whenever we start postgres (<code>pg_ctl start</code>) the program checks if there is an already running server by looking for an existing <code>postmaster.pid</code>.</p>

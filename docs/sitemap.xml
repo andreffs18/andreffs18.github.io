@@ -4,12 +4,32 @@
   
   <url>
     <loc>https://andreffs18.github.io/website/</loc>
-    <lastmod>2019-02-05T20:07:00+00:00</lastmod>
+    <lastmod>2020-05-25T06:37:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://andreffs18.github.io/website/blog/</loc>
-    <lastmod>2019-02-05T20:07:00+00:00</lastmod>
+    <lastmod>2020-05-25T06:37:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andreffs18.github.io/website/blog/debug-in-hugo/</loc>
+    <lastmod>2020-05-25T06:37:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andreffs18.github.io/website/tags/debugging/</loc>
+    <lastmod>2020-05-25T06:37:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andreffs18.github.io/website/tags/hugo/</loc>
+    <lastmod>2020-05-25T06:37:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andreffs18.github.io/website/tags/</loc>
+    <lastmod>2020-05-25T06:37:00+00:00</lastmod>
   </url>
   
   <url>
@@ -24,11 +44,6 @@
   
   <url>
     <loc>https://andreffs18.github.io/website/blog/ssh-forwardagent-gotchas/</loc>
-    <lastmod>2019-02-05T20:07:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://andreffs18.github.io/website/tags/</loc>
     <lastmod>2019-02-05T20:07:00+00:00</lastmod>
   </url>
   
