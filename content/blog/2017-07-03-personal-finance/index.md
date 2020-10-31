@@ -1,5 +1,5 @@
 ---
-title: "💰Personal Finance"
+title: "💰 Personal Finance"
 slug: personal-finance
 subtitle: ""
 date: 2017-07-03T17:44:00+00:00
