@@ -4,7 +4,7 @@ slug: {{ .Name }}
 subtitle: ""
 date: {{ .Date }}
 draft: true
-tags: 
+tags: []
 toc: false
 plotly: false
 ---
