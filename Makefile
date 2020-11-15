@@ -18,7 +18,7 @@ deploy:
 	touch docs/.nojekyll && \
 	git add docs/ && \
 	git commit --amend --no-edit && \
-	git push origin master
+	git push -f origin master
 
 # Get last tagged version that was pushed to repository or if non existent, use first commit of tree
 # Then get logs from $TAG until now and run then through our generate-changelog.py script
