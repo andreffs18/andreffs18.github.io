@@ -5,8 +5,6 @@ subtitle: ""
 date: 2019-02-05T20:07:00+00:00
 draft: false
 tags: ["ssh", "tips", "gotchas"]
-toc: false
-plotly: false
 ---
 
 So, you’re trying to create an SSH Tunnel to your remote machine to make some gitlab/github clones.
@@ -87,7 +85,7 @@ From gitlab.com:andreffs18/load-test
 debug1: channel 1: FORCE input drain
 Updating 16f56eb..f661b58
 Fast-forward
- jmeter/test.jmx                                      | 344 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ jmeter/test.jmx                        | 344 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
  python/__init__.py                     |   2 +-
  python/uwsgi.ini                       |   7 ++
  elixir/config/config.exs               |   1 +
