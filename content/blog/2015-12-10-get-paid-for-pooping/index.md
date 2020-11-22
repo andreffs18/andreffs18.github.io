@@ -4,34 +4,34 @@ slug: get-paid-for-pooping
 subtitle: ""
 date: 2015-12-10T13:38:09+00:00
 draft: false
-tags: ["nfc", "zapier", "plotly"] 
+tags: ["nfc", "zapier", "plotly"]
 toc: true
 plotly: true
 ---
 
-Yes I know it sounds dumb but, if during your working hours you go to the toilet, 
+Yes I know it sounds dumb but, if during your working hours you go to the toilet,
 technically, _you are getting paid for it_. 💩
 
 # Use case
 
 Alright, lets say you you earn $10 an hour and during those 8 hours of daily work, you go twice to the bathroom, for around 10 minutes each time.
 
-Then a simple multiplication shows that your _"poop time"_ is worth around **$3.34** per day!  
+Then a simple multiplication shows that your _"poop time"_ is worth around **$3.34** per day!
 
-> 10 bucks an hour ≈ $1,67, for 10 minutes. 
+> 10 bucks an hour ≈ $1,67, for 10 minutes.
 
-Right? So if you do this everyday, during an year, (taking in consideration that you work around 22 days a month), 
-then you get an astounding **$881.76** dollars a year, just for pooping!! 
+Right? So if you do this everyday, during an year, (taking in consideration that you work around 22 days a month),
+then you get an astounding **$881.76** dollars a year, just for pooping!!
 
-Your poop is worth the same as an [iPhone 10](https://www.amazon.com/slp/iPhone-10/j8tt3mgq5e3o3ah)!! 
+Your poop is worth the same as an [iPhone 10](https://www.amazon.com/slp/iPhone-10/j8tt3mgq5e3o3ah)!!
 
 # NFC tags + Zapier to the rescue
 
 Well I wanted to know how much 💸 I was making just by going to the bathroom during working hours and I needed something to keep track of my "going and coming".
 
-I started by writing in a excel sheet but that was really not what I was looking for.  
+I started by writing in a excel sheet but that was really not what I was looking for.
 
-Well, I had some [NFC tags](https://www.amazon.co.uk/Stickers-Genuine-Memory-Strong-Adhesive/dp/B07FNX864J/ref=sr_1_10?crid=PQ05CV5E123S&dchild=1&keywords=nfc+tags&qid=1591463153&sprefix=external+har%2Caps%2C467&sr=8-10) 
+Well, I had some [NFC tags](https://www.amazon.co.uk/Stickers-Genuine-Memory-Strong-Adhesive/dp/B07FNX864J/ref=sr_1_10?crid=PQ05CV5E123S&dchild=1&keywords=nfc+tags&qid=1591463153&sprefix=external+har%2Caps%2C467&sr=8-10)
 laying around and I've also had previously bought [NFC Tools](https://play.google.com/store/apps/details?id=com.wakdev.nfctools.pro&hl=pt_PT)
 so I just decide to play around with those.
 
@@ -57,27 +57,27 @@ The important part is the ` event_value` which would work as a toggle, in which 
 
 I just wanted to have one tag, which I would tap with my phone and make the POST request to the Zapier wehbook.
 
-So, I just end up creating a new task on "NFC Tools" app that would make an HTTP Post request to Zapier with the expected `event_value`.  
+So, I just end up creating a new task on "NFC Tools" app that would make an HTTP Post request to Zapier with the expected `event_value`.
 
-![](nfc_tools_screenshot.png)
+![NFC Tools App](nfc_tools_screenshot.png)
 
 # Conclusions
 
-Well long story short, I made **$134.39** during a period of **8 months**. 
+Well long story short, I made **$134.39** during a period of **8 months**.
 
 
-## Summary 
+## Summary
 
 | Month | Avg | Max | Min | 💰 Total 💰 |
 | ----- | ----- | ----- | -----| ----- |
-| Mar | 8.34 | 15.62 | 2.03 | $9.72 | 
-| Apr | 9.36 | 13.83 | 2.67 | $23.41 | 
-| May | 7.59 | 14.42 | 1.67 | $21.52 | 
-| Jun | 8.3 | 13.83 | 3.13 | $20.76 | 
-| Jul | 9.83 | 14.67 | 3.5 | $21.31 | 
-| Aug | 9.62 | 13.27 | 3.67 | $17.63 | 
-| Sep | 7.95 | 11.92 | 3.83 | $5.3 | 
-| Oct | 12.64 | 17.7 | 8.28 | $14.75 | 
+| Mar | 8.34 | 15.62 | 2.03 | $9.72 |
+| Apr | 9.36 | 13.83 | 2.67 | $23.41 |
+| May | 7.59 | 14.42 | 1.67 | $21.52 |
+| Jun | 8.3 | 13.83 | 3.13 | $20.76 |
+| Jul | 9.83 | 14.67 | 3.5 | $21.31 |
+| Aug | 9.62 | 13.27 | 3.67 | $17.63 |
+| Sep | 7.95 | 11.92 | 3.83 | $5.3 |
+| Oct | 12.64 | 17.7 | 8.28 | $14.75 |
 | **Total:** | **9.06** | **17.7** | **1.67** | **$134.39** |
 
 {{< plotly poop-over-time >}}
@@ -99,4 +99,3 @@ fig = {"data":[{"legendgroup":"Time in seconds","marker":{"color":"rgb(31, 119, 
 
 
 > Dont know why you would want this, but if you want to check the original data, you can download the _dump_ here 😅: [nfc_log.tsv](nfc_log.tsv).
-

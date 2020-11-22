@@ -78,7 +78,7 @@
         <article class="markdown-body">
             <p>Since this <em>#remotelife</em> began, sadly not for the best reasons, I&rsquo;ve been able to finally clean my backlog of, guess what, TV Shows, Games, Podcasts, Books&hellip; Well, everything that a person is suppose to do!</p>
 <p>Very happy was I until I remembered that, maybe I should start looking into the <strong>&ldquo;To Read&rdquo;</strong> bookmarks, <strong>&ldquo;Saved&rdquo;</strong> on Reddit and, the holy grail, <strong>&ldquo;Read Later&rdquo;</strong> of Feedly.</p>
-<p><img src="bookmarks.png" alt=""></p>
+<p><img src="bookmarks.png" alt="All bookmarks"></p>
 <p>While the &ldquo;Saved&rdquo; section on Reddit was mostly threads from <a href="https://www.reddit.com/r/cscareerquestions/">/r/cscarrearquestions</a> (and some memes from <a href="https://www.reddit.com/r/wallstreetbets">/r/wsb</a> 😂) the other two places were actual interesting articles that I have planned on reading.</p>
 <p>So, I started reading a couple of those a day and soon realized that:</p>
 <ol>
@@ -89,13 +89,13 @@
 <h1 id="to-read-or-to-save">To Read or To Save?</h1>
 <p>I realized that for me to have +300 articles on Feedly to &ldquo;Read Later&rdquo;, my process would consist of something like:</p>
 <ul>
-<li>Everytime I'm waiting for someone (or <a href="/website/blog/get-paid-for-pooping/">most likely in the bathroom</a>), I would scroll on Feedly for a bit and <strong>not read anything</strong>, only mark the article as to &ldquo;Read Later&rdquo;.</li>
+<li>Everytime I'm waiting for someone (or <a href="https://andreffs18.github.io/website/blog/get-paid-for-pooping/">most likely in the bathroom</a>), I would scroll on Feedly for a bit and <strong>not read anything</strong>, only mark the article as to &ldquo;Read Later&rdquo;.</li>
 </ul>
 <p>The same thing with links that some of my friends shared with me:</p>
 <ul>
 <li>Open them, realized they are too long -&gt; &ldquo;Read Later&rdquo; on Feedly.</li>
 </ul>
-<p><img src="read_later_feedly.png" alt=""></p>
+<p><img src="read_later_feedly.png" alt="How to save chrome bookmarks on Feedly &ldquo;Read Later&rdquo; board."></p>
 <blockquote>
 <p>I use the <a href="https://chrome.google.com/webstore/detail/save-to-feedly-board/hdhblphcdjcicefneapkhmleapfaocih">&ldquo;Save to Feedly Board&rdquo;</a> Chrome extension which allows me to just [CMD + D] and save any website into my &ldquo;Read Later&rdquo; board.</p>
 </blockquote>
@@ -104,14 +104,14 @@
 <p>Having decided to read at least one article a day, I had to figure out how would I efforce that. Since I&rsquo;m an engineer and I like to overthink most things, I though that it would be acceptable to just get a random article from that list, <em>automatically</em>.</p>
 <p>Not only I would be surprised (<em>&ldquo;oh damn, I forgot I saved this&quot;</em>, type of situation) but also, I would have a topic that I could focus on that day.</p>
 <p>So here comes the question: <strong>What should be the cue for me to read an article?</strong></p>
-<p><img src="cue_routine_reward.jpg" alt=""></p>
+<p><img src="cue_routine_reward.jpg" alt="THe power of Habit diagram"></p>
 <blockquote>
 <p>Pretty much the whole framework developed on the book <a href="https://www.amazon.com/Power-Habit-What-Life-Business-ebook/dp/B0055PGUYU">The Power of Habit</a>.</p>
 </blockquote>
 <h2 id="where-do-i-spend-most-of-my-time">Where do I spend most of my time?</h2>
 <p>💻 Terminal.</p>
 <p>That&rsquo;s it! Everytime I open a new tab on my terminal, I get a new article from my &ldquo;Read Later&rdquo; on Feedly!</p>
-<p><img src="startup.gif" alt=""></p>
+<p><img src="startup.gif" alt="My terminal startup."></p>
 <blockquote>
 <p>If you&rsquo;re wondering about the giant 😭, you can check out <a href="">&ldquo;I really like emojies&rdquo;</a> blogpost.</p>
 </blockquote>
@@ -147,6 +147,7 @@ sfl 1
 </code></pre><h2 id="codifying-it">Codifying it</h2>
 <p>I endup doing this in Python because it was taking to much time for me to build it in bash 😅. The overall logic for it would be something like this:</p>
 
+<script async src="https://unpkg.com/mermaid@8.2.3/dist/mermaid.min.js"></script>
 <div class="mermaid">
     
 graph TD
@@ -164,7 +165,7 @@ C --> |No| E
 E --> F
 
 </div>
-<script async src="https://unpkg.com/mermaid@8.2.3/dist/mermaid.min.js"></script>
+
 <p>With this in mind let&rsquo;s check Feedly&rsquo;s API.</p>
 <h2 id="feedly-api">Feedly API</h2>
 <p>And oh boy, I was not expecting it to be so dificult:</p>
@@ -245,7 +246,7 @@ continuation <span style="color:#f92672">=</span> <span style="color:#e6db74">&#
     <span style="color:#66d9ef">except</span>:
         <span style="color:#75715e"># Might have hit the threshold of requests. Stop fetching and just use the ones we already have</span>
         <span style="color:#66d9ef">break</span>
-    
+
     <span style="color:#75715e"># Then check if is there any more pages left, if not, break out of the while loop.</span>
     <span style="color:#66d9ef">try</span>:
         continuation <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>json()[<span style="color:#e6db74">&#34;continuation&#34;</span>]
@@ -264,6 +265,7 @@ webbrowser<span style="color:#f92672">.</span>open(f<span style="color:#e6db74">
 <h1 id="conclusions">Conclusions</h1>
 <ul>
 <li>Realized that I have a lot of articles that float around the same topics (Frontend, Backend, CI/CD, etc) and that it would be great to aggregate those so I dont jump around between topics;</li>
+<li>I could save a cache of all articles locally (on a .txt file or smth), and update it after like 15 days.</li>
 <li>I&rsquo;ve notice that my behaviour has changed regarding terminal tabs. Now I tend to keep myself centered around 4 tabs, whereas before it was a lot more!</li>
 <li>Since Feedly access token only works for 30 days, I endup also creating another alias that updates the token in my environment. Although its much more manual (still need to check my email and open an link 🙃) its fine since I only need to run it every so ofter. You can find it on my dotfiles &ldquo;<a href="https://github.com/andreffs18/dotfiles/blob/master/config/system/.functions#L63-L74">update_feedly_token()</a>&quot;.</li>
 </ul>
@@ -312,7 +314,7 @@ webbrowser<span style="color:#f92672">.</span>open(f<span style="color:#e6db74">
         <div class="row">
             <div class="col-md-6 text-left">
                 
-                Previous Post: ◀ <a href="https://andreffs18.github.io/website/blog/ssh-forwardagent-gotchas/">SSH ForwardAgent Gotchas</a>
+                Previous Post: ◀ <a href="https://andreffs18.github.io/website/blog/docker-postgresql/">Docker + Postgresql</a>
                 
             </div>
             <div class="col-md-6 text-right">

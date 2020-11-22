@@ -34,6 +34,17 @@ While the &amp;ldquo;Saved&amp;rdquo; section on Reddit was mostly threads from 
     </item>
     
     <item>
+      <title>Docker &#43; Postgresql</title>
+      <link>https://andreffs18.github.io/website/blog/docker-postgresql/</link>
+      <pubDate>Tue, 18 Feb 2020 17:14:00 +0000</pubDate>
+      
+      <guid>https://andreffs18.github.io/website/blog/docker-postgresql/</guid>
+      <description>More often than not, I endup going online to look up on how to use docker as the middle man on interacting with Postgres.
+ Usually for me its Postgres, but this &amp;ldquo;recipe&amp;rdquo; can be applied to any piece of software that has more than one version which you don&amp;rsquo;t have installed on your laptop.
+ Because of this whole back&amp;amp;forth I compiled a small list of &amp;ldquo;how-tos&amp;rdquo; to help me remember.</description>
+    </item>
+    
+    <item>
       <title>SSH ForwardAgent Gotchas</title>
       <link>https://andreffs18.github.io/website/blog/ssh-forwardagent-gotchas/</link>
       <pubDate>Tue, 05 Feb 2019 20:07:00 +0000</pubDate>
@@ -73,11 +84,7 @@ Code could not finish, this are some reasons why this happen. - Plot name not de
       
       <guid>https://andreffs18.github.io/website/blog/seo-tips/</guid>
       <description>My key takeaways from making this website &amp;ldquo;SEO friendly&amp;rdquo;:
-  Use link &amp;ldquo;tree structure&amp;rdquo; from homepage. This way, bots and crawlers can find every page on the website
-  Good titles, under 65 characters
-  Meta tags with good keywords under 100 characters
-  Add &amp;ldquo;alt&amp;rdquo; tag to images
-  1&amp;lt;img alt=&amp;#34;About me picture&amp;#34; src=&amp;#34;/images/about.jpeg&amp;#34;&amp;gt; External Resources Below is a list of free tools that help you analyze your website and see what can be improved:</description>
+ Use link &amp;ldquo;tree structure&amp;rdquo; from homepage. This way, bots and crawlers can find every page on the website Good titles, under 65 characters Meta tags with good keywords under 100 characters Use canonical urls on every page  1 2 3  &amp;lt;link rel=&amp;#34;canonical&amp;#34; href=&amp;#34;http://localhost:1313/blog/seo-tips/&amp;#34;&amp;gt; &amp;lt;!-- instead of --&amp;gt; &amp;lt;link rel=&amp;#34;canonical&amp;#34; href=&amp;#34;/blog/seo-tips&amp;#34;&amp;gt;   Add &amp;ldquo;alt&amp;rdquo; tag to images  1  &amp;lt;img alt=&amp;#34;About me picture&amp;#34; src=&amp;#34;/images/about.</description>
     </item>
     
     <item>

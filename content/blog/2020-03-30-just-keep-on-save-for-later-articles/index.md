@@ -3,58 +3,58 @@ title: 'Just keep on "Save for later"'
 slug: just-keep-on-save-for-later
 subtitle: ""
 date: 2020-03-30T10:50:00+00:00
-tags: ["rss", "feedly", "dotfiles", "python", "bash", "automation", "self-improving"] 
+tags: ["rss", "feedly", "dotfiles", "python", "bash", "automation", "self-improving"]
 ---
 
 Since this _#remotelife_ began, sadly not for the best reasons, I've been able to finally clean my backlog of, guess what, TV Shows, Games, Podcasts, Books... Well, everything that a person is suppose to do!
 
 Very happy was I until I remembered that, maybe I should start looking into the **"To Read"** bookmarks, **"Saved"** on Reddit and, the holy grail, **"Read Later"** of Feedly.
 
-![](bookmarks.png)
+![All bookmarks](bookmarks.png)
 
 While the "Saved" section on Reddit was mostly threads from [/r/cscarrearquestions](https://www.reddit.com/r/cscareerquestions/) (and some memes from [/r/wsb](https://www.reddit.com/r/wallstreetbets) 😂) the other two places were actual interesting articles that I have planned on reading.
 
 So, I started reading a couple of those a day and soon realized that:
 1. I should make this part of my routine, like everyday open a _"Save for Later"_ article; 🤔
 2. Why wasn’t I reading these more often;
-3. There are articles that could complement some books that I read in the past. 
+3. There are articles that could complement some books that I read in the past.
 
 # To Read or To Save?
 
 I realized that for me to have +300 articles on Feedly to "Read Later", my process would consist of something like:
 
-* Everytime I'm waiting for someone (or [most likely in the bathroom]({{< relref "/blog/2015-12-10-get-paid-for-pooping/index" >}})), I would scroll on Feedly for a bit and **not read anything**, only mark the article as to "Read Later".
+* Everytime I'm waiting for someone (or [most likely in the bathroom]({{< ref "/blog/2015-12-10-get-paid-for-pooping/index" >}})), I would scroll on Feedly for a bit and **not read anything**, only mark the article as to "Read Later".
 
-The same thing with links that some of my friends shared with me: 
+The same thing with links that some of my friends shared with me:
 * Open them, realized they are too long -> "Read Later" on Feedly.
 
-![](read_later_feedly.png)
+![How to save chrome bookmarks on Feedly "Read Later" board.](read_later_feedly.png)
 
 > I use the ["Save to Feedly Board"](https://chrome.google.com/webstore/detail/save-to-feedly-board/hdhblphcdjcicefneapkhmleapfaocih) Chrome extension which allows me to just [CMD + D] and save any website into my "Read Later" board.
 
-Since reading a couple of these a days was proving to be very productive, I wanted to make sure I was keeping up with it, and to do that **why not force it upon me via _le amazing overengineering_ 🥖**.  
+Since reading a couple of these a days was proving to be very productive, I wanted to make sure I was keeping up with it, and to do that **why not force it upon me via _le amazing overengineering_ 🥖**.
 
 # Automate everything
 
-Having decided to read at least one article a day, I had to figure out how would I efforce that. Since I'm an engineer and I like to overthink most things, I though that it would be acceptable to just get a random article from that list, _automatically_. 
+Having decided to read at least one article a day, I had to figure out how would I efforce that. Since I'm an engineer and I like to overthink most things, I though that it would be acceptable to just get a random article from that list, _automatically_.
 
 Not only I would be surprised (_"oh damn, I forgot I saved this"_, type of situation) but also, I would have a topic that I could focus on that day.
 
 So here comes the question: **What should be the cue for me to read an article?**
 
-![](cue_routine_reward.jpg)
+![THe power of Habit diagram](cue_routine_reward.jpg)
 
 > Pretty much the whole framework developed on the book [The Power of Habit](https://www.amazon.com/Power-Habit-What-Life-Business-ebook/dp/B0055PGUYU).
 
 
 ## Where do I spend most of my time?
 
-💻 Terminal. 
+💻 Terminal.
 
 That's it! Everytime I open a new tab on my terminal, I get a new article from my "Read Later" on Feedly!
 
 
-![](startup.gif)
+![My terminal startup.](startup.gif)
 
 > If you're wondering about the giant 😭, you can check out ["I really like emojies"]() blogpost.
 
@@ -66,7 +66,7 @@ TL;DR: made a simple alias function, that runs a Python script that gets all "Re
 
 ## "Save for later" alias
 
-The "[sfl()](https://github.com/andreffs18/dotfiles/blob/master/config/system/.functions#L59)" bash function would only need two things: 
+The "[sfl()](https://github.com/andreffs18/dotfiles/blob/master/config/system/.functions#L59)" bash function would only need two things:
 * Run the Python script
 * Pass any arguments to it (just in case I wanted to open more than one article)
 
@@ -118,7 +118,7 @@ And oh boy, I was not expecting it to be so dificult:
 * Not the best documentation.
 
 
-Endup looking on stack overflow (of course) and [this guy](https://rud.is/b/2018/04/16/by-request-retrieving-your-feedly-saved-for-later-entries/) for guidance, but the overall way to get your "Saved for Later" feed is to get you profile id, which then can be used to get the "stream" (not entries or feed) tagged as ```"global.saved"```. 
+Endup looking on stack overflow (of course) and [this guy](https://rud.is/b/2018/04/16/by-request-retrieving-your-feedly-saved-for-later-entries/) for guidance, but the overall way to get your "Saved for Later" feed is to get you profile id, which then can be used to get the "stream" (not entries or feed) tagged as ```"global.saved"```.
 
 Then we just need to keep going through their pagination until we reach the end of the feed:
 
@@ -156,7 +156,7 @@ while True:
     except:
         # Might have hit the threshold of requests. Stop fetching and just use the ones we already have
         break
-    
+
     # Then check if is there any more pages left, if not, break out of the while loop.
     try:
         continuation = response.json()["continuation"]
@@ -175,7 +175,8 @@ webbrowser.open(f"https://feedly.com/i/entry/{article}")
 # Conclusions
 
 * Realized that I have a lot of articles that float around the same topics (Frontend, Backend, CI/CD, etc) and that it would be great to aggregate those so I dont jump around between topics;
-* I've notice that my behaviour has changed regarding terminal tabs. Now I tend to keep myself centered around 4 tabs, whereas before it was a lot more! 
+* I could save a cache of all articles locally (on a .txt file or smth), and update it after like 15 days.
+* I've notice that my behaviour has changed regarding terminal tabs. Now I tend to keep myself centered around 4 tabs, whereas before it was a lot more!
 * Since Feedly access token only works for 30 days, I endup also creating another alias that updates the token in my environment. Although its much more manual (still need to check my email and open an link 🙃) its fine since I only need to run it every so ofter. You can find it on my dotfiles "[update_feedly_token()](https://github.com/andreffs18/dotfiles/blob/master/config/system/.functions#L63-L74)".
 
 

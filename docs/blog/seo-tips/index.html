@@ -58,31 +58,177 @@
                     
                     <a class="text-muted" href="https://andreffs18.github.io/tags/seo">#seo</a>
                     
+                    <a class="text-muted" href="https://andreffs18.github.io/tags/automation">#automation</a>
+                    
+                    <a class="text-muted" href="https://andreffs18.github.io/tags/git-hooks">#git-hooks</a>
+                    
                 
                 <span>|</span>
-                <a class="text-muted text-decoration-none">± 1 min</a>
+                <a class="text-muted text-decoration-none">± 3 mins</a>
             </p>
         </header>
         <article class="markdown-body">
             <p>My key takeaways from making this website &ldquo;SEO friendly&rdquo;:</p>
 <ol>
-<li>
-<p>Use link &ldquo;tree structure&rdquo; from homepage. This way, bots and crawlers can find every page on the website</p>
-</li>
-<li>
-<p>Good <strong>titles</strong>, under 65 characters</p>
-</li>
-<li>
-<p>Meta tags with good keywords under 100 characters</p>
-</li>
-<li>
-<p>Add &ldquo;alt&rdquo; tag to images</p>
-</li>
+<li>Use link &ldquo;tree structure&rdquo; from homepage. This way, bots and crawlers can find every page on the website</li>
+<li>Good <strong>titles</strong>, under 65 characters</li>
+<li>Meta tags with good keywords under 100 characters</li>
+<li>Use canonical urls on every page</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span>&lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">alt</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;About me picture&#34;</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/images/about.jpeg&#34;</span>&gt;</code></pre></div>
-<h3 id="external-resources">External Resources</h3>
-<p>Below is a list of free tools that help you analyze your website and see what can be improved:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;canonical&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://localhost:1313/blog/seo-tips/&#34;</span>&gt;
+<span style="color:#75715e">&lt;!-- instead of --&gt;</span>
+&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;canonical&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/blog/seo-tips&#34;</span>&gt;
+</code></pre></td></tr></table>
+</div>
+</div><ol start="5">
+<li>Add &ldquo;alt&rdquo; tag to images</li>
+</ol>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">alt</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;About me picture&#34;</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/images/about.jpeg&#34;</span>&gt;
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="pre-commit-hooks">Pre-commit hooks</h2>
+<p>Having this checklist is nice but it would be better if I didn&rsquo;t have to check this by myself every time I do a side project.</p>
+<p>In that spirit, we can create something, like a CI/CD stage or a pre-commit hook that checks all of these rules!</p>
+<p>So I&rsquo;ve built a simple pre-commit hook that checks for all those rules:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># .git/hooks/seo-pre-commit.py</span>
+<span style="color:#f92672">import</span> re
+<span style="color:#f92672">import</span> sys
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">check_title_length</span>(html, max_length<span style="color:#f92672">=</span><span style="color:#ae81ff">65</span>):
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    Search on given `html` file for any &lt;title&gt; tags and check if the title length is greater
+</span><span style="color:#e6db74">    than `max_length`.
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    titles <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#34;&lt;title&gt;(.*?)&lt;/title&gt;&#34;</span>, html)
+    <span style="color:#66d9ef">for</span> title <span style="color:#f92672">in</span> titles:
+        <span style="color:#66d9ef">if</span> len(title) <span style="color:#f92672">&gt;</span> max_length:
+            _warning(<span style="color:#e6db74">u</span><span style="color:#e6db74">&#34;{}: ⚠️ No title {} length more than {}!&#34;</span><span style="color:#f92672">.</span>format(filepath, title, max_length))
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">check_alt_prop</span>(html):
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    Search on given `html` file for all &lt;img&gt; tags and alert if:
+</span><span style="color:#e6db74">    - img tag has &#34;alt=&#34; attribute but without content (eg: alt=&#34;&#34;)
+</span><span style="color:#e6db74">    - img tag does not have &#34;atl=&#34; attribute
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    alt_texts <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#34;&lt;img.*?alt=[\&#39;</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">](.*?)[\&#39;</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">][^&gt;]*&gt;&#34;</span>, html)
+    <span style="color:#66d9ef">for</span> alt <span style="color:#f92672">in</span> alt_texts:
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> alt:
+            _warning(<span style="color:#e6db74">u</span><span style="color:#e6db74">&#34;{}: ⚠️  No alt text!&#34;</span><span style="color:#f92672">.</span>format(filepath))
+
+    missing_alt_texts <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#34;&lt;img(?!.*?alt=([\&#39;</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">]).*?)[^&gt;]*&gt;&#34;</span>, html)
+    <span style="color:#66d9ef">for</span> missing <span style="color:#f92672">in</span> missing_alt_texts:
+        _warning(<span style="color:#e6db74">u</span><span style="color:#e6db74">&#34;{}: ⚠️  No alt attribute!&#34;</span><span style="color:#f92672">.</span>format(filepath))
+
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">check_canonical_urls</span>(html):
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    Search on given `html` file for all &lt;a&gt; tags and check if configured href is canonical. (absolute url)
+</span><span style="color:#e6db74">    This also accepts urls when href starts with &#34;mailto:&#34; or expected characters: &#34;#&#34;, &#34;{&#34;, &#34;%&#34;, &#34;&#34;
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    urls <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;&lt;a\s+(?:[^&gt;]*?\s+)?href=&#34;([^&#34;]*)&#34;&#39;</span>, html)
+    <span style="color:#66d9ef">for</span> url <span style="color:#f92672">in</span> urls:
+        <span style="color:#66d9ef">if</span> any([
+            url <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;&#34;</span>,  <span style="color:#75715e"># empty url is accepted</span>
+            map(<span style="color:#66d9ef">lambda</span> rule: url<span style="color:#f92672">.</span>startswith(rule), [<span style="color:#e6db74">&#34;http&#34;</span>, <span style="color:#e6db74">&#34;mailto:&#34;</span>, <span style="color:#e6db74">&#34;#&#34;</span>, <span style="color:#e6db74">&#34;{&#34;</span>, <span style="color:#e6db74">&#34;%&#34;</span>],),
+        ]):
+            <span style="color:#66d9ef">continue</span>
+        _warning(<span style="color:#e6db74">u</span><span style="color:#e6db74">&#34;({}) ⚠️ Relative URL {}!&#34;</span><span style="color:#f92672">.</span>format(filepath, url))
+
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+    <span style="color:#66d9ef">for</span> filepath <span style="color:#f92672">in</span> sys<span style="color:#f92672">.</span>argv[<span style="color:#ae81ff">1</span>:]:
+        <span style="color:#66d9ef">with</span> open(filepath, <span style="color:#e6db74">&#34;r+&#34;</span>) <span style="color:#66d9ef">as</span> html:
+            html <span style="color:#f92672">=</span> html<span style="color:#f92672">.</span>read()
+        check_alt_prop(html)
+        check_canonical_urls(html)
+        check_title_length(html)
+
+    <span style="color:#66d9ef">if</span> ERROR:
+        sys<span style="color:#f92672">.</span>exit(<span style="color:#ae81ff">1</span>)
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>If you want to add this to your project, you can download and install it by running the one liner on the companion repository: <a href="https://github.com/andreffs18/seo-git-hooks">https://github.com/andreffs18/seo-git-hooks</a></p>
+</blockquote>
+<h1 id="external-resources">External Resources</h1>
+<p>Below is a list of free tools that helped me analyze my website and see what could be improved:</p>
 <ul>
+<li><a href="https://www.youtube.com/watch?v=_M7rAjznXFM&amp;list=PLdN82lhRV2eJzgOrTTTmBhHrqR6kTEo07">SEO for beginners - Free course</a></li>
 <li>&ldquo;put your url and we tell you what to do&rdquo;
 <ul>
 <li><a href="https://developers.google.com/speed/pagespeed/insights/">https://developers.google.com/speed/pagespeed/insights/</a> &amp; <a href="https://web.dev/measure/">https://web.dev/measure/</a> (mandatory)</li>
@@ -91,11 +237,13 @@
 <li><a href="https://gtmetrix.com/">https://gtmetrix.com/</a></li>
 </ul>
 </li>
-<li><a href="https://www.xml-sitemaps.com/">xml-sitemaps generator</a>: scrapes your website and builds a sitemap</li>
-<li><a href="https://backlinko.com/seo-tools">backlinko.com/seo-tools</a>: great &ldquo;form-like&rdquo; website to find tools for all of your SEO needs</li>
-<li><a href="https://www.sideprojectchecklist.com/marketing-checklist/">maketing checklist</a>: complete thorough checklist for all your sideprojects</li>
-<li><a href="https://web.dev/vitals/">writeup about web vitals </a></li>
+<li><a href="https://www.xml-sitemaps.com/">https://www.xml-sitemaps.com/</a> - scrapes your website and builds a sitemap</li>
+<li><a href="https://backlinko.com/seo-tools">https://backlinko.com/seo-tools</a> - great &ldquo;form-like&rdquo; website to find tools for all of your SEO needs</li>
+<li><a href="https://www.sideprojectchecklist.com/marketing-checklist">https://www.sideprojectchecklist.com/marketing-checklist</a> - complete thorough checklist for all your side projects</li>
+<li><a href="https://web.dev/vitals/">https://web.dev/vitals/</a> - good blog post about web vitals</li>
+<li><a href="https://www.fastorslow.com/app">https://www.fastorslow.com/app</a> - lets you know how much time around the globe does it take to open your website.</li>
 </ul>
+<p>👋</p>
 
         </article>
     </section>
