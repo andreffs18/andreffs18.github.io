@@ -7,7 +7,7 @@ disqusShortname = "andreffs"
 googleAnalytics = "UA-123-45"
 
 ignorefiles = [
-  "content/blog/_draft/.*" 
+  "content/blog/_draft/.*"
 ]
 # theme = ["hugo-debugprint"]
 
@@ -40,7 +40,7 @@ ignorefiles = [
     name = "CV"
     url = "/cv/"
     weight = 1
-    
+
   [[menu.main]]
     identifier = "about"
     name = "About"

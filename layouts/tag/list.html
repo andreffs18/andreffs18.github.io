@@ -20,7 +20,7 @@
                     {{ $currentFontSize := (add $smallestFontSize (mul (sub $largestFontSize $smallestFontSize) $weigth)) }}
                     {{ with $.Site.GetPage (printf "/tags/%s" $name) }}
                         <li>
-                            <a href="{{ .RelPermalink }}" title="{{ $currentTagCount }} Articles" style="font-size: {{ $currentFontSize }}{{ $fontUnit }}">{{ .LinkTitle | default .Data.Term | default $name }}</a>
+                            <a href="{{ .Permalink }}" title="{{ $currentTagCount }} Articles" style="font-size: {{ $currentFontSize }}{{ $fontUnit }}">{{ .LinkTitle | default .Data.Term | default $name }}</a>
                         </li>
                     {{ end }}
                 {{ end }}
