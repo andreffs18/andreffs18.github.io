@@ -6,11 +6,7 @@
     <description>Recent content in Tags on ANDREFFS</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 25 May 2020 06:37:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://andreffs18.github.io/website/tags/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 25 May 2020 06:37:00 +0000</lastBuildDate><atom:link href="https://andreffs18.github.io/website/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>debugging</title>
       <link>https://andreffs18.github.io/website/tags/debugging/</link>
@@ -102,15 +98,6 @@
     </item>
     
     <item>
-      <title>postgres</title>
-      <link>https://andreffs18.github.io/website/tags/postgres/</link>
-      <pubDate>Tue, 18 Feb 2020 17:14:00 +0000</pubDate>
-      
-      <guid>https://andreffs18.github.io/website/tags/postgres/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>postgresql</title>
       <link>https://andreffs18.github.io/website/tags/postgresql/</link>
       <pubDate>Tue, 18 Feb 2020 17:14:00 +0000</pubDate>
@@ -143,6 +130,15 @@
       <pubDate>Tue, 05 Feb 2019 20:07:00 +0000</pubDate>
       
       <guid>https://andreffs18.github.io/website/tags/tips/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>postgres</title>
+      <link>https://andreffs18.github.io/website/tags/postgres/</link>
+      <pubDate>Wed, 20 Sep 2017 10:53:00 +0000</pubDate>
+      
+      <guid>https://andreffs18.github.io/website/tags/postgres/</guid>
       <description></description>
     </item>
     

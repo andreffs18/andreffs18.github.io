@@ -1,10 +1,13 @@
 ---
-title: Docker + Postgresql
+title: Docker + PostgreSQL
 subtitle: Taking advantage of Docker to manage your Postgres database
 slug: docker-postgresql
 date: 2020-02-18T17:14:00+00:00
 tags: ["docker", "postgresql", "ssh"]
 ---
+
+
+![Docker SSH Tunnel to AWS EC2 Instance](docker+postgres.png)
 
 More often than not, I endup going online to look up on how to use docker as the middle man on interacting with Postgres.
 > Usually for me its Postgres, but this "recipe" can be applied to any piece of software that has more than one version which you don't have installed on your laptop.
@@ -41,15 +44,20 @@ There are a couple of things going on here, the important being:
 
 **Note** that the important part is making sure you are using the correct port number and correct postgres version. The rest should be pretty straightforward!
 
-## Restore
+# Restore
 
 To restore the previously saved database backup (using the point above) in a local instance of the database, we just need to setup docker with the correct postgres version and run the `pg_restore` command.
 
 
 ```bash
 $ docker run --rm --net=host -it -v $(pwd)/dump:/dump postgres:11-alpine /bin/bash
-[docker-bash] $ pg_restore -C --no-owner --role=local_user -h host.docker.internal --port 5432 -U local_user --dbname local_db staging_db_2020-02-21.dump
+[docker-bash] $ pg_restore -C --no-owner --role=local_user --host host.docker.internal --port 5432 --dbname local_db -U local_user staging_db_2020-02-21.dump
 ```
 
 > The ```--no-owner --role=local_user``` is necessary in case of having a Production/Staging dump.
 > Its possible that the database user on our Production database is different from the one on Staging or Local, so we need to tell `pg_restore` command to overwrite the role with the new one. If both roles are the same, those options can be discarded.
+
+
+# Resources:
+
+* https://robotmoon.com/ssh-tunnels/

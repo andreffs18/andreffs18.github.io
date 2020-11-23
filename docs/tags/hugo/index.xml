@@ -6,11 +6,7 @@
     <description>Recent content in hugo on ANDREFFS</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 25 May 2020 06:37:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://andreffs18.github.io/website/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 25 May 2020 06:37:00 +0000</lastBuildDate><atom:link href="https://andreffs18.github.io/website/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Debug in Hugo</title>
       <link>https://andreffs18.github.io/website/blog/debug-in-hugo/</link>
