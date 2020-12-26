@@ -43,12 +43,12 @@ with Google Spreadsheets, that would have an exposed web hook, which would be us
 
 It was a simple webhook that would store something like this:
 
-{{< highlight bash "linenos=inline,hl_lines=1-3,linenostart=1" >}}
+```bash
 creation_datetime	nfc_id	event_name	event_value
 2017-03-25 17:11:49	04:2d:d1:62:a1:48:80	take-a-shit	TRUE
 2017-03-25 17:14:53	04:2d:d1:62:a1:48:80	take-a-shit	FALSE
 (...)
-{{< /highlight >}}
+```
 
 The important part is the ` event_value` which would work as a toggle, in which **True** means "Going to the bathroom" and **False** "Coming back".
 
