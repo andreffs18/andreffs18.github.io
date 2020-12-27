@@ -5,7 +5,7 @@
 {{- end }}
 
 <main class="row blog">
-    <section class="col-12 col-xl-9">
+    <section>
         <header>
             <h1 class="">{{ .Title | markdownify }}</h1>
 
@@ -31,7 +31,7 @@
         </article>
     </section>
 
-    <aside class="col-12 col-xl-3">
+    <aside>
         <div class="d-none d-xl-block">
             {{ if and (gt (len .TableOfContents) 200) ( .Params.TOC )}}
                 <div class="toc">
@@ -79,15 +79,72 @@
 
 
 <script>
+const BLOG_TITLE_SELECTORS = '.blog article h1, .blog article h2, .blog article h3, .blog article h4, .blog article h5, .blog article h6';
+// Add github like anchor style to all '#' links
 function addAnchor(element) {
     element.innerHTML = `<a class="anchor" href="#${element.id}" aria-hidden="true"><span class="octicon octicon-link"></span></a>${element.innerText}`
 }
-
-document.addEventListener('DOMContentLoaded', function () {
-    var headers = document.querySelectorAll('.blog article h2, .blog article h3, .blog article h4, .blog article h5, .blog article h6')
+document.addEventListener('DOMContentLoaded', () => {
+    var headers = document.querySelectorAll(BLOG_TITLE_SELECTORS)
     if (headers) {
         headers.forEach(addAnchor)
     }
 })
+
+// Make TOC highlight current link
+window.addEventListener('DOMContentLoaded', () => {
+	const observer = new IntersectionObserver(entries => {
+        let container = document.querySelector('.toc');
+        let links = [...container.querySelectorAll('a')]
+        let headings = links.map(link => {
+            let id = link.getAttribute('href')
+            return document.querySelector(id)
+        })
+
+        entries.forEach(entry => {
+            console.log(entry);
+            let previousSection = undefined;
+            let href = `#${entry.target.getAttribute('id')}`;
+            let link = links.find(l => l.getAttribute('href') === href);
+
+            if (entry.intersectionRatio > 0) {
+                link.classList.add('is-visible');
+                previousSection = entry.target.getAttribute('id'); // I'll tell you in a minute
+              } else {
+                link.classList.remove('is-visible');
+              }
+
+              let firstVisibleLink = container.querySelector('.is-visible');
+              links.forEach(link => {
+                link.classList.remove('is-active');
+              })
+
+              if (firstVisibleLink) {
+                firstVisibleLink.classList.add('is-active');
+              }
+
+              if (!firstVisibleLink && previousSection) {
+                container.querySelector(`a[href="#${previousSection}"]`).classList.add('is-active');
+              }
+        })
+        // keep last link on if we are by the end of the page
+        if(entries.length === 1){
+            let entry = entries[0];
+            let lastHeadingOfBlogpost = headings[headings.length - 1];
+            if(
+                entry.intersectionRatio === 0 && // entry is not being visible
+                entry.target === lastHeadingOfBlogpost // entry is the last H tag of this blogpost
+            ) {
+                let href = `#${entry.target.getAttribute('id')}`;
+                container.querySelector(`a[href="${href}"]`).classList.add('is-active');
+            }
+        }
+	});
+	// Track all sections that have an `id` applied
+	document.querySelectorAll(BLOG_TITLE_SELECTORS).forEach((title) => {
+		observer.observe(title);
+	});
+});
+
 </script>
 {{ end }}

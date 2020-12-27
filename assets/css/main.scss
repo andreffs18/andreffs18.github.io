@@ -20,6 +20,10 @@
 @import "pages/4o4";
 
 
+html {
+  scroll-behavior: smooth;
+}
+
 // temporary for now, since I dont even know if I will use this
 // just adds bootstrap .img-fluid styles to hugo {{< figure >}}
 figure.img-fluid img {

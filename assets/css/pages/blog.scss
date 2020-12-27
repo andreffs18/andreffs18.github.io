@@ -1,6 +1,24 @@
 /*  Blog Page style
+
+Source for sticky TOC:
+* https://tj.ie/building-a-table-of-contents-with-the-intersection-observer-api/
+* https://www.bram.us/2020/01/10/smooth-scrolling-sticky-scrollspy-navigation/
+* https://ma.ttias.be/adding-a-sticky-table-of-contents-in-hugo-to-posts/
 -------------------------------------------------- */
+
+
+html {
+	scroll-behavior: smooth;
+}
+
 .blog {
+
+	display: grid;
+	grid-template-columns: 1fr 15em;
+	max-width: 100em;
+	width: 100%;
+	margin: 0 auto;
+
 	article p, article ul, article ol, article blockquote {
 		max-width: 54em;
 	}
@@ -41,9 +59,30 @@
 		}
 	}
 
+
 	aside {
-		padding: 0px;
+		position: sticky;
+		top: 2rem;
+		align-self: start;
+		padding: 0px 0px 20px 15px;
+
 		.toc {
+			ul {
+				padding: 2;
+				list-style: none;
+			}
+
+			a {
+				display: block;
+				transition: background ease 0.2s, color ease 0.2s;
+				text-decoration: none;
+				padding: .125rem 0;
+				color: #ccc;
+			}
+
+			a:hover, a:focus, a.is-active {
+				color: #333;
+			}
 
 		}
 		.tags {
