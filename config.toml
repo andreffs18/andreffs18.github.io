@@ -4,10 +4,9 @@ title = "ANDREFFS"
 publishDir = "docs"
 tags = ["tags"]
 disqusShortname = "andreffs"
-googleAnalytics = "UA-123-45"
+googleAnalytics = "UA-71884481-1"
 
 ignorefiles = [
-  "content/blog/_draft/.*"
 ]
 # theme = ["hugo-debugprint"]
 
