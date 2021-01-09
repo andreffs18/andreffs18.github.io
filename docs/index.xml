@@ -6,7 +6,11 @@
     <description>Recent content on ANDREFFS</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 25 May 2020 06:37:00 +0000</lastBuildDate><atom:link href="https://andreffs18.github.io/website/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 25 May 2020 06:37:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://andreffs18.github.io/website/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>Debug in Hugo</title>
       <link>https://andreffs18.github.io/website/blog/debug-in-hugo/</link>
@@ -124,7 +128,7 @@ The intent of this blog is just to keep track of my achievements, projects and a
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://andreffs18.github.io/website/about/</guid>
-      <description>👋 My name is André Silva and I&amp;rsquo;m a 27 y/old Portuguese Software Engineer from Lisbon that likes to code.
+      <description>👋 My name is André Silva and I&amp;rsquo;m a 28 y/old Portuguese Software Engineer from Lisbon that likes to code.
 # A bit about me I wasn&amp;rsquo;t always focused on the development world.
 During high school I got the change to internship on a consulting firm in my hometown, mainly working with setting up data centers, and configuring network systems.
 After high school I went to college to take a Computer Science Bachelor.</description>
