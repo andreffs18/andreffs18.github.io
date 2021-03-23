@@ -12,7 +12,6 @@ html {
 }
 
 .blog {
-
 	display: grid;
 	grid-template-columns: 1fr 15em;
 	max-width: 100em;
@@ -20,7 +19,7 @@ html {
 	margin: 0 auto;
 
 	article p, article ul, article ol, article blockquote {
-		max-width: 54em;
+		// max-width: 54em;
 	}
 
 	//article p:first-child {
@@ -29,9 +28,9 @@ html {
 	//		max-width: 43em; /* 45 / 1.25 */
 	//}
 
-	// tweek hightlight shortcut to make it more pleasing to see
+	// tweak highlight shortcut to make it more pleasing to see
 	div.highlight pre {
-		padding: 10px;
+		padding: 12px 4px;
 		border-radius: 0px;
 	}
 
@@ -41,6 +40,7 @@ html {
 		min-width: 200px;
 		max-width: 980px;
 		margin: 0 auto;
+		//font-size: 16px;
 		padding: 0px;
 		table{
 			display: inline-table;
@@ -60,6 +60,32 @@ html {
 	}
 
 
+	.slideshow{
+		margin-bottom: 1em;
+		.slick-slide {
+			outline: none;
+		}
+		p {
+			text-align: center;
+			max-width: 75%;
+			margin: 0px auto;
+		}
+		#right-arrow-example{
+			position: absolute;
+			z-index: 1000;
+			bottom: 10px;
+			right: 0;
+		}
+		#left-arrow-example{
+			position: absolute;
+			z-index: 1000;
+			bottom: 10px;
+			left: 0;
+		}
+	}
+
+
+
 	aside {
 		position: sticky;
 		top: 2rem;
@@ -68,7 +94,7 @@ html {
 
 		.toc {
 			ul {
-				padding: 2;
+				padding-left: 10px;
 				list-style: none;
 			}
 

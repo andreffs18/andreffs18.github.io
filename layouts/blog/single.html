@@ -1,7 +1,11 @@
 {{ define "main" }}
 
 {{- if .Params.Plotly }}
-<script src="https://cdn.plot.ly/plotly-1.50.0.min.js"></script>
+<script type="text/javascript" src="https://cdn.plot.ly/plotly-1.50.0.min.js"></script>
+{{- end }}
+
+{{- if .Params.Slideshow }}
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 {{- end }}
 
 <main class="row blog">
@@ -102,30 +106,29 @@ window.addEventListener('DOMContentLoaded', () => {
         })
 
         entries.forEach(entry => {
-            console.log(entry);
             let previousSection = undefined;
             let href = `#${entry.target.getAttribute('id')}`;
             let link = links.find(l => l.getAttribute('href') === href);
 
             if (entry.intersectionRatio > 0) {
                 link.classList.add('is-visible');
-                previousSection = entry.target.getAttribute('id'); // I'll tell you in a minute
-              } else {
+                previousSection = entry.target.getAttribute('id');
+            } else {
                 link.classList.remove('is-visible');
-              }
+            }
 
-              let firstVisibleLink = container.querySelector('.is-visible');
-              links.forEach(link => {
+            links.forEach(link => {
                 link.classList.remove('is-active');
-              })
+            })
 
-              if (firstVisibleLink) {
+            let firstVisibleLink = container.querySelector('.is-visible');
+            if (firstVisibleLink) {
                 firstVisibleLink.classList.add('is-active');
-              }
-
-              if (!firstVisibleLink && previousSection) {
+            }
+            console.log(previousSection)
+            if (!firstVisibleLink && previousSection) {
                 container.querySelector(`a[href="#${previousSection}"]`).classList.add('is-active');
-              }
+            }
         })
         // keep last link on if we are by the end of the page
         if(entries.length === 1){
