@@ -1,14 +1,14 @@
+title = "ANDREFFS"
 baseURL = "https://andreffs.com"
 languageCode = "en-us"
-title = "ANDREFFS"
 publishDir = "docs"
 tags = ["tags"]
 disqusShortname = "andreffs"
 googleAnalytics = "UA-71884481-1"
+enableGitInfo = true
 
-ignorefiles = [
-]
-# theme = ["hugo-debugprint"]
+ignorefiles = []
+theme = ["hugo-debugprint"]
 
 [markup]
   [markup.tableOfContents]

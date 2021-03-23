@@ -61,8 +61,23 @@
 {{ template "_internal/disqus.html" . }}
 
 <hr>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-auto">
+      <small>
+        Last update: {{ .Lastmod.Format "January 2, 2006" }}
+        {{ with .GitInfo }}
+          <a href="https://github.com/andreffs18/website/commit/{{ .Hash }}" target="_blank">({{ .AbbreviatedHash }})</a>
+        {{ end }}
+      </small>
+    </div>
+  </div>
+</div>
+
+
 {{ if or .Next .Prev }}
-<div class="pt-5">
+<div class="pt-4">
     <div class="container">
         <div class="row">
             <div class="col-md-6 text-left">
@@ -98,49 +113,49 @@ document.addEventListener('DOMContentLoaded', () => {
 // Make TOC highlight current link
 window.addEventListener('DOMContentLoaded', () => {
 	const observer = new IntersectionObserver(entries => {
-        let container = document.querySelector('.toc');
-        let links = [...container.querySelectorAll('a')]
-        let headings = links.map(link => {
-            let id = link.getAttribute('href')
-            return document.querySelector(id)
-        })
+    let container = document.querySelector('.toc');
+    let links = [...container.querySelectorAll('a')]
+    let headings = links.map(link => {
+      let id = link.getAttribute('href')
+      return document.querySelector(id)
+    })
 
-        entries.forEach(entry => {
-            let previousSection = undefined;
-            let href = `#${entry.target.getAttribute('id')}`;
-            let link = links.find(l => l.getAttribute('href') === href);
+    entries.forEach(entry => {
+      let previousSection = undefined;
+      let href = `#${entry.target.getAttribute('id')}`;
+      let link = links.find(l => l.getAttribute('href') === href);
 
-            if (entry.intersectionRatio > 0) {
-                link.classList.add('is-visible');
-                previousSection = entry.target.getAttribute('id');
-            } else {
-                link.classList.remove('is-visible');
-            }
+      if (entry.intersectionRatio > 0) {
+        link.classList.add('is-visible');
+        previousSection = entry.target.getAttribute('id');
+      } else {
+        link.classList.remove('is-visible');
+      }
 
-            links.forEach(link => {
-                link.classList.remove('is-active');
-            })
+      links.forEach(link => {
+        link.classList.remove('is-active');
+      })
 
-            let firstVisibleLink = container.querySelector('.is-visible');
-            if (firstVisibleLink) {
-                firstVisibleLink.classList.add('is-active');
-            }
-            if (!firstVisibleLink && previousSection) {
-                container.querySelector(`a[href="#${previousSection}"]`).classList.add('is-active');
-            }
-        })
-        // keep last link on if we are by the end of the page
-        if(entries.length === 1){
-            let entry = entries[0];
-            let lastHeadingOfBlogpost = headings[headings.length - 1];
-            if(
-                entry.intersectionRatio === 0 && // entry is not being visible
-                entry.target === lastHeadingOfBlogpost // entry is the last H tag of this blogpost
-            ) {
-                let href = `#${entry.target.getAttribute('id')}`;
-                container.querySelector(`a[href="${href}"]`).classList.add('is-active');
-            }
-        }
+      let firstVisibleLink = container.querySelector('.is-visible');
+      if (firstVisibleLink) {
+        firstVisibleLink.classList.add('is-active');
+      }
+      if (!firstVisibleLink && previousSection) {
+        container.querySelector(`a[href="#${previousSection}"]`).classList.add('is-active');
+      }
+    })
+    // keep last link on if we are by the end of the page
+    if(entries.length === 1){
+      let entry = entries[0];
+      let lastHeadingOfBlogpost = headings[headings.length - 1];
+      if(
+        entry.intersectionRatio === 0 && // entry is not being visible
+        entry.target === lastHeadingOfBlogpost // entry is the last H tag of this blogpost
+      ) {
+        let href = `#${entry.target.getAttribute('id')}`;
+        container.querySelector(`a[href="${href}"]`).classList.add('is-active');
+      }
+    }
 	});
 	// Track all sections that have an `id` applied
 	document.querySelectorAll(BLOG_TITLE_SELECTORS).forEach((title) => {
