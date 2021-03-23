@@ -9,7 +9,7 @@ tags: ["docker", "postgresql", "ssh"]
 
 ![Docker SSH Tunnel to AWS EC2 Instance](docker+postgres.png)
 
-More often than not, I endup going online to look up on how to use docker as the middle man on interacting with Postgres.
+More often than not, I end up going online to look up on how to use docker as the middle man on interacting with Postgres.
 > Usually for me its Postgres, but this "recipe" can be applied to any piece of software that has more than one version which you don't have installed on your laptop.
 
 Because of this whole back and forth I compiled a small list of "how-tos" to help me remember.

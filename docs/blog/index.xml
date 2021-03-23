@@ -39,7 +39,7 @@ While the &amp;ldquo;Saved&amp;rdquo; section on Reddit was mostly threads from 
       <pubDate>Tue, 18 Feb 2020 17:14:00 +0000</pubDate>
       
       <guid>https://andreffs18.github.io/website/blog/docker-postgresql/</guid>
-      <description>More often than not, I endup going online to look up on how to use docker as the middle man on interacting with Postgres.
+      <description>More often than not, I end up going online to look up on how to use docker as the middle man on interacting with Postgres.
  Usually for me its Postgres, but this &amp;ldquo;recipe&amp;rdquo; can be applied to any piece of software that has more than one version which you don&amp;rsquo;t have installed on your laptop.
  Because of this whole back and forth I compiled a small list of &amp;ldquo;how-tos&amp;rdquo; to help me remember.</description>
     </item>
@@ -116,8 +116,8 @@ Then a simple multiplication shows that your &amp;ldquo;poop time&amp;rdquo; is 
       <guid>https://andreffs18.github.io/website/blog/hello-world/</guid>
       <description>Hello 😃
 So this is the mandatory &amp;ldquo;Hello World&amp;rdquo; blog post.
-The intent of this blog is just to keep track of my achievements, projects and also
- Technical how-to/tutorials Bugs or gotchas that might be useful in the future Setup &amp;amp; configuration Stuff that I keep forgetting and keep googling.  </description>
+The intent of this blog is just to keep track of my achievements, projects and also:
+ Technical how-to/tutorials Bugs or gotchas that might be useful in the future Setup &amp;amp; configuration Stuff that I keep forgetting and keep googling.  👋</description>
     </item>
     
   </channel>

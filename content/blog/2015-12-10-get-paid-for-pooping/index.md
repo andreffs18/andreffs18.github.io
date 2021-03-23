@@ -38,7 +38,7 @@ so I just decide to play around with those.
 
 ## Zapier Integration
 
-Since I didnt want to fill a Google Spreadsheet every time I went to the bathroom, I end up creating a [Zapier](https://zapier.com/apps/) integration
+Since I didn't want to fill a Google Spreadsheet every time I went to the bathroom, I end up creating a [Zapier](https://zapier.com/apps/) integration
 with Google Spreadsheets, that would have an exposed web hook, which would be used by tapping the NFC tag.
 
 It was a simple webhook that would store something like this:
@@ -55,7 +55,7 @@ The important part is the ` event_value` which would work as a toggle, in which 
 
 ## NFC Tag
 
-I just wanted to have one tag, which I would tap with my phone and make the POST request to the Zapier wehbook.
+I just wanted to have one tag, which I would tap with my phone and make the POST request to the Zapier webhook.
 
 So, I just end up creating a new task on "NFC Tools" app that would make an HTTP Post request to Zapier with the expected `event_value`.
 

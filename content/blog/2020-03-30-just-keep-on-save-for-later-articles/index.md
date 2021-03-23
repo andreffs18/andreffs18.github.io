@@ -23,7 +23,7 @@ So, I started reading a couple of those a day and soon realized that:
 
 I realized that for me to have +300 articles on Feedly to "Read Later", my process would consist of something like:
 
-* Everytime I'm waiting for someone (or [most likely in the bathroom]({{< ref "/blog/2015-12-10-get-paid-for-pooping/index" >}})), I would scroll on Feedly for a bit and **not read anything**, only mark the article as to "Read Later".
+* Every time I'm waiting for someone (or [most likely in the bathroom]({{< ref "/blog/2015-12-10-get-paid-for-pooping/index" >}})), I would scroll on Feedly for a bit and **not read anything**, only mark the article as to "Read Later".
 
 The same thing with links that some of my friends shared with me:
 * Open them, realized they are too long -> "Read Later" on Feedly.
@@ -32,7 +32,7 @@ The same thing with links that some of my friends shared with me:
 
 > I use the ["Save to Feedly Board"](https://chrome.google.com/webstore/detail/save-to-feedly-board/hdhblphcdjcicefneapkhmleapfaocih) Chrome extension which allows me to just [CMD + D] and save any website into my "Read Later" board.
 
-Since reading a couple of these a days was proving to be very productive, I wanted to make sure I was keeping up with it, and to do that **why not force it upon me via _le amazing overengineering_ 🥖**.
+Since reading a couple of these a days was proving to be very productive, I wanted to make sure I was keeping up with it, and to do that **why not force it upon me via _le amazing over-engineering_ 🥖**.
 
 # Automate everything
 
@@ -51,12 +51,12 @@ So here comes the question: **What should be the cue for me to read an article?*
 
 💻 Terminal.
 
-That's it! Everytime I open a new tab on my terminal, I get a new article from my "Read Later" on Feedly!
+That's it! Every time I open a new tab on my terminal, I get a new article from my "Read Later" on Feedly!
 
 
 ![My terminal startup.](startup.gif)
 
-> If you're wondering about the giant 😭, you can check out ["I really like emojies"]() blogpost.
+> If you're wondering about the giant 😭, you can check out ["I really like emoji's"](/blog/i-really-like-emojis/) blogpost.
 
 
 # Plan
@@ -78,7 +78,7 @@ function sfl(){
 }
 ```
 
-Then I just needed to run this function everytime I open a terminal:
+Then I just needed to run this function every time I open a terminal:
 
 ```
 # on my ~/.zshrc
@@ -118,7 +118,7 @@ And oh boy, I was not expecting it to be so dificult:
 * Not the best documentation.
 
 
-Endup looking on stack overflow (of course) and [this guy](https://rud.is/b/2018/04/16/by-request-retrieving-your-feedly-saved-for-later-entries/) for guidance, but the overall way to get your "Saved for Later" feed is to get you profile id, which then can be used to get the "stream" (not entries or feed) tagged as ```"global.saved"```.
+End up looking on stack overflow (of course) and [this guy](https://rud.is/b/2018/04/16/by-request-retrieving-your-feedly-saved-for-later-entries/) for guidance, but the overall way to get your "Saved for Later" feed is to get you profile id, which then can be used to get the "stream" (not entries or feed) tagged as ```"global.saved"```.
 
 Then we just need to keep going through their pagination until we reach the end of the feed:
 
@@ -175,9 +175,9 @@ webbrowser.open(f"https://feedly.com/i/entry/{article}")
 # Conclusions
 
 * Realized that I have a lot of articles that float around the same topics (Frontend, Backend, CI/CD, etc) and that it would be great to aggregate those so I dont jump around between topics;
-* I could save a cache of all articles locally (on a .txt file or smth), and update it after like 15 days.
-* I've notice that my behaviour has changed regarding terminal tabs. Now I tend to keep myself centered around 4 tabs, whereas before it was a lot more!
-* Since Feedly access token only works for 30 days, I endup also creating another alias that updates the token in my environment. Although its much more manual (still need to check my email and open an link 🙃) its fine since I only need to run it every so ofter. You can find it on my dotfiles "[update_feedly_token()](https://github.com/andreffs18/dotfiles/blob/master/config/system/.functions#L63-L74)".
+* I could save a cache of all articles locally (on a .txt file or something), and update it after like 15 days.
+* I've notice that my behavior has changed regarding terminal tabs. Now I tend to keep myself centered around 4 tabs, whereas before it was a lot more!
+* Since Feedly access token only works for 30 days, I end up also creating another alias that updates the token in my environment. Although its much more manual (still need to check my email and open an link 🙃) its fine since I only need to run it every so ofter. You can find it on my dotfiles "[update_feedly_token()](https://github.com/andreffs18/dotfiles/blob/master/config/system/.functions#L63-L74)".
 
 
 

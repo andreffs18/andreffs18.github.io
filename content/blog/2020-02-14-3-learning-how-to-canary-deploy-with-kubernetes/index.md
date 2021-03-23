@@ -511,7 +511,7 @@ Simply put, the workflow that we want to achieve is:
 {{< slideshow name >}}
 [
   {url: "minikube-apply-canary-slide1.png", description: "Initial state of our Minikube cluster."},
-  {url: "minikube-apply-canary-slide2.png", description: "We apply our Canary configuration with one replica. One pod will spin up on <strong>\"track: canary\"</strong>.<br>We'll let our new track receive traffic and monitor its behaviour"},
+  {url: "minikube-apply-canary-slide2.png", description: "We apply our Canary configuration with one replica. One pod will spin up on <strong>\"track: canary\"</strong>.<br>We'll let our new track receive traffic and monitor its behavior"},
   {url: "minikube-apply-canary-slide3.png", description: "Once the monitor period finishes, we start the rollback of the new version to <strong>\"track: stable\"</strong>"},
   {url: "minikube-apply-canary-slide4.png", description: "Kubernetes takes care of only terminating the old pods, if the new ones are <strong>\"healthy\"</strong>"},
   {url: "minikube-apply-canary-slide5.png", description: "Eventually, all pods are running the new version so we can scale down our Canary track to zero pods once again."},

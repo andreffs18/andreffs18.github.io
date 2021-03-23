@@ -60,13 +60,14 @@
         <article class="markdown-body">
             <p>Hello 😃</p>
 <p>So this is the mandatory <em>&ldquo;Hello World&rdquo;</em> blog post.</p>
-<p>The intent of this blog is just to keep track of my achievements, projects and also</p>
+<p>The intent of this blog is just to keep track of my achievements, projects and also:</p>
 <ul>
 <li>Technical how-to/tutorials</li>
 <li>Bugs or gotchas that might be useful in the future</li>
 <li>Setup &amp; configuration</li>
 <li>Stuff that I keep forgetting and keep googling.</li>
 </ul>
+<p>👋</p>
 
         </article>
     </section>
@@ -105,7 +106,22 @@
 
 <hr>
 
-<div class="pt-5">
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-auto">
+      <small>
+        Last update: March 23, 2021
+        
+          <a href="https://github.com/andreffs18/website/commit/b2e589d24899111ee613e1246cbb56aa3de0478f" target="_blank">(b2e589d)</a>
+        
+      </small>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="pt-4">
     <div class="container">
         <div class="row">
             <div class="col-md-6 text-left">
@@ -139,49 +155,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
 window.addEventListener('DOMContentLoaded', () => {
 	const observer = new IntersectionObserver(entries => {
-        let container = document.querySelector('.toc');
-        let links = [...container.querySelectorAll('a')]
-        let headings = links.map(link => {
-            let id = link.getAttribute('href')
-            return document.querySelector(id)
-        })
+    let container = document.querySelector('.toc');
+    let links = [...container.querySelectorAll('a')]
+    let headings = links.map(link => {
+      let id = link.getAttribute('href')
+      return document.querySelector(id)
+    })
 
-        entries.forEach(entry => {
-            let previousSection = undefined;
-            let href = `#${entry.target.getAttribute('id')}`;
-            let link = links.find(l => l.getAttribute('href') === href);
+    entries.forEach(entry => {
+      let previousSection = undefined;
+      let href = `#${entry.target.getAttribute('id')}`;
+      let link = links.find(l => l.getAttribute('href') === href);
 
-            if (entry.intersectionRatio > 0) {
-                link.classList.add('is-visible');
-                previousSection = entry.target.getAttribute('id');
-            } else {
-                link.classList.remove('is-visible');
-            }
+      if (entry.intersectionRatio > 0) {
+        link.classList.add('is-visible');
+        previousSection = entry.target.getAttribute('id');
+      } else {
+        link.classList.remove('is-visible');
+      }
 
-            links.forEach(link => {
-                link.classList.remove('is-active');
-            })
+      links.forEach(link => {
+        link.classList.remove('is-active');
+      })
 
-            let firstVisibleLink = container.querySelector('.is-visible');
-            if (firstVisibleLink) {
-                firstVisibleLink.classList.add('is-active');
-            }
-            if (!firstVisibleLink && previousSection) {
-                container.querySelector(`a[href="#${previousSection}"]`).classList.add('is-active');
-            }
-        })
-        
-        if(entries.length === 1){
-            let entry = entries[0];
-            let lastHeadingOfBlogpost = headings[headings.length - 1];
-            if(
-                entry.intersectionRatio === 0 && 
-                entry.target === lastHeadingOfBlogpost 
-            ) {
-                let href = `#${entry.target.getAttribute('id')}`;
-                container.querySelector(`a[href="${href}"]`).classList.add('is-active');
-            }
-        }
+      let firstVisibleLink = container.querySelector('.is-visible');
+      if (firstVisibleLink) {
+        firstVisibleLink.classList.add('is-active');
+      }
+      if (!firstVisibleLink && previousSection) {
+        container.querySelector(`a[href="#${previousSection}"]`).classList.add('is-active');
+      }
+    })
+    
+    if(entries.length === 1){
+      let entry = entries[0];
+      let lastHeadingOfBlogpost = headings[headings.length - 1];
+      if(
+        entry.intersectionRatio === 0 && 
+        entry.target === lastHeadingOfBlogpost 
+      ) {
+        let href = `#${entry.target.getAttribute('id')}`;
+        container.querySelector(`a[href="${href}"]`).classList.add('is-active');
+      }
+    }
 	});
 	
 	document.querySelectorAll(BLOG_TITLE_SELECTORS).forEach((title) => {

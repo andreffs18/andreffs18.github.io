@@ -86,7 +86,7 @@ then you get an astounding <strong>$881.76</strong> dollars a year, just for poo
 laying around and I&rsquo;ve also had previously bought <a href="https://play.google.com/store/apps/details?id=com.wakdev.nfctools.pro&amp;hl=pt_PT">NFC Tools</a>
 so I just decide to play around with those.</p>
 <h2 id="zapier-integration">Zapier Integration</h2>
-<p>Since I didnt want to fill a Google Spreadsheet every time I went to the bathroom, I end up creating a <a href="https://zapier.com/apps/">Zapier</a> integration
+<p>Since I didn&rsquo;t want to fill a Google Spreadsheet every time I went to the bathroom, I end up creating a <a href="https://zapier.com/apps/">Zapier</a> integration
 with Google Spreadsheets, that would have an exposed web hook, which would be used by tapping the NFC tag.</p>
 <p>It was a simple webhook that would store something like this:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
@@ -105,7 +105,7 @@ with Google Spreadsheets, that would have an exposed web hook, which would be us
 </div>
 </div><p>The important part is the <code> event_value</code> which would work as a toggle, in which <strong>True</strong> means &ldquo;Going to the bathroom&rdquo; and <strong>False</strong> &ldquo;Coming back&rdquo;.</p>
 <h2 id="nfc-tag">NFC Tag</h2>
-<p>I just wanted to have one tag, which I would tap with my phone and make the POST request to the Zapier wehbook.</p>
+<p>I just wanted to have one tag, which I would tap with my phone and make the POST request to the Zapier webhook.</p>
 <p>So, I just end up creating a new task on &ldquo;NFC Tools&rdquo; app that would make an HTTP Post request to Zapier with the expected <code>event_value</code>.</p>
 <p><img src="nfc_tools_screenshot.png" alt="NFC Tools App"></p>
 <h1 id="conclusions">Conclusions</h1>
@@ -337,7 +337,22 @@ fig = {"data":[{"legendgroup":"Time in seconds","marker":{"color":"rgb(31, 119, 
 
 <hr>
 
-<div class="pt-5">
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-auto">
+      <small>
+        Last update: March 23, 2021
+        
+          <a href="https://github.com/andreffs18/website/commit/b2e589d24899111ee613e1246cbb56aa3de0478f" target="_blank">(b2e589d)</a>
+        
+      </small>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="pt-4">
     <div class="container">
         <div class="row">
             <div class="col-md-6 text-left">
@@ -373,49 +388,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
 window.addEventListener('DOMContentLoaded', () => {
 	const observer = new IntersectionObserver(entries => {
-        let container = document.querySelector('.toc');
-        let links = [...container.querySelectorAll('a')]
-        let headings = links.map(link => {
-            let id = link.getAttribute('href')
-            return document.querySelector(id)
-        })
+    let container = document.querySelector('.toc');
+    let links = [...container.querySelectorAll('a')]
+    let headings = links.map(link => {
+      let id = link.getAttribute('href')
+      return document.querySelector(id)
+    })
 
-        entries.forEach(entry => {
-            let previousSection = undefined;
-            let href = `#${entry.target.getAttribute('id')}`;
-            let link = links.find(l => l.getAttribute('href') === href);
+    entries.forEach(entry => {
+      let previousSection = undefined;
+      let href = `#${entry.target.getAttribute('id')}`;
+      let link = links.find(l => l.getAttribute('href') === href);
 
-            if (entry.intersectionRatio > 0) {
-                link.classList.add('is-visible');
-                previousSection = entry.target.getAttribute('id');
-            } else {
-                link.classList.remove('is-visible');
-            }
+      if (entry.intersectionRatio > 0) {
+        link.classList.add('is-visible');
+        previousSection = entry.target.getAttribute('id');
+      } else {
+        link.classList.remove('is-visible');
+      }
 
-            links.forEach(link => {
-                link.classList.remove('is-active');
-            })
+      links.forEach(link => {
+        link.classList.remove('is-active');
+      })
 
-            let firstVisibleLink = container.querySelector('.is-visible');
-            if (firstVisibleLink) {
-                firstVisibleLink.classList.add('is-active');
-            }
-            if (!firstVisibleLink && previousSection) {
-                container.querySelector(`a[href="#${previousSection}"]`).classList.add('is-active');
-            }
-        })
-        
-        if(entries.length === 1){
-            let entry = entries[0];
-            let lastHeadingOfBlogpost = headings[headings.length - 1];
-            if(
-                entry.intersectionRatio === 0 && 
-                entry.target === lastHeadingOfBlogpost 
-            ) {
-                let href = `#${entry.target.getAttribute('id')}`;
-                container.querySelector(`a[href="${href}"]`).classList.add('is-active');
-            }
-        }
+      let firstVisibleLink = container.querySelector('.is-visible');
+      if (firstVisibleLink) {
+        firstVisibleLink.classList.add('is-active');
+      }
+      if (!firstVisibleLink && previousSection) {
+        container.querySelector(`a[href="#${previousSection}"]`).classList.add('is-active');
+      }
+    })
+    
+    if(entries.length === 1){
+      let entry = entries[0];
+      let lastHeadingOfBlogpost = headings[headings.length - 1];
+      if(
+        entry.intersectionRatio === 0 && 
+        entry.target === lastHeadingOfBlogpost 
+      ) {
+        let href = `#${entry.target.getAttribute('id')}`;
+        container.querySelector(`a[href="${href}"]`).classList.add('is-active');
+      }
+    }
 	});
 	
 	document.querySelectorAll(BLOG_TITLE_SELECTORS).forEach((title) => {

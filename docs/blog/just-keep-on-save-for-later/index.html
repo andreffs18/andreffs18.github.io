@@ -88,7 +88,7 @@
 <h1 id="to-read-or-to-save">To Read or To Save?</h1>
 <p>I realized that for me to have +300 articles on Feedly to &ldquo;Read Later&rdquo;, my process would consist of something like:</p>
 <ul>
-<li>Everytime I'm waiting for someone (or <a href="https://andreffs18.github.io/website/blog/get-paid-for-pooping/">most likely in the bathroom</a>), I would scroll on Feedly for a bit and <strong>not read anything</strong>, only mark the article as to &ldquo;Read Later&rdquo;.</li>
+<li>Every time I'm waiting for someone (or <a href="https://andreffs18.github.io/website/blog/get-paid-for-pooping/">most likely in the bathroom</a>), I would scroll on Feedly for a bit and <strong>not read anything</strong>, only mark the article as to &ldquo;Read Later&rdquo;.</li>
 </ul>
 <p>The same thing with links that some of my friends shared with me:</p>
 <ul>
@@ -98,7 +98,7 @@
 <blockquote>
 <p>I use the <a href="https://chrome.google.com/webstore/detail/save-to-feedly-board/hdhblphcdjcicefneapkhmleapfaocih">&ldquo;Save to Feedly Board&rdquo;</a> Chrome extension which allows me to just [CMD + D] and save any website into my &ldquo;Read Later&rdquo; board.</p>
 </blockquote>
-<p>Since reading a couple of these a days was proving to be very productive, I wanted to make sure I was keeping up with it, and to do that <strong>why not force it upon me via <em>le amazing overengineering</em> 🥖</strong>.</p>
+<p>Since reading a couple of these a days was proving to be very productive, I wanted to make sure I was keeping up with it, and to do that <strong>why not force it upon me via <em>le amazing over-engineering</em> 🥖</strong>.</p>
 <h1 id="automate-everything">Automate everything</h1>
 <p>Having decided to read at least one article a day, I had to figure out how would I efforce that. Since I&rsquo;m an engineer and I like to overthink most things, I though that it would be acceptable to just get a random article from that list, <em>automatically</em>.</p>
 <p>Not only I would be surprised (<em>&ldquo;oh damn, I forgot I saved this&quot;</em>, type of situation) but also, I would have a topic that I could focus on that day.</p>
@@ -109,10 +109,10 @@
 </blockquote>
 <h2 id="where-do-i-spend-most-of-my-time">Where do I spend most of my time?</h2>
 <p>💻 Terminal.</p>
-<p>That&rsquo;s it! Everytime I open a new tab on my terminal, I get a new article from my &ldquo;Read Later&rdquo; on Feedly!</p>
+<p>That&rsquo;s it! Every time I open a new tab on my terminal, I get a new article from my &ldquo;Read Later&rdquo; on Feedly!</p>
 <p><img src="startup.gif" alt="My terminal startup."></p>
 <blockquote>
-<p>If you&rsquo;re wondering about the giant 😭, you can check out <a href="">&ldquo;I really like emojies&rdquo;</a> blogpost.</p>
+<p>If you&rsquo;re wondering about the giant 😭, you can check out <a href="">&ldquo;I really like emoji&rsquo;s&rdquo;</a> blogpost.</p>
 </blockquote>
 <h1 id="plan">Plan</h1>
 <p>TL;DR: made a simple alias function, that runs a Python script that gets all &ldquo;Read Later&rdquo; articles from Feedly and randomly opens one on a web browser 👌.</p>
@@ -138,7 +138,7 @@
 <span style="color:#f92672">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>Then I just needed to run this function everytime I open a terminal:</p>
+</div><p>Then I just needed to run this function every time I open a terminal:</p>
 <pre><code># on my ~/.zshrc
 (...)
 
@@ -173,7 +173,7 @@ E --> F
 <li>Most of it <code>[deprecated]</code>;</li>
 <li>Not the best documentation.</li>
 </ul>
-<p>Endup looking on stack overflow (of course) and <a href="https://rud.is/b/2018/04/16/by-request-retrieving-your-feedly-saved-for-later-entries/">this guy</a> for guidance, but the overall way to get your &ldquo;Saved for Later&rdquo; feed is to get you profile id, which then can be used to get the &ldquo;stream&rdquo; (not entries or feed) tagged as <code>&quot;global.saved&quot;</code>.</p>
+<p>End up looking on stack overflow (of course) and <a href="https://rud.is/b/2018/04/16/by-request-retrieving-your-feedly-saved-for-later-entries/">this guy</a> for guidance, but the overall way to get your &ldquo;Saved for Later&rdquo; feed is to get you profile id, which then can be used to get the &ldquo;stream&rdquo; (not entries or feed) tagged as <code>&quot;global.saved&quot;</code>.</p>
 <p>Then we just need to keep going through their pagination until we reach the end of the feed:</p>
 <blockquote>
 <p>&ldquo;The streams APIs offer pagination through the <code>continuation</code> value, which can be used to fetch the next page of entry ids or content. If the server doesn’t return a <code>continuation value</code> in its response, you’ve reached the end of the stream&rdquo; - <a href="https://developer.feedly.com/v3/streams/">https://developer.feedly.com/v3/streams/</a></p>
@@ -264,9 +264,9 @@ webbrowser<span style="color:#f92672">.</span>open(f<span style="color:#e6db74">
 <h1 id="conclusions">Conclusions</h1>
 <ul>
 <li>Realized that I have a lot of articles that float around the same topics (Frontend, Backend, CI/CD, etc) and that it would be great to aggregate those so I dont jump around between topics;</li>
-<li>I could save a cache of all articles locally (on a .txt file or smth), and update it after like 15 days.</li>
-<li>I&rsquo;ve notice that my behaviour has changed regarding terminal tabs. Now I tend to keep myself centered around 4 tabs, whereas before it was a lot more!</li>
-<li>Since Feedly access token only works for 30 days, I endup also creating another alias that updates the token in my environment. Although its much more manual (still need to check my email and open an link 🙃) its fine since I only need to run it every so ofter. You can find it on my dotfiles &ldquo;<a href="https://github.com/andreffs18/dotfiles/blob/master/config/system/.functions#L63-L74">update_feedly_token()</a>&quot;.</li>
+<li>I could save a cache of all articles locally (on a .txt file or something), and update it after like 15 days.</li>
+<li>I&rsquo;ve notice that my behavior has changed regarding terminal tabs. Now I tend to keep myself centered around 4 tabs, whereas before it was a lot more!</li>
+<li>Since Feedly access token only works for 30 days, I end up also creating another alias that updates the token in my environment. Although its much more manual (still need to check my email and open an link 🙃) its fine since I only need to run it every so ofter. You can find it on my dotfiles &ldquo;<a href="https://github.com/andreffs18/dotfiles/blob/master/config/system/.functions#L63-L74">update_feedly_token()</a>&quot;.</li>
 </ul>
 <p>If you got his far I have a question: How can you do this in bash? Or just better? Fewer lines of code? One liner?! 😱</p>
 <p>Alright, cya! 👋</p>
@@ -308,7 +308,22 @@ webbrowser<span style="color:#f92672">.</span>open(f<span style="color:#e6db74">
 
 <hr>
 
-<div class="pt-5">
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-auto">
+      <small>
+        Last update: March 23, 2021
+        
+          <a href="https://github.com/andreffs18/website/commit/b2e589d24899111ee613e1246cbb56aa3de0478f" target="_blank">(b2e589d)</a>
+        
+      </small>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="pt-4">
     <div class="container">
         <div class="row">
             <div class="col-md-6 text-left">
@@ -344,49 +359,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
 window.addEventListener('DOMContentLoaded', () => {
 	const observer = new IntersectionObserver(entries => {
-        let container = document.querySelector('.toc');
-        let links = [...container.querySelectorAll('a')]
-        let headings = links.map(link => {
-            let id = link.getAttribute('href')
-            return document.querySelector(id)
-        })
+    let container = document.querySelector('.toc');
+    let links = [...container.querySelectorAll('a')]
+    let headings = links.map(link => {
+      let id = link.getAttribute('href')
+      return document.querySelector(id)
+    })
 
-        entries.forEach(entry => {
-            let previousSection = undefined;
-            let href = `#${entry.target.getAttribute('id')}`;
-            let link = links.find(l => l.getAttribute('href') === href);
+    entries.forEach(entry => {
+      let previousSection = undefined;
+      let href = `#${entry.target.getAttribute('id')}`;
+      let link = links.find(l => l.getAttribute('href') === href);
 
-            if (entry.intersectionRatio > 0) {
-                link.classList.add('is-visible');
-                previousSection = entry.target.getAttribute('id');
-            } else {
-                link.classList.remove('is-visible');
-            }
+      if (entry.intersectionRatio > 0) {
+        link.classList.add('is-visible');
+        previousSection = entry.target.getAttribute('id');
+      } else {
+        link.classList.remove('is-visible');
+      }
 
-            links.forEach(link => {
-                link.classList.remove('is-active');
-            })
+      links.forEach(link => {
+        link.classList.remove('is-active');
+      })
 
-            let firstVisibleLink = container.querySelector('.is-visible');
-            if (firstVisibleLink) {
-                firstVisibleLink.classList.add('is-active');
-            }
-            if (!firstVisibleLink && previousSection) {
-                container.querySelector(`a[href="#${previousSection}"]`).classList.add('is-active');
-            }
-        })
-        
-        if(entries.length === 1){
-            let entry = entries[0];
-            let lastHeadingOfBlogpost = headings[headings.length - 1];
-            if(
-                entry.intersectionRatio === 0 && 
-                entry.target === lastHeadingOfBlogpost 
-            ) {
-                let href = `#${entry.target.getAttribute('id')}`;
-                container.querySelector(`a[href="${href}"]`).classList.add('is-active');
-            }
-        }
+      let firstVisibleLink = container.querySelector('.is-visible');
+      if (firstVisibleLink) {
+        firstVisibleLink.classList.add('is-active');
+      }
+      if (!firstVisibleLink && previousSection) {
+        container.querySelector(`a[href="#${previousSection}"]`).classList.add('is-active');
+      }
+    })
+    
+    if(entries.length === 1){
+      let entry = entries[0];
+      let lastHeadingOfBlogpost = headings[headings.length - 1];
+      if(
+        entry.intersectionRatio === 0 && 
+        entry.target === lastHeadingOfBlogpost 
+      ) {
+        let href = `#${entry.target.getAttribute('id')}`;
+        container.querySelector(`a[href="${href}"]`).classList.add('is-active');
+      }
+    }
 	});
 	
 	document.querySelectorAll(BLOG_TITLE_SELECTORS).forEach((title) => {

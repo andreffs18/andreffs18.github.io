@@ -70,7 +70,7 @@
         </header>
         <article class="markdown-body">
             <p><img src="docker+postgres.png" alt="Docker SSH Tunnel to AWS EC2 Instance"></p>
-<p>More often than not, I endup going online to look up on how to use docker as the middle man on interacting with Postgres.</p>
+<p>More often than not, I end up going online to look up on how to use docker as the middle man on interacting with Postgres.</p>
 <blockquote>
 <p>Usually for me its Postgres, but this &ldquo;recipe&rdquo; can be applied to any piece of software that has more than one version which you don&rsquo;t have installed on your laptop.</p>
 </blockquote>
@@ -168,7 +168,22 @@ Its possible that the database user on our Production database is different from
 
 <hr>
 
-<div class="pt-5">
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-auto">
+      <small>
+        Last update: March 23, 2021
+        
+          <a href="https://github.com/andreffs18/website/commit/b2e589d24899111ee613e1246cbb56aa3de0478f" target="_blank">(b2e589d)</a>
+        
+      </small>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="pt-4">
     <div class="container">
         <div class="row">
             <div class="col-md-6 text-left">
@@ -204,49 +219,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
 window.addEventListener('DOMContentLoaded', () => {
 	const observer = new IntersectionObserver(entries => {
-        let container = document.querySelector('.toc');
-        let links = [...container.querySelectorAll('a')]
-        let headings = links.map(link => {
-            let id = link.getAttribute('href')
-            return document.querySelector(id)
-        })
+    let container = document.querySelector('.toc');
+    let links = [...container.querySelectorAll('a')]
+    let headings = links.map(link => {
+      let id = link.getAttribute('href')
+      return document.querySelector(id)
+    })
 
-        entries.forEach(entry => {
-            let previousSection = undefined;
-            let href = `#${entry.target.getAttribute('id')}`;
-            let link = links.find(l => l.getAttribute('href') === href);
+    entries.forEach(entry => {
+      let previousSection = undefined;
+      let href = `#${entry.target.getAttribute('id')}`;
+      let link = links.find(l => l.getAttribute('href') === href);
 
-            if (entry.intersectionRatio > 0) {
-                link.classList.add('is-visible');
-                previousSection = entry.target.getAttribute('id');
-            } else {
-                link.classList.remove('is-visible');
-            }
+      if (entry.intersectionRatio > 0) {
+        link.classList.add('is-visible');
+        previousSection = entry.target.getAttribute('id');
+      } else {
+        link.classList.remove('is-visible');
+      }
 
-            links.forEach(link => {
-                link.classList.remove('is-active');
-            })
+      links.forEach(link => {
+        link.classList.remove('is-active');
+      })
 
-            let firstVisibleLink = container.querySelector('.is-visible');
-            if (firstVisibleLink) {
-                firstVisibleLink.classList.add('is-active');
-            }
-            if (!firstVisibleLink && previousSection) {
-                container.querySelector(`a[href="#${previousSection}"]`).classList.add('is-active');
-            }
-        })
-        
-        if(entries.length === 1){
-            let entry = entries[0];
-            let lastHeadingOfBlogpost = headings[headings.length - 1];
-            if(
-                entry.intersectionRatio === 0 && 
-                entry.target === lastHeadingOfBlogpost 
-            ) {
-                let href = `#${entry.target.getAttribute('id')}`;
-                container.querySelector(`a[href="${href}"]`).classList.add('is-active');
-            }
-        }
+      let firstVisibleLink = container.querySelector('.is-visible');
+      if (firstVisibleLink) {
+        firstVisibleLink.classList.add('is-active');
+      }
+      if (!firstVisibleLink && previousSection) {
+        container.querySelector(`a[href="#${previousSection}"]`).classList.add('is-active');
+      }
+    })
+    
+    if(entries.length === 1){
+      let entry = entries[0];
+      let lastHeadingOfBlogpost = headings[headings.length - 1];
+      if(
+        entry.intersectionRatio === 0 && 
+        entry.target === lastHeadingOfBlogpost 
+      ) {
+        let href = `#${entry.target.getAttribute('id')}`;
+        container.querySelector(`a[href="${href}"]`).classList.add('is-active');
+      }
+    }
 	});
 	
 	document.querySelectorAll(BLOG_TITLE_SELECTORS).forEach((title) => {

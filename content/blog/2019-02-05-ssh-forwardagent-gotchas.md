@@ -61,8 +61,8 @@ origin    https://gitlab.com/andreffs18/load-test.git (push)
 
 ⚠️  If you work with HTTPs urls, it will always ask for your username/password!
 
-If you're correctly using SSH when cloning / setting remotes. 
-Then make sure you have a ssh-agent to remember your password. 
+If you're correctly using SSH when cloning / setting remotes.
+Then make sure you have a ssh-agent to remember your password.
 That way, you'll only enter your passphrase once by terminal session.
 
 If it is still too annoying, then simply set a ssh-key without passphrase.

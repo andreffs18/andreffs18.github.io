@@ -4,15 +4,15 @@ slug: postgres-is-now-running
 subtitle: ""
 date: 2017-09-20T10:53:00+00:00
 draft: false
-tags: ["postgres"] 
+tags: ["postgres"]
 toc: false
 plotly: false
 ---
 
-My macbook has OSX Mavericks installed and sometimes it crashes for no reason, breaking my local postgres server. 
+My Macbook has OSX Mavericks installed and sometimes it crashes for no reason, breaking my local postgres server.
 After restarting and running again ```"$ brew services postgres"```, Postgres becomes _yellow_ and I end up spending sometime looking confused and frustrated.
 
-Looking at the logs you can get a sense of whats happening: 
+Looking at the logs you can get a sense of whats happening:
 
 {{< highlight bash>}}
 $ tail -f /usr/local/var/postgres/server.log
@@ -26,8 +26,8 @@ $ rm -f /usr/local/var/postgres/postmaster.pid
 {{< /highlight>}}
 
 
-> If you can't find your `postmaster.pid`, just run the following snippet on your terminal: 
-> 
+> If you can't find your `postmaster.pid`, just run the following snippet on your terminal:
+>
 > ```$ find ~ -name postmaster.pid\* ```
 
 

@@ -8,7 +8,7 @@ tags: ["hugo", "debugging"]
 ---
 
 
-While building this website I needed to understand a bit more about the internals and its variables. Eventhough Hugo's [documentation about debugging](https://gohugo.io/templates/template-debugging/) is pretty _"okay"_, there are a lot of attributes that are really hard to figure out, specially if you can't see them on the documentation.
+While building this website I needed to understand a bit more about the internals and its variables. Even though Hugo's [documentation about debugging](https://gohugo.io/templates/template-debugging/) is pretty _"okay"_, there are a lot of attributes that are really hard to figure out, specially if you can't see them on the documentation.
 
 So I started to look online for something to help me out debugging Hugo templates and the usual 3 options were:
 
@@ -28,7 +28,7 @@ You'll get something like this:
 
 ![Opt1: printf dot var](printf_v.png)
 
-Which to be honest is not the best dev friendly output to figure out what can you use. Also, it hiddes a lot of variables that you have access to, for example, printing the ```site``` variable only shows this:
+Which to be honest is not the best dev friendly output to figure out what can you use. Also, it hides a lot of variables that you have access to, for example, printing the ```site``` variable only shows this:
 
 ```go
 // {{ printf "%#v" site }}
@@ -129,3 +129,5 @@ theme = ["hugo-debugprint"]
 - Console.log everything: https://discourse.gohugo.io/t/easier-debugging-hugo-variables-using-the-javascript-console/22873
 - Using Hugo debug themes: https://github.com/kaushalmodi/hugo-debugprint
 - Context variables: https://www.smashingmagazine.com/2021/02/context-variables-hugo-static-site-generator/
+
+👋

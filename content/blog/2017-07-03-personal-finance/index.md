@@ -4,7 +4,7 @@ slug: personal-finance
 subtitle: ""
 date: 2017-07-03T17:44:00+00:00
 draft: false
-tags: ["finance", "plotly"] 
+tags: ["finance", "plotly"]
 toc: false
 plotly: true
 ---
@@ -17,17 +17,17 @@ fig = {"data":[{"hoverinfo":"none","labels":["\ud83d\udcb5Cash","\ud83e\udd47Pre
 
 The major misconception is that having different tech stocks is the same as having a diverse portfolio.
 
-So below is a summary from all the various resources I found either in books or online for different financial tools 
+So below is a summary from all the various resources I found either in books or online for different financial tools
 that I should know, or at least understand when to buy or sell:
 
 > Each element in the list has either a 🐻 (bear) or a 🐂 (bull), which represents:
 > * 🐻: Usually used when market is going through a recession or crisis.
-> * 🐂: When market is "going up" and economy is prospering. 
+> * 🐂: When market is "going up" and economy is prospering.
 >
 
 
 ### Note
-⚠️ Keep in mind that this is simply for my understanding and shouldn't be used as any financial advice. 
+⚠️ Keep in mind that this is simply for my understanding and shouldn't be used as any financial advice.
 
 
 ## Tools
@@ -50,7 +50,7 @@ that I should know, or at least understand when to buy or sell:
   * Blue Chip Stock (big old companies (eg: Coca-Cola))
   * Growth (new fast growing companies (eg: Amazon))
   * Passive Income (companies that pay dividends (eg: Nintendo))
-  * Divided into different sectors (eg: Retail, Energy, Health Care/Pharmacy) 
+  * Divided into different sectors (eg: Retail, Energy, Health Care/Pharmacy)
 
 * **🔖 Bonds (0-10%) (🐻)**
   * Periodic payments (interests over fixed period of time)

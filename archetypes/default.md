@@ -3,8 +3,9 @@ title: "{{ replace .Name "-" " " | title }}"
 slug: {{ .Name }}
 subtitle: ""
 date: {{ .Date }}
-draft: true
 tags: []
+draft: true
 toc: false
 plotly: false
+slideshow: false
 ---
