@@ -15,7 +15,10 @@
 
     
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+    
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -23,11 +26,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
-
-    
-    <link rel="stylesheet" href="https://andreffs18.github.io/website/css/main.min.4285f46dcdcc42ea7628bc847a0c13d965d8a13ff0d496a0579b7301170a29f4.css">
-
+    <link rel="stylesheet" href="https://andreffs18.github.io/website/css/main.min.d539ec0b209cf154b062ce259e1b811e7ef466b1c66d00beaa4d80a6eae9a3f4.css">
 </head>
     <body>
         <div class="container pb-5">
@@ -42,7 +41,7 @@
     </div>
 </header>
             
-<script src="https://cdn.plot.ly/plotly-1.50.0.min.js"></script>
+<script type="text/javascript" src="https://cdn.plot.ly/plotly-1.50.0.min.js"></script>
 
 <main class="row blog">
     <section>
@@ -382,30 +381,28 @@ window.addEventListener('DOMContentLoaded', () => {
         })
 
         entries.forEach(entry => {
-            console.log(entry);
             let previousSection = undefined;
             let href = `#${entry.target.getAttribute('id')}`;
             let link = links.find(l => l.getAttribute('href') === href);
 
             if (entry.intersectionRatio > 0) {
                 link.classList.add('is-visible');
-                previousSection = entry.target.getAttribute('id'); 
-              } else {
+                previousSection = entry.target.getAttribute('id');
+            } else {
                 link.classList.remove('is-visible');
-              }
+            }
 
-              let firstVisibleLink = container.querySelector('.is-visible');
-              links.forEach(link => {
+            links.forEach(link => {
                 link.classList.remove('is-active');
-              })
+            })
 
-              if (firstVisibleLink) {
+            let firstVisibleLink = container.querySelector('.is-visible');
+            if (firstVisibleLink) {
                 firstVisibleLink.classList.add('is-active');
-              }
-
-              if (!firstVisibleLink && previousSection) {
+            }
+            if (!firstVisibleLink && previousSection) {
                 container.querySelector(`a[href="#${previousSection}"]`).classList.add('is-active');
-              }
+            }
         })
         
         if(entries.length === 1){

@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta name="generator" content="Hugo 0.67.1" />
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="https://andreffs18.github.io/website/favicon.png">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ANDREFFS | Learning How to Canary Deploy with Kubernetes</title>
+
+    <meta name="author" content="">
+    <meta name="description" content="">
+    <link rel="canonical" href="https://andreffs18.github.io/website/blog/learning-how-to-canary-deploy-with-kubernetes/">
+
+    
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+    
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    
+    <link rel="stylesheet" href="https://andreffs18.github.io/website/css/main.min.d539ec0b209cf154b062ce259e1b811e7ef466b1c66d00beaa4d80a6eae9a3f4.css">
+</head>
+    <body>
+        <div class="container pb-5">
+            <header>
+    <div class="page-header pb-4 mt-5 mb-4">
+        
+            <a href="https://andreffs18.github.io/website" class="text-decoration-none">
+                <h1 class="text3d text-right text-uppercase"><span id="">André Silva</span><br/></h1>
+            </a>
+            <small class="letterpress text-right text-uppercase">28 y/old workaholic from Lisbon.</small>
+        
+    </div>
+</header>
+            
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<main class="row blog">
+    <section>
+        <header>
+            <h1 class="">Learning How to Canary Deploy with Kubernetes</h1>
+
+            
+            <h2 class="font-weight-light font-italic mb-3">Learning by trial and error</h2>
+            
+
+            <a class="text-muted mt-3">
+                <a class="text-muted" href="https://andreffs18.github.io/website/blog/learning-how-to-canary-deploy-with-kubernetes/">Published February 14, 2020</a>
+
+                
+                    <span>|</span>
+                    
+                    <a class="text-muted" href="https://andreffs18.github.io/tags/bash">#bash</a>
+                    
+                    <a class="text-muted" href="https://andreffs18.github.io/tags/automation">#automation</a>
+                    
+                    <a class="text-muted" href="https://andreffs18.github.io/tags/canary">#canary</a>
+                    
+                    <a class="text-muted" href="https://andreffs18.github.io/tags/kubernetes">#kubernetes</a>
+                    
+                    <a class="text-muted" href="https://andreffs18.github.io/tags/ci/cd">#ci/cd</a>
+                    
+                    <a class="text-muted" href="https://andreffs18.github.io/tags/gitlab">#gitlab</a>
+                    
+                
+                <span>|</span>
+                <a class="text-muted text-decoration-none">± 20 mins</a>
+            </p>
+        </header>
+        <article class="markdown-body">
+            <p><img src="header.png" alt="Header Image"></p>
+<p>Its true, that if the time from developing a feature to deploying it to your customers only takes minutes to hours instead of days to months, that you probably have a pretty amazing development workflow.</p>
+<p>Im also willing to bet that a key feature of that workflow is an impeccable CI/CD pipeline, that not only allows your development team to automate a lot of time consuming and manual tasks (like building, testing, deploying, etc) but also, shortens the feedback cycle between developing-&gt;testing and testing-&gt;production.</p>
+<p>I would even say that in those cases, you have a delivery pipeline that most companies work really hard to achieve.</p>
+<h1 id="motivation">Motivation</h1>
+<p>One of the major pain points that I see from working in Software for the last couple of years is that, even after all the work your team had developing and testing, making sure everything is working as expected, you still have to &ldquo;schedule&rdquo; a major deploy, nurture it while checking if no major problems occurs.</p>
+<p>Most of the time, that is because we are not 100% confident that the feature will go &ldquo;bug free&rdquo; or that we wont cause an outage ou impact a dependency:</p>
+<blockquote>
+<p>eg: what would happen to our feature with a 10x increase in traffic?</p>
+</blockquote>
+<p>Other times we just have to many operations involving the deployment.</p>
+<blockquote>
+<p>eg: migration scripts, feature flags, db schema upgrades, etc.</p>
+</blockquote>
+<p>Although you are in an &ldquo;agile company&rdquo;, you still need to &ldquo;fill up a form&rdquo; every time you push to production.</p>
+<p><em>If only there was a better way&hellip;</em></p>
+<h1 id="overview">Overview</h1>
+<p>In this post, we&rsquo;re going to play around with a simple Canary Deployment workflow to maintain a test app on an Kubernetes cluster.</p>
+<p>We will do this, in 2 parts:</p>
+<ol>
+<li>Setup the test app, environment and make sure everything is up and running locally</li>
+<li>Play around with different implementations of canary deployments on Kubernetes</li>
+</ol>
+<p>The end goal is to have an idea of how to setup an automatic CI/CD pipeline that will allow us to:</p>
+<ul>
+<li>Shift a small subset of our traffic to the new deployed version of the app. This action will allow us to perform simple smoke tests to see if everything is up an running on the new version.</li>
+<li>Once we are certain the new version works well, we will shift gradually all traffic to it, allowing us to monitor how it works under load, and eventually decommissioning the old version.</li>
+</ul>
+<p>💡 <strong>By leveraging Kubernetes, we can implement a simple Canary Deployment strategy, that enables us to quickly get valuable feedback on our work, decreasing the feedback cycle and improving our confidence in our code.</strong></p>
+<h1 id="initial-environment-setup">Initial Environment Setup</h1>
+<blockquote>
+<p>To keep this simple and light, you can download all this code from <a href="https://gitlab.com/andreffs18/canary-deployment-companion">https://gitlab.com/andreffs18/canary-deployment-companion</a>.</p>
+</blockquote>
+<h2 id="test-application">Test Application</h2>
+<p>Our application is a simple HTTP Go server that logs it&rsquo;s version and returns it when we request the root endpoint:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// ~/canary-deployment-companion/main.go
+</span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;fmt&#34;</span>
+	<span style="color:#e6db74">&#34;log&#34;</span>
+	<span style="color:#e6db74">&#34;net/http&#34;</span>
+	<span style="color:#e6db74">&#34;os&#34;</span>
+)
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">HandleFunc</span>(<span style="color:#e6db74">&#34;/&#34;</span>, <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">w</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">ResponseWriter</span>, <span style="color:#a6e22e">r</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Request</span>) {
+		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Fprintf</span>(<span style="color:#a6e22e">w</span>, <span style="color:#e6db74">&#34;version: %s&#34;</span>, <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Getenv</span>(<span style="color:#e6db74">&#34;VERSION&#34;</span>))
+	})
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">ListenAndServe</span>(<span style="color:#e6db74">&#34;:8080&#34;</span>, <span style="color:#66d9ef">nil</span>); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Fatal</span>(<span style="color:#a6e22e">err</span>)
+	}
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>We can spin up this server and check that it is working as expected:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ VERSION<span style="color:#f92672">=</span>v1.0.0 go run main.go
+<span style="color:#75715e"># Opening a browser on http://localhost:8080/</span>
+version: v1.0.0
+</code></pre></td></tr></table>
+</div>
+</div><p>We have an application! Now we need to create a docker image for it, so we can use it as a container in our cluster.</p>
+<blockquote>
+<p>For convenience, I&rsquo;ve made this image available on my docker hub page <a href="https://hub.docker.com/r/andreffs/echo">https://hub.docker.com/r/andreffs/echo</a> so you can skip this step if you want.</p>
+</blockquote>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dockerfile" data-lang="dockerfile"><span style="color:#75715e"># ~/canary-deployment-companion/Dockerfile</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> golang:1.13.8-alpine3.11 as build</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Set the Current Working Directory inside the container</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">WORKDIR</span><span style="color:#e6db74"> /go/src/github.com/andreffs18/echo</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Copy everything from the current directory to the one inside the container</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> main.go .<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Build binary executable</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> CGO_ENABLED<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> go build -ldflags<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;-s -w&#34;</span> -o /echo<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># _Tis but a scratch_</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> scratch</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Copy only binary file from previous stage</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> --from<span style="color:#f92672">=</span>build /echo /echo<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># This container exposes port 8080 to the outside world</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">EXPOSE</span><span style="color:#e6db74"> 8080</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Define version so we can print it</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ARG</span> VERSION<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENV</span> VERSION<span style="color:#f92672">=</span>$VERSION<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Run the executable</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">CMD</span> [<span style="color:#e6db74">&#34;/echo&#34;</span>]<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>Now, to build this image locally just:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker build --build-arg VERSION<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;v1.0.0&#34;</span> -t andreffs/echo:v1.0.0 .
+Sending build context to Docker daemon  58.88kB
+Step 1/10 : FROM golang:1.13.8-alpine3.11 as build
+ ---&gt; e1fd9820be16
+Step 2/10 : WORKDIR /go/src/github.com/andreffs18/echo
+ ---&gt; Running in b93c242e71b9
+Removing intermediate container b93c242e71b9
+ ---&gt; 5d0917ad21d9
+Step 3/10 : COPY main.go .
+ ---&gt; 98585cd2b9a3
+Step 4/10 : RUN CGO_ENABLED<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> go build -ldflags<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;-s -w&#34;</span> -o /echo
+ ---&gt; Running in a49611010585
+Removing intermediate container a49611010585
+ ---&gt; b3b9af095993
+Step 5/10 : FROM scratch
+ ---&gt;
+Step 6/10 : COPY --from<span style="color:#f92672">=</span>build /echo /echo
+ ---&gt; e669809c7881
+Step 7/10 : EXPOSE <span style="color:#ae81ff">8080</span>
+ ---&gt; Running in 45a3b7be3823
+Removing intermediate container 45a3b7be3823
+ ---&gt; 300a9f31c0be
+Step 8/10 : ARG VERSION
+ ---&gt; Running in 1e22a6b73c37
+Removing intermediate container 1e22a6b73c37
+ ---&gt; 18865fe5e6eb
+Step 9/10 : ENV VERSION<span style="color:#f92672">=</span>$VERSION
+ ---&gt; Running in 9e7a3448f8fe
+Removing intermediate container 9e7a3448f8fe
+ ---&gt; a4958410a246
+Step 10/10 : CMD <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;/echo&#34;</span><span style="color:#f92672">]</span>
+ ---&gt; Running in 5c169b571faa
+Removing intermediate container 5c169b571faa
+ ---&gt; 93120fb32f2a
+Successfully built 93120fb32f2a
+Successfully tagged andreffs/echo:v1.0.0
+</code></pre></td></tr></table>
+</div>
+</div><p>Your application is now stored in your local container registry, which you can access and run in docker:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker images
+REPOSITORY          TAG         IMAGE ID        CREATED               SIZE
+andreffs/echo       v1.0.0      93120fb32f2a    About a minute ago    5.42MB
+
+$ docker run --rm -it -p 8080:8080 andreffs/echo:v1.0.0
+<span style="color:#75715e"># Opening a browser on http://localhost:8080/</span>
+version:  v1.0.0
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="minikube-cluster">Minikube Cluster</h2>
+<p>To test our examples we will be using <a href="https://minikube.sigs.k8s.io/docs/start/">Minikube</a>. This tool lets you instantiate a Kubernetes Cluster locally with no effort.</p>
+<p>To do that, you first need to <a href="https://minikube.sigs.k8s.io/docs/start/">install it</a> and then run the following:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ minikube start --vm-driver<span style="color:#f92672">=</span>hyperkit
+😄  minikube v1.16.0 on Darwin 10.14.6
+✨  Using the hyperkit driver based on user configuration
+👍  Starting control plane node minikube in cluster minikube
+🔥  Creating hyperkit VM <span style="color:#f92672">(</span>CPUs<span style="color:#f92672">=</span>2, Memory<span style="color:#f92672">=</span>4000MB, Disk<span style="color:#f92672">=</span>20000MB<span style="color:#f92672">)</span> ...
+🐳  Preparing Kubernetes v1.20.0 on Docker 20.10.0 ...
+    ▪ Generating certificates and keys ...
+    ▪ Booting up control plane ...
+    ▪ Configuring RBAC rules ...
+🔎  Verifying Kubernetes components...
+🌟  Enabled addons: storage-provisioner, default-storageclass
+🏄  Done! kubectl is now configured to use <span style="color:#e6db74">&#34;minikube&#34;</span> cluster and <span style="color:#e6db74">&#34;default&#34;</span> namespace by default
+<span style="color:#f92672">(</span>⎈ |minikube:default<span style="color:#f92672">)</span> $
+</code></pre></td></tr></table>
+</div>
+</div><p>Now the fun part. Our cluster will consist of:</p>
+<ul>
+<li>A Deployment configuration that spins up 4 servers, running our &ldquo;echo&rdquo; server</li>
+<li>A Service configuration which exposes our &ldquo;echo&rdquo; servers through an HTTP endpoint.</li>
+</ul>
+<p>It should look something like this once we have everything running:</p>
+<p><img src="minikube-arch.png" alt="Minikube Kubernetes Architecture"></p>
+<p>Lets create a kubernetes configuration file named <code>stable.yml</code>, with the following:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#75715e"># ~/canary-deployment-companion/k8s/stable.yml</span>
+---
+<span style="color:#66d9ef">apiVersion</span>: apps/v1
+<span style="color:#66d9ef">kind</span>: Deployment
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: server
+  <span style="color:#66d9ef">namespace</span>: default
+  <span style="color:#66d9ef">labels</span>: <span style="color:#75715e">&amp;labels</span>
+    <span style="color:#66d9ef">app</span>: echo
+    <span style="color:#66d9ef">track</span>: stable
+    <span style="color:#66d9ef">version</span>: v1<span style="color:#ae81ff">.0.0</span>
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">replicas</span>: <span style="color:#ae81ff">4</span>
+  <span style="color:#66d9ef">selector</span>:
+    <span style="color:#66d9ef">matchLabels</span>: <span style="color:#75715e">*labels</span>
+  <span style="color:#66d9ef">strategy</span>:
+    <span style="color:#66d9ef">rollingUpdate</span>:
+      <span style="color:#66d9ef">maxUnavailable</span>: <span style="color:#ae81ff">0</span>
+      <span style="color:#66d9ef">maxSurge</span>: <span style="color:#ae81ff">1</span>
+  <span style="color:#66d9ef">template</span>:
+    <span style="color:#66d9ef">metadata</span>:
+      <span style="color:#66d9ef">labels</span>: <span style="color:#75715e">*labels</span>
+    <span style="color:#66d9ef">spec</span>:
+      <span style="color:#66d9ef">containers</span>:
+      - <span style="color:#66d9ef">name</span>: echo
+        <span style="color:#66d9ef">image</span>: andreffs/echo:v1<span style="color:#ae81ff">.0.0</span>
+        <span style="color:#66d9ef">imagePullPolicy</span>: IfNotPresent
+        <span style="color:#66d9ef">ports</span>:
+          - <span style="color:#66d9ef">name</span>: http
+            <span style="color:#66d9ef">containerPort</span>: <span style="color:#ae81ff">8080</span>
+      <span style="color:#66d9ef">restartPolicy</span>: Always
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>All manifest files can be downloaded from <a href="https://gitlab.com/andreffs18/canary-deployment-companion">https://gitlab.com/andreffs18/canary-deployment-companion</a></p>
+</blockquote>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Make sure you are running on your minikube cluster</span>
+$ kubectl config use-context minikube
+Switched to context <span style="color:#e6db74">&#34;minikube&#34;</span>.
+
+<span style="color:#75715e"># Configure pods with deployment.yml manifest</span>
+<span style="color:#f92672">(</span>⎈ |minikube:default<span style="color:#f92672">)</span> $ kubectl apply -f stable.yml
+deployment.apps/server created
+
+<span style="color:#75715e"># Expose pods via a Kubernetes service</span>
+<span style="color:#f92672">(</span>⎈ |minikube:default<span style="color:#f92672">)</span> $ kubectl expose deployment server --type<span style="color:#f92672">=</span>NodePort --port<span style="color:#f92672">=</span><span style="color:#ae81ff">8080</span>
+service/server exposed
+
+<span style="color:#75715e"># Open service on the default web browser</span>
+<span style="color:#f92672">(</span>⎈ |minikube:default<span style="color:#f92672">)</span> $ minikube service server
+|-----------|--------|-------------|---------------------------|
+| NAMESPACE |  NAME  | TARGET PORT |            URL            |
+|-----------|--------|-------------|---------------------------|
+| default   | server |        <span style="color:#ae81ff">8080</span> | http://192.168.64.3:32517 |
+|-----------|--------|-------------|---------------------------|
+🎉  Opening service default/server in default browser...
+</code></pre></td></tr></table>
+</div>
+</div><p>At the same time, we will open a different terminal and run this one liner so we keep pinging our service. This will simulate traffic reaching our pods, so we can see on our logs which pod was executed.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>⎈ |minikube:default<span style="color:#f92672">)</span> $ <span style="color:#66d9ef">while</span> true; <span style="color:#66d9ef">do</span> curl <span style="color:#66d9ef">$(</span>minikube service server --url<span style="color:#66d9ef">)</span> <span style="color:#f92672">&amp;&amp;</span> echo <span style="color:#e6db74">&#34; ping&#34;</span>; sleep 2; <span style="color:#66d9ef">done</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="logs-initial-setup.gif" alt="Logs: Initial Setup"></p>
+<p>With this setup we can start testing our different options 🎸.</p>
+<h1 id="cicd-pipeline">CI/CD Pipeline</h1>
+<p>We&rsquo;ll not build the actual CI/CD pipeline in this post, but you can apply all these concepts anyway.</p>
+<p>Since the companion code is hosted on gitlab, an example of a Gitlab CI/CD configuration is used to illustrate how to setup the Canary Deployment.</p>
+<h2 id="pipeline-configuration">Pipeline Configuration</h2>
+<p>From an high level view, our CI/CD is composed of 4 stages:</p>
+
+<script async src="https://unpkg.com/mermaid@8.9.1/dist/mermaid.min.js"></script>
+<div class="mermaid">
+    
+stateDiagram-v2
+[*] --> Build
+Build --> Test
+Test --> Canary
+Canary --> Rollout
+Rollout --> [*]
+note right of Build
+    Build project docker image
+    and push it to Gitlab
+      container registry
+end note
+note left of Test
+    Run unit tests/functional tests
+    on project and ensure code
+    is working as expected
+end note
+note right of Canary
+    Deploy to a % of your fleet
+    the new code version
+end note
+note left of Rollout
+    Deploy to all pods the new
+    code changes
+end note
+
+
+</div>
+
+<p>This simply put can be translated into the following Gitlab <code>.gitlab-ci.yml</code> configuration:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#75715e"># ~/canary-deployment-companion/.gitlab-ci.yml</span>
+<span style="color:#66d9ef">stages</span>:
+  - build
+  - test
+  - canary
+  - deploy
+
+<span style="color:#66d9ef">build</span>:
+  <span style="color:#66d9ef">stage</span>: build
+  <span style="color:#66d9ef">allow_failure</span>: <span style="color:#66d9ef">false</span>
+  <span style="color:#66d9ef">script</span>:
+    <span style="color:#75715e"># Build image with latest code changes and push it to Gitlab ECR</span>
+    - docker build --pull -t $IMAGE:$VERSION .
+    - docker push $IMAGE:$VERSION
+
+<span style="color:#66d9ef">test</span>:
+  <span style="color:#66d9ef">stage</span>: test
+  <span style="color:#66d9ef">script</span>:
+    <span style="color:#75715e"># Run all necessary unittest</span>
+    - echo <span style="color:#e6db74">&#34;Starting test suit...&#34;</span>
+    - sleep <span style="color:#ae81ff">1</span>
+    - echo <span style="color:#e6db74">&#34;No test, no errors 🙃&#34;</span>
+
+<span style="color:#66d9ef">canary</span>:
+  <span style="color:#66d9ef">stage</span>: canary
+  <span style="color:#66d9ef">script</span>:
+    <span style="color:#75715e"># Starting canary deployment for new version and monitor errors</span>
+    - scripts/canary-deploy.sh $IMAGE:$VERSION
+    - scripts/monitor-errors.sh
+
+<span style="color:#66d9ef">deploy</span>:
+  <span style="color:#66d9ef">stage</span>: deploy
+  <span style="color:#66d9ef">needs</span>: [canary]
+  <span style="color:#66d9ef">script</span>:
+    <span style="color:#75715e"># Starting full rollout of new version and rolling back canary deployment</span>
+    - scripts/rollout-new-version.sh $IMAGE:$VERSION
+  <span style="color:#66d9ef">after_script</span>:
+    <span style="color:#75715e"># Add tag &#34;latest&#34; to last pushed image</span>
+    - docker pull $IMAGE:$VERSION
+    - docker tag $IMAGE:$VERSION $IMAGE:latest
+    - docker push $IMAGE:latest
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="stages">Stages</h2>
+<p>Each stage will run one of the scripts that we have on our companion repo. This is just to keep the <code>.gitlab-ci.yml</code> easy to read and understand.</p>
+<h3 id="continuous-integration">Continuous Integration</h3>
+<p><strong>Build</strong> and <strong>Test</strong> are pretty much straight forward:</p>
+<ul>
+<li>You build your container image so you can use it through your pipeline</li>
+<li>CI runs test suit on service to make sure no bugs were introduced and functionality is working</li>
+</ul>
+<h3 id="continuous-deployment">Continuous Deployment</h3>
+<p>The <strong>Canary</strong> and <strong>Rollout</strong> its where we want to focus.</p>
+<p>Below we go through the main ideas on how to develop those two steps: <strong>How to deploy, orchestrated and monitor the canary deploy</strong> and finally <strong>how to rollout to the whole fleet</strong> the new version of our server.</p>
+<p>But first, lets figure out how to deploy the new version to just our <code>track: canary</code>.</p>
+<h1 id="canary-rollout">Canary Rollout</h1>
+<h2 id="just--sed-you-pods-image">Just &ldquo;$ sed&rdquo; you pod’s image</h2>
+<p>This is the “ugly but quick” way.</p>
+<p>On Kubernetes <a href="https://kubernetes.io/docs/reference/kubectl/cheatsheet/#updating-resources">cheatsheet</a>, they show some examples on how to update resources. For this case, we want to just update <strong>a single container pod&rsquo;s image version</strong>.</p>
+<p>The idea here would be to just manually run a replacement script on one of our available servers:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>⎈ |minikube:default<span style="color:#f92672">)</span> $ kubectl get pods
+NAME                      READY   STATUS    RESTARTS   AGE
+server-55c7c6d78f-4rsl7   1/1     Running   <span style="color:#ae81ff">0</span>          16h
+server-55c7c6d78f-bh7pc   1/1     Running   <span style="color:#ae81ff">0</span>          16h
+server-55c7c6d78f-cq98j   1/1     Running   <span style="color:#ae81ff">0</span>          16h
+server-55c7c6d78f-z2zpk   1/1     Running   <span style="color:#ae81ff">0</span>          16h
+
+<span style="color:#f92672">(</span>⎈ |minikube:default<span style="color:#f92672">)</span> $ kubectl get pod server-55c7c6d78f-z2zpk -o yml | sed <span style="color:#e6db74">&#39;s/\(image: andreffs\/echo\):.*$/\1:v2.0.0/&#39;</span> | kubectl replace -f -
+pod/server-55c7c6d78f-z2zpk replaced
+</code></pre></td></tr></table>
+</div>
+</div><p>You can see what would happen to our servers below: we would have made available a new &ldquo;echo:v2.0.0&rdquo; server, which means, we have <strong>25% of our traffic using version 2.0.0</strong>:</p>
+<p><img src="minikube-sed-example.png" alt="Minikube sed example"></p>
+<p>If we check out logs, we will see that change:</p>
+<p><img src="sed-logs.gif" alt="Logs: Sed example"></p>
+<blockquote>
+<p>Our &ldquo;while loop ping&rdquo; shows that around 1/4 of the time we have the v2.0.0 responding our request.</p>
+</blockquote>
+<p>This is <em>quick and easy</em> to test but its very limited. Its okay if you are doing this manually on a controlled environment with minimal/no risk, like locally. (I mean, not production 🙃)</p>
+<p>Although the cons are still something to take into account:</p>
+<ul>
+<li>No traceability (only if you record your own actions, but who really does that?)</li>
+<li>Manual -&gt; Error prone since you will forget how you did it, or just “half-ass it” because “I already did this, it was something like this!&rdquo;</li>
+<li>The actual deployment configuration becomes outdated and does not reflect what we have configured</li>
+</ul>
+<p>There is also the disadvantage that if you have problems with the new version and you want to rollback, you need to find the exact pod where we updated the image, and either:</p>
+<ul>
+<li>
+<p><strong>Delete the pod:</strong></p>
+<ul>
+<li>Kubernetes will take into account the deployment configuration, and see that we had configured <strong>4</strong> pods running v1.0.0. Since one was deleted, Kubernetes will take care of spinning up a new one.</li>
+</ul>
+<blockquote>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>⎈ |minikube:default<span style="color:#f92672">)</span> $ kubectl delete pod server-55c7c6d78f-z2zpk
+pod <span style="color:#e6db74">&#34;server-55c7c6d78f-z2zpk&#34;</span> deleted
+<span style="color:#f92672">(</span>⎈ |minikube:default<span style="color:#f92672">)</span> ❯ kubectl get pods -w
+NAME                      READY   STATUS    RESTARTS   AGE
+server-55c7c6d78f-4rsl7   1/1     Running   <span style="color:#ae81ff">0</span>          7d13h
+server-55c7c6d78f-bh7pc   1/1     Running   <span style="color:#ae81ff">0</span>          7d13h
+server-55c7c6d78f-cq98j   1/1     Running   <span style="color:#ae81ff">0</span>          7d13h
+server-55c7c6d78f-z2zpk   1/1     Running   <span style="color:#ae81ff">3</span>          7d13h
+server-55c7c6d78f-z2zpk   1/1     Terminating   <span style="color:#ae81ff">3</span>          7d13h
+server-55c7c6d78f-nx2zp   0/1     Pending       <span style="color:#ae81ff">0</span>          0s
+server-55c7c6d78f-nx2zp   0/1     Pending       <span style="color:#ae81ff">0</span>          0s
+server-55c7c6d78f-nx2zp   0/1     ContainerCreating   <span style="color:#ae81ff">0</span>          1s
+server-55c7c6d78f-z2zpk   0/1     Terminating         <span style="color:#ae81ff">3</span>          7d13h
+server-55c7c6d78f-nx2zp   1/1     Running             <span style="color:#ae81ff">0</span>          4s
+</code></pre></td></tr></table>
+</div>
+</div></blockquote>
+</li>
+<li>
+<p><strong>Update image again:</strong></p>
+<ul>
+<li>Running the above command but with the original version.</li>
+</ul>
+<blockquote>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>⎈ |minikube:default<span style="color:#f92672">)</span> $ kubectl get pod server-55c7c6d78f-nx2zp -o yml | sed <span style="color:#e6db74">&#39;s/\(image: andreffs\/echo\):.*$/\1:v1.0.0/&#39;</span> | kubectl replace -f -
+</code></pre></td></tr></table>
+</div>
+</div></blockquote>
+</li>
+</ul>
+<h2 id="template-your-canary-deployment">Template your canary deployment</h2>
+<p>Instead of just applying changes to one pod, we can duplicate our original <code>stable.yml</code> configuration with some variables (eg: image version, labels, etc), call it <code>canary.yml</code> and use it to start up a new deployment with the new version.</p>
+<p>This way we remove the last two downsides of our first example:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#75715e"># ~/canary-deployment-companion/k8s/canary.yml</span>
+---
+<span style="color:#66d9ef">apiVersion</span>: apps/v1
+<span style="color:#66d9ef">kind</span>: Deployment
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: server
+  <span style="color:#66d9ef">namespace</span>: default
+  <span style="color:#66d9ef">labels</span>: <span style="color:#75715e">&amp;labels</span>
+    <span style="color:#66d9ef">app</span>: echo
+    <span style="color:#66d9ef">track</span>: canary
+<span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">version</span>: {{VERSION}}
+</span><span style="color:#66d9ef">spec</span>:
+<span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#66d9ef">replicas</span>: {{REPLICAS}}
+</span>  <span style="color:#66d9ef">selector</span>:
+    <span style="color:#66d9ef">matchLabels</span>: <span style="color:#75715e">*labels</span>
+  <span style="color:#66d9ef">strategy</span>:
+    <span style="color:#66d9ef">rollingUpdate</span>:
+      <span style="color:#66d9ef">maxUnavailable</span>: <span style="color:#ae81ff">0</span>
+      <span style="color:#66d9ef">maxSurge</span>: <span style="color:#ae81ff">1</span>
+  <span style="color:#66d9ef">template</span>:
+    <span style="color:#66d9ef">metadata</span>:
+      <span style="color:#66d9ef">labels</span>: <span style="color:#75715e">*labels</span>
+    <span style="color:#66d9ef">spec</span>:
+      <span style="color:#66d9ef">containers</span>:
+      - <span style="color:#66d9ef">name</span>: echo
+<span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#66d9ef">image</span>: {{IMAGE}}
+</span>        <span style="color:#66d9ef">imagePullPolicy</span>: IfNotPresent
+        <span style="color:#66d9ef">ports</span>:
+          - <span style="color:#66d9ef">name</span>: http
+            <span style="color:#66d9ef">containerPort</span>: <span style="color:#ae81ff">8080</span>
+        <span style="color:#66d9ef">restartPolicy</span>: Always</code></pre></td></tr></table>
+</div>
+</div>
+<blockquote>
+<p>This kubernetes deployment file is very similar to the &ldquo;stable&rdquo; deployment file. The only difference is the number of replicas (which is zero) and it&rsquo;s labels (<code>track=canary</code>).</p>
+</blockquote>
+<p>Defining our kubernetes manifests like this, in our CI/CD we can simply replace those <a href="https://mustache.github.io/">mustache variables</a> and apply the updated template, <strong>without manually changing our manifests</strong> every time we do a deploy.</p>
+<p>So, although we are still running a <code>sed</code> underneath, we are actually <strong>updating the deployment configuration and not the existing running pods</strong>.</p>
+<p>On your CI/CD pipeline, you should only need to give those 3 environment variables, every time you deploy a new version.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>⎈ |minikube:default<span style="color:#f92672">)</span> $ sed<span style="color:#e6db74">&#39;s/{{VERSION}}/2.0.0/g; s/{{IMAGE}}/andreffs\/echo:2.0.0/g; s/{{REPLICAS}}/1/&#39;</span>canary.yml | kubectl apply -f -
+</code></pre></td></tr></table>
+</div>
+</div><p>This is very different from before because it will spin up a new Deployment which has a different set of Pods, <strong>without touching the original deployment</strong>.</p>
+<p><img src="minikube-template-example.png" alt="Minikube template example"></p>
+<p>This is great 🚀 !</p>
+<ul>
+<li>You get much less work to deploy new versions</li>
+<li>You follow your deployment standard with these templates</li>
+<li>Better control over the different running versions</li>
+</ul>
+<h3 id="labels">Labels</h3>
+<p>Labeling your deployments is very important. It allows you to search and select specific running versions of your app and act upon only that subset.</p>
+<p>This can also be used later to show on some dashboard the amount of pods we have, in which track, with which version, etc.</p>
+<h4 id="version">Version</h4>
+<p>The <strong>version</strong> is just an indication of what image we are using in that deployment config. We could infer it from the &ldquo;image&quot;name, but its useful to also have it either on a kubernetes annotation or label.</p>
+<h4 id="track">Track</h4>
+<p>Its important that we have something to distinguish multiple deployments. We&rsquo;re labeling the <strong>stable.yml</strong> configuration with <strong>&ldquo;track: stable&rdquo;</strong> and <strong>canary.yml</strong> with <strong>&ldquo;track: canary&rdquo;</strong> so we can distinguish between them later.</p>
+<blockquote>
+<p>You can find this approach also explained on <a href="https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/#canary-deployments">kubernetes documentation</a> about canary deployments.</p>
+</blockquote>
+<h1 id="orchestrate-the-deployment">Orchestrate the deployment</h1>
+<p>So we&rsquo;ve taken advantage of <code>$ sed</code> to replace variables that we templated on a new <code>canary.yml</code> configuration. The next step would have to be, orchestrating both tracks.</p>
+<p>Simply put, the workflow that we want to achieve is:</p>
+<ul>
+<li>Deploy on the canary track the new server version</li>
+<li>Monitor its behavior for a specific amount of time to ensure no problems arises</li>
+<li>Once conformable with new version, rollout v2.0.0 to stable track</li>
+</ul>
+<div id="slideshow-name" class="slideshow">
+    <div id="name"></div>
+    <div class="d-flex justify-content-between">
+
+
+    </div>
+</div>
+
+<script type="text/javascript">
+
+[
+  {url: "minikube-apply-canary-slide1.png", description: "Initial state of our Minikube cluster."},
+  {url: "minikube-apply-canary-slide2.png", description: "We apply our Canary configuration with one replica. One pod will spin up on <strong>\"track: canary\"</strong>.<br>We'll let our new track receive traffic and monitor its behaviour"},
+  {url: "minikube-apply-canary-slide3.png", description: "Once the monitor period finishes, we start the rollback of the new version to <strong>\"track: stable\"</strong>"},
+  {url: "minikube-apply-canary-slide4.png", description: "Kubernetes takes care of only terminating the old pods, if the new ones are <strong>\"healthy\"</strong>"},
+  {url: "minikube-apply-canary-slide5.png", description: "Eventually, all pods are running the new version so we can scale down our Canary track to zero pods once again."},
+  {url: "minikube-apply-canary-slide6.png", description: "Deployed version 2.0.0 with success ✅"},
+]
+.forEach((slide) => {
+    const div = document.createElement("div");
+    const img = document.createElement("img");
+    img.src = slide.url;
+    const p = document.createElement("p");
+    p.innerHTML = slide.description;
+    div.appendChild(img);
+    div.appendChild(p)
+    document.getElementById("name").appendChild(div);
+})
+
+$('#name').slick({
+    dots: false,
+    infinite: false,
+    speed: 0,
+    fade: true,
+    draggable: false,
+    cssEase: 'linear',
+    prevArrow: '<button id="left-arrow-example" class="btn btn-primary">◄ Previous</button>',
+    nextArrow: ' <button id="right-arrow-example" class="btn btn-primary">Next ►</button>'
+});
+</script>
+
+<p>There are multiple strategies on how to rollout your new version:</p>
+<ul>
+<li>If you&rsquo;re shy about it, scale it to only one pod, monitor it yourself and only rollout when you fell conformable with it.
+<ul>
+<li>If you don&rsquo;t have a good monitoring system, maybe setup one pod that only you have access to, and run some manual E2E tests on it.</li>
+</ul>
+</li>
+<li>Spin up a small % of pods (related to your whole fleet) and monitor how it behaves under load.
+<ul>
+<li>Be on the lookout for 5XX error or unexpected behavior from your users</li>
+</ul>
+</li>
+<li>Using some sort feature-flag system, only allow access to the new version to a particular set of users.
+<ul>
+<li>You could start with only internal users (like yourself), or by region, browser/interface, etc.</li>
+</ul>
+</li>
+</ul>
+<p>The key point here is, <strong>monitoring the rollout is very important</strong></p>
+<h1 id="monitoring">Monitoring</h1>
+<p>Well-chosen parameters are essential for a successful canary deployment. These types of deployments will only be fully automated if you have good, reliable, observability over your service infrastructure. You need be able to monitor the number of requests, responses status, queries to database (if applicable), etc.</p>
+<p>What we want to achieve here it some form of automated monitoring so our canary stage must also:</p>
+<ul>
+<li>Continuously check that we don&rsquo;t detect any errors</li>
+<li>Once that grace period is over, we proceed with full rollout of the new version</li>
+</ul>
+<p><strong>And this is all automatic!</strong> 😁</p>
+<p>Your CI/CD pipeline needs to monitor that all new instances from <strong>&ldquo;track: canary&rdquo;</strong> are performing well, <strong>and if any error is detected, it must be rollback immediately!</strong> Since this new machine will also be receiving real traffic, we want to minimize any possible impact to our customer.</p>
+<p>Going back to our CI/CD Pipeline example, we manage to achieve this with the <code>scripts/monitor-errors.sh</code>:
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#75715e"># ~/canary-deployment-companion/.gitlab-ci.yml</span>
+<span style="color:#66d9ef">canary</span>:
+  <span style="color:#66d9ef">stage</span>: canary
+  <span style="color:#66d9ef">script</span>:
+    <span style="color:#75715e"># Starting canary deployment for new version and monitor errors</span>
+    - scripts/canary-deploy.sh $IMAGE:$VERSION
+    - scripts/monitor-errors.sh
+<span style="display:block;width:100%;background-color:#3c3d38">
+</span>(...)</code></pre></td></tr></table>
+</div>
+</div></p>
+<blockquote>
+<p>There are multiple and much better ways to achieve this, but for learning these concepts, this simple script does the trick 😎</p>
+</blockquote>
+<p>Also complementary to this, we can take advantage of the <a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/">Liveness and Readiness</a> probes. These will check if our service was able to boot up correctly.</p>
+<p>So on your <code>canary.yml</code> you need to add the following:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#75715e"># ~/canary-deployment-companion/k8s/canary.yml</span>
+---
+<span style="color:#66d9ef">apiVersion</span>: apps/v1
+<span style="color:#66d9ef">kind</span>: Deployment
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: server
+  <span style="color:#66d9ef">namespace</span>: default
+  <span style="color:#66d9ef">labels</span>: <span style="color:#75715e">&amp;labels</span>
+    <span style="color:#66d9ef">app</span>: echo
+    <span style="color:#66d9ef">track</span>: canary
+    <span style="color:#66d9ef">version</span>: {{VERSION}}
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">replicas</span>: {{REPLICAS}}
+  <span style="color:#66d9ef">selector</span>:
+    <span style="color:#66d9ef">matchLabels</span>: <span style="color:#75715e">*labels</span>
+  <span style="color:#66d9ef">strategy</span>:
+    <span style="color:#66d9ef">rollingUpdate</span>:
+      <span style="color:#66d9ef">maxUnavailable</span>: <span style="color:#ae81ff">0</span>
+      <span style="color:#66d9ef">maxSurge</span>: <span style="color:#ae81ff">1</span>
+  <span style="color:#66d9ef">template</span>:
+    <span style="color:#66d9ef">metadata</span>:
+      <span style="color:#66d9ef">labels</span>: <span style="color:#75715e">*labels</span>
+    <span style="color:#66d9ef">spec</span>:
+      <span style="color:#66d9ef">containers</span>:
+      - <span style="color:#66d9ef">name</span>: echo
+        <span style="color:#66d9ef">image</span>: {{IMAGE}}
+        <span style="color:#66d9ef">imagePullPolicy</span>: IfNotPresent
+        <span style="color:#66d9ef">ports</span>:
+          - <span style="color:#66d9ef">name</span>: http
+            <span style="color:#66d9ef">containerPort</span>: <span style="color:#ae81ff">8080</span>
+<span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#66d9ef">livenessProbe</span>:
+</span><span style="display:block;width:100%;background-color:#3c3d38">          <span style="color:#66d9ef">httpGet</span>:
+</span><span style="display:block;width:100%;background-color:#3c3d38">            <span style="color:#66d9ef">path</span>: /
+</span><span style="display:block;width:100%;background-color:#3c3d38">            <span style="color:#66d9ef">port</span>: <span style="color:#ae81ff">8080</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#66d9ef">readinessProbe</span>:
+</span><span style="display:block;width:100%;background-color:#3c3d38">          <span style="color:#66d9ef">httpGet</span>:
+</span><span style="display:block;width:100%;background-color:#3c3d38">            <span style="color:#66d9ef">path</span>: /
+</span><span style="display:block;width:100%;background-color:#3c3d38">            <span style="color:#66d9ef">port</span>: <span style="color:#ae81ff">8080</span>
+</span>      <span style="color:#66d9ef">restartPolicy</span>: Always</code></pre></td></tr></table>
+</div>
+</div>
+<p>The example above is a naive approach of checking if the newly deployed pods are &ldquo;healthy&rdquo; and ready to serve traffic. In a production environment it would be good to have different endpoints since:</p>
+<ul>
+<li><strong>LivenessProbe</strong> is useful to check if your container should be restarted. It should check if your server is returning a 200 HTTP OK;</li>
+<li><strong>ReadinessProbe</strong> checks if your container is ready to receive traffic.</li>
+</ul>
+<blockquote>
+<p>More on how to configure Liveness and Readiness probes can be found here: <a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/">https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/</a></p>
+</blockquote>
+<h2 id="knownunknown-problems">Known/Unknown problems</h2>
+<p>Of course, its always easier to check if a 5XX was introduced than some race conditions. The point that I want to make across here is that its possible to monitor known problems that can be checked in an automated way, saving a lot of engineer time and sanity.</p>
+<p>For example: If we detect service degradation or worst results than the previous version (eg: slowed response times), then we rollback the upgraded server to their initial version.</p>
+<h2 id="traceability">Traceability</h2>
+<p>I briefly mentioned the lack of traceability by running the <code>sed</code> command manually. What I meant before can be approached from two POV&rsquo;s:</p>
+<ul>
+<li>what was deployed (version, image, etc) and when</li>
+<li>who deployed and why</li>
+</ul>
+<p>Well, I don&rsquo;t have a good solution here.</p>
+<p>The problem I want to fix is that no manual deploys happen and for that to exist there must be incentive to prevent people from doing it, because <code>kubectl -f apply *.yml</code> its just too damn easy.</p>
+<p>For the first one, we can take advantage of the <a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#checking-rollout-history-of-a-deployment"><code>--record</code></a> flag when we apply our kubernetes configurations. This will keep track of the command that was executed at the time.
+We can also add annotations to our deployments, so we know extra metadata like, deployment date.</p>
+<p>On the second one, the only solution I came up with was adding some type of notification system (ie: slack webhooks) to let us know about who/when/how those pipelines where triggered.</p>
+<p>Simple enough and solved my problem.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>Finally, the last stage: deployment to production!</p>
+<p>We have both tracks running, our monitoring period found no problems whatsoever, and our CI/CD finishes and deploys the new version to the whole fleet!</p>
+<p>So, what we manage to achieve with the topics talked in here was:</p>
+<ul>
+<li>Having a fully automated CI/CD Pipeline that is triggered every time we push code to our repository;
+<ul>
+<li>Our pipeline <code>build</code>s a new image every time a change is pushed, and runs all <code>tests</code> to ensure all expected functionality is still running</li>
+</ul>
+</li>
+<li>Then it deploys to a % of our fleet the new version and monitors for some amount of time, checking if expected errors occurs;</li>
+<li>Once that grace period is over, we rollout the new version to all our servers;</li>
+<li>Finally, we scale down our canary track for next deploy.</li>
+</ul>
+<p>🚀</p>
+<h1 id="further-work">Further Work</h1>
+<p>While working on this post, I found some other cool topics that could be a good starting point for a next, <em>version</em>, (wow) on this. Here is the list:</p>
+<ul>
+<li>Defining better heuristics to decide if any of the servers in the canary track are faulty (eg: db access, profiling http requests, run synthetics tests on canary);</li>
+<li>How to setup a Grafana dashboard to monitor the health of our rollout and best practices;</li>
+<li>Databases: entire books have been written on how to make database schema changes. The problem is the database must simultaneously work with the canary and the stable versions during the deployment. So, if we have breaking schema changes, we’re in trouble. We need to maintain backward compatibility as we make changes, which adds another layer of complexity.</li>
+<li>In this example we blindly accept any traffic to our canary instance. Another options could be to segment the traffic by some kind of flag (eg: setting up an header, based on location or via different url)</li>
+</ul>
+<h1 id="resources">Resources</h1>
+<p>Some links that helped me understand better this topics that I think should be here:</p>
+<ul>
+<li><a href="https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/#canary-deployments">Canary Deployments - Kubernetes Docs</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/manage-daemon/rollback-daemon-set/">Rollback on DeamonSets - Kubernetes Docs</a></li>
+<li><a href="https://kubernetes.io/docs/reference/kubectl/cheatsheet/">Kubernetes cheatsheet - Kubernetes Docs</a></li>
+<li><a href="https://learnk8s.io/kubernetes-rollbacks">Kubernetes Rollbacks - Learnk8s</a></li>
+<li><a href="https://kubernetes.io/blog/2020/04/two-phased-canary-rollout-with-gloo/">Two-phased Canary Rollout with Open Source Gloo - Kubernetes Blog</a></li>
+<li><a href="https://medium.com/google-cloud/kubernetes-canary-deployments-for-mere-mortals-13728ce032fe">Kubernetes Canary deployments 🐤 for mere mortals - Google Cloud</a></li>
+<li><a href="https://docs.gitlab.com/ee/user/project/canary_deployments.html">Canary Deployments - Gitlab Docs</a></li>
+<li><a href="https://awkwardferny.medium.com/getting-started-with-kubernetes-ingress-nginx-on-minikube-d75e58f52b6c">Getting Started with Kubernetes Ingress-Nginx on Minikube</a></li>
+<li><a href="https://help.sumologic.com/Metrics/Kubernetes_Metrics">Kubernetes infra metrics</a></li>
+<li><a href="https://itnext.io/k8s-monitor-pod-cpu-and-memory-usage-with-prometheus-28eec6d84729">Monitor CPU/Memory Usage of K8S in Prometheus</a></li>
+<li><a href="https://dev.to/educative/a-deep-dive-into-kubernetes-deployment-strategies-2f7n">A deep dive into kubernetes deployment strategies</a></li>
+<li><a href="https://medium.com/faun/application-deployment-using-gitlab-ci-cd-on-managed-kubernetes-cluster-at-gcp-72b59496979c">Deployment using Gitlab CI/CD on Kubernetes Cluster at GCP</a></li>
+</ul>
+<p>👋</p>
+
+        </article>
+    </section>
+
+    <aside>
+        <div class="d-none d-xl-block">
+            
+                <div class="toc">
+                    <h5>Table of contents</h5>
+                    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#motivation">Motivation</a></li>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#initial-environment-setup">Initial Environment Setup</a>
+      <ul>
+        <li><a href="#test-application">Test Application</a></li>
+        <li><a href="#minikube-cluster">Minikube Cluster</a></li>
+      </ul>
+    </li>
+    <li><a href="#cicd-pipeline">CI/CD Pipeline</a>
+      <ul>
+        <li><a href="#pipeline-configuration">Pipeline Configuration</a></li>
+        <li><a href="#stages">Stages</a>
+          <ul>
+            <li><a href="#continuous-integration">Continuous Integration</a></li>
+            <li><a href="#continuous-deployment">Continuous Deployment</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#canary-rollout">Canary Rollout</a>
+      <ul>
+        <li><a href="#just--sed-you-pods-image">Just &ldquo;$ sed&rdquo; you pod’s image</a></li>
+        <li><a href="#template-your-canary-deployment">Template your canary deployment</a>
+          <ul>
+            <li><a href="#labels">Labels</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#orchestrate-the-deployment">Orchestrate the deployment</a></li>
+    <li><a href="#monitoring">Monitoring</a>
+      <ul>
+        <li><a href="#knownunknown-problems">Known/Unknown problems</a></li>
+        <li><a href="#traceability">Traceability</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion</a></li>
+    <li><a href="#further-work">Further Work</a></li>
+    <li><a href="#resources">Resources</a></li>
+  </ul>
+</nav>
+                </div>
+            
+        </div>
+    </aside>
+</main>
+
+<hr>
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "andreffs" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<hr>
+
+<div class="pt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 text-left">
+                
+                Previous Post: ◀ <a href="https://andreffs18.github.io/website/blog/ssh-forwardagent-gotchas/">SSH ForwardAgent Gotchas</a>
+                
+            </div>
+            <div class="col-md-6 text-right">
+                
+                Next Post: ▶ <a href="https://andreffs18.github.io/website/blog/docker-postgresql/">Docker + PostgreSQL</a>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+const BLOG_TITLE_SELECTORS = '.blog article h1, .blog article h2, .blog article h3, .blog article h4, .blog article h5, .blog article h6';
+
+function addAnchor(element) {
+    element.innerHTML = `<a class="anchor" href="#${element.id}" aria-hidden="true"><span class="octicon octicon-link"></span></a>${element.innerText}`
+}
+document.addEventListener('DOMContentLoaded', () => {
+    var headers = document.querySelectorAll(BLOG_TITLE_SELECTORS)
+    if (headers) {
+        headers.forEach(addAnchor)
+    }
+})
+
+
+window.addEventListener('DOMContentLoaded', () => {
+	const observer = new IntersectionObserver(entries => {
+        let container = document.querySelector('.toc');
+        let links = [...container.querySelectorAll('a')]
+        let headings = links.map(link => {
+            let id = link.getAttribute('href')
+            return document.querySelector(id)
+        })
+
+        entries.forEach(entry => {
+            let previousSection = undefined;
+            let href = `#${entry.target.getAttribute('id')}`;
+            let link = links.find(l => l.getAttribute('href') === href);
+
+            if (entry.intersectionRatio > 0) {
+                link.classList.add('is-visible');
+                previousSection = entry.target.getAttribute('id');
+            } else {
+                link.classList.remove('is-visible');
+            }
+
+            links.forEach(link => {
+                link.classList.remove('is-active');
+            })
+
+            let firstVisibleLink = container.querySelector('.is-visible');
+            if (firstVisibleLink) {
+                firstVisibleLink.classList.add('is-active');
+            }
+            if (!firstVisibleLink && previousSection) {
+                container.querySelector(`a[href="#${previousSection}"]`).classList.add('is-active');
+            }
+        })
+        
+        if(entries.length === 1){
+            let entry = entries[0];
+            let lastHeadingOfBlogpost = headings[headings.length - 1];
+            if(
+                entry.intersectionRatio === 0 && 
+                entry.target === lastHeadingOfBlogpost 
+            ) {
+                let href = `#${entry.target.getAttribute('id')}`;
+                container.querySelector(`a[href="${href}"]`).classList.add('is-active');
+            }
+        }
+	});
+	
+	document.querySelectorAll(BLOG_TITLE_SELECTORS).forEach((title) => {
+		observer.observe(title);
+	});
+});
+
+</script>
+
+        </div>
+        
+<footer>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <ul class="navbar menu pull-left">
+                    
+                        <li class="nav-item ">
+                            <a class="nav-link" href="https://andreffs18.github.io/website/cv/" title="">CV</a>
+                        </li>
+                    
+                        <li class="nav-item ">
+                            <a class="nav-link" href="https://andreffs18.github.io/website/about/" title="">About</a>
+                        </li>
+                    
+                        <li class="nav-item ">
+                            <a class="nav-link" href="https://andreffs18.github.io/website/blog/" title="">Blog</a>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <ul class="navbar social pull-right">
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="mailto:andreffs18@gmail.com" target="_blank"><i class="fa fa-envelope"></i></a>
+                        </li>
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://www.facebook.com/andreffs18" target="_blank"><i class="fa fa-facebook"></i></a>
+                        </li>
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://github.com/andreffs18" target="_blank"><i class="fa fa-github"></i></a>
+                        </li>
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://instagram.com/andreffs18" target="_blank"><i class="fa fa-instagram"></i></a>
+                        </li>
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://pt.linkedin.com/in/andreffs18" target="_blank"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://twitter.com/andreffs18" target="_blank"><i class="fa fa-twitter"></i></a>
+                        </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+    </body>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-71884481-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</html>

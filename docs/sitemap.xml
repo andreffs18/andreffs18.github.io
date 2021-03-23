@@ -98,6 +98,26 @@
   </url>
   
   <url>
+    <loc>https://andreffs18.github.io/website/tags/canary/</loc>
+    <lastmod>2020-02-14T09:05:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andreffs18.github.io/website/tags/gitlab/</loc>
+    <lastmod>2020-02-14T09:05:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andreffs18.github.io/website/tags/kubernetes/</loc>
+    <lastmod>2020-02-14T09:05:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andreffs18.github.io/website/blog/learning-how-to-canary-deploy-with-kubernetes/</loc>
+    <lastmod>2020-02-14T09:05:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://andreffs18.github.io/website/tags/gotchas/</loc>
     <lastmod>2019-02-05T20:07:00+00:00</lastmod>
   </url>
@@ -177,6 +197,10 @@
   
   <url>
     <loc>https://andreffs18.github.io/website/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>https://andreffs18.github.io/website/tags/ci/cd/</loc>
   </url>
   
   <url>

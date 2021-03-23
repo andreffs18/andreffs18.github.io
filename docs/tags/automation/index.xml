@@ -23,6 +23,16 @@ While the &amp;ldquo;Saved&amp;rdquo; section on Reddit was mostly threads from 
     </item>
     
     <item>
+      <title>Learning How to Canary Deploy with Kubernetes</title>
+      <link>https://andreffs18.github.io/website/blog/learning-how-to-canary-deploy-with-kubernetes/</link>
+      <pubDate>Fri, 14 Feb 2020 09:05:00 +0000</pubDate>
+      
+      <guid>https://andreffs18.github.io/website/blog/learning-how-to-canary-deploy-with-kubernetes/</guid>
+      <description>Its true, that if the time from developing a feature to deploying it to your customers only takes minutes to hours instead of days to months, that you probably have a pretty amazing development workflow.
+Im also willing to bet that a key feature of that workflow is an impeccable CI/CD pipeline, that not only allows your development team to automate a lot of time consuming and manual tasks (like building, testing, deploying, etc) but also, shortens the feedback cycle between developing-&amp;gt;testing and testing-&amp;gt;production.</description>
+    </item>
+    
+    <item>
       <title>SEO Tips</title>
       <link>https://andreffs18.github.io/website/blog/seo-tips/</link>
       <pubDate>Fri, 17 Feb 2017 00:45:32 +0000</pubDate>

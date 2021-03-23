@@ -125,7 +125,6 @@ window.addEventListener('DOMContentLoaded', () => {
             if (firstVisibleLink) {
                 firstVisibleLink.classList.add('is-active');
             }
-            console.log(previousSection)
             if (!firstVisibleLink && previousSection) {
                 container.querySelector(`a[href="#${previousSection}"]`).classList.add('is-active');
             }
