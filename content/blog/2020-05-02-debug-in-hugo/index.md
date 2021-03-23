@@ -128,3 +128,4 @@ theme = ["hugo-debugprint"]
 - Printing _"the dot"_: https://discourse.gohugo.io/t/howto-show-what-values-are-passed-to-a-template/41
 - Console.log everything: https://discourse.gohugo.io/t/easier-debugging-hugo-variables-using-the-javascript-console/22873
 - Using Hugo debug themes: https://github.com/kaushalmodi/hugo-debugprint
+- Context variables: https://www.smashingmagazine.com/2021/02/context-variables-hugo-static-site-generator/
