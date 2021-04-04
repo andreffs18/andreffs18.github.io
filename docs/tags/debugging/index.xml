@@ -17,7 +17,7 @@
       <pubDate>Mon, 25 May 2020 06:37:00 +0000</pubDate>
       
       <guid>https://andreffs18.github.io/website/blog/debug-in-hugo/</guid>
-      <description>While building this website I needed to understand a bit more about the internals and its variables. Eventhough Hugo&amp;rsquo;s documentation about debugging is pretty &amp;ldquo;okay&amp;rdquo;, there are a lot of attributes that are really hard to figure out, specially if you can&amp;rsquo;t see them on the documentation.
+      <description>While building this website I needed to understand a bit more about the internals and its variables. Even though Hugo&amp;rsquo;s documentation about debugging is pretty &amp;ldquo;okay&amp;rdquo;, there are a lot of attributes that are really hard to figure out, specially if you can&amp;rsquo;t see them on the documentation.
 So I started to look online for something to help me out debugging Hugo templates and the usual 3 options were:
  🖨 printing the dot on Hugo&amp;rsquo;s templates 📝 console.</description>
     </item>

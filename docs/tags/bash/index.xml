@@ -32,5 +32,17 @@ While the &amp;ldquo;Saved&amp;rdquo; section on Reddit was mostly threads from 
 Im also willing to bet that a key feature of that workflow is an impeccable CI/CD pipeline, that not only allows your development team to automate a lot of time consuming and manual tasks (like building, testing, deploying, etc) but also, shortens the feedback cycle between developing-&amp;gt;testing and testing-&amp;gt;production.</description>
     </item>
     
+    <item>
+      <title>I Really Like Emoji&#39;s</title>
+      <link>https://andreffs18.github.io/website/blog/i-really-like-emojis/</link>
+      <pubDate>Fri, 15 Mar 2019 19:08:22 +0000</pubDate>
+      
+      <guid>https://andreffs18.github.io/website/blog/i-really-like-emojis/</guid>
+      <description>I came across a blogpost that explained how to add emoji&amp;rsquo;s to your terminal prompt, something like this:
+The post is pretty good!
+Not only explains how to add emoji&amp;rsquo;s to you prompt, but also goes a bit further on how to $RANDOM an emoji from a list of them, and bash formatting (customize the text in your terminal with colors and such).
+Although I&amp;rsquo;m pretty happy with my terminal setup (shameless plug to 👉 my dotfiles👈 ), I kept coming back to this idea.</description>
+    </item>
+    
   </channel>
 </rss>

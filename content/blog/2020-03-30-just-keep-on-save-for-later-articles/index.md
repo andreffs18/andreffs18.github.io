@@ -58,7 +58,6 @@ That's it! Every time I open a new tab on my terminal, I get a new article from 
 
 > If you're wondering about the giant 😭, you can check out ["I really like emoji's"](/blog/i-really-like-emojis/) blogpost.
 
-
 # Plan
 
 TL;DR: made a simple alias function, that runs a Python script that gets all "Read Later" articles from Feedly and randomly opens one on a web browser 👌.

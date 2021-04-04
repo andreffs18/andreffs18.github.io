@@ -17,7 +17,7 @@
       <pubDate>Wed, 20 Sep 2017 10:53:00 +0000</pubDate>
       
       <guid>https://andreffs18.github.io/website/blog/postgres-is-now-running/</guid>
-      <description>My macbook has OSX Mavericks installed and sometimes it crashes for no reason, breaking my local postgres server. After restarting and running again &amp;quot;$ brew services postgres&amp;quot;, Postgres becomes yellow and I end up spending sometime looking confused and frustrated.
+      <description>My Macbook has OSX Mavericks installed and sometimes it crashes for no reason, breaking my local postgres server. After restarting and running again &amp;quot;$ brew services postgres&amp;quot;, Postgres becomes yellow and I end up spending sometime looking confused and frustrated.
 Looking at the logs you can get a sense of whats happening:
 1 2  $ tail -f /usr/local/var/postgres/server.log FATAL: lock file &amp;#34;postmaster.pid&amp;#34; already exists   Simply removing the lock file that Postgres generates solves this issue:</description>
     </item>

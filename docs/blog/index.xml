@@ -17,7 +17,7 @@
       <pubDate>Mon, 25 May 2020 06:37:00 +0000</pubDate>
       
       <guid>https://andreffs18.github.io/website/blog/debug-in-hugo/</guid>
-      <description>While building this website I needed to understand a bit more about the internals and its variables. Eventhough Hugo&amp;rsquo;s documentation about debugging is pretty &amp;ldquo;okay&amp;rdquo;, there are a lot of attributes that are really hard to figure out, specially if you can&amp;rsquo;t see them on the documentation.
+      <description>While building this website I needed to understand a bit more about the internals and its variables. Even though Hugo&amp;rsquo;s documentation about debugging is pretty &amp;ldquo;okay&amp;rdquo;, there are a lot of attributes that are really hard to figure out, specially if you can&amp;rsquo;t see them on the documentation.
 So I started to look online for something to help me out debugging Hugo templates and the usual 3 options were:
  🖨 printing the dot on Hugo&amp;rsquo;s templates 📝 console.</description>
     </item>
@@ -55,6 +55,18 @@ Im also willing to bet that a key feature of that workflow is an impeccable CI/C
     </item>
     
     <item>
+      <title>I Really Like Emoji&#39;s</title>
+      <link>https://andreffs18.github.io/website/blog/i-really-like-emojis/</link>
+      <pubDate>Fri, 15 Mar 2019 19:08:22 +0000</pubDate>
+      
+      <guid>https://andreffs18.github.io/website/blog/i-really-like-emojis/</guid>
+      <description>I came across a blogpost that explained how to add emoji&amp;rsquo;s to your terminal prompt, something like this:
+The post is pretty good!
+Not only explains how to add emoji&amp;rsquo;s to you prompt, but also goes a bit further on how to $RANDOM an emoji from a list of them, and bash formatting (customize the text in your terminal with colors and such).
+Although I&amp;rsquo;m pretty happy with my terminal setup (shameless plug to 👉 my dotfiles👈 ), I kept coming back to this idea.</description>
+    </item>
+    
+    <item>
       <title>SSH ForwardAgent Gotchas</title>
       <link>https://andreffs18.github.io/website/blog/ssh-forwardagent-gotchas/</link>
       <pubDate>Tue, 05 Feb 2019 20:07:00 +0000</pubDate>
@@ -72,7 +84,7 @@ First, look at you ~/.ssh/config file and add the “ForwardAgent yes” to that
       <pubDate>Wed, 20 Sep 2017 10:53:00 +0000</pubDate>
       
       <guid>https://andreffs18.github.io/website/blog/postgres-is-now-running/</guid>
-      <description>My macbook has OSX Mavericks installed and sometimes it crashes for no reason, breaking my local postgres server. After restarting and running again &amp;quot;$ brew services postgres&amp;quot;, Postgres becomes yellow and I end up spending sometime looking confused and frustrated.
+      <description>My Macbook has OSX Mavericks installed and sometimes it crashes for no reason, breaking my local postgres server. After restarting and running again &amp;quot;$ brew services postgres&amp;quot;, Postgres becomes yellow and I end up spending sometime looking confused and frustrated.
 Looking at the logs you can get a sense of whats happening:
 1 2  $ tail -f /usr/local/var/postgres/server.log FATAL: lock file &amp;#34;postmaster.pid&amp;#34; already exists   Simply removing the lock file that Postgres generates solves this issue:</description>
     </item>

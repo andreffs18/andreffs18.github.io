@@ -130,4 +130,5 @@ theme = ["hugo-debugprint"]
 - Using Hugo debug themes: https://github.com/kaushalmodi/hugo-debugprint
 - Context variables: https://www.smashingmagazine.com/2021/02/context-variables-hugo-static-site-generator/
 
+
 👋
