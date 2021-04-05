@@ -6,7 +6,6 @@ Source for sticky TOC:
 * https://ma.ttias.be/adding-a-sticky-table-of-contents-in-hugo-to-posts/
 -------------------------------------------------- */
 
-
 html {
 	scroll-behavior: smooth;
 }
@@ -22,21 +21,15 @@ html {
 		// max-width: 54em;
 	}
 
-	//article p:first-child {
-	//	font-size: 1.25em;
-	//	font-weight: 300;
-	//		max-width: 43em; /* 45 / 1.25 */
-	//}
-
 	// tweak highlight shortcut to make it more pleasing to see
 	div.highlight pre {
 		padding: 12px 4px;
 		border-radius: 0px;
 	}
 
-  .mermaid {
-    text-align: center;
-  }
+	.mermaid {
+		text-align: center;
+	}
 
 	// add config for look alike github css
 	.markdown-body {
@@ -50,10 +43,15 @@ html {
 			display: inline-table;
 		}
 		h1:before {
-			content: "# "
+			content: "# ";
+			color: $blueDark;
 		}
 		h2:before{
-			content: "## "
+			content: "## ";
+			color: $blueDark;
+		}
+		h1,h2,h3,h4,h5,h6{
+			font-weight: bold;
 		}
 		img{
 			display: block;
@@ -62,7 +60,6 @@ html {
 			height: auto;
 		}
 	}
-
 
 	.slideshow{
 		margin-bottom: 1em;
@@ -87,8 +84,6 @@ html {
 			left: 0;
 		}
 	}
-
-
 
 	aside {
 		position: sticky;

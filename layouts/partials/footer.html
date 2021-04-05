@@ -4,11 +4,11 @@
         <div class="row">
             <div class="col-md-6">
                 <ul class="navbar menu pull-left">
-                    {{ range .Site.Menus.main }}
-                        <li class="nav-item {{ if eq $currentPage.RelPermalink .URL }}active{{ end }}">
-                            <a class="nav-link" href="{{ .URL | absURL }}" title="{{ .Title }}">{{ .Name }}</a>
-                        </li>
-                    {{ end }}
+                  {{ range .Site.Menus.main }}
+                      <li class="nav-item {{ if eq $currentPage.RelPermalink .URL }}active{{ end }}">
+                          <a class="nav-link" href="{{ .URL | absURL }}" title="{{ .Title }}">{{ .Name }}</a>
+                      </li>
+                  {{ end }}
                 </ul>
             </div>
             <div class="col-md-6">
