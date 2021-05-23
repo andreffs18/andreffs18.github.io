@@ -39,45 +39,56 @@ html {
 		margin: 0 auto;
 		//font-size: 16px;
 		padding: 0px;
-		table{
+		table {
 			display: inline-table;
 		}
 		h1:before {
 			content: "# ";
 			color: $blueDark;
 		}
-		h2:before{
+		h2:before {
 			content: "## ";
 			color: $blueDark;
 		}
-		h1,h2,h3,h4,h5,h6{
+		h1, h2, h3, h4, h5, h6 {
 			font-weight: bold;
 		}
-		img{
+		img {
 			display: block;
-			margin: 1.0rem auto;
+			margin: 1rem auto;
 			max-width: 100%;
 			height: auto;
 		}
 	}
 
-	.slideshow{
+	.slideshow {
 		margin-bottom: 1em;
+
 		.slick-slide {
 			outline: none;
 		}
+
+		// To make sure we can select the slider's description text
+		// source: https://github.com/kenwheeler/slick/issues/826#issuecomment-327663757
+		.slick-slider {
+			-webkit-user-select: text;
+			-moz-user-select: text;
+			-ms-user-select: text;
+			user-select: text;
+		}
+
 		p {
 			text-align: center;
 			max-width: 75%;
 			margin: 0px auto;
 		}
-		#right-arrow-example{
+		#right-arrow-example {
 			position: absolute;
 			z-index: 1000;
 			bottom: 10px;
 			right: 0;
 		}
-		#left-arrow-example{
+		#left-arrow-example {
 			position: absolute;
 			z-index: 1000;
 			bottom: 10px;
@@ -96,19 +107,16 @@ html {
 				padding-left: 10px;
 				list-style: none;
 			}
-
 			a {
 				display: block;
 				transition: background ease 0.2s, color ease 0.2s;
 				text-decoration: none;
-				padding: .125rem 0;
+				padding: 0.125rem 0;
 				color: #ccc;
 			}
-
 			a:hover, a:focus, a.is-active {
 				color: #333;
 			}
-
 		}
 		.tags {
 			text-align: right;
