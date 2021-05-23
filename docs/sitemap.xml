@@ -4,7 +4,7 @@
   
   <url>
     <loc>https://andreffs18.github.io/website/blog/</loc>
-    <lastmod>2021-05-23T22:25:46+01:00</lastmod>
+    <lastmod>2021-05-23T22:35:36+01:00</lastmod>
   </url>
   
   <url>
@@ -44,6 +44,11 @@
   
   <url>
     <loc>https://andreffs18.github.io/website/tags/</loc>
+    <lastmod>2021-05-23T22:35:36+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andreffs18.github.io/website/tags/minikube/</loc>
     <lastmod>2021-05-23T22:25:46+01:00</lastmod>
   </url>
   
@@ -74,7 +79,7 @@
   
   <url>
     <loc>https://andreffs18.github.io/website/tags/automation/</loc>
-    <lastmod>2021-03-23T21:56:46+00:00</lastmod>
+    <lastmod>2021-05-23T22:35:36+01:00</lastmod>
   </url>
   
   <url>
@@ -124,7 +129,7 @@
   
   <url>
     <loc>https://andreffs18.github.io/website/tags/postgres/</loc>
-    <lastmod>2021-03-23T21:56:46+00:00</lastmod>
+    <lastmod>2021-05-23T22:35:36+01:00</lastmod>
   </url>
   
   <url>
@@ -134,7 +139,7 @@
   
   <url>
     <loc>https://andreffs18.github.io/website/tags/ssh/</loc>
-    <lastmod>2021-03-23T21:56:46+00:00</lastmod>
+    <lastmod>2021-05-23T22:35:36+01:00</lastmod>
   </url>
   
   <url>
@@ -169,22 +174,22 @@
   
   <url>
     <loc>https://andreffs18.github.io/website/tags/gotchas/</loc>
-    <lastmod>2021-03-23T21:56:46+00:00</lastmod>
+    <lastmod>2021-05-23T22:35:36+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://andreffs18.github.io/website/blog/ssh-forwardagent-gotchas/</loc>
-    <lastmod>2021-03-23T21:56:46+00:00</lastmod>
+    <lastmod>2021-05-23T22:35:36+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://andreffs18.github.io/website/tags/tips/</loc>
-    <lastmod>2021-03-23T21:56:46+00:00</lastmod>
+    <lastmod>2021-05-23T22:35:36+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://andreffs18.github.io/website/blog/postgres-is-now-running/</loc>
-    <lastmod>2021-03-23T21:56:46+00:00</lastmod>
+    <lastmod>2021-05-23T22:35:36+01:00</lastmod>
   </url>
   
   <url>
@@ -204,17 +209,17 @@
   
   <url>
     <loc>https://andreffs18.github.io/website/tags/git-hooks/</loc>
-    <lastmod>2021-03-23T21:56:46+00:00</lastmod>
+    <lastmod>2021-05-23T22:35:36+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://andreffs18.github.io/website/tags/seo/</loc>
-    <lastmod>2021-03-23T21:56:46+00:00</lastmod>
+    <lastmod>2021-05-23T22:35:36+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://andreffs18.github.io/website/blog/seo-tips/</loc>
-    <lastmod>2021-03-23T21:56:46+00:00</lastmod>
+    <lastmod>2021-05-23T22:35:36+01:00</lastmod>
   </url>
   
   <url>
@@ -234,7 +239,7 @@
   
   <url>
     <loc>https://andreffs18.github.io/website/blog/hello-world/</loc>
-    <lastmod>2021-03-23T21:56:46+00:00</lastmod>
+    <lastmod>2021-05-23T22:35:36+01:00</lastmod>
   </url>
   
   <url>
