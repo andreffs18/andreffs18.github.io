@@ -4,7 +4,57 @@
   
   <url>
     <loc>https://andreffs18.github.io/website/blog/</loc>
-    <lastmod>2021-03-23T21:56:46+00:00</lastmod>
+    <lastmod>2021-05-23T22:25:46+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andreffs18.github.io/website/tags/grafana/</loc>
+    <lastmod>2021-05-23T22:25:46+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andreffs18.github.io/website/tags/kubernetes/</loc>
+    <lastmod>2021-05-23T22:25:46+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andreffs18.github.io/website/tags/loadtest/</loc>
+    <lastmod>2021-05-23T22:25:46+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andreffs18.github.io/website/tags/n8n/</loc>
+    <lastmod>2021-05-23T22:25:46+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andreffs18.github.io/website/blog/n8n-customizations-for-production/</loc>
+    <lastmod>2021-05-23T22:25:46+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andreffs18.github.io/website/tags/nodejs/</loc>
+    <lastmod>2021-05-23T22:25:46+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andreffs18.github.io/website/tags/production/</loc>
+    <lastmod>2021-05-23T22:25:46+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andreffs18.github.io/website/tags/</loc>
+    <lastmod>2021-05-23T22:25:46+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andreffs18.github.io/website/blog/observability-on-n8n/</loc>
+    <lastmod>2021-05-23T22:25:46+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andreffs18.github.io/website/blog/setup-n8n-on-kubernetes/</loc>
+    <lastmod>2021-05-23T22:25:46+01:00</lastmod>
   </url>
   
   <url>
@@ -19,11 +69,6 @@
   
   <url>
     <loc>https://andreffs18.github.io/website/tags/hugo/</loc>
-    <lastmod>2021-03-23T21:56:46+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://andreffs18.github.io/website/tags/</loc>
     <lastmod>2021-03-23T21:56:46+00:00</lastmod>
   </url>
   
@@ -99,11 +144,6 @@
   
   <url>
     <loc>https://andreffs18.github.io/website/tags/gitlab/</loc>
-    <lastmod>2021-03-23T21:56:46+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://andreffs18.github.io/website/tags/kubernetes/</loc>
     <lastmod>2021-03-23T21:56:46+00:00</lastmod>
   </url>
   
@@ -204,12 +244,12 @@
   
   <url>
     <loc>https://andreffs18.github.io/website/about/</loc>
-    <lastmod>2021-03-23T21:56:46+00:00</lastmod>
+    <lastmod>2021-04-05T22:19:26+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://andreffs18.github.io/website/</loc>
-    <lastmod>2021-03-23T21:56:46+00:00</lastmod>
+    <lastmod>2021-04-05T22:19:26+01:00</lastmod>
   </url>
   
   <url>

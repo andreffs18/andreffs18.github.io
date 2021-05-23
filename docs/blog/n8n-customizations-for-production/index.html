@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta name="generator" content="Hugo 0.67.1" />
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="https://andreffs18.github.io/website/favicon.png">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ANDREFFS | n8n customizations for Production</title>
+
+    <meta name="author" content="">
+    <meta name="description" content="">
+    <link rel="canonical" href="https://andreffs18.github.io/website/blog/n8n-customizations-for-production/">
+
+    
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+    
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    
+    <link rel="stylesheet" type="text/css" href="https://andreffs18.github.io/website/css/main.min.2623349fa9762b7582fc7ec2ace6404ca36556bc5dae11d474e5b870e0d3d1f3.css">
+</head>
+
+    <body>
+        <div class="container pb-5">
+            <header>
+    <div class="page-header pb-4 mt-5 mb-4">
+        
+            <a href="https://andreffs18.github.io/website" class="text-decoration-none">
+                <h1 class="text3d text-right text-uppercase"><span id="">André Silva</span><br/></h1>
+            </a>
+            <small class="letterpress text-right text-uppercase">28 y/old workaholic from Lisbon.</small>
+        
+    </div>
+</header>
+            
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<main class="row blog">
+    <section>
+        <header>
+            <h1 class="">n8n customizations for Production</h1>
+
+            
+
+            <a class="text-muted mt-3">
+                <a class="text-muted" href="https://andreffs18.github.io/website/blog/n8n-customizations-for-production/">Published May 17, 2021</a>
+
+                
+                    <span>|</span>
+                    
+                    <a class="text-muted" href="https://andreffs18.github.io/tags/n8n">#n8n</a>
+                    
+                    <a class="text-muted" href="https://andreffs18.github.io/tags/nodejs">#nodejs</a>
+                    
+                    <a class="text-muted" href="https://andreffs18.github.io/tags/production">#production</a>
+                    
+                    <a class="text-muted" href="https://andreffs18.github.io/tags/grafana">#grafana</a>
+                    
+                    <a class="text-muted" href="https://andreffs18.github.io/tags/kubernetes">#kubernetes</a>
+                    
+                    <a class="text-muted" href="https://andreffs18.github.io/tags/loadtest">#loadtest</a>
+                    
+                
+                <span>|</span>
+                <a class="text-muted text-decoration-none">± 10 mins</a>
+            </p>
+        </header>
+        <article class="markdown-body">
+            <p><em>This post is a continuation on <a href="/blog/setup-n8n-on-kubernetes">&ldquo;Setup n8n on Kubernetes&rdquo;</a>, so most of the things we talk here assume that you&rsquo;ve followed/read this one as well.</em></p>
+<hr>
+<p>After running n8n during a couple of months in production, me and my team realized that the default configuration do not work very well for us.</p>
+<p>So here in this post I go over the changes we did to allow n8n to scale and work without problems.</p>
+<h1 id="nodejs-default-max-memory">NodeJS default max memory</h1>
+<p>If you look closely on our resource allocation for our n8n service, you will see that we&rsquo;ve requested Kubernetes to allocate for us <strong>1Gbi of memory</strong>, although we are not using it all <em>yet</em>.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># ~/k8s/n8n-deployment.yaml</span>
+---
+<span style="color:#66d9ef">apiVersion</span>: apps/v1
+<span style="color:#66d9ef">kind</span>: Deployment
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: n8n-deployment
+  <span style="color:#66d9ef">namespace</span>: default
+  <span style="color:#66d9ef">labels</span>: <span style="color:#75715e">&amp;labels</span>
+    <span style="color:#66d9ef">app</span>: n8n
+    <span style="color:#66d9ef">component</span>: deployment
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">replicas</span>: <span style="color:#ae81ff">1</span>
+  <span style="color:#66d9ef">selector</span>:
+    <span style="color:#66d9ef">matchLabels</span>: <span style="color:#75715e">*labels</span>
+  <span style="color:#66d9ef">template</span>:
+    <span style="color:#66d9ef">metadata</span>:
+      <span style="color:#66d9ef">labels</span>: <span style="color:#75715e">*labels</span>
+    <span style="color:#66d9ef">spec</span>:
+      <span style="color:#66d9ef">containers</span>:
+      - <span style="color:#66d9ef">name</span>: n8n
+        <span style="color:#66d9ef">image</span>: n8nio/n8n:latest
+        <span style="color:#66d9ef">imagePullPolicy</span>: IfNotPresent
+        <span style="color:#66d9ef">ports</span>:
+        - <span style="color:#66d9ef">name</span>: http
+          <span style="color:#66d9ef">containerPort</span>: <span style="color:#ae81ff">5678</span>
+<span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#66d9ef">resources</span>:
+</span><span style="display:block;width:100%;background-color:#3c3d38">          <span style="color:#66d9ef">limits</span>:
+</span><span style="display:block;width:100%;background-color:#3c3d38">            <span style="color:#66d9ef">cpu</span>: <span style="color:#e6db74">&#34;1.0&#34;</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">            <span style="color:#66d9ef">memory</span>: <span style="color:#e6db74">&#34;1024Mi&#34;</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">          <span style="color:#66d9ef">requests</span>:
+</span><span style="display:block;width:100%;background-color:#3c3d38">            <span style="color:#66d9ef">cpu</span>: <span style="color:#e6db74">&#34;0.5&#34;</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">            <span style="color:#66d9ef">memory</span>: <span style="color:#e6db74">&#34;512Mi&#34;</span>
+</span>        (...)</code></pre></td></tr></table>
+</div>
+</div>
+<p>It seems that NodeJS allocates memory differently, depending on the architecture (<a href="https://bugs.chromium.org/p/v8/issues/detail?id=847"><em>source</em></a>):</p>
+<ul>
+<li>1Gb of memory if you are on an 64bit architecture,</li>
+<li>and 512mb in a 32bit architecture</li>
+</ul>
+<p>To play around with this limit, we&rsquo;re gonna create a memory intensive workflow and see if n8n can handle it.</p>
+<p>A simple <a href="https://docs.n8n.io/nodes/n8n-nodes-base.interval/">Interval</a> + <a href="https://docs.n8n.io/nodes/n8n-nodes-base.function/">Function</a> workflow will do the trick. Setting up our Interval node to run every 5 seconds, + we can just paste the following code in the Function node, which just generates a big string and reverses it.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">big_string</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;x&#39;</span>.<span style="color:#a6e22e">repeat</span>(<span style="color:#ae81ff">1024</span><span style="color:#f92672">*</span><span style="color:#ae81ff">1024</span><span style="color:#f92672">*</span><span style="color:#ae81ff">512</span>) <span style="color:#75715e">// 512mb
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">big_string</span>.<span style="color:#a6e22e">reverse</span>();
+<span style="color:#a6e22e">items</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">json</span>.<span style="color:#a6e22e">big_string</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">big_string</span>;
+<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">items</span>;
+</code></pre></td></tr></table>
+</div>
+</div><p>If you look at the container logs, you will see something like: <strong><code>JavaScript heap out of memory</code></strong>.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span></span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl logs -f -l app<span style="color:#f92672">=</span>n8n
+Version: 0.117.0
+
+ <span style="color:#f92672">================================</span>
+   Start Active Workflows:
+ <span style="color:#f92672">================================</span>
+   - Memory Intensive Workflow
+     <span style="color:#f92672">=</span>&gt; Started
+
+Editor is now accessible via:
+http://localhost:5678/
+
+&lt;--- Last few GCs ---&gt;
+
+<span style="color:#f92672">[</span>2010:0x562ff62b6f80<span style="color:#f92672">]</span>    <span style="color:#ae81ff">63991</span> ms: Scavenge 485.5 <span style="color:#f92672">(</span>513.8<span style="color:#f92672">)</span> -&gt; 485.4 <span style="color:#f92672">(</span>514.8<span style="color:#f92672">)</span> MB, 71.3 / 0.0 ms  <span style="color:#f92672">(</span>average mu <span style="color:#f92672">=</span> 0.845, current mu <span style="color:#f92672">=</span> 0.771<span style="color:#f92672">)</span> allocation failure
+<span style="color:#f92672">[</span>2010:0x562ff62b6f80<span style="color:#f92672">]</span>    <span style="color:#ae81ff">64024</span> ms: Scavenge 486.4 <span style="color:#f92672">(</span>514.8<span style="color:#f92672">)</span> -&gt; 486.2 <span style="color:#f92672">(</span>517.8<span style="color:#f92672">)</span> MB, 19.9 / 0.0 ms  <span style="color:#f92672">(</span>average mu <span style="color:#f92672">=</span> 0.845, current mu <span style="color:#f92672">=</span> 0.771<span style="color:#f92672">)</span> allocation failure
+<span style="color:#f92672">[</span>2010:0x562ff62b6f80<span style="color:#f92672">]</span>    <span style="color:#ae81ff">64810</span> ms: Mark-sweep 489.2 <span style="color:#f92672">(</span>517.8<span style="color:#f92672">)</span> -&gt; 488.8 <span style="color:#f92672">(</span>521.8<span style="color:#f92672">)</span> MB, 723.0 / 0.0 ms  <span style="color:#f92672">(</span>average mu <span style="color:#f92672">=</span> 0.791, current mu <span style="color:#f92672">=</span> 0.619<span style="color:#f92672">)</span> allocation failure scavenge might not succeed
+
+&lt;--- JS stacktrace ---&gt;
+
+<span style="display:block;width:100%;background-color:#3c3d38">FATAL ERROR: MarkCompactCollector: young object promotion failed Allocation failed - JavaScript heap out of memory</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>As you can see, we never reach the max memory consumed of 1Gbi because <strong>NodeJS default max allocated memory is 512mb</strong>, on my machine.</p>
+<p>To accommodate for heavy memory usage we need to increase the NodeJS default memory and for that we need to add the following configuration to our <strong>n8n-confimap.yaml</strong>:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span></span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># ~/k8s/n8n-configmap.yaml</span>
+---
+<span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: ConfigMap
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: n8n-configmap
+  <span style="color:#66d9ef">namespace</span>: default
+  <span style="color:#66d9ef">labels</span>:
+    <span style="color:#66d9ef">app</span>: n8n
+    <span style="color:#66d9ef">component</span>: configmap
+<span style="color:#66d9ef">data</span>:
+  (...)
+<span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#75715e"># Increase node max memory</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#66d9ef">NODE_OPTIONS</span>: <span style="color:#e6db74">&#34;--max-old-space-size=1024&#34;</span></span></code></pre></td></tr></table>
+</div>
+</div>
+<p>With this change the same workflow now uses much more memory (well it has more available 🙃 ). We still might hit the 1Gbi container threshold which will either:</p>
+<ul>
+<li>Kubernetes container runtime detects the container is allocating more that 1Gbi of memory, killing it with OOMKilled error,</li>
+<li>Or NodeJS raising a Fatal Error since it can&rsquo;t allocate more memory to create new objects, like the one above.</li>
+</ul>
+<blockquote>
+<p>Well, sometimes you might see some spikes over the 1Gbi limit, but afaik that is prometheus being able to scrape the container right that instant, right before the NodeJS process dies from using more that its default, although I can be wrong.</p>
+</blockquote>
+<p>ℹ️  So, if you want to increase your n8n server available memory, not only you need to increase your container Request/Limits, but also add the <code>--max-old-space-size=</code> environment variable.</p>
+<h1 id="n8n-execution-mode">n8n Execution Mode</h1>
+<p>If we want to expose our server to the world, lets say with a <a href="https://youtu.be/ifHYNvRFrBU?t=2902">dynamic dashboard</a>, and work with it in an production environment, we need to first do some capacity planning and figure out what n8n can serve.</p>
+<blockquote>
+<p>There is a section on n8n documentation about Scaling this service using Redis and a worker pool of n8n workers (<a href="https://docs.n8n.io/reference/scaling-n8n.html"><em>source</em></a>). Although that is a perfectly good solution, thats not the goal of this part of the post. I want to explore how much load this service can handle using the &ldquo;out of the box&rdquo; configurations.</p>
+</blockquote>
+<p>The goal here is not to see the result of the workflow but to access:</p>
+<ul>
+<li>How many requests can a simple n8n webhook handle,</li>
+<li>Does it drop any requests and when,</li>
+<li>And if the response times varies to much.</li>
+</ul>
+<blockquote>
+<p>🤔 Keep in mind that these tests were made on my MacBook Pro 13-inch, 2019 with a 2.4 GHz Intel Core i5 and 16 GBs of memory (<a href="https://support.apple.com/kb/SP795?viewlocale=en_US&amp;locale=en_US">this one</a>).</p>
+</blockquote>
+<h2 id="the-workflow">The workflow</h2>
+<p>To test this out, we will create a workflow that exposes a Webhook, does some computations and returns 200 OK. We just need to configure:</p>
+<ul>
+<li>A <a href="https://docs.n8n.io/nodes/n8n-nodes-base.webhook/">Webhook</a> node (GET /load-test) to receive the request</li>
+<li>A <a href="https://docs.n8n.io/nodes/n8n-nodes-base.function/">Function</a> node to simulate some functionality during 5 seconds</li>
+</ul>
+<p><img src="images/n8n-load-test-workflow.png" alt="images/n8n-load-test-workflow.png" title="n8n load test workflow"></p>
+<p>The Function node just runs this snippet:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// Node found on https://community.n8n.io/t/wait-node-in-workflow/73/41
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">waitTimeSeconds</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>;
+
+<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Promise((<span style="color:#a6e22e">resolve</span>) =&gt; {
+  <span style="color:#a6e22e">setTimeout</span>(() =&gt; {
+    <span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">items</span>);
+  }, <span style="color:#a6e22e">waitTimeSeconds</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span>);
+});
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="setup-of-the-test">Setup of the test</h2>
+<p>With that, we can test our endpoint with <strong><a href="https://github.com/rakyll/hey">hey</a></strong>, which is a simple load generator that you can run on your terminal:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ hey -z 1m -c <span style="color:#ae81ff">8</span> -m GET <span style="color:#66d9ef">$(</span>minikube service n8n-service --url<span style="color:#66d9ef">)</span>/webhook/load-test
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>This will simulate 8 concurrent clients (<code>-c 8</code>) sending GET requests during 1 minute (<code>-z 1m</code>).</p>
+</blockquote>
+<h2 id="results">Results</h2>
+<p>After running our initial load tests in minikube, with one pod running with 1GBi of memory and 1CPU, the main n8n process spans an <em>incredible amount</em> of <strong>&ldquo;WorkerProcesses&rdquo;</strong> (to handle the concurrent workflows) which ends up throttling our CPU and increasing the memory usage until it kills our pod with either <strong>OOMKill</strong> or unresponsive <strong>/healthz</strong> probe check.</p>
+<p>n8n has a configuration flag (<code>EXECUTIONS_PROCESS</code>) that changes the behavior of triggering its workflows from the main node process to a child process:</p>
+<p><img src="images/n8n-execution-process-code.png" alt="images/n8n-execution-process-code.png" title="n8n execution process code"></p>
+<blockquote>
+<p>More information about <code>EXECUTIONS_PROCESS</code> can be found here: <a href="https://docs.n8n.io/reference/configuration.html#execute-in-same-process">https://docs.n8n.io/reference/configuration.html#execute-in-same-process</a>. (<a href="https://github.com/n8n-io/n8n/blob/master/packages/cli/src/WorkflowRunner.ts#L124-L125"><em>source of image above</em></a>)</p>
+</blockquote>
+<h3 id="executions_process--own">EXECUTIONS_PROCESS = &ldquo;own&rdquo;</h3>
+<p>The first test was done using n8n forking the execution of workflows into separate processes. (This is the default configuration.)</p>
+<p>If we <code>htop</code> in our container, we will see that once we start the load test, the amount of processes on the n8n pod skyrocket 📈. After a couple of seconds, the pod is forced to restart since the CPU limit was reached and the server becomes unresponsive (our /healthz probe is not returning 200 OK anymore).</p>
+<p><img src="images/grafana-execution-process-own.png" alt="images/grafana-execution-process-own.png" title="Grafana EXECUTIONS_PROCESS=own"></p>
+<p>Our <code>hey</code> test finishes after the 1 minute, but notice the amount of error responses highlighted below:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span></span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Summary:
+  Total:	67.9756 secs
+  Slowest:	16.6218 secs
+  Fastest:	0.0596 secs
+  Average:	6.6657 secs
+  Requests/sec:	1.2946
+
+  Total data:	<span style="color:#ae81ff">3546</span> bytes
+  Size/request:	<span style="color:#ae81ff">45</span> bytes
+
+Response time histogram:
+  0.060 <span style="color:#f92672">[</span>1<span style="color:#f92672">]</span>		|■■■
+  1.716 <span style="color:#f92672">[</span>15<span style="color:#f92672">]</span>	|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  3.372 <span style="color:#f92672">[</span>5<span style="color:#f92672">]</span>		|■■■■■■■■■■■■■
+  5.028 <span style="color:#f92672">[</span>16<span style="color:#f92672">]</span>	|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  6.685 <span style="color:#f92672">[</span>9<span style="color:#f92672">]</span>		|■■■■■■■■■■■■■■■■■■■■■■■
+  8.341 <span style="color:#f92672">[</span>3<span style="color:#f92672">]</span>		|■■■■■■■■
+  9.997 <span style="color:#f92672">[</span>6<span style="color:#f92672">]</span>		|■■■■■■■■■■■■■■■
+  11.653 <span style="color:#f92672">[</span>4<span style="color:#f92672">]</span>	|■■■■■■■■■■
+  13.309 <span style="color:#f92672">[</span>7<span style="color:#f92672">]</span>	|■■■■■■■■■■■■■■■■■■
+  14.966 <span style="color:#f92672">[</span>6<span style="color:#f92672">]</span>	|■■■■■■■■■■■■■■■
+  16.622 <span style="color:#f92672">[</span>6<span style="color:#f92672">]</span>	|■■■■■■■■■■■■■■■
+
+Latency distribution:
+  10% in 0.6381 secs
+  25% in 3.0919 secs
+  50% in 5.1199 secs
+  75% in 11.6893 secs
+  90% in 14.4963 secs
+  95% in 15.4841 secs
+  0% in 0.0000 secs
+
+Details <span style="color:#f92672">(</span>average, fastest, slowest<span style="color:#f92672">)</span>:
+  DNS+dialup:	1.1981 secs, 0.0596 secs, 16.6218 secs
+  DNS-lookup:	0.0000 secs, 0.0000 secs, 0.0000 secs
+  req write:	0.0001 secs, 0.0000 secs, 0.0007 secs
+  resp wait:	5.3817 secs, 0.0485 secs, 15.4839 secs
+  resp read:	0.0001 secs, 0.0000 secs, 0.0005 secs
+
+Status code distribution:
+  <span style="color:#f92672">[</span>200<span style="color:#f92672">]</span>	<span style="color:#ae81ff">61</span> responses
+  <span style="color:#f92672">[</span>404<span style="color:#f92672">]</span>	<span style="color:#ae81ff">17</span> responses
+<span style="display:block;width:100%;background-color:#3c3d38">
+</span>Error distribution:
+<span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#f92672">[</span>10<span style="color:#f92672">]</span>	Get http://192.168.64.7:32495/webhook/load-test: dial tcp 192.168.64.7:32495: connect: connection refused</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="executions_process--main">EXECUTIONS_PROCESS = &ldquo;main&rdquo;</h3>
+<p>Seeing that the default configuration couldn&rsquo;t hold multiple concurrent requests, we updated ou <strong>n8n-configmap.yaml</strong> with the <code>EXECUTIONS_PROCESS=main</code> environment:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span></span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># ~/k8s/n8n-configmap.yaml</span>
+---
+<span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: ConfigMap
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: n8n-configmap
+  <span style="color:#66d9ef">namespace</span>: default
+  <span style="color:#66d9ef">labels</span>:
+    <span style="color:#66d9ef">app</span>: n8n
+    <span style="color:#66d9ef">component</span>: configmap
+<span style="color:#66d9ef">data</span>:
+  (...)
+<span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#75715e"># Set n8n to work as single thread instead of forking to worker threads</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#66d9ef">EXECUTIONS_PROCESS</span>: <span style="color:#e6db74">&#34;main&#34;</span></span></code></pre></td></tr></table>
+</div>
+</div>
+<p>With this flag, n8n will take care of asynchronously handle all the requests without forking each request into a new process, simply sending the request to its worker threads (which by default are 10)</p>
+<p>This allows the pod to be able to return a successful &ldquo;/healthz&rdquo; response and keep much better CPU utilization between the different cores.</p>
+<p><img src="images/grafana-execution-process-main.png" alt="images/grafana-execution-process-main.png" title="Grafana EXECUTIONS_PROCESS=main"></p>
+<p>This time, our <code>hey</code> test doesn&rsquo;t show any error responses:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span></span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Summary:
+  Total:	60.3879 secs
+  Slowest:	0.7173 secs
+  Fastest:	0.0304 secs
+  Average:	0.0841 secs
+  Requests/sec:	95.0356
+
+  Total data:	<span style="color:#ae81ff">200865</span> bytes
+  Size/request:	<span style="color:#ae81ff">35</span> bytes
+
+Response time histogram:
+  0.030 <span style="color:#f92672">[</span>1<span style="color:#f92672">]</span>		|
+  0.099 <span style="color:#f92672">[</span>4836<span style="color:#f92672">]</span>	|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  0.168 <span style="color:#f92672">[</span>683<span style="color:#f92672">]</span>	|■■■■■■
+  0.236 <span style="color:#f92672">[</span>83<span style="color:#f92672">]</span>	|■
+  0.305 <span style="color:#f92672">[</span>21<span style="color:#f92672">]</span>	|
+  0.374 <span style="color:#f92672">[</span>9<span style="color:#f92672">]</span>		|
+  0.443 <span style="color:#f92672">[</span>20<span style="color:#f92672">]</span>	|
+  0.511 <span style="color:#f92672">[</span>39<span style="color:#f92672">]</span>	|
+  0.580 <span style="color:#f92672">[</span>26<span style="color:#f92672">]</span>	|
+  0.649 <span style="color:#f92672">[</span>15<span style="color:#f92672">]</span>	|
+  0.717 <span style="color:#f92672">[</span>6<span style="color:#f92672">]</span>		|
+
+Latency distribution:
+  10% in 0.0511 secs
+  25% in 0.0581 secs
+  50% in 0.0685 secs
+  75% in 0.0863 secs
+  90% in 0.1135 secs
+  95% in 0.1413 secs
+  99% in 0.4957 secs
+
+Details <span style="color:#f92672">(</span>average, fastest, slowest<span style="color:#f92672">)</span>:
+  DNS+dialup:	0.0000 secs, 0.0304 secs, 0.7173 secs
+  DNS-lookup:	0.0000 secs, 0.0000 secs, 0.0000 secs
+  req write:	0.0000 secs, 0.0000 secs, 0.0008 secs
+  resp wait:	0.0840 secs, 0.0303 secs, 0.7172 secs
+  resp read:	0.0000 secs, 0.0000 secs, 0.0007 secs
+
+Status code distribution:
+<span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#f92672">[</span>200<span style="color:#f92672">]</span>	<span style="color:#ae81ff">5739</span> responses</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>ℹ️ So, in conclusion, if your n8n usage follows more on the heavy I/O operations (vs CPU bound, like returning fibonacci sequences) then you want to setup the execution configuration to not fork its main process, using the <code>EXECUTIONS_PROCESS=main</code>.</p>
+<blockquote>
+<p>On n8n community forum there are some good threads explain the rational for this <a href="https://community.n8n.io/t/workflowrunner-use-fork-to-create-subprocess-when-webhook-always-receive-request-will-make-many-subprocess-and-cpu-usage-so-high/348">1</a>, <a href="https://community.n8n.io/t/handling-of-the-n8n-worker-processes/5213">2</a></p>
+</blockquote>
+<h1 id="need-more-scale-use-redis">Need more scale? Use Redis.</h1>
+<p>In the scenario where we have to scale n8n to serve much more traffic/webhooks, we can take advantage of its built-in integration with Redis which the main n8n node (producers) would broadcast all workflow events to a Redis instance (broker) which would then be consumed by n8n worker nodes (consumers).</p>
+<blockquote>
+<p>There is a community thread that introduces this: <a href="https://community.n8n.io/t/slow-webhook-response-performance-high-cpu/3314/6">https://community.n8n.io/t/slow-webhook-response-performance-high-cpu/3314/6</a></p>
+</blockquote>
+<h1 id="summary">Summary</h1>
+<p>Well, this has been one of my biggest blogpost series, <em>so far</em> 😁</p>
+<p>Writing all of this, along side with the slides, images and examples, took more time that I was hoping but in the end I end up doing these things for myself, and if there&rsquo;s anyone that can learn or take advantage of these example, thats awesome.</p>
+<p>If you find anything that is not correct or if you just have questions about some of my decisions here, feel free ask below or just PM me!</p>
+<h1 id="resources">Resources</h1>
+<ul>
+<li><code>--max-old-space-size</code> flag: <a href="https://stackoverflow.com/questions/48387040/how-do-i-determine-the-correct-max-old-space-size-for-node-js/48392705#48392705">https://stackoverflow.com/questions/48387040/how-do-i-determine-the-correct-max-old-space-size-for-node-js/48392705#48392705</a></li>
+<li>NodeJS memory limits: <a href="http://www.the-data-wrangler.com/nodejs-memory-limits/">http://www.the-data-wrangler.com/nodejs-memory-limits/</a></li>
+<li>n8n multiple execution configurations: <a href="https://docs.n8n.io/reference/configuration.html#execute-in-same-process">https://docs.n8n.io/reference/configuration.html#execute-in-same-process</a></li>
+<li>Handling n8n worker processes <a href="https://community.n8n.io/t/handling-of-the-n8n-worker-processes/5213/3">https://community.n8n.io/t/handling-of-the-n8n-worker-processes/5213/3</a></li>
+<li>How to scale your n8n instance: <a href="https://www.youtube.com/watch?v=PnoE0xV8BX8">https://www.youtube.com/watch?v=PnoE0xV8BX8</a></li>
+</ul>
+<p>👋</p>
+
+        </article>
+    </section>
+
+    <aside>
+        <div class="d-none d-xl-block">
+            
+                <div class="toc">
+                    <h5>Table of contents</h5>
+                    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#nodejs-default-max-memory">NodeJS default max memory</a></li>
+    <li><a href="#n8n-execution-mode">n8n Execution Mode</a>
+      <ul>
+        <li><a href="#the-workflow">The workflow</a></li>
+        <li><a href="#setup-of-the-test">Setup of the test</a></li>
+        <li><a href="#results">Results</a>
+          <ul>
+            <li><a href="#executions_process--own">EXECUTIONS_PROCESS = &ldquo;own&rdquo;</a></li>
+            <li><a href="#executions_process--main">EXECUTIONS_PROCESS = &ldquo;main&rdquo;</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#need-more-scale-use-redis">Need more scale? Use Redis.</a></li>
+    <li><a href="#summary">Summary</a></li>
+    <li><a href="#resources">Resources</a></li>
+  </ul>
+</nav>
+                </div>
+            
+        </div>
+    </aside>
+</main>
+
+<hr>
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "andreffs" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<hr>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-auto">
+      <small>
+        Last update: May 23, 2021
+        
+          <a href="https://github.com/andreffs18/website/commit/8afe8e63fcd082f3af34c61d9706730b9c104e8e" target="_blank">(8afe8e6)</a>
+        
+      </small>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="pt-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 text-left">
+                
+                Previous Post: ◀ <a href="https://andreffs18.github.io/website/blog/observability-on-n8n/">Observability on n8n</a>
+                
+            </div>
+            <div class="col-md-6 text-right">
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+const BLOG_TITLE_SELECTORS = '.blog article h1, .blog article h2, .blog article h3, .blog article h4, .blog article h5, .blog article h6';
+
+function addAnchor(element) {
+    element.innerHTML = `<a class="anchor" href="#${element.id}" aria-hidden="true"><span class="octicon octicon-link"></span></a>${element.innerText}`
+}
+document.addEventListener('DOMContentLoaded', () => {
+    var headers = document.querySelectorAll(BLOG_TITLE_SELECTORS)
+    if (headers) {
+        headers.forEach(addAnchor)
+    }
+})
+
+
+window.addEventListener('DOMContentLoaded', () => {
+	const observer = new IntersectionObserver(entries => {
+    let container = document.querySelector('.toc');
+    let links = [...container.querySelectorAll('a')]
+    let headings = links.map(link => {
+      let id = link.getAttribute('href')
+      return document.querySelector(id)
+    })
+
+    entries.forEach(entry => {
+      let previousSection = undefined;
+      let href = `#${entry.target.getAttribute('id')}`;
+      let link = links.find(l => l.getAttribute('href') === href);
+
+      if (entry.intersectionRatio > 0) {
+        link.classList.add('is-visible');
+        previousSection = entry.target.getAttribute('id');
+      } else {
+        link.classList.remove('is-visible');
+      }
+
+      links.forEach(link => {
+        link.classList.remove('is-active');
+      })
+
+      let firstVisibleLink = container.querySelector('.is-visible');
+      if (firstVisibleLink) {
+        firstVisibleLink.classList.add('is-active');
+      }
+      if (!firstVisibleLink && previousSection) {
+        container.querySelector(`a[href="#${previousSection}"]`).classList.add('is-active');
+      }
+    })
+    
+    if(entries.length === 1){
+      let entry = entries[0];
+      let lastHeadingOfBlogpost = headings[headings.length - 1];
+      if(
+        entry.intersectionRatio === 0 && 
+        entry.target === lastHeadingOfBlogpost 
+      ) {
+        let href = `#${entry.target.getAttribute('id')}`;
+        container.querySelector(`a[href="${href}"]`).classList.add('is-active');
+      }
+    }
+	});
+	
+	document.querySelectorAll(BLOG_TITLE_SELECTORS).forEach((title) => {
+		observer.observe(title);
+	});
+});
+
+</script>
+
+        </div>
+        
+<footer>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <ul class="navbar menu pull-left">
+                  
+                      <li class="nav-item ">
+                          <a class="nav-link" href="https://andreffs18.github.io/website/cv/" title="">CV</a>
+                      </li>
+                  
+                      <li class="nav-item ">
+                          <a class="nav-link" href="https://andreffs18.github.io/website/about/" title="">About</a>
+                      </li>
+                  
+                      <li class="nav-item ">
+                          <a class="nav-link" href="https://andreffs18.github.io/website/blog/" title="">Blog</a>
+                      </li>
+                  
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <ul class="navbar social pull-right">
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="mailto:andreffs18@gmail.com" target="_blank"><i class="fa fa-envelope"></i></a>
+                        </li>
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://www.facebook.com/andreffs18" target="_blank"><i class="fa fa-facebook"></i></a>
+                        </li>
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://github.com/andreffs18" target="_blank"><i class="fa fa-github"></i></a>
+                        </li>
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://instagram.com/andreffs18" target="_blank"><i class="fa fa-instagram"></i></a>
+                        </li>
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://pt.linkedin.com/in/andreffs18" target="_blank"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://twitter.com/andreffs18" target="_blank"><i class="fa fa-twitter"></i></a>
+                        </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    </body>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-71884481-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</html>

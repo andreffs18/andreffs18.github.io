@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta name="generator" content="Hugo 0.67.1" />
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="https://andreffs18.github.io/website/favicon.png">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ANDREFFS | Setup n8n on Kubernetes</title>
+
+    <meta name="author" content="">
+    <meta name="description" content="">
+    <link rel="canonical" href="https://andreffs18.github.io/website/blog/setup-n8n-on-kubernetes/">
+
+    
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+    
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    
+    <link rel="stylesheet" type="text/css" href="https://andreffs18.github.io/website/css/main.min.2623349fa9762b7582fc7ec2ace6404ca36556bc5dae11d474e5b870e0d3d1f3.css">
+</head>
+
+    <body>
+        <div class="container pb-5">
+            <header>
+    <div class="page-header pb-4 mt-5 mb-4">
+        
+            <a href="https://andreffs18.github.io/website" class="text-decoration-none">
+                <h1 class="text3d text-right text-uppercase"><span id="">André Silva</span><br/></h1>
+            </a>
+            <small class="letterpress text-right text-uppercase">28 y/old workaholic from Lisbon.</small>
+        
+    </div>
+</header>
+            
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<main class="row blog">
+    <section>
+        <header>
+            <h1 class="">Setup n8n on Kubernetes</h1>
+
+            
+
+            <a class="text-muted mt-3">
+                <a class="text-muted" href="https://andreffs18.github.io/website/blog/setup-n8n-on-kubernetes/">Published April 5, 2021</a>
+
+                
+                    <span>|</span>
+                    
+                    <a class="text-muted" href="https://andreffs18.github.io/tags/n8n">#n8n</a>
+                    
+                    <a class="text-muted" href="https://andreffs18.github.io/tags/nodejs">#nodejs</a>
+                    
+                    <a class="text-muted" href="https://andreffs18.github.io/tags/kubernetes">#kubernetes</a>
+                    
+                
+                <span>|</span>
+                <a class="text-muted text-decoration-none">± 12 mins</a>
+            </p>
+        </header>
+        <article class="markdown-body">
+            <p><em>Update 2021-05-23: Decided to split this post into 3 different ones to be more easily read. You can find the other two here: <a href="/blog/observability-on-n8n/">&ldquo;Observability on n8n&rdquo;</a> and <a href="/blog/n8n-customizations-for-production/">&ldquo;n8n customizations for Production&rdquo;</a></em>.</p>
+<hr>
+<p>So at my company we started using <a href="https://n8n.io/">n8n</a> to setup some MVP&rsquo;s, build workflows and glue together some of our internal tools in order to automate some of our processes.</p>
+<p>In this post I&rsquo;m going to go over how we&rsquo;ve deployed n8n on our Kubernetes Cluster.</p>
+<h1 id="what-is-n8n">What is n8n</h1>
+<p>Simply put, n8n is a free, extendable workflow automation tool, with a fair-code distribution model. If you already know no/low-code tools like <a href="https://zapier.com/">Zapier</a> or <a href="https://ifttt.com/">IFTTT</a>, then n8n is pretty similar, and you can run it on your own.</p>
+<blockquote>
+<p>Being fair-code means that the source code will always be shared, and you are free to use. The only caveat is if you make money with n8n, then you might need to pay a license for using it. <a href="https://community.n8n.io/t/doubts-about-fair-code-license/2502">This thread</a> on the community forum has good examples on why this model is different from the traditional &ldquo;open-source&rdquo; projects.</p>
+</blockquote>
+<p><img src="images/n8n-stack.png" alt="images/n8n-stack.png" title="n8n stack"></p>
+<p>Under the hood it&rsquo;s a NodeJS web server that runs workflows. Since its inception (<a href="https://github.com/n8n-io/n8n/commit/9cb9804eeec1576d935817ecda6bd345480b97fa">~June 2019</a>) it already has <a href="https://n8n.io/integrations">+280 Nodes</a> and <a href="https://n8n.io/workflows/">+500 Workflows</a> available. The community is very active as well, usually a fix takes a couple of days to get merged and deployed, which is very cool!</p>
+<blockquote>
+<p>This means that you can self-host n8n very easily. There is also <a href="https://www.n8n.cloud/">n8n.cloud</a>, the paid hosted version which you wont have to worry about scale, security or maintaining it by yourself.</p>
+</blockquote>
+<h2 id="why-use-n8n-and-not-zapier">Why use n8n and not Zapier?</h2>
+<p>Well, for me, the high cost. 💸</p>
+<p>Zapier is amazing and will probably work for whatever use-case throw at it, but over time the free tier just doesn&rsquo;t work. You hit your <em>&ldquo;zap&rdquo;</em> limits very quickly and you can only create very simple &ldquo;two-step&rdquo; flows. More complex flows are only available for paying customers.</p>
+<p><img src="images/zapier-multi-step-zap.png" alt="images/zapier-multi-step-zap.png"></p>
+<p>Also, its not on &ldquo;your environment&rdquo; (no on-premiss deployment/self-hosted) which might be a problem if you have strict rules in place, like sharing data with third party vendors. Zapier is enterprise ready, which means they will probably give you amazing customer support and all the features you need, you just need to 💰.</p>
+<p>If don&rsquo;t mind setting up and managing your own instance (availability, scalability, durability, etc) then n8n will work as good as any of the non-free competitors.</p>
+<h3 id="example-of-a-workflow-between-zapier-vs-n8n">Example of a workflow between Zapier vs n8n</h3>
+<p>To illustrate the different between Zapier and n8n, here is a simple workflow comparison. Both workflows do the same thing:</p>
+<p><em>👉  Every hour, build a custom message and post it under my #general slack channel.</em></p>
+<blockquote>
+<p>This is just a simple workflow that allow us to quickly see the main differences.</p>
+</blockquote>
+<p>For this to work we need:</p>
+<ul>
+<li>Some sort or routine/cronjob step, that is triggered every hour;</li>
+<li>A step to build our custom message;</li>
+<li>A slack integration to post our message.</li>
+</ul>
+<p><img src="images/zapier-n8n-side-by-side.png" alt="images/zapier-n8n-side-by-side.png" title="Comparison between Zapier workflow and n8n workflow"></p>
+<p>Executing both workflows, we get the expected message on our slack channel:</p>
+<p><img src="images/slack-message-example.png" alt="images/slack-message-example.png" title="Slack message example"></p>
+<p>But, the goal of this post is to not talk about why you should use n8n or Zapier, its actually to show you how we&rsquo;ve setup n8n on our Kubernetes cluster.</p>
+<p>So without further ado&hellip;</p>
+<h1 id="how-to-setup-n8n-in-kubernetes">How to setup n8n in Kubernetes</h1>
+<p>Instead of coming up from scratch with the whole Kubernetes configuration, we will be using the examples provided by <a href="https://community.n8n.io/u/bacarini">@bacarini</a>, a member of n8n&rsquo;s community forum that shared his <a href="https://community.n8n.io/t/running-with-kubernetes/681/13">configuration</a>, and a really good friend of mine.</p>
+<p>The overall architecture will look something like the following:</p>
+<div id="slideshow-architecture" class="slideshow">
+    <div id="architecture"></div>
+    <div class="d-flex justify-content-between">
+
+
+    </div>
+</div>
+
+<script type="text/javascript">
+
+[
+  {url: "images/architecture-slide-1.png", description: "We're gonna use <a href='https://kubernetes.io/docs/tasks/tools/#minikube' target='_blank'>Minikube</a> for setting up our cluster locally. You can just follow the <a href='https://kubernetes.io/pt/docs/tutorials/hello-minikube/' target='_blank'>\"Hello World\"</a> tutorial if this is your first time using it."},
+  {url: "images/architecture-slide-2.png", description: "First, we need to create our n8n instance. For that we need to setup one Deployment with one Pod. This container will use the <a href='https://hub.docker.com/r/n8nio/n8n/tags?page=1&ordering=last_updated' target='_blank'>\"n8nio/n8n:latest\"</a> image for now."},
+  {url: "images/architecture-slide-3.png", description: "Secondly, n8n needs to store its configurations and workflows and since it already provides support for <a href='https://docs.n8n.io/reference/data/database.html#postgresdb'>PostgreSQL</a>, we will be using that. To support that new instance, we will need to configure a StatefulSet object."},
+  {url: "images/architecture-slide-4.png", description: "Both instances need a couple of environments. We will also setup a Configmap and Secrets to save all of those."},
+  {url: "images/architecture-slide-5.png", description: "Once those containers are running, we need to expose them. To do that we need to create a Service object for our n8n instance and expose it on the n8n default port (5678)."},
+  {url: "images/architecture-slide-6.png", description: "The same thing for our Postgres instance. Since Postgres runs on the port 5432, we just need to setup a new Service but exposing that port instead."},
+  {url: "images/architecture-slide-7.png", description: "Finally, we need to update our Secrets, particularly the <strong>\"Database Host\"</strong> configuration, so our n8n service knows how to communicate with out Postgres Service."},
+  {url: "images/architecture-slide-8.png", description: "and run <code>\"$ minikube service n8n-service\"</code>. This will make minikube assign an available port on our host machine to our n8n Service, so we can access it on a browser."},
+]
+.forEach((slide) => {
+    const div = document.createElement("div");
+    const img = document.createElement("img");
+    img.src = slide.url;
+    const p = document.createElement("p");
+    p.innerHTML = slide.description;
+    div.appendChild(img);
+    div.appendChild(p)
+    document.getElementById("architecture").appendChild(div);
+})
+
+$('#architecture').slick({
+    dots: false,
+    infinite: false,
+    speed: 0,
+    fade: true,
+    draggable: false,
+    cssEase: 'linear',
+    prevArrow: '<button id="left-arrow-example" class="btn btn-primary">◄ Previous</button>',
+    nextArrow: ' <button id="right-arrow-example" class="btn btn-primary">Next ►</button>'
+});
+</script>
+
+<p>Once we have Minikube installed, we can start the cluster by running the following command:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ minikube start --vm-driver<span style="color:#f92672">=</span>hyperkit
+😄  minikube v1.16.0 on Darwin 10.14.6
+✨  Using the hyperkit driver based on user configuration
+👍  Starting control plane node minikube in cluster minikube
+🔥  Creating hyperkit VM <span style="color:#f92672">(</span>CPUs<span style="color:#f92672">=</span>2, Memory<span style="color:#f92672">=</span>4000MB, Disk<span style="color:#f92672">=</span>20000MB<span style="color:#f92672">)</span> ...
+🐳  Preparing Kubernetes v1.20.0 on Docker 20.10.0 ...
+    ▪ Generating certificates and keys ...
+    ▪ Booting up control plane ...
+    ▪ Configuring RBAC rules ...
+🔎  Verifying Kubernetes components...
+🌟  Enabled addons: storage-provisioner, default-storageclass
+🏄  Done! kubectl is now configured to use <span style="color:#e6db74">&#34;minikube&#34;</span> cluster and <span style="color:#e6db74">&#34;default&#34;</span> namespace by default
+
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="n8n-deployment">n8n Deployment</h2>
+<p>Following the diagrams above, we will start with the n8n Deployment configuration and exposing it with its Service configuration:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># ~/k8s/n8n-deployment.yaml</span>
+---
+<span style="color:#66d9ef">apiVersion</span>: apps/v1
+<span style="color:#66d9ef">kind</span>: Deployment
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: n8n-deployment
+  <span style="color:#66d9ef">namespace</span>: default
+  <span style="color:#66d9ef">labels</span>: <span style="color:#75715e">&amp;labels</span>
+    <span style="color:#66d9ef">app</span>: n8n
+    <span style="color:#66d9ef">component</span>: deployment
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">replicas</span>: <span style="color:#ae81ff">1</span>
+  <span style="color:#66d9ef">selector</span>:
+    <span style="color:#66d9ef">matchLabels</span>: <span style="color:#75715e">*labels</span>
+  <span style="color:#66d9ef">template</span>:
+    <span style="color:#66d9ef">metadata</span>:
+      <span style="color:#66d9ef">labels</span>: <span style="color:#75715e">*labels</span>
+    <span style="color:#66d9ef">spec</span>:
+      <span style="color:#66d9ef">containers</span>:
+      - <span style="color:#66d9ef">name</span>: n8n
+        <span style="color:#66d9ef">image</span>: n8nio/n8n:latest
+        <span style="color:#66d9ef">imagePullPolicy</span>: IfNotPresent
+        <span style="color:#66d9ef">ports</span>:
+        - <span style="color:#66d9ef">name</span>: http
+          <span style="color:#66d9ef">containerPort</span>: <span style="color:#ae81ff">5678</span>
+        <span style="color:#66d9ef">envFrom</span>:
+        - <span style="color:#66d9ef">configMapRef</span>:
+            <span style="color:#66d9ef">name</span>: n8n-configmap
+        - <span style="color:#66d9ef">secretRef</span>:
+            <span style="color:#66d9ef">name</span>: n8n-secrets
+        <span style="color:#66d9ef">livenessProbe</span>:
+          <span style="color:#66d9ef">httpGet</span>:
+            <span style="color:#66d9ef">path</span>: /healthz
+            <span style="color:#66d9ef">port</span>: <span style="color:#ae81ff">5678</span>
+        <span style="color:#66d9ef">readinessProbe</span>:
+          <span style="color:#66d9ef">httpGet</span>:
+            <span style="color:#66d9ef">path</span>: /healthz
+            <span style="color:#66d9ef">port</span>: <span style="color:#ae81ff">5678</span>
+        <span style="color:#66d9ef">resources</span>:
+          <span style="color:#66d9ef">limits</span>:
+            <span style="color:#66d9ef">cpu</span>: <span style="color:#e6db74">&#34;1.0&#34;</span>
+            <span style="color:#66d9ef">memory</span>: <span style="color:#e6db74">&#34;1024Mi&#34;</span>
+          <span style="color:#66d9ef">requests</span>:
+            <span style="color:#66d9ef">cpu</span>: <span style="color:#e6db74">&#34;0.5&#34;</span>
+            <span style="color:#66d9ef">memory</span>: <span style="color:#e6db74">&#34;512Mi&#34;</span></code></pre></td></tr></table>
+</div>
+</div>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># ~/k8s/n8n-service.yaml</span>
+---
+<span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: Service
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: n8n-service
+  <span style="color:#66d9ef">namespace</span>: default
+  <span style="color:#66d9ef">labels</span>:
+    <span style="color:#66d9ef">app</span>: n8n
+    <span style="color:#66d9ef">component</span>: service
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">type</span>: NodePort
+  <span style="color:#66d9ef">selector</span>:
+    <span style="color:#66d9ef">app</span>: n8n
+    <span style="color:#66d9ef">component</span>: deployment
+  <span style="color:#66d9ef">ports</span>:
+  - <span style="color:#66d9ef">protocol</span>: TCP
+    <span style="color:#66d9ef">name</span>: http
+    <span style="color:#66d9ef">port</span>: <span style="color:#ae81ff">80</span>
+    <span style="color:#66d9ef">targetPort</span>: <span style="color:#ae81ff">5678</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>Important notes here:</p>
+<ul>
+<li>We assigned a <code>&amp;labels</code> variable to help us from <em>copy&amp;pasting</em> the same labels everywhere inside the same .yaml configuration (this is replicated across most of our configurations);</li>
+<li>We are setting the n8n container port to <strong>5678</strong> on our <strong>n8n-deployment.yaml</strong> file, which maps to n8n default port. The container is exposed by our <strong>n8n-service.yaml</strong> on port <strong>80</strong> (http) by redirecting traffic from there to the containers <strong>targetPort</strong>.</li>
+<li>Both our <strong>n8n-configmap.yaml</strong> and <strong>n8n-secrets.yaml</strong> are associated with our n8n container, although we still need to create them. We&rsquo;ll do that shortly.</li>
+<li>n8n provides a <a href="https://github.com/n8n-io/n8n/commit/0214b44d513d47758ab677bd4a3a2efedb912110">/healthz</a> endpoint to check if the service is up and running. We take advantage of that endpoint to configure our deployment Liveness and Readiness Probes;</li>
+<li>Finally, we top the resources of our container to use at best 1 CPU and 1Gbi of memory of our cluster.</li>
+</ul>
+<p>Special attention to the <strong>selector</strong> on the <strong>n8n-service.yaml</strong> configuration which <strong>must match the same labels on the n8n-deployment container</strong>, otherwise we wont be able to reach our n8n server.</p>
+<blockquote>
+<p>To read more about selectors and how they work with Deployments you can go here: <a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#creating-a-deployment">https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#creating-a-deployment</a></p>
+</blockquote>
+<p>So, applying both those configurations we will have the following:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl apply -f k8s/n8n-deployment.yaml,k8s/n8n-service.yaml
+deployment.apps/n8n-deployment created
+service/n8n-service created
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="images/architecture-n8n-deployment-and-service.png" alt="images/architecture-n8n-deployment-and-service.png" title="Kubernetes n8n deployment and service configurations"></p>
+<blockquote>
+<p>If you went ahead and checked our pod (<code>$ kubectl get pods</code>), you will see that it is in a <strong>&ldquo;CreateContainerConfigError&rdquo;</strong> state. This is because we are still missing our ConfigMap and Secrets configuration. We will fix that soon.</p>
+</blockquote>
+<h2 id="postgresql-statefulset">PostgreSQL StatefulSet</h2>
+<p>Very similar to our Deployment configurations before, the Postgres Statefulset configuration is as follows:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># ~/k8s/postgres-statefulset.yaml</span>
+---
+<span style="color:#66d9ef">apiVersion</span>: apps/v1
+<span style="color:#66d9ef">kind</span>: StatefulSet
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: postgres-statefulset
+  <span style="color:#66d9ef">namespace</span>: default
+  <span style="color:#66d9ef">labels</span>: <span style="color:#75715e">&amp;labels</span>
+    <span style="color:#66d9ef">app</span>: postgres
+    <span style="color:#66d9ef">component</span>: statefulset
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">serviceName</span>: postgres-statefulset
+  <span style="color:#66d9ef">replicas</span>: <span style="color:#ae81ff">1</span>
+  <span style="color:#66d9ef">selector</span>:
+    <span style="color:#66d9ef">matchLabels</span>: <span style="color:#75715e">*labels</span>
+  <span style="color:#66d9ef">template</span>:
+    <span style="color:#66d9ef">metadata</span>:
+      <span style="color:#66d9ef">labels</span>: <span style="color:#75715e">*labels</span>
+    <span style="color:#66d9ef">spec</span>:
+      <span style="color:#66d9ef">containers</span>:
+      - <span style="color:#66d9ef">name</span>: postgres
+        <span style="color:#66d9ef">image</span>: postgres:<span style="color:#ae81ff">10</span>
+        <span style="color:#66d9ef">ports</span>:
+        - <span style="color:#66d9ef">name</span>: postgres
+          <span style="color:#66d9ef">containerPort</span>: <span style="color:#ae81ff">5432</span>
+        <span style="color:#66d9ef">envFrom</span>:
+        - <span style="color:#66d9ef">secretRef</span>:
+            <span style="color:#66d9ef">name</span>: postgres-secrets</code></pre></td></tr></table>
+</div>
+</div>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># ~/k8s/postgres-service.yaml</span>
+---
+<span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: Service
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: postgres-service
+  <span style="color:#66d9ef">namespace</span>: default
+  <span style="color:#66d9ef">labels</span>: <span style="color:#75715e">&amp;labels</span>
+    <span style="color:#66d9ef">app</span>: postgres
+    <span style="color:#66d9ef">component</span>: service
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">clusterIP</span>: None
+  <span style="color:#66d9ef">selector</span>:
+    <span style="color:#66d9ef">app</span>: postgres
+    <span style="color:#66d9ef">component</span>: statefulset
+  <span style="color:#66d9ef">ports</span>:
+  - <span style="color:#66d9ef">name</span>: postgres
+    <span style="color:#66d9ef">port</span>: <span style="color:#ae81ff">5432</span>
+    <span style="color:#66d9ef">targetPort</span>: <span style="color:#ae81ff">5432</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>The main differences as you can see are:</p>
+<ul>
+<li>The port that we are exposing now, both in our <strong>postgres-statefulset.yaml</strong> and <strong>postgres-service.yaml</strong> is <strong>5432</strong>, which is the default port for a PostgreSQL server.</li>
+<li>Like the configuration before, special attention to the service selector which <strong>must match the labels on the stateful set container</strong>.</li>
+</ul>
+<p>Applying both k8s configurations, and we have the following:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl apply -f k8s/postgres-statefulset.yaml,k8s/postgres-service.yaml
+statefulset.apps/postgres-statefulset created
+service/postgres-service created
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="images/architecture-postgres-statefulset-and-service.png" alt="images/architecture-postgres-statefulset-and-service.png" title="Kubernetes postgres statefulset and service configurations"></p>
+<h2 id="configmaps--secrets">ConfigMaps &amp; Secrets</h2>
+<p>To tie these together we just need to bootstrap all default configurations for both n8n and PostgreSQL:</p>
+<ul>
+<li>Our n8n Deployment is linked to a ConfigMap by the name <strong>&ldquo;n8n-configmap&rdquo;</strong> and a Secrets configuration named <strong>&ldquo;n8n-secrets&rdquo;</strong>;</li>
+<li>The Postgres Statefulset is just by a Secrets configuration named <strong>&ldquo;postgres-secrets&rdquo;</strong>.</li>
+</ul>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># ~/k8s/n8n-configmap.yaml</span>
+---
+<span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: ConfigMap
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: n8n-configmap
+  <span style="color:#66d9ef">namespace</span>: default
+  <span style="color:#66d9ef">labels</span>:
+    <span style="color:#66d9ef">app</span>: n8n
+    <span style="color:#66d9ef">component</span>: configmap
+<span style="color:#66d9ef">data</span>:
+  <span style="color:#66d9ef">NODE_ENV</span>: <span style="color:#e6db74">&#34;production&#34;</span>
+  <span style="color:#66d9ef">GENERIC_TIMEZONE</span>: <span style="color:#e6db74">&#34;Europe/Lisbon&#34;</span>
+  <span style="color:#66d9ef">WEBHOOK_TUNNEL_URL</span>: <span style="color:#e6db74">&#34;https://your.domain.com/&#34;</span>  <span style="color:#75715e"># well come back to this later</span>
+  <span style="color:#75715e"># Database configurations</span>
+  <span style="color:#66d9ef">DB_TYPE</span>: <span style="color:#e6db74">&#34;postgresdb&#34;</span>
+  <span style="color:#66d9ef">DB_POSTGRESDB_USER</span>: <span style="color:#e6db74">&#34;n8n&#34;</span>
+  <span style="color:#66d9ef">DB_POSTGRESDB_DATABASE</span>: <span style="color:#e6db74">&#34;n8n&#34;</span>
+  <span style="color:#66d9ef">DB_POSTGRESDB_HOST</span>: <span style="color:#e6db74">&#34;postgres-service&#34;</span>
+  <span style="color:#66d9ef">DB_POSTGRESDB_PORT</span>: <span style="color:#e6db74">&#34;5432&#34;</span>
+  <span style="color:#75715e"># Turn on basic auth</span>
+  <span style="color:#66d9ef">N8N_BASIC_AUTH_ACTIVE</span>: <span style="color:#e6db74">&#34;true&#34;</span>
+  <span style="color:#66d9ef">N8N_BASIC_AUTH_USER</span>: <span style="color:#e6db74">&#34;n8n&#34;</span></code></pre></td></tr></table>
+</div>
+</div>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># ~/k8s/n8n-secrets.yaml</span>
+---
+<span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: Secret
+<span style="color:#66d9ef">type</span>: Opaque
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: n8n-secrets
+  <span style="color:#66d9ef">namespace</span>: default
+  <span style="color:#66d9ef">labels</span>:
+    <span style="color:#66d9ef">app</span>: n8n
+    <span style="color:#66d9ef">component</span>: secrets
+<span style="color:#66d9ef">stringData</span>:
+  <span style="color:#75715e"># Database password</span>
+  <span style="color:#66d9ef">DB_POSTGRESDB_PASSWORD</span>: <span style="color:#e6db74">&#34;n8n&#34;</span>
+  <span style="color:#75715e"># Basic auth credentials</span>
+  <span style="color:#66d9ef">N8N_BASIC_AUTH_PASSWORD</span>: <span style="color:#e6db74">&#34;n8n&#34;</span>
+  <span style="color:#75715e"># Encryption key to hash all data</span>
+  <span style="color:#66d9ef">N8N_ENCRYPTION_KEY</span>: <span style="color:#e6db74">&#34;n8n&#34;</span></code></pre></td></tr></table>
+</div>
+</div>
+<hr>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># ~/k8s/postgres-secrets.yaml</span>
+---
+<span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: Secret
+<span style="color:#66d9ef">type</span>: Opaque
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: postgres-secrets
+  <span style="color:#66d9ef">namespace</span>: default
+  <span style="color:#66d9ef">labels</span>:
+    <span style="color:#66d9ef">app</span>: postgres
+    <span style="color:#66d9ef">component</span>: secrets
+<span style="color:#66d9ef">stringData</span>:
+  <span style="color:#66d9ef">PGDATA</span>: <span style="color:#e6db74">&#34;/var/lib/postgresql/data/pgdata&#34;</span>
+  <span style="color:#66d9ef">POSTGRES_USER</span>: <span style="color:#e6db74">&#34;n8n&#34;</span>
+  <span style="color:#66d9ef">POSTGRES_DB</span>: <span style="color:#e6db74">&#34;n8n&#34;</span>
+  <span style="color:#66d9ef">POSTGRES_PASSWORD</span>: <span style="color:#e6db74">&#34;n8n&#34;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>All these configurations are pretty standard, and most of them are copy&amp;pasted from the example given by <a href="https://community.n8n.io/t/running-with-kubernetes/681/13">@bacarini</a> or by <a href="https://docs.n8n.io/reference/configuration.html">n8n documentation</a>, but again the important part is:</p>
+<ul>
+<li>the <strong>&ldquo;DB_POSTGRESDB_HOST&rdquo;</strong> on the <strong>n8n-configmap.yaml</strong> configuration <strong>must match the service name</strong> for our PostgreSQL service.</li>
+</ul>
+<p>Also, we need to update our <code>WEBHOOK_TUNNEL_URL</code> environment. This will be used mostly to call webhooks but it needs to be a valid host url, so it wont work.</p>
+<p>Following n8n FAQ&rsquo;s they suggest to <a href="https://docs.n8n.io/credentials/twist/#how-to-configure-the-oauth-credentials-for-the-local-environment">use ngrok and setup that url</a>, but I found out that you can simply setup that config with the result of <code>$ minikube service n8n-service --url</code> and that will work without any extra service running on your computer.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># ~/k8s/n8n-configmap.yaml</span>
+---
+<span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: ConfigMap
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: n8n-configmap
+  <span style="color:#66d9ef">namespace</span>: default
+  <span style="color:#66d9ef">labels</span>:
+    <span style="color:#66d9ef">app</span>: n8n
+    <span style="color:#66d9ef">component</span>: configmap
+<span style="color:#66d9ef">data</span>:
+<span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#66d9ef">WEBHOOK_TUNNEL_URL</span>: <span style="color:#e6db74">&#34;http://192.168.64.7:32495/&#34;</span>
+</span>  (...)</code></pre></td></tr></table>
+</div>
+</div>
+<p>Now, we can just apply all 3 configuration files, and <strong>restart</strong> both Deployment and Statefulset so these configurations are reloaded:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl apply -f k8s/n8n-configmap.yaml,k8s/n8n-secrets.yaml,k8s/postgres-secrets.yaml
+configmap/n8n-configmap created
+secret/n8n-secrets created
+secret/postgres-secrets created
+
+$ kubectl rollout restart statefulset postgres-statefulset
+statefulset.apps/postgres-statefulset restarted
+
+$ kubectl rollout restart deployment n8n-deployment
+deployment.apps/n8n-deployment restarted
+
+$ kubectl get all
+NAME                                  READY   STATUS    RESTARTS   AGE
+pod/n8n-deployment-7ff699757b-hhnrl   1/1     Running   <span style="color:#ae81ff">0</span>          63s
+pod/postgres-statefulset-0            1/1     Running   <span style="color:#ae81ff">0</span>          63s
+
+NAME                       TYPE        CLUSTER-IP       EXTERNAL-IP   PORT<span style="color:#f92672">(</span>S<span style="color:#f92672">)</span>        AGE
+service/kubernetes         ClusterIP   10.96.0.1        &lt;none&gt;        443/TCP        33m
+service/n8n-service        NodePort    10.101.189.224   &lt;none&gt;        80:30758/TCP   29m
+service/postgres-service   ClusterIP   None             &lt;none&gt;        5432/TCP       26m
+
+NAME                             READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/n8n-deployment   1/1     <span style="color:#ae81ff">1</span>            <span style="color:#ae81ff">1</span>           21m
+
+NAME                                        DESIRED   CURRENT   READY   AGE
+replicaset.apps/n8n-deployment-7ff699757b   <span style="color:#ae81ff">1</span>         <span style="color:#ae81ff">1</span>         <span style="color:#ae81ff">1</span>       63s
+
+NAME                                    READY   AGE
+statefulset.apps/postgres-statefulset   1/1     18m
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="n8n--postgres-service">&ldquo;n8n &lt;&gt; postgres&rdquo; service</h3>
+<p>When creating a Service in Kubernetes, we can reach that Service by using its <strong>fully qualified domain name</strong> (FQDN) or, if the service is in the same namespace, just its <strong>service name</strong>.</p>
+<p>For example, our <code>postgres-service</code> can also be reached by <code>postgres-service.default.svc.cluster.local</code>.</p>
+<p>👉  <strong>Its with this name that our n8n pod will communicate with our PostgreSQL database.</strong></p>
+<blockquote>
+<p>To learn more about service names in Kubernetes and its rules, check this: <a href="https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/">https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/</a></p>
+</blockquote>
+<h2 id="all-together-now-">All together now 🚀</h2>
+<p>If you have been saving those configurations above you should have something like this in your working directory:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ls -lha k8s/
+drwxr-xr-x  <span style="color:#ae81ff">9</span> andresilva  staff   288B Apr <span style="color:#ae81ff">6</span> 16:51 .
+drwxr-xr-x  <span style="color:#ae81ff">6</span> andresilva  staff   192B Apr <span style="color:#ae81ff">6</span> 16:51 ..
+-rw-r--r--@ <span style="color:#ae81ff">1</span> andresilva  staff   797B Apr <span style="color:#ae81ff">6</span> 17:54 n8n-configmap.yaml
+-rw-r--r--@ <span style="color:#ae81ff">1</span> andresilva  staff   998B Apr <span style="color:#ae81ff">6</span> 16:51 n8n-deployment.yaml
+-rw-r--r--@ <span style="color:#ae81ff">1</span> andresilva  staff   332B Apr <span style="color:#ae81ff">6</span> 17:54 n8n-secrets.yaml
+-rw-r--r--@ <span style="color:#ae81ff">1</span> andresilva  staff   369B Apr <span style="color:#ae81ff">7</span> 23:13 n8n-service.yaml
+-rw-r--r--@ <span style="color:#ae81ff">1</span> andresilva  staff   279B Apr <span style="color:#ae81ff">6</span> 17:55 postgres-secrets.yaml
+-rw-r--r--@ <span style="color:#ae81ff">1</span> andresilva  staff   283B Apr <span style="color:#ae81ff">6</span> 16:55 postgres-service.yaml
+-rw-r--r--@ <span style="color:#ae81ff">1</span> andresilva  staff   507B Apr <span style="color:#ae81ff">6</span> 16:55 postgres-statefulset.yaml</code></pre></td></tr></table>
+</div>
+</div>
+<blockquote>
+<p>You could just deploy all configurations as a whole by simply running <code>$ kubectl apply -f .</code></p>
+</blockquote>
+<p>So the moment we&rsquo;ve been working for: <strong>to open our n8n server on our browser!</strong></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ minikube service n8n-service
+|-----------|-------------|-------------|---------------------------|
+| NAMESPACE |    NAME     | TARGET PORT |            URL            |
+|-----------|-------------|-------------|---------------------------|
+| default   | n8n-service | http/80     | http://192.168.64.7:32495 |
+|-----------|-------------|-------------|---------------------------|
+🎉  Opening service default/n8n-service in default browser...
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="images/open-n8n-from-minikube.gif" alt="images/open-n8n-from-minikube.gif" title="Open n8n on a browser"></p>
+<p>And like that, you have n8n running in your own Kubernetes Cluster!! 🤩</p>
+<h1 id="resources">Resources</h1>
+<ul>
+<li>n8n open-source vs fair-code: <a href="https://docs.n8n.io/reference/faq.html#which-license-does-n8n-use">https://docs.n8n.io/reference/faq.html#which-license-does-n8n-use</a></li>
+<li>Examples on fair-code use: <a href="https://community.n8n.io/t/doubts-about-fair-code-license/2502">https://community.n8n.io/t/doubts-about-fair-code-license/2502</a></li>
+<li>How Kubernetes selector works: <a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#creating-a-deployment">https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#creating-a-deployment</a></li>
+<li>Kubernetes Service Names: <a href="https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/">https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/</a></li>
+<li>Liveness and Readiness probes: <a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/">https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/</a></li>
+<li>All kubernetes configurations can be downloaded here:</li>
+</ul>
+<p>👋</p>
+
+        </article>
+    </section>
+
+    <aside>
+        <div class="d-none d-xl-block">
+            
+                <div class="toc">
+                    <h5>Table of contents</h5>
+                    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-n8n">What is n8n</a>
+      <ul>
+        <li><a href="#why-use-n8n-and-not-zapier">Why use n8n and not Zapier?</a>
+          <ul>
+            <li><a href="#example-of-a-workflow-between-zapier-vs-n8n">Example of a workflow between Zapier vs n8n</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#how-to-setup-n8n-in-kubernetes">How to setup n8n in Kubernetes</a>
+      <ul>
+        <li><a href="#n8n-deployment">n8n Deployment</a></li>
+        <li><a href="#postgresql-statefulset">PostgreSQL StatefulSet</a></li>
+        <li><a href="#configmaps--secrets">ConfigMaps &amp; Secrets</a>
+          <ul>
+            <li><a href="#n8n--postgres-service">&ldquo;n8n &lt;&gt; postgres&rdquo; service</a></li>
+          </ul>
+        </li>
+        <li><a href="#all-together-now-">All together now 🚀</a></li>
+      </ul>
+    </li>
+    <li><a href="#resources">Resources</a></li>
+  </ul>
+</nav>
+                </div>
+            
+        </div>
+    </aside>
+</main>
+
+<hr>
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "andreffs" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<hr>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-auto">
+      <small>
+        Last update: May 23, 2021
+        
+          <a href="https://github.com/andreffs18/website/commit/8afe8e63fcd082f3af34c61d9706730b9c104e8e" target="_blank">(8afe8e6)</a>
+        
+      </small>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="pt-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 text-left">
+                
+                Previous Post: ◀ <a href="https://andreffs18.github.io/website/blog/debug-in-hugo/">Debug in Hugo</a>
+                
+            </div>
+            <div class="col-md-6 text-right">
+                
+                Next Post: ▶ <a href="https://andreffs18.github.io/website/blog/observability-on-n8n/">Observability on n8n</a>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+const BLOG_TITLE_SELECTORS = '.blog article h1, .blog article h2, .blog article h3, .blog article h4, .blog article h5, .blog article h6';
+
+function addAnchor(element) {
+    element.innerHTML = `<a class="anchor" href="#${element.id}" aria-hidden="true"><span class="octicon octicon-link"></span></a>${element.innerText}`
+}
+document.addEventListener('DOMContentLoaded', () => {
+    var headers = document.querySelectorAll(BLOG_TITLE_SELECTORS)
+    if (headers) {
+        headers.forEach(addAnchor)
+    }
+})
+
+
+window.addEventListener('DOMContentLoaded', () => {
+	const observer = new IntersectionObserver(entries => {
+    let container = document.querySelector('.toc');
+    let links = [...container.querySelectorAll('a')]
+    let headings = links.map(link => {
+      let id = link.getAttribute('href')
+      return document.querySelector(id)
+    })
+
+    entries.forEach(entry => {
+      let previousSection = undefined;
+      let href = `#${entry.target.getAttribute('id')}`;
+      let link = links.find(l => l.getAttribute('href') === href);
+
+      if (entry.intersectionRatio > 0) {
+        link.classList.add('is-visible');
+        previousSection = entry.target.getAttribute('id');
+      } else {
+        link.classList.remove('is-visible');
+      }
+
+      links.forEach(link => {
+        link.classList.remove('is-active');
+      })
+
+      let firstVisibleLink = container.querySelector('.is-visible');
+      if (firstVisibleLink) {
+        firstVisibleLink.classList.add('is-active');
+      }
+      if (!firstVisibleLink && previousSection) {
+        container.querySelector(`a[href="#${previousSection}"]`).classList.add('is-active');
+      }
+    })
+    
+    if(entries.length === 1){
+      let entry = entries[0];
+      let lastHeadingOfBlogpost = headings[headings.length - 1];
+      if(
+        entry.intersectionRatio === 0 && 
+        entry.target === lastHeadingOfBlogpost 
+      ) {
+        let href = `#${entry.target.getAttribute('id')}`;
+        container.querySelector(`a[href="${href}"]`).classList.add('is-active');
+      }
+    }
+	});
+	
+	document.querySelectorAll(BLOG_TITLE_SELECTORS).forEach((title) => {
+		observer.observe(title);
+	});
+});
+
+</script>
+
+        </div>
+        
+<footer>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <ul class="navbar menu pull-left">
+                  
+                      <li class="nav-item ">
+                          <a class="nav-link" href="https://andreffs18.github.io/website/cv/" title="">CV</a>
+                      </li>
+                  
+                      <li class="nav-item ">
+                          <a class="nav-link" href="https://andreffs18.github.io/website/about/" title="">About</a>
+                      </li>
+                  
+                      <li class="nav-item ">
+                          <a class="nav-link" href="https://andreffs18.github.io/website/blog/" title="">Blog</a>
+                      </li>
+                  
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <ul class="navbar social pull-right">
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="mailto:andreffs18@gmail.com" target="_blank"><i class="fa fa-envelope"></i></a>
+                        </li>
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://www.facebook.com/andreffs18" target="_blank"><i class="fa fa-facebook"></i></a>
+                        </li>
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://github.com/andreffs18" target="_blank"><i class="fa fa-github"></i></a>
+                        </li>
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://instagram.com/andreffs18" target="_blank"><i class="fa fa-instagram"></i></a>
+                        </li>
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://pt.linkedin.com/in/andreffs18" target="_blank"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://twitter.com/andreffs18" target="_blank"><i class="fa fa-twitter"></i></a>
+                        </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    </body>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-71884481-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</html>
