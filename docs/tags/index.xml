@@ -2,309 +2,309 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on ANDREFFS</title>
-    <link>https://andreffs18.github.io/website/tags/</link>
+    <link>https://www.andreffs.com/tags/</link>
     <description>Recent content in Tags on ANDREFFS</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 17 May 2021 16:58:27 +0100</lastBuildDate>
     
-	<atom:link href="https://andreffs18.github.io/website/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.andreffs.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>grafana</title>
-      <link>https://andreffs18.github.io/website/tags/grafana/</link>
+      <link>https://www.andreffs.com/tags/grafana/</link>
       <pubDate>Mon, 17 May 2021 16:58:27 +0100</pubDate>
       
-      <guid>https://andreffs18.github.io/website/tags/grafana/</guid>
+      <guid>https://www.andreffs.com/tags/grafana/</guid>
       <description></description>
     </item>
     
     <item>
       <title>kubernetes</title>
-      <link>https://andreffs18.github.io/website/tags/kubernetes/</link>
+      <link>https://www.andreffs.com/tags/kubernetes/</link>
       <pubDate>Mon, 17 May 2021 16:58:27 +0100</pubDate>
       
-      <guid>https://andreffs18.github.io/website/tags/kubernetes/</guid>
+      <guid>https://www.andreffs.com/tags/kubernetes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>loadtest</title>
-      <link>https://andreffs18.github.io/website/tags/loadtest/</link>
+      <link>https://www.andreffs.com/tags/loadtest/</link>
       <pubDate>Mon, 17 May 2021 16:58:27 +0100</pubDate>
       
-      <guid>https://andreffs18.github.io/website/tags/loadtest/</guid>
+      <guid>https://www.andreffs.com/tags/loadtest/</guid>
       <description></description>
     </item>
     
     <item>
       <title>n8n</title>
-      <link>https://andreffs18.github.io/website/tags/n8n/</link>
+      <link>https://www.andreffs.com/tags/n8n/</link>
       <pubDate>Mon, 17 May 2021 16:58:27 +0100</pubDate>
       
-      <guid>https://andreffs18.github.io/website/tags/n8n/</guid>
+      <guid>https://www.andreffs.com/tags/n8n/</guid>
       <description></description>
     </item>
     
     <item>
       <title>nodejs</title>
-      <link>https://andreffs18.github.io/website/tags/nodejs/</link>
+      <link>https://www.andreffs.com/tags/nodejs/</link>
       <pubDate>Mon, 17 May 2021 16:58:27 +0100</pubDate>
       
-      <guid>https://andreffs18.github.io/website/tags/nodejs/</guid>
+      <guid>https://www.andreffs.com/tags/nodejs/</guid>
       <description></description>
     </item>
     
     <item>
       <title>production</title>
-      <link>https://andreffs18.github.io/website/tags/production/</link>
+      <link>https://www.andreffs.com/tags/production/</link>
       <pubDate>Mon, 17 May 2021 16:58:27 +0100</pubDate>
       
-      <guid>https://andreffs18.github.io/website/tags/production/</guid>
+      <guid>https://www.andreffs.com/tags/production/</guid>
       <description></description>
     </item>
     
     <item>
       <title>minikube</title>
-      <link>https://andreffs18.github.io/website/tags/minikube/</link>
+      <link>https://www.andreffs.com/tags/minikube/</link>
       <pubDate>Thu, 29 Apr 2021 23:52:17 +0100</pubDate>
       
-      <guid>https://andreffs18.github.io/website/tags/minikube/</guid>
+      <guid>https://www.andreffs.com/tags/minikube/</guid>
       <description></description>
     </item>
     
     <item>
       <title>debugging</title>
-      <link>https://andreffs18.github.io/website/tags/debugging/</link>
+      <link>https://www.andreffs.com/tags/debugging/</link>
       <pubDate>Mon, 25 May 2020 06:37:00 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/tags/debugging/</guid>
+      <guid>https://www.andreffs.com/tags/debugging/</guid>
       <description></description>
     </item>
     
     <item>
       <title>hugo</title>
-      <link>https://andreffs18.github.io/website/tags/hugo/</link>
+      <link>https://www.andreffs.com/tags/hugo/</link>
       <pubDate>Mon, 25 May 2020 06:37:00 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/tags/hugo/</guid>
+      <guid>https://www.andreffs.com/tags/hugo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>automation</title>
-      <link>https://andreffs18.github.io/website/tags/automation/</link>
+      <link>https://www.andreffs.com/tags/automation/</link>
       <pubDate>Mon, 30 Mar 2020 10:50:00 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/tags/automation/</guid>
+      <guid>https://www.andreffs.com/tags/automation/</guid>
       <description></description>
     </item>
     
     <item>
       <title>bash</title>
-      <link>https://andreffs18.github.io/website/tags/bash/</link>
+      <link>https://www.andreffs.com/tags/bash/</link>
       <pubDate>Mon, 30 Mar 2020 10:50:00 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/tags/bash/</guid>
+      <guid>https://www.andreffs.com/tags/bash/</guid>
       <description></description>
     </item>
     
     <item>
       <title>dotfiles</title>
-      <link>https://andreffs18.github.io/website/tags/dotfiles/</link>
+      <link>https://www.andreffs.com/tags/dotfiles/</link>
       <pubDate>Mon, 30 Mar 2020 10:50:00 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/tags/dotfiles/</guid>
+      <guid>https://www.andreffs.com/tags/dotfiles/</guid>
       <description></description>
     </item>
     
     <item>
       <title>feedly</title>
-      <link>https://andreffs18.github.io/website/tags/feedly/</link>
+      <link>https://www.andreffs.com/tags/feedly/</link>
       <pubDate>Mon, 30 Mar 2020 10:50:00 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/tags/feedly/</guid>
+      <guid>https://www.andreffs.com/tags/feedly/</guid>
       <description></description>
     </item>
     
     <item>
       <title>python</title>
-      <link>https://andreffs18.github.io/website/tags/python/</link>
+      <link>https://www.andreffs.com/tags/python/</link>
       <pubDate>Mon, 30 Mar 2020 10:50:00 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/tags/python/</guid>
+      <guid>https://www.andreffs.com/tags/python/</guid>
       <description></description>
     </item>
     
     <item>
       <title>rss</title>
-      <link>https://andreffs18.github.io/website/tags/rss/</link>
+      <link>https://www.andreffs.com/tags/rss/</link>
       <pubDate>Mon, 30 Mar 2020 10:50:00 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/tags/rss/</guid>
+      <guid>https://www.andreffs.com/tags/rss/</guid>
       <description></description>
     </item>
     
     <item>
       <title>self-improving</title>
-      <link>https://andreffs18.github.io/website/tags/self-improving/</link>
+      <link>https://www.andreffs.com/tags/self-improving/</link>
       <pubDate>Mon, 30 Mar 2020 10:50:00 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/tags/self-improving/</guid>
+      <guid>https://www.andreffs.com/tags/self-improving/</guid>
       <description></description>
     </item>
     
     <item>
       <title>docker</title>
-      <link>https://andreffs18.github.io/website/tags/docker/</link>
+      <link>https://www.andreffs.com/tags/docker/</link>
       <pubDate>Tue, 18 Feb 2020 17:14:00 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/tags/docker/</guid>
+      <guid>https://www.andreffs.com/tags/docker/</guid>
       <description></description>
     </item>
     
     <item>
       <title>postgres</title>
-      <link>https://andreffs18.github.io/website/tags/postgres/</link>
+      <link>https://www.andreffs.com/tags/postgres/</link>
       <pubDate>Tue, 18 Feb 2020 17:14:00 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/tags/postgres/</guid>
+      <guid>https://www.andreffs.com/tags/postgres/</guid>
       <description></description>
     </item>
     
     <item>
       <title>postgresql</title>
-      <link>https://andreffs18.github.io/website/tags/postgresql/</link>
+      <link>https://www.andreffs.com/tags/postgresql/</link>
       <pubDate>Tue, 18 Feb 2020 17:14:00 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/tags/postgresql/</guid>
+      <guid>https://www.andreffs.com/tags/postgresql/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ssh</title>
-      <link>https://andreffs18.github.io/website/tags/ssh/</link>
+      <link>https://www.andreffs.com/tags/ssh/</link>
       <pubDate>Tue, 18 Feb 2020 17:14:00 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/tags/ssh/</guid>
+      <guid>https://www.andreffs.com/tags/ssh/</guid>
       <description></description>
     </item>
     
     <item>
       <title>canary</title>
-      <link>https://andreffs18.github.io/website/tags/canary/</link>
+      <link>https://www.andreffs.com/tags/canary/</link>
       <pubDate>Fri, 14 Feb 2020 09:05:00 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/tags/canary/</guid>
+      <guid>https://www.andreffs.com/tags/canary/</guid>
       <description></description>
     </item>
     
     <item>
       <title>gitlab</title>
-      <link>https://andreffs18.github.io/website/tags/gitlab/</link>
+      <link>https://www.andreffs.com/tags/gitlab/</link>
       <pubDate>Fri, 14 Feb 2020 09:05:00 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/tags/gitlab/</guid>
+      <guid>https://www.andreffs.com/tags/gitlab/</guid>
       <description></description>
     </item>
     
     <item>
       <title>emoji</title>
-      <link>https://andreffs18.github.io/website/tags/emoji/</link>
+      <link>https://www.andreffs.com/tags/emoji/</link>
       <pubDate>Fri, 15 Mar 2019 19:08:22 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/tags/emoji/</guid>
+      <guid>https://www.andreffs.com/tags/emoji/</guid>
       <description></description>
     </item>
     
     <item>
       <title>zsh</title>
-      <link>https://andreffs18.github.io/website/tags/zsh/</link>
+      <link>https://www.andreffs.com/tags/zsh/</link>
       <pubDate>Fri, 15 Mar 2019 19:08:22 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/tags/zsh/</guid>
+      <guid>https://www.andreffs.com/tags/zsh/</guid>
       <description></description>
     </item>
     
     <item>
       <title>gotchas</title>
-      <link>https://andreffs18.github.io/website/tags/gotchas/</link>
+      <link>https://www.andreffs.com/tags/gotchas/</link>
       <pubDate>Tue, 05 Feb 2019 20:07:00 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/tags/gotchas/</guid>
+      <guid>https://www.andreffs.com/tags/gotchas/</guid>
       <description></description>
     </item>
     
     <item>
       <title>tips</title>
-      <link>https://andreffs18.github.io/website/tags/tips/</link>
+      <link>https://www.andreffs.com/tags/tips/</link>
       <pubDate>Tue, 05 Feb 2019 20:07:00 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/tags/tips/</guid>
+      <guid>https://www.andreffs.com/tags/tips/</guid>
       <description></description>
     </item>
     
     <item>
       <title>finance</title>
-      <link>https://andreffs18.github.io/website/tags/finance/</link>
+      <link>https://www.andreffs.com/tags/finance/</link>
       <pubDate>Mon, 03 Jul 2017 17:44:00 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/tags/finance/</guid>
+      <guid>https://www.andreffs.com/tags/finance/</guid>
       <description></description>
     </item>
     
     <item>
       <title>plotly</title>
-      <link>https://andreffs18.github.io/website/tags/plotly/</link>
+      <link>https://www.andreffs.com/tags/plotly/</link>
       <pubDate>Mon, 03 Jul 2017 17:44:00 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/tags/plotly/</guid>
+      <guid>https://www.andreffs.com/tags/plotly/</guid>
       <description></description>
     </item>
     
     <item>
       <title>git-hooks</title>
-      <link>https://andreffs18.github.io/website/tags/git-hooks/</link>
+      <link>https://www.andreffs.com/tags/git-hooks/</link>
       <pubDate>Fri, 17 Feb 2017 00:45:32 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/tags/git-hooks/</guid>
+      <guid>https://www.andreffs.com/tags/git-hooks/</guid>
       <description></description>
     </item>
     
     <item>
       <title>seo</title>
-      <link>https://andreffs18.github.io/website/tags/seo/</link>
+      <link>https://www.andreffs.com/tags/seo/</link>
       <pubDate>Fri, 17 Feb 2017 00:45:32 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/tags/seo/</guid>
+      <guid>https://www.andreffs.com/tags/seo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>nfc</title>
-      <link>https://andreffs18.github.io/website/tags/nfc/</link>
+      <link>https://www.andreffs.com/tags/nfc/</link>
       <pubDate>Thu, 10 Dec 2015 13:38:09 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/tags/nfc/</guid>
+      <guid>https://www.andreffs.com/tags/nfc/</guid>
       <description></description>
     </item>
     
     <item>
       <title>zapier</title>
-      <link>https://andreffs18.github.io/website/tags/zapier/</link>
+      <link>https://www.andreffs.com/tags/zapier/</link>
       <pubDate>Thu, 10 Dec 2015 13:38:09 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/tags/zapier/</guid>
+      <guid>https://www.andreffs.com/tags/zapier/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ci/cd</title>
-      <link>https://andreffs18.github.io/website/tags/ci/cd/</link>
+      <link>https://www.andreffs.com/tags/ci/cd/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/tags/ci/cd/</guid>
+      <guid>https://www.andreffs.com/tags/ci/cd/</guid>
       <description></description>
     </item>
     

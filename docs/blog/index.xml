@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blogs on ANDREFFS</title>
-    <link>https://andreffs18.github.io/website/blog/</link>
+    <link>https://www.andreffs.com/blog/</link>
     <description>Recent content in Blogs on ANDREFFS</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 17 May 2021 16:58:27 +0100</lastBuildDate>
     
-	<atom:link href="https://andreffs18.github.io/website/blog/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.andreffs.com/blog/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>n8n customizations for Production</title>
-      <link>https://andreffs18.github.io/website/blog/n8n-customizations-for-production/</link>
+      <link>https://www.andreffs.com/blog/n8n-customizations-for-production/</link>
       <pubDate>Mon, 17 May 2021 16:58:27 +0100</pubDate>
       
-      <guid>https://andreffs18.github.io/website/blog/n8n-customizations-for-production/</guid>
+      <guid>https://www.andreffs.com/blog/n8n-customizations-for-production/</guid>
       <description>This post is a continuation on &amp;ldquo;Setup n8n on Kubernetes&amp;rdquo;, so most of the things we talk here assume that you&amp;rsquo;ve followed/read this one as well.
  After running n8n during a couple of months in production, me and my team realized that the default configuration do not work very well for us.
 So here in this post I go over the changes we did to allow n8n to scale and work without problems.</description>
@@ -24,20 +24,20 @@ So here in this post I go over the changes we did to allow n8n to scale and work
     
     <item>
       <title>Observability on n8n</title>
-      <link>https://andreffs18.github.io/website/blog/observability-on-n8n/</link>
+      <link>https://www.andreffs.com/blog/observability-on-n8n/</link>
       <pubDate>Thu, 29 Apr 2021 23:52:17 +0100</pubDate>
       
-      <guid>https://andreffs18.github.io/website/blog/observability-on-n8n/</guid>
+      <guid>https://www.andreffs.com/blog/observability-on-n8n/</guid>
       <description>This post is a continuation on &amp;ldquo;Setup n8n on Kubernetes&amp;rdquo;, so most of the things we talk here assume that you&amp;rsquo;ve followed/read this one as well.
  You have your own n8n instance running in Kubernetes, taking advantage of all amazing functionality and capabilities of it, but you are still going in blind right now. I mean, how can you check if your service is healthy? Is it running? How much memory is it using?</description>
     </item>
     
     <item>
       <title>Setup n8n on Kubernetes</title>
-      <link>https://andreffs18.github.io/website/blog/setup-n8n-on-kubernetes/</link>
+      <link>https://www.andreffs.com/blog/setup-n8n-on-kubernetes/</link>
       <pubDate>Mon, 05 Apr 2021 21:16:27 +0100</pubDate>
       
-      <guid>https://andreffs18.github.io/website/blog/setup-n8n-on-kubernetes/</guid>
+      <guid>https://www.andreffs.com/blog/setup-n8n-on-kubernetes/</guid>
       <description>Update 2021-05-23: Decided to split this post into 3 different ones to be more easily read. You can find the other two here: &amp;ldquo;Observability on n8n&amp;rdquo; and &amp;ldquo;n8n customizations for Production&amp;rdquo;.
  So at my company we started using n8n to setup some MVP&amp;rsquo;s, build workflows and glue together some of our internal tools in order to automate some of our processes.
 In this post I&amp;rsquo;m going to go over how we&amp;rsquo;ve deployed n8n on our Kubernetes Cluster.</description>
@@ -45,10 +45,10 @@ In this post I&amp;rsquo;m going to go over how we&amp;rsquo;ve deployed n8n on 
     
     <item>
       <title>Debug in Hugo</title>
-      <link>https://andreffs18.github.io/website/blog/debug-in-hugo/</link>
+      <link>https://www.andreffs.com/blog/debug-in-hugo/</link>
       <pubDate>Mon, 25 May 2020 06:37:00 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/blog/debug-in-hugo/</guid>
+      <guid>https://www.andreffs.com/blog/debug-in-hugo/</guid>
       <description>While building this website I needed to understand a bit more about the internals and its variables. Even though Hugo&amp;rsquo;s documentation about debugging is pretty &amp;ldquo;okay&amp;rdquo;, there are a lot of attributes that are really hard to figure out, specially if you can&amp;rsquo;t see them on the documentation.
 So I started to look online for something to help me out debugging Hugo templates and the usual 3 options were:
  🖨 printing the dot on Hugo&amp;rsquo;s templates 📝 console.</description>
@@ -56,10 +56,10 @@ So I started to look online for something to help me out debugging Hugo template
     
     <item>
       <title>Just keep on &#34;Save for later&#34;</title>
-      <link>https://andreffs18.github.io/website/blog/just-keep-on-save-for-later/</link>
+      <link>https://www.andreffs.com/blog/just-keep-on-save-for-later/</link>
       <pubDate>Mon, 30 Mar 2020 10:50:00 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/blog/just-keep-on-save-for-later/</guid>
+      <guid>https://www.andreffs.com/blog/just-keep-on-save-for-later/</guid>
       <description>Since this #remotelife began, sadly not for the best reasons, I&amp;rsquo;ve been able to finally clean my backlog of, guess what, TV Shows, Games, Podcasts, Books&amp;hellip; Well, everything that a person is suppose to do!
 Very happy was I until I remembered that, maybe I should start looking into the &amp;ldquo;To Read&amp;rdquo; bookmarks, &amp;ldquo;Saved&amp;rdquo; on Reddit and, the holy grail, &amp;ldquo;Read Later&amp;rdquo; of Feedly.
 While the &amp;ldquo;Saved&amp;rdquo; section on Reddit was mostly threads from /r/cscarrearquestions (and some memes from /r/wsb 😂) the other two places were actual interesting articles that I have planned on reading.</description>
@@ -67,10 +67,10 @@ While the &amp;ldquo;Saved&amp;rdquo; section on Reddit was mostly threads from 
     
     <item>
       <title>Docker &#43; PostgreSQL</title>
-      <link>https://andreffs18.github.io/website/blog/docker-postgresql/</link>
+      <link>https://www.andreffs.com/blog/docker-postgresql/</link>
       <pubDate>Tue, 18 Feb 2020 17:14:00 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/blog/docker-postgresql/</guid>
+      <guid>https://www.andreffs.com/blog/docker-postgresql/</guid>
       <description>More often than not, I end up going online to look up on how to use docker as the middle man on interacting with Postgres.
  Usually for me its Postgres, but this &amp;ldquo;recipe&amp;rdquo; can be applied to any piece of software that has more than one version which you don&amp;rsquo;t have installed on your laptop.
  Because of this whole back and forth I compiled a small list of &amp;ldquo;how-tos&amp;rdquo; to help me remember.</description>
@@ -78,20 +78,20 @@ While the &amp;ldquo;Saved&amp;rdquo; section on Reddit was mostly threads from 
     
     <item>
       <title>Learning How to Canary Deploy with Kubernetes</title>
-      <link>https://andreffs18.github.io/website/blog/learning-how-to-canary-deploy-with-kubernetes/</link>
+      <link>https://www.andreffs.com/blog/learning-how-to-canary-deploy-with-kubernetes/</link>
       <pubDate>Fri, 14 Feb 2020 09:05:00 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/blog/learning-how-to-canary-deploy-with-kubernetes/</guid>
+      <guid>https://www.andreffs.com/blog/learning-how-to-canary-deploy-with-kubernetes/</guid>
       <description>Its true, that if the time from developing a feature to deploying it to your customers only takes minutes to hours instead of days to months, that you probably have a pretty amazing development workflow.
 Im also willing to bet that a key feature of that workflow is an impeccable CI/CD pipeline, that not only allows your development team to automate a lot of time consuming and manual tasks (like building, testing, deploying, etc) but also, shortens the feedback cycle between developing-&amp;gt;testing and testing-&amp;gt;production.</description>
     </item>
     
     <item>
       <title>I Really Like Emoji&#39;s</title>
-      <link>https://andreffs18.github.io/website/blog/i-really-like-emojis/</link>
+      <link>https://www.andreffs.com/blog/i-really-like-emojis/</link>
       <pubDate>Fri, 15 Mar 2019 19:08:22 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/blog/i-really-like-emojis/</guid>
+      <guid>https://www.andreffs.com/blog/i-really-like-emojis/</guid>
       <description>I came across a blogpost that explained how to add emoji&amp;rsquo;s to your terminal prompt, something like this:
 The post is pretty good!
 Not only explains how to add emoji&amp;rsquo;s to you prompt, but also goes a bit further on how to $RANDOM an emoji from a list of them, and bash formatting (customize the text in your terminal with colors and such).
@@ -100,10 +100,10 @@ Although I&amp;rsquo;m pretty happy with my terminal setup (shameless plug to �
     
     <item>
       <title>SSH ForwardAgent Gotchas</title>
-      <link>https://andreffs18.github.io/website/blog/ssh-forwardagent-gotchas/</link>
+      <link>https://www.andreffs.com/blog/ssh-forwardagent-gotchas/</link>
       <pubDate>Tue, 05 Feb 2019 20:07:00 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/blog/ssh-forwardagent-gotchas/</guid>
+      <guid>https://www.andreffs.com/blog/ssh-forwardagent-gotchas/</guid>
       <description>So, you’re trying to create an SSH Tunnel to your remote machine to make some gitlab/github clones.
 That’s all fine and well until you don’t want to post your password on to the terminal.
 First, look at you ~/.ssh/config file and add the “ForwardAgent yes” to that machines ip.
@@ -112,10 +112,10 @@ First, look at you ~/.ssh/config file and add the “ForwardAgent yes” to that
     
     <item>
       <title>Postgres Is Now Running</title>
-      <link>https://andreffs18.github.io/website/blog/postgres-is-now-running/</link>
+      <link>https://www.andreffs.com/blog/postgres-is-now-running/</link>
       <pubDate>Wed, 20 Sep 2017 10:53:00 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/blog/postgres-is-now-running/</guid>
+      <guid>https://www.andreffs.com/blog/postgres-is-now-running/</guid>
       <description>My Macbook has OSX Mavericks installed and sometimes it crashes for no reason, breaking my local postgres server. After restarting and running again &amp;quot;$ brew services postgres&amp;quot;, Postgres becomes yellow and I end up spending sometime looking confused and frustrated.
 Looking at the logs you can get a sense of whats happening:
 1 2  $ tail -f /usr/local/var/postgres/server.log FATAL: lock file &amp;#34;postmaster.pid&amp;#34; already exists   Simply removing the lock file that Postgres generates solves this issue:</description>
@@ -123,30 +123,30 @@ Looking at the logs you can get a sense of whats happening:
     
     <item>
       <title>💰 Personal Finance</title>
-      <link>https://andreffs18.github.io/website/blog/personal-finance/</link>
+      <link>https://www.andreffs.com/blog/personal-finance/</link>
       <pubDate>Mon, 03 Jul 2017 17:44:00 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/blog/personal-finance/</guid>
+      <guid>https://www.andreffs.com/blog/personal-finance/</guid>
       <description>Well, after reading a couple of books on the topic, they all talk about the same thing: you should diversify your portfolio.
 Code could not finish, this are some reasons why this happen. - Plot name not defined. The first parameter of the shortcode is the name. - There is a syntax error. check browser console.   function draw(){ test = document.getElementById(&#34;piechart&#34;); if (test == null){ console.log(&#34;The plot name is not defined&#34;</description>
     </item>
     
     <item>
       <title>SEO Tips</title>
-      <link>https://andreffs18.github.io/website/blog/seo-tips/</link>
+      <link>https://www.andreffs.com/blog/seo-tips/</link>
       <pubDate>Fri, 17 Feb 2017 00:45:32 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/blog/seo-tips/</guid>
+      <guid>https://www.andreffs.com/blog/seo-tips/</guid>
       <description>My key takeaways from making this website &amp;ldquo;SEO friendly&amp;rdquo;:
  Use link &amp;ldquo;tree structure&amp;rdquo; from homepage. This way, bots and crawlers can find every page on the website Good titles, under 65 characters Meta tags with good keywords under 100 characters Use canonical urls on every page  1 2 3  &amp;lt;link rel=&amp;#34;canonical&amp;#34; href=&amp;#34;http://localhost:1313/blog/seo-tips/&amp;#34;&amp;gt; &amp;lt;!-- instead of --&amp;gt; &amp;lt;link rel=&amp;#34;canonical&amp;#34; href=&amp;#34;/blog/seo-tips&amp;#34;&amp;gt;   Add &amp;ldquo;alt&amp;rdquo; tag to images  1  &amp;lt;img alt=&amp;#34;About me picture&amp;#34; src=&amp;#34;/images/about.</description>
     </item>
     
     <item>
       <title>Get Paid For Pooping</title>
-      <link>https://andreffs18.github.io/website/blog/get-paid-for-pooping/</link>
+      <link>https://www.andreffs.com/blog/get-paid-for-pooping/</link>
       <pubDate>Thu, 10 Dec 2015 13:38:09 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/blog/get-paid-for-pooping/</guid>
+      <guid>https://www.andreffs.com/blog/get-paid-for-pooping/</guid>
       <description>Yes I know it sounds dumb but, if during your working hours you go to the toilet, technically, you are getting paid for it. 💩
 Use case Alright, lets say you you earn $10 an hour and during those 8 hours of daily work, you go twice to the bathroom, for around 10 minutes each time.
 Then a simple multiplication shows that your &amp;ldquo;poop time&amp;rdquo; is worth around $3.34 per day!</description>
@@ -154,10 +154,10 @@ Then a simple multiplication shows that your &amp;ldquo;poop time&amp;rdquo; is 
     
     <item>
       <title>Hello World</title>
-      <link>https://andreffs18.github.io/website/blog/hello-world/</link>
+      <link>https://www.andreffs.com/blog/hello-world/</link>
       <pubDate>Wed, 09 Dec 2015 00:24:09 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/blog/hello-world/</guid>
+      <guid>https://www.andreffs.com/blog/hello-world/</guid>
       <description>Hello 😃
 So this is the mandatory &amp;ldquo;Hello World&amp;rdquo; blog post.
 The intent of this blog is just to keep track of my achievements, projects and also:

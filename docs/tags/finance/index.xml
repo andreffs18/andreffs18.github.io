@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>finance on ANDREFFS</title>
-    <link>https://andreffs18.github.io/website/tags/finance/</link>
+    <link>https://www.andreffs.com/tags/finance/</link>
     <description>Recent content in finance on ANDREFFS</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 03 Jul 2017 17:44:00 +0000</lastBuildDate>
     
-	<atom:link href="https://andreffs18.github.io/website/tags/finance/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.andreffs.com/tags/finance/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>💰 Personal Finance</title>
-      <link>https://andreffs18.github.io/website/blog/personal-finance/</link>
+      <link>https://www.andreffs.com/blog/personal-finance/</link>
       <pubDate>Mon, 03 Jul 2017 17:44:00 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/blog/personal-finance/</guid>
+      <guid>https://www.andreffs.com/blog/personal-finance/</guid>
       <description>Well, after reading a couple of books on the topic, they all talk about the same thing: you should diversify your portfolio.
 Code could not finish, this are some reasons why this happen. - Plot name not defined. The first parameter of the shortcode is the name. - There is a syntax error. check browser console.   function draw(){ test = document.getElementById(&#34;piechart&#34;); if (test == null){ console.log(&#34;The plot name is not defined&#34;</description>
     </item>

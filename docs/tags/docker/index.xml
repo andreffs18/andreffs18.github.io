@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>docker on ANDREFFS</title>
-    <link>https://andreffs18.github.io/website/tags/docker/</link>
+    <link>https://www.andreffs.com/tags/docker/</link>
     <description>Recent content in docker on ANDREFFS</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 18 Feb 2020 17:14:00 +0000</lastBuildDate>
     
-	<atom:link href="https://andreffs18.github.io/website/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.andreffs.com/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Docker &#43; PostgreSQL</title>
-      <link>https://andreffs18.github.io/website/blog/docker-postgresql/</link>
+      <link>https://www.andreffs.com/blog/docker-postgresql/</link>
       <pubDate>Tue, 18 Feb 2020 17:14:00 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/blog/docker-postgresql/</guid>
+      <guid>https://www.andreffs.com/blog/docker-postgresql/</guid>
       <description>More often than not, I end up going online to look up on how to use docker as the middle man on interacting with Postgres.
  Usually for me its Postgres, but this &amp;ldquo;recipe&amp;rdquo; can be applied to any piece of software that has more than one version which you don&amp;rsquo;t have installed on your laptop.
  Because of this whole back and forth I compiled a small list of &amp;ldquo;how-tos&amp;rdquo; to help me remember.</description>

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>debugging on ANDREFFS</title>
-    <link>https://andreffs18.github.io/website/tags/debugging/</link>
+    <link>https://www.andreffs.com/tags/debugging/</link>
     <description>Recent content in debugging on ANDREFFS</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 25 May 2020 06:37:00 +0000</lastBuildDate>
     
-	<atom:link href="https://andreffs18.github.io/website/tags/debugging/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.andreffs.com/tags/debugging/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Debug in Hugo</title>
-      <link>https://andreffs18.github.io/website/blog/debug-in-hugo/</link>
+      <link>https://www.andreffs.com/blog/debug-in-hugo/</link>
       <pubDate>Mon, 25 May 2020 06:37:00 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/blog/debug-in-hugo/</guid>
+      <guid>https://www.andreffs.com/blog/debug-in-hugo/</guid>
       <description>While building this website I needed to understand a bit more about the internals and its variables. Even though Hugo&amp;rsquo;s documentation about debugging is pretty &amp;ldquo;okay&amp;rdquo;, there are a lot of attributes that are really hard to figure out, specially if you can&amp;rsquo;t see them on the documentation.
 So I started to look online for something to help me out debugging Hugo templates and the usual 3 options were:
  🖨 printing the dot on Hugo&amp;rsquo;s templates 📝 console.</description>

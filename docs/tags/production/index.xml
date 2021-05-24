@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>production on ANDREFFS</title>
-    <link>https://andreffs18.github.io/website/tags/production/</link>
+    <link>https://www.andreffs.com/tags/production/</link>
     <description>Recent content in production on ANDREFFS</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 17 May 2021 16:58:27 +0100</lastBuildDate>
     
-	<atom:link href="https://andreffs18.github.io/website/tags/production/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.andreffs.com/tags/production/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>n8n customizations for Production</title>
-      <link>https://andreffs18.github.io/website/blog/n8n-customizations-for-production/</link>
+      <link>https://www.andreffs.com/blog/n8n-customizations-for-production/</link>
       <pubDate>Mon, 17 May 2021 16:58:27 +0100</pubDate>
       
-      <guid>https://andreffs18.github.io/website/blog/n8n-customizations-for-production/</guid>
+      <guid>https://www.andreffs.com/blog/n8n-customizations-for-production/</guid>
       <description>This post is a continuation on &amp;ldquo;Setup n8n on Kubernetes&amp;rdquo;, so most of the things we talk here assume that you&amp;rsquo;ve followed/read this one as well.
  After running n8n during a couple of months in production, me and my team realized that the default configuration do not work very well for us.
 So here in this post I go over the changes we did to allow n8n to scale and work without problems.</description>

@@ -14,7 +14,7 @@ plotly:
 	docker logs -t myplotly
 
 deploy:
-	hugo --baseUrl https://andreffs18.github.io/website && \
+	hugo --baseUrl https://www.andreffs.com && \
 	touch docs/.nojekyll && \
 	git add docs/ && \
 	git commit --amend --no-edit && \

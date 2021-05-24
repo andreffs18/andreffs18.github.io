@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>zsh on ANDREFFS</title>
-    <link>https://andreffs18.github.io/website/tags/zsh/</link>
+    <link>https://www.andreffs.com/tags/zsh/</link>
     <description>Recent content in zsh on ANDREFFS</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 15 Mar 2019 19:08:22 +0000</lastBuildDate>
     
-	<atom:link href="https://andreffs18.github.io/website/tags/zsh/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.andreffs.com/tags/zsh/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>I Really Like Emoji&#39;s</title>
-      <link>https://andreffs18.github.io/website/blog/i-really-like-emojis/</link>
+      <link>https://www.andreffs.com/blog/i-really-like-emojis/</link>
       <pubDate>Fri, 15 Mar 2019 19:08:22 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/blog/i-really-like-emojis/</guid>
+      <guid>https://www.andreffs.com/blog/i-really-like-emojis/</guid>
       <description>I came across a blogpost that explained how to add emoji&amp;rsquo;s to your terminal prompt, something like this:
 The post is pretty good!
 Not only explains how to add emoji&amp;rsquo;s to you prompt, but also goes a bit further on how to $RANDOM an emoji from a list of them, and bash formatting (customize the text in your terminal with colors and such).

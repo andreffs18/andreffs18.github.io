@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>bash on ANDREFFS</title>
-    <link>https://andreffs18.github.io/website/tags/bash/</link>
+    <link>https://www.andreffs.com/tags/bash/</link>
     <description>Recent content in bash on ANDREFFS</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 30 Mar 2020 10:50:00 +0000</lastBuildDate>
     
-	<atom:link href="https://andreffs18.github.io/website/tags/bash/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.andreffs.com/tags/bash/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Just keep on &#34;Save for later&#34;</title>
-      <link>https://andreffs18.github.io/website/blog/just-keep-on-save-for-later/</link>
+      <link>https://www.andreffs.com/blog/just-keep-on-save-for-later/</link>
       <pubDate>Mon, 30 Mar 2020 10:50:00 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/blog/just-keep-on-save-for-later/</guid>
+      <guid>https://www.andreffs.com/blog/just-keep-on-save-for-later/</guid>
       <description>Since this #remotelife began, sadly not for the best reasons, I&amp;rsquo;ve been able to finally clean my backlog of, guess what, TV Shows, Games, Podcasts, Books&amp;hellip; Well, everything that a person is suppose to do!
 Very happy was I until I remembered that, maybe I should start looking into the &amp;ldquo;To Read&amp;rdquo; bookmarks, &amp;ldquo;Saved&amp;rdquo; on Reddit and, the holy grail, &amp;ldquo;Read Later&amp;rdquo; of Feedly.
 While the &amp;ldquo;Saved&amp;rdquo; section on Reddit was mostly threads from /r/cscarrearquestions (and some memes from /r/wsb 😂) the other two places were actual interesting articles that I have planned on reading.</description>
@@ -24,20 +24,20 @@ While the &amp;ldquo;Saved&amp;rdquo; section on Reddit was mostly threads from 
     
     <item>
       <title>Learning How to Canary Deploy with Kubernetes</title>
-      <link>https://andreffs18.github.io/website/blog/learning-how-to-canary-deploy-with-kubernetes/</link>
+      <link>https://www.andreffs.com/blog/learning-how-to-canary-deploy-with-kubernetes/</link>
       <pubDate>Fri, 14 Feb 2020 09:05:00 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/blog/learning-how-to-canary-deploy-with-kubernetes/</guid>
+      <guid>https://www.andreffs.com/blog/learning-how-to-canary-deploy-with-kubernetes/</guid>
       <description>Its true, that if the time from developing a feature to deploying it to your customers only takes minutes to hours instead of days to months, that you probably have a pretty amazing development workflow.
 Im also willing to bet that a key feature of that workflow is an impeccable CI/CD pipeline, that not only allows your development team to automate a lot of time consuming and manual tasks (like building, testing, deploying, etc) but also, shortens the feedback cycle between developing-&amp;gt;testing and testing-&amp;gt;production.</description>
     </item>
     
     <item>
       <title>I Really Like Emoji&#39;s</title>
-      <link>https://andreffs18.github.io/website/blog/i-really-like-emojis/</link>
+      <link>https://www.andreffs.com/blog/i-really-like-emojis/</link>
       <pubDate>Fri, 15 Mar 2019 19:08:22 +0000</pubDate>
       
-      <guid>https://andreffs18.github.io/website/blog/i-really-like-emojis/</guid>
+      <guid>https://www.andreffs.com/blog/i-really-like-emojis/</guid>
       <description>I came across a blogpost that explained how to add emoji&amp;rsquo;s to your terminal prompt, something like this:
 The post is pretty good!
 Not only explains how to add emoji&amp;rsquo;s to you prompt, but also goes a bit further on how to $RANDOM an emoji from a list of them, and bash formatting (customize the text in your terminal with colors and such).
