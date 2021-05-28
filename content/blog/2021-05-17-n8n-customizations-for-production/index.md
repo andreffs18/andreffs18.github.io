@@ -191,7 +191,7 @@ If we `htop` in our container, we will see that once we start the load test, the
 
 Our `hey` test finishes after the 1 minute, but notice the amount of error responses highlighted below:
 
-{{<highlight bash "hl_lines=43 45-46">}}
+{{<highlight bash "hl_lines=42 44-45">}}
 
 Summary:
   Total:	67.9756 secs
