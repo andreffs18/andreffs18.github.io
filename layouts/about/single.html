@@ -2,13 +2,61 @@
 <div class="container about">
     <div class="row">
         <div class="col-md-4">
-            <figure class="profile-pic">
-                <img alt="About me" src="{{ .Site.BaseURL }}/images/about.jpeg">
-            </figure>
+            <div class="profile-pics">
+                {{ range resources.Match "images/about/*" }}
+                {{ $img := .Resize "800x webp q100" }}
+                <figure class="profile-pic">
+                    <img src="{{ $img.RelPermalink }}" draggable="false">
+                </figure>
+                {{ end }}
+            </div>
         </div>
         <div class="col-md-8">
             {{ .Content }}
         </div>
     </div>
 </div>
+<script>
+(function () {
+    var el = document.querySelector('.profile-pics');
+    if (!el) return;
+
+    // Clone all items to enable infinite loop
+    Array.from(el.querySelectorAll('.profile-pic')).forEach(function (item) {
+        el.appendChild(item.cloneNode(true));
+    });
+
+    // Start at the midpoint so scrolling up also loops
+    var half = el.scrollHeight / 2;
+    el.scrollTop = half / 2;
+
+    // Loop seamlessly when crossing the halfway mark
+    el.addEventListener('scroll', function () {
+        if (el.scrollTop <= 0) {
+            el.scrollTop += half;
+        } else if (el.scrollTop + el.clientHeight >= el.scrollHeight) {
+            el.scrollTop -= half;
+        }
+    });
+
+    // Drag to scroll
+    var isDown = false, startY, scrollTop;
+    el.addEventListener('mousedown', function (e) {
+        isDown = true;
+        el.classList.add('is-dragging');
+        startY = e.pageY - el.getBoundingClientRect().top;
+        scrollTop = el.scrollTop;
+        e.preventDefault();
+    });
+    document.addEventListener('mouseup', function () {
+        isDown = false;
+        el.classList.remove('is-dragging');
+    });
+    el.addEventListener('mousemove', function (e) {
+        if (!isDown) return;
+        var y = e.pageY - el.getBoundingClientRect().top;
+        el.scrollTop = scrollTop - (y - startY);
+    });
+})();
+</script>
 {{ end }}

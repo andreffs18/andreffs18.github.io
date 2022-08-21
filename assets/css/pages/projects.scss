@@ -1,65 +1,83 @@
 /*	Projects Page style
 -------------------------------------------------- */
 
-.projects{
-	margin-top: 40px;
-	display: grid;
-	gap: 20px;
-	justify-content: center;
-	
-	.card {
-		transition: transform .3s; 
-		&:hover {
-			-webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.25);
-			-moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.25);
-			box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.25);
-			transform: scale(1.01);
-		}
-	}
-	
-	.card-img-top {
-		display: block;
-		width: 100%;
-		height: 200px;
-		object-fit: contain;
-	}
-	
-	.card-social {
-		width: 100%;
-		justify-content: center;
-		align-items: center;
-		list-style: none;
-		margin: 0px;
-		padding: 0px;
-		li {
-			display: flex;
-			a {
-				font-size: 24px;
-				padding: 0px 10px;
-			}
-		}
-	}
-	
-	.card-skills {
-		width: 100%;
-		justify-content: space-evenly;
-		align-items: center;
-		list-style: none;
+.projects-row {
+	cursor: default;
+	border-radius: 4px;
+	transition: background .12s;
+	padding: 4px 8px;
+
+	&:hover {
+		background: #f1f5f9;
 	}
 }
 
-@media (min-width: 768px) {
-	.projects{
-		grid-template-columns: repeat(auto-fit, 100%);
+.projects-skills {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+
+	.badge {
+		background-color: $border;
+		color: $text;
+		font-weight: 500;
+		font-size: 10px;
+		padding: 2px 6px;
+		border-radius: 4px;
+		letter-spacing: 0.03em;
 	}
 }
-@media (min-width: 992px) {
-	.projects{
-		grid-template-columns: repeat(auto-fit, 380px);
+
+.projects-links {
+	display: flex;
+	align-items: center;
+	gap: 0.6rem;
+
+	a {
+		color: $textMuted;
+		transition: color .15s;
+
+		&:hover {
+			color: $accent;
+		}
 	}
 }
-@media (min-width: 1200px) {
-	.projects{
-		grid-template-columns: repeat(auto-fit, 320px);
+
+// ── Right-hand preview panel ──────────────────────────────────────────────────
+
+.projects-preview {
+	top: 5rem;
+	padding-top: 1rem;
+}
+
+.projects-preview-box {
+	width: 100%;
+	aspect-ratio: 1 / 1;
+	border-radius: 8px;
+	overflow: hidden;
+	background: #f1f5f9;
+	position: relative;
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+		padding: 1.5rem;
+		transition: opacity .15s ease;
 	}
+}
+
+#projects-preview-placeholder {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: $textLabel;
+	font-size: 3rem;
+	transition: opacity .15s ease;
+}
+
+#projects-preview-title {
+	font-size: 0.85em;
 }
