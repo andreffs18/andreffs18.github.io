@@ -6,6 +6,7 @@ tags = ["tags"]
 disqusShortname = "andreffs"
 googleAnalytics = "UA-71884481-1"
 enableGitInfo = true
+enableRobotsTXT = true
 
 ignorefiles = [
   "content/blog/_draft/.*"
