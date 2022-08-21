@@ -1,4 +1,4 @@
-.PHONY: build plotly deploy
+.PHONY: build plotly deploy post
 SHELL := /bin/bash
 
 build:
@@ -44,3 +44,10 @@ tag: check-tag
 	git tag -a "$$VERSION" -m "$$TAG_MESSAGE" && \
 	git push origin --tags && \
 	echo "✅ Updated project to version \"$$VERSION\""
+
+
+post:
+	DATE="$$(date +'%Y-%m-%d')" && \
+	SLUG="$$(echo "$$title" | iconv -c -t ascii//TRANSLIT | sed -E 's/[~^]+//g' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+|-+$$//g' | tr A-Z a-z)" && \
+	hugo new "blog/$$DATE-$$SLUG/index.md" && \
+	open $$(pwd)/content/blog/$$DATE-$$SLUG/ -a Visual\ Studio\ Code
