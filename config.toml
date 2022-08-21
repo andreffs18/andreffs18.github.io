@@ -7,6 +7,7 @@ disqusShortname = "andreffs"
 googleAnalytics = "UA-71884481-1"
 enableGitInfo = true
 enableRobotsTXT = true
+rssLimit = 20
 
 ignorefiles = [
   "content/blog/_draft/.*"

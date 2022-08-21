@@ -64,6 +64,13 @@
     {{ $style := resources.Get "/css/main.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
     <link rel="stylesheet" type="text/css" href="{{ $style.Permalink }}">
 
+    <!-- RSS Feed -->
+    <!-- Source: https://pakstech.com/blog/hugo-rss/ -->
+    {{ $rssTitle := partial "get_meta_title" . }}
+    {{ range .AlternativeOutputFormats -}}
+        <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink }}" title="{{ $rssTitle }}" />
+    {{ end -}}
+
     <!-- Hugo info -->
     <!-- https://stackoverflow.com/a/10534167/1219634 -->
     <!-- https://w3c.github.io/html/single-page.html#the-meta-element -->
