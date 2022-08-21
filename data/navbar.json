@@ -1,0 +1,26 @@
+[
+    {
+        "identifier": "cv",
+        "name": "CV",
+        "url": "/cv/",
+        "weight": 1
+    },
+    {
+        "identifier": "about",
+        "name": "About",
+        "url": "/about/",
+        "weight": 2
+    },
+    {
+        "identifier": "blog",
+        "name": "Blog",
+        "url": "/blog/",
+        "weight": 3
+    },
+    {
+        "identifier": "projects",
+        "name": "Projects",
+        "url": "/projects/",
+        "weight": 4
+    }
+]
