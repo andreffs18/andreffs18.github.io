@@ -1,0 +1,112 @@
+{{ define "main" }}
+<div class="projects-header">
+    <h1>Projects</h1>
+    <div class="btn-group">
+        <a href="#" id="compact" class="btn btn-sm active" data-toggle="tooltip" data-placement="top" title="Grid"><i class="fa fa-th"></i></a>
+        <a href="#" id="list" class="btn btn-sm" data-toggle="tooltip" data-placement="top" title="List"><i class="fa fa-list"></i></a>
+    </div>
+</div>
+
+<div class="project-view project-list-view d-none">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Image</th>
+                <th scope="col">Title &amp; Description</th>
+                <th scope="col">Year</th>
+                <th scope="col">Skills</th>
+                <th scope="col"><i class="fa fa-link"></i></th>
+            </tr>
+        </thead>
+        {{ range (.Pages.ByParam "year").Reverse }}
+        <tbody>
+            <tr scope="row">
+                <td class="td-image">
+                    {{ if .Params.image }}
+                    <img src="{{ .Params.image | absURL }}" alt="{{ .Params.image }}">
+                    {{ else }}
+                    <div class="td-img-placeholder"><i class="fa fa-hourglass-half"></i></div>
+                    {{ end }}
+                </td>
+                <td><strong>{{ if .Draft }}📝 <span style="color: salmon">DRAFT:</span> {{ end }}{{ .Params.title }}</strong><br/>{{ .Params.subtitle }}</td>
+                <td>{{ .Params.year }}</td>
+                <td>
+                    {{ range .Params.skills }}
+                    <span class="badge">{{ . }}</span>
+                    {{ end }}
+                </td>
+                <td class="td-actions">
+                    <div class="d-flex">
+                        {{ if .Params.github_url }}
+                        <a href="{{ .Params.github_url }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Github Project"><i class="fa fa-github"></i></a>
+                        {{ end }}
+
+                        {{ if .Params.blog_url }}
+                        <a href="{{ .Params.blog_url }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Blogpost"><i class="fa fa-book"></i></a>
+                        {{ end }}
+
+                        {{ if .Params.website_url }}
+                        <a href="{{ .Params.website_url }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Project Website"><i class="fa fa-external-link"></i></a>
+                        {{ end }}
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+        {{ end }}
+    </table>
+</div>
+
+<div class="project-view project-compact-view">
+    {{ range (.Pages.ByParam "year").Reverse }}
+        <div class="card">
+            {{ if .Params.image }}
+            <img class="card-img-top" src="{{ .Params.image | absURL }}" alt="{{ .Params.image }}">
+            {{ else }}
+            <div class="card-img-placeholder"><i class="fa fa-hourglass-half"></i></div>
+            {{ end }}
+            <div class="card-social d-flex">
+                {{ if .Params.github_url }}
+                <a href="{{ .Params.github_url }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Github Project"><i class="fa fa-github"></i></a>
+                {{ end }}
+
+                {{ if .Params.blog_url }}
+                <a href="{{ .Params.blog_url }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Blogpost"><i class="fa fa-book"></i></a>
+                {{ end }}
+
+                {{ if .Params.website_url }}
+                <a href="{{ .Params.website_url }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Project Website"><i class="fa fa-external-link"></i></a>
+                {{ end }}
+            </div>
+            <div class="card-skills navbar">
+                {{ range .Params.skills }}
+                <span class="badge">{{ . }}</span>
+                {{ end }}
+            </div>
+            <div class="card-block">
+                <h4 class="card-title">{{ if .Draft }}📝 <span style="color: salmon">DRAFT:</span> {{ end }}{{ .Params.title }}</h4>
+                {{ if .Params.year }}<small class="card-year">{{ .Params.year }}</small>{{ end }}
+                <p class="card-text">{{ .Params.subtitle }}</p>
+            </div>
+        </div>
+    {{ end }}
+</div>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    $('#list').click(function (event) {
+        event.preventDefault();
+        $('.project-view').removeClass('d-none');
+        $('.project-compact-view').addClass('d-none');
+        $('#list').addClass('active');
+        $('#compact').removeClass('active');
+    });
+    $('#compact').click(function (event) {
+        event.preventDefault();
+        $('.project-view').removeClass('d-none');
+        $('.project-list-view').addClass('d-none');
+        $('#compact').addClass('active');
+        $('#list').removeClass('active');
+    });
+});
+</script>
+{{ end }}
