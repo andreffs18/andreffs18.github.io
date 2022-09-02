@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta name="generator" content="Hugo 0.67.1" />
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="https://www.andreffs.com/favicon.png">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ANDREFFS | How I&#39;ve Scanned 5K MTG Cards</title>
+
+    <meta name="author" content="">
+    <meta name="description" content="">
+    <link rel="canonical" href="https://www.andreffs.com/blog/how-i-ve-scanned-5k-mtg-cards/">
+
+    
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+    
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    
+    <link rel="stylesheet" type="text/css" href="https://www.andreffs.com/css/main.min.2623349fa9762b7582fc7ec2ace6404ca36556bc5dae11d474e5b870e0d3d1f3.css">
+</head>
+
+    <body>
+        <div class="container pb-5">
+            <header>
+    <div class="page-header pb-4 mt-5 mb-4">
+        
+            <a href="https://www.andreffs.com" class="text-decoration-none">
+                <h1 class="text3d text-right text-uppercase"><span id="">André Silva</span><br/></h1>
+            </a>
+            <small class="letterpress text-right text-uppercase">29 y/old workaholic from Lisbon.</small>
+        
+    </div>
+</header>
+            
+
+<main class="row blog">
+    <section>
+        <header>
+            <h1 class="">How I&rsquo;ve Scanned 5K MTG Cards</h1>
+
+            
+            <h2 class="font-weight-light font-italic mb-3">How I over-engineered a way to find out how much money my magic the gathering card collection was worth by &ldquo;exploring&rdquo; my phone.</h2>
+            
+
+            <a class="text-muted mt-3">
+                <a class="text-muted" href="https://www.andreffs.com/blog/how-i-ve-scanned-5k-mtg-cards/">Published May 14, 2020</a>
+
+                
+                    <span>|</span>
+                    
+                    <a class="text-muted" href="https://www.andreffs.com/tags/magic-the-gathering">#magic-the-gathering</a>
+                    
+                    <a class="text-muted" href="https://www.andreffs.com/tags/android">#android</a>
+                    
+                    <a class="text-muted" href="https://www.andreffs.com/tags/dbeaver">#dbeaver</a>
+                    
+                    <a class="text-muted" href="https://www.andreffs.com/tags/databases">#databases</a>
+                    
+                    <a class="text-muted" href="https://www.andreffs.com/tags/sqlite">#sqlite</a>
+                    
+                
+                <span>|</span>
+                <a class="text-muted text-decoration-none">± 7 mins</a>
+            </p>
+        </header>
+        <article class="markdown-body">
+            <p><em>Update 2022-08-16: Same thing as last year. Also, I finally managed to sell the whole collection. Need to pay for that dinner now :)</em></p>
+<p><em>Update 2021-05-24: Went back to this to refresh with 2021 prices and check if those change that much after a year. Well, it seems it does</em> 😂</p>
+<hr>
+<p>A good friend of mine gave me an old box of magic cards, like a <em>really</em> big old box, and during the first couple of weeks of COVID, I decided to sort them out to see how much money I had in there.</p>
+<blockquote>
+<p>TL;DR the box had around 5K MTG cards with a total value of around 1,200€. If you want to check the spreadsheet feel free: <a href="https://docs.google.com/spreadsheets/d/1AY9tYBo2VmtG-y3E2Zinij17xSeoI0D4JC-rIwl-zRc/edit#gid=2119265541">https://docs.google.com/spreadsheets/d/1AY9tYBo2VmtG-y3E2Zinij17xSeoI0D4JC-rIwl-zRc/edit#gid=2119265541</a></p>
+</blockquote>
+<p><img src="images/box-full-of-magic-the-gathering-cards-50%25.jpeg" alt="images/box-full-of-magic-the-gathering-cards-50%.jpeg" title="Box full of magic the gathering cards"></p>
+<h1 id="sorting-and-cataloging">Sorting and Cataloging</h1>
+<p>I started by scanning each card using <a href="https://www.mtggoldfish.com/">MTGoldFish</a> website, but as you can imagine, that was painful. While looking for other options I came across <a href="https://play.google.com/store/apps/details?id=com.tcgplayer.tcgplayer&amp;hl=pt_PT&amp;gl=US">TCGPlayer</a> App, which allows you to scan cards from your phone, like a cashier at the supermarket.</p>
+<p>That seemed much simpler, so I downloaded the app, laid all the cards on my bed, and one by one started scanning those. This took around a week to do after work while watching <a href="https://www.tvtime.com/en/show/289590">MR.Robot</a>.</p>
+<p><img src="images/sorting-cards-20%25.jpeg" alt="images/sorting-cards-20%.jpeg" title="Using TCGPlayer to scan magic cards"></p>
+<h1 id="exporting-the-data">Exporting the data</h1>
+<p>After a very long week, TCGPlayer had registered all +5k cards.</p>
+<p>I wanted to check the price for my whole collection but since I could only check one by one manually, that was a problem.
+<img src="images/tcg-collection.png" alt="images/tcg-collection.png" title="List of collections and price"></p>
+<p>I started wondering that maybe there would be other places that might give me a better deal, like <a href="https://www.cardkingdom.com/">MagicCardKingdom</a> or even <a href="https://www.mtggoldfish.com/">MTGoldFish</a>, and to know these, I would need to export my card collection. Also, since I planned on <a href="https://www.olx.pt/d/anuncio/5000-magic-the-gathering-mtg-card-collection-IDH8sWf.html">selling <em>my</em> cards</a>, it could prove useful to have this collection available online so a possible buyer could see what it has.</p>
+<p>Here&rsquo;s my problem: TCGPlayer doesn&rsquo;t allow you to do this. Reddit never fails in suggesting <a href="https://www.reddit.com/r/magicTCG/comments/2sud9v/tcgplayer_collection_exportdownload/">&ldquo;other options&rdquo;</a> but moving all those collections from one app to another seems to be very cumbersome. In the end, it just sucks because I couldn’t export the whole collection.</p>
+<p>So what do I do? My goal is to export the whole collection and put it in a nice spreadsheet so I can:</p>
+<ul>
+<li>Share it with people</li>
+<li>See different prices from different vendors</li>
+<li>Maybe eventually realize that all effort is not gonna pay off 🙃.</li>
+</ul>
+<p>I could follow Reddit&rsquo;s idea of exporting all collections one by one, which would take ~5/10 seconds each, and then send them via email, which would make the whole process take like 20 seconds + download emails + import into spreadsheet + formatting (per collection )&hellip; <em>Oor</em>, I could just geek out and find a way to access the TCGPlayer App database on my phone, since that was something I never did before 🤓.</p>
+<h1 id="scrapping-tcgplayer-data">Scrapping TCGPlayer data</h1>
+<p>So, first things first, I need to access my phone&rsquo;s internal storage and download all database/temporary files that TCGPlayer App creates to my laptop.</p>
+<p>For me to do this I needed to &ldquo;<a href="https://developer.android.com/studio/debug/dev-options">Turn on developer options</a>&rdquo; and set <strong>&ldquo;USB debugging&rdquo; on</strong>. Then connect the phone via USB and setup it up via <strong>File Transfer</strong>, and not that other <strong>Media or PTP</strong> stuff.</p>
+<p>I also need to allow &ldquo;Shell Root Access&rdquo;, and to do that (since my phone is a rooted OnePlus One) I can simply go to <a href="https://magiskmanager.com/">magisk app</a> and allow that.</p>
+<p><img src="images/android-config-file-transfer.png" alt="images/android-config-file-transfer.png" title="Connecting via USB and setup file transfer"></p>
+<p>Alright, after that, I needed to install <a href="https://developer.android.com/studio/command-line/adb"><strong><code>adb</code></strong></a> (Android Debug Bridge) tool that allows me to access my phone via a terminal so I can find the internal files, and download them.</p>
+<blockquote>
+<p>On how to install <code>adb</code>, I just followed <a href="https://stackoverflow.com/questions/31374085/installing-adb-on-macos">this</a> StackOverflow thread.</p>
+</blockquote>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ brew install android-platform-tools
+
+$ adb root
+adbd is already running as root
+
+$ adb devices
+List of devices attached
+4a1e43b2  device
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>ℹ️ Make sure you run it as &ldquo;root&rdquo; first. This will allow you to list and pull the data you need from your device, otherwise, you might get a &ldquo;Permission denied&rdquo; error.</p>
+</blockquote>
+<p><img src="images/terminal-adb-shell.png" alt="images/terminal-adb-shell.png" title="Run adb shell+ls before and after running adb root command"></p>
+<p>The next step is to figure out where TCGPlayer App stores its internal data. Once more, <a href="https://stackoverflow.com/questions/41498046/mac-android-studio-emulator-sqlite-database-actually-find-directory">StackOverflow</a> strikes again, where we just need to pull the data from the <code>&quot;/data/data/com.tcgplayer.tcgplayer&quot;</code> folder.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cd /data/data/com.tcgplayer.tcgplayer
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="images/terminal-adb-cd-to-folder.png" alt="images/terminal-adb-cd-to-folder.png" title="Find tcg file folder"></p>
+<p>Finally, a simple <code>adb pull</code> can download the whole TCG folder:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ adb pull /data/data/com.tcgplayer.tcgplayer myfolder
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="images/terminal-adb-pull-to-local.png" alt="images/terminal-adb-pull-to-local.png" title="Run adb pull and download files to local"></p>
+<h1 id="hello-sqlite">Hello .sqlite</h1>
+<p><img src="images/terminal-tree-find-sqlite-files.png" alt="images/terminal-tree-find-sqlite-files.png" title="Find database .sqlite on downloaded files"></p>
+<p>At this point, you can see that we found all internal files and that all scanned cards are stored in a couple of .sqlite databases.</p>
+<p>We now need to query the data. Probably the best way to think about that query is to first understand the data model and go from there. A quick look over the different tables we have we can see that we are working with two files:</p>
+<h3 id="userdatasqlite">userdata.sqlite</h3>
+<p>Has two tables: <strong>&ldquo;UserList&rdquo;</strong> and <strong>&ldquo;UserListCard&rdquo;</strong>, which seems to perfectly represent my custom collections (&ldquo;Green-O&rdquo;, &ldquo;White-A&rdquo;, etc) and the different scanned cards.</p>
+<p><img src="images/dbeaver-userdata-tables-and-rows.png" alt="images/dbeaver-userdata-tables-and-rows.png" title="userdata.sqlite tables and rows"></p>
+<p>This is where our scanned cards live. We can double-check the amount by simply counting the number of rows:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">COUNT</span>(<span style="color:#f92672">*</span>) <span style="color:#66d9ef">FROM</span> UserListCard ul
+<span style="color:#f92672">&gt;&gt;&gt;</span> <span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">377</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="images/dbeaver-userdata-rows-count.png" alt="images/dbeaver-userdata-rows-count.png" title="userdata.sqlite rows count"></p>
+<h3 id="falconsqlite">falcon.sqlite</h3>
+<p>This one has many more tables (15 to be exact), and looking at the ER model we can see some connections between them which highlights the different attributes of each card like language, rarity, and condition.</p>
+<p>Checking the different tables we can confirm that it&rsquo;s just pre-populated card collections that the TCGPlayer app uses to do its thing.</p>
+<p><img src="images/dbeaver-falcon-sqlite-er-diagram.png" alt="images/dbeaver-falcon-sqlite-er-diagram.png" title="falcon.sqlite er diagram"></p>
+<h2 id="exporting-the-csv">Exporting the .csv</h2>
+<p>Basically, I need to join both <code>userdata.sqlite</code> and <code>falcon.sqlite</code> databases. With DBeaver we can simply export a query as a new table, and define the target location as a different database, which is pretty useful in this case.</p>
+<p>So first, let&rsquo;s export <em>my</em> personal card collection into a new table, with the columns that I need like like &ldquo;productId&rdquo; and &ldquo;quantity&rdquo;:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> UserListCard.Id, UserListCard.ListId, UserListCard.Quantity, UserListCard.ProductConditionId, UserListCard.ProductId, UserList.Name
+<span style="color:#66d9ef">FROM</span> UserListCard
+<span style="color:#66d9ef">JOIN</span> UserList <span style="color:#66d9ef">ON</span> UserListCard.ListId <span style="color:#f92672">==</span> UserList.Id
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="images/dbeaver-userdata-export-query.png" alt="images/dbeaver-userdata-export-query.png" title="userdata.sqlite exporting data"></p>
+<p>Using the &ldquo;Export&rdquo; button (1), an &ldquo;Export Wizard&rdquo; will pop up and we can follow the steps to convert the results from the query into a new table in <code>falcon.sqlite</code> database (2).</p>
+<p><img src="images/dbeaver-export-button.png" alt="images/dbeaver-export-button.png" title="userdata.sqlite export query into a new table"></p>
+<p><img src="images/dbeaver-new-table.png" alt="images/dbeaver-new-table.png" title="falcon.sqlite new table with my card collection"></p>
+<p>Once the process is completed, a new table will be created. I renamed it to &ldquo;CardCollection&rdquo; so it&rsquo;s easier to work with.</p>
+<p>With that, we can see that the <code>falcon.sqlite</code> database ER diagram is updated!</p>
+<p><img src="images/dbeaver-falcon-sqlite-er-diagram-updated.png" alt="images/dbeaver-falcon-sqlite-er-diagram-updated.png" title="falcon.sqlite with new relationship"></p>
+<p>We have everything ready to generate our final .csv and using this ER model makes it very easy to extrapolate the query. The following query takes care of the job:</p>
+<p><img src="images/dbeaver-er-diagram-highlighted.png" alt="images/dbeaver-er-diagram-highlighted.png" title="falcon.sqlite highlighted query"></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span>
+<span style="color:#66d9ef">FROM</span> CardCollection
+<span style="color:#66d9ef">INNER</span> <span style="color:#66d9ef">JOIN</span> CardPrinting <span style="color:#66d9ef">ON</span> CardPrinting.Id <span style="color:#f92672">=</span> CardCollection.ProductId
+<span style="color:#66d9ef">INNER</span> <span style="color:#66d9ef">JOIN</span> CardSet <span style="color:#66d9ef">ON</span> CardSet.Id <span style="color:#f92672">=</span> CardPrinting.SetId
+<span style="color:#66d9ef">INNER</span> <span style="color:#66d9ef">JOIN</span> ProductCondition <span style="color:#66d9ef">ON</span> ProductCondition.Id <span style="color:#f92672">=</span> CardCollection.ProductConditionId
+<span style="color:#66d9ef">INNER</span> <span style="color:#66d9ef">JOIN</span> CatalogCondition <span style="color:#66d9ef">ON</span> CatalogCondition.Id <span style="color:#f92672">=</span> ProductCondition.Condition
+<span style="color:#66d9ef">INNER</span> <span style="color:#66d9ef">JOIN</span> CatalogLanguage <span style="color:#66d9ef">ON</span> CatalogLanguage.Id <span style="color:#f92672">=</span> ProductCondition.<span style="color:#66d9ef">Language</span>
+<span style="color:#66d9ef">INNER</span> <span style="color:#66d9ef">JOIN</span> CatalogVariant <span style="color:#66d9ef">ON</span> CatalogVariant.Id <span style="color:#f92672">=</span> ProductCondition.Variant
+<span style="color:#66d9ef">INNER</span> <span style="color:#66d9ef">JOIN</span> CatalogRarity <span style="color:#66d9ef">ON</span> CatalogRarity.Id <span style="color:#f92672">=</span> CardPrinting.Rarity
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="images/dbeaver-final-query.png" alt="images/dbeaver-final-query.png" title="falcon.sqlite final query"></p>
+<p>Great stuff! A simple &ldquo;Export&rdquo; to a .csv will do the work! 🚀</p>
+<h1 id="into-a-shareable-spreadsheet">Into a shareable spreadsheet</h1>
+<p>Finally 🍰.</p>
+<p>Opening a browser tag and typing &ldquo;<a href="https://sheets.new">sheets.new</a>&quot;, and then &ldquo;File &gt; Importing &gt; Upload&rdquo; will move our exported .csv into a brand new, <strong>shareable</strong> spreadsheet which we can format accordingly.</p>
+<p>To make it pretty, there is this great website (<a href="http://eakett.ca/mtgimage/#top">eakett.ca</a>) where I found those SVG images by providing on the URL the mana or collection symbols. We just need to add a column to our spreadsheet with this snippet and that&rsquo;s it:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#f92672">=</span>Image(<span style="color:#e6db74">&#34;http://eakett.ca/mtgimage/symbol/mana/&#34;</span> <span style="color:#f92672">&amp;</span> LOWER(B4) <span style="color:#f92672">&amp;</span> <span style="color:#e6db74">&#34;.svg&#34;</span>)
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="images/final-sheet.png" alt="images/final-sheet.png" title="final spreadsheet with pretty columns"></p>
+<p>Again, if you wanna check the spreadsheet:
+👉 <a href="https://docs.google.com/spreadsheets/d/1AY9tYBo2VmtG-y3E2Zinij17xSeoI0D4JC-rIwl-zRc/edit?usp=sharing">https://docs.google.com/spreadsheets/d/1AY9tYBo2VmtG-y3E2Zinij17xSeoI0D4JC-rIwl-zRc/edit?usp=sharing</a> 👈</p>
+<h1 id="you-know-what-would-be-cool-an-ai-to-find-the-best-decks">&ldquo;You know what would be cool? An AI to find the best decks&rdquo;</h1>
+<p>Since I initially wrote this blogpost, I&rsquo;ve posted this on <a href="https://www.ebay.com/itm/185541996242?ViewItem=&amp;item=185541996242">Ebay</a> (and the Portuguese equivalent <a href="https://www.olx.pt/d/anuncio/5000-magic-the-gathering-mtg-card-collection-IDH8sWf.html">Olx</a>) to see if I could sell it and buy my friend some fancy dinner.</p>
+<p>I&rsquo;ve shared it with a couple of friends as well which brought some interesting ideas like, using the data from the spreadsheet to have some type of AI to figure out the best decks from all these cards.</p>
+<p>This idea <em>is not new</em> (<a href="https://www.pyimagesearch.com/2021/03/03/an-interview-with-anthony-lowhur-recognizing-10000-yugioh-cards-with-computer-vision-and-deep-learning/">1</a>, <a href="https://www.reddit.com/r/magicTCG/comments/aa0u1d/is_there_a_mtg_deck_building_ai/">2</a>, <a href="http://www.shoeboxmtg.com/">3</a>, <a href="https://bestdeckforyou.pythonanywhere.com/">4</a>, <a href="">5</a>), but I couldn&rsquo;t find anything available to &ldquo;plug and play&rdquo; with this, or that it actually worked. Maybe something for the future 🧐.</p>
+<h1 id="resources">Resources:</h1>
+<ul>
+<li>How to sell mtg cards: <a href="https://strategy.channelfireball.com/all-strategy/mtg/channelmagic-articles/how-to-sell-magic-cards/">https://strategy.channelfireball.com/all-strategy/mtg/channelmagic-articles/how-to-sell-magic-cards/</a> and <a href="https://www.youtube.com/watch?v=7sV8F1qaFNc">https://www.youtube.com/watch?v=7sV8F1qaFNc</a></li>
+<li>What did you guys automate in your life: <a href="https://www.reddit.com/r/Python/comments/miqt0d/what_did_you_guys_automate_in_your_life/">https://www.reddit.com/r/Python/comments/miqt0d/what_did_you_guys_automate_in_your_life/</a></li>
+<li>Interview with Anthony Lowhur – Recognizing 10,000 Yugioh Cards: <a href="https://www.pyimagesearch.com/2021/03/03/an-interview-with-anthony-lowhur-recognizing-10000-yugioh-cards-with-computer-vision-and-deep-learning/">https://www.pyimagesearch.com/2021/03/03/an-interview-with-anthony-lowhur-recognizing-10000-yugioh-cards-with-computer-vision-and-deep-learning/</a></li>
+</ul>
+<p>👋</p>
+
+        </article>
+    </section>
+
+    <aside>
+        <div class="d-none d-xl-block">
+            
+                <div class="toc">
+                    <h5>Table of contents</h5>
+                    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#sorting-and-cataloging">Sorting and Cataloging</a></li>
+    <li><a href="#exporting-the-data">Exporting the data</a></li>
+    <li><a href="#scrapping-tcgplayer-data">Scrapping TCGPlayer data</a></li>
+    <li><a href="#hello-sqlite">Hello .sqlite</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#userdatasqlite">userdata.sqlite</a></li>
+            <li><a href="#falconsqlite">falcon.sqlite</a></li>
+          </ul>
+        </li>
+        <li><a href="#exporting-the-csv">Exporting the .csv</a></li>
+      </ul>
+    </li>
+    <li><a href="#into-a-shareable-spreadsheet">Into a shareable spreadsheet</a></li>
+    <li><a href="#you-know-what-would-be-cool-an-ai-to-find-the-best-decks">&ldquo;You know what would be cool? An AI to find the best decks&rdquo;</a></li>
+    <li><a href="#resources">Resources:</a></li>
+  </ul>
+</nav>
+                </div>
+            
+        </div>
+    </aside>
+</main>
+
+<hr>
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "andreffs" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<hr>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-auto">
+      <small>
+        Last update: September 2, 2022
+        
+          <a href="https://github.com/andreffs18/website/commit/52d8f167fbf2bbc41b98e005d3a01bdaf29261e4" target="_blank">(52d8f16)</a>
+        
+      </small>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="pt-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 text-left">
+                
+                Previous Post: ◀ <a href="https://www.andreffs.com/blog/just-keep-on-save-for-later/">Just keep on &ldquo;Save for later&rdquo;</a>
+                
+            </div>
+            <div class="col-md-6 text-right">
+                
+                Next Post: ▶ <a href="https://www.andreffs.com/blog/debug-in-hugo/">Debug in Hugo</a>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+const BLOG_TITLE_SELECTORS = '.blog article h1, .blog article h2, .blog article h3, .blog article h4, .blog article h5, .blog article h6';
+
+function addAnchor(element) {
+    element.innerHTML = `<a class="anchor" href="#${element.id}" aria-hidden="true"><span class="octicon octicon-link"></span></a>${element.innerText}`
+}
+document.addEventListener('DOMContentLoaded', () => {
+    var headers = document.querySelectorAll(BLOG_TITLE_SELECTORS)
+    if (headers) {
+        headers.forEach(addAnchor)
+    }
+})
+
+
+window.addEventListener('DOMContentLoaded', () => {
+	const observer = new IntersectionObserver(entries => {
+    let container = document.querySelector('.toc');
+    let links = [...container.querySelectorAll('a')]
+    let headings = links.map(link => {
+      let id = link.getAttribute('href')
+      return document.querySelector(id)
+    })
+
+    entries.forEach(entry => {
+      let previousSection = undefined;
+      let href = `#${entry.target.getAttribute('id')}`;
+      let link = links.find(l => l.getAttribute('href') === href);
+
+      if (entry.intersectionRatio > 0) {
+        link.classList.add('is-visible');
+        previousSection = entry.target.getAttribute('id');
+      } else {
+        link.classList.remove('is-visible');
+      }
+
+      links.forEach(link => {
+        link.classList.remove('is-active');
+      })
+
+      let firstVisibleLink = container.querySelector('.is-visible');
+      if (firstVisibleLink) {
+        firstVisibleLink.classList.add('is-active');
+      }
+      if (!firstVisibleLink && previousSection) {
+        container.querySelector(`a[href="#${previousSection}"]`).classList.add('is-active');
+      }
+    })
+    
+    if(entries.length === 1){
+      let entry = entries[0];
+      let lastHeadingOfBlogpost = headings[headings.length - 1];
+      if(
+        entry.intersectionRatio === 0 && 
+        entry.target === lastHeadingOfBlogpost 
+      ) {
+        let href = `#${entry.target.getAttribute('id')}`;
+        container.querySelector(`a[href="${href}"]`).classList.add('is-active');
+      }
+    }
+	});
+	
+	document.querySelectorAll(BLOG_TITLE_SELECTORS).forEach((title) => {
+		observer.observe(title);
+	});
+});
+
+</script>
+
+        </div>
+        
+<footer>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <ul class="navbar menu pull-left">
+                  
+                      <li class="nav-item ">
+                          <a class="nav-link" href="https://www.andreffs.com/cv/" title="">CV</a>
+                      </li>
+                  
+                      <li class="nav-item ">
+                          <a class="nav-link" href="https://www.andreffs.com/about/" title="">About</a>
+                      </li>
+                  
+                      <li class="nav-item ">
+                          <a class="nav-link" href="https://www.andreffs.com/blog/" title="">Blog</a>
+                      </li>
+                  
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <ul class="navbar social pull-right">
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="mailto:andreffs18@gmail.com" target="_blank"><i class="fa fa-envelope"></i></a>
+                        </li>
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://www.facebook.com/andreffs18" target="_blank"><i class="fa fa-facebook"></i></a>
+                        </li>
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://github.com/andreffs18" target="_blank"><i class="fa fa-github"></i></a>
+                        </li>
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://instagram.com/andreffs18" target="_blank"><i class="fa fa-instagram"></i></a>
+                        </li>
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://pt.linkedin.com/in/andreffs18" target="_blank"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://twitter.com/andreffs18" target="_blank"><i class="fa fa-twitter"></i></a>
+                        </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    </body>
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-71884481-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</html>

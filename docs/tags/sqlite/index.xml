@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>sqlite on ANDREFFS</title>
+    <link>https://www.andreffs.com/tags/sqlite/</link>
+    <description>Recent content in sqlite on ANDREFFS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 14 May 2020 23:12:18 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.andreffs.com/tags/sqlite/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>How I&#39;ve Scanned 5K MTG Cards</title>
+      <link>https://www.andreffs.com/blog/how-i-ve-scanned-5k-mtg-cards/</link>
+      <pubDate>Thu, 14 May 2020 23:12:18 +0000</pubDate>
+      
+      <guid>https://www.andreffs.com/blog/how-i-ve-scanned-5k-mtg-cards/</guid>
+      <description>Update 2022-08-16: Same thing as last year. Also, I finally managed to sell the whole collection. Need to pay for that dinner now :)
+Update 2021-05-24: Went back to this to refresh with 2021 prices and check if those change that much after a year. Well, it seems it does 😂
+ A good friend of mine gave me an old box of magic cards, like a really big old box, and during the first couple of weeks of COVID, I decided to sort them out to see how much money I had in there.</description>
+    </item>
+    
+  </channel>
+</rss>
