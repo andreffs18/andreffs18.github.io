@@ -125,3 +125,40 @@ html {
 		}
 	}
 }
+
+/*  Source for "share article" section:
+* https://code.luasoftware.com/tutorials/flask/flask-logging-appear-twice/
+* https://wordpress.org/plugins/buymeacoffee/
+* http://hugocodex.org/add-ons/share-buttons/
+-------------------------------------------------- */
+#share-article {
+	column-gap: 10px;
+	span {
+		color: silver;
+		&.buy-me-a-coffee {
+			font-weight: 500;
+			&:hover{
+				cursor: pointer;
+				background: -webkit-linear-gradient(#ffd900, #ffbb0c);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+			}
+		}
+	}
+	a {
+		&:hover {
+			cursor: pointer;
+			text-decoration: none;
+		}
+
+		i, svg {
+			height: 16px;
+			color: #d5d5d5;
+
+			&.fa-facebook:hover {color: #3B5998;}
+			&.fa-twitter:hover {color: #55ACEE;}
+			&.fa-linkedin:hover {color: #0077b5;}
+			&.fa-envelope:hover {color: #7D7D7D;}
+		}
+	}
+}
