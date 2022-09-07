@@ -1,0 +1,38 @@
+[
+    {
+        "identifier": "github",
+        "title": "Github",
+        "url": "https://github.com/andreffs18",
+        "class": "fa fa-github"
+    },
+    {
+        "identifier": "twitter",
+        "title": "Twitter",
+        "url": "https://twitter.com/andreffs18",
+        "class": "fa fa-twitter"
+    },
+    {
+        "identifier": "instagram",
+        "title": "Instagram",
+        "url": "http://instagram.com/andreffs18",
+        "class": "fa fa-instagram"
+    },
+    {
+        "identifier": "facebook",
+        "title": "Facebook",
+        "url": "https://www.facebook.com/andreffs18",
+        "class": "fa fa-facebook"
+    },
+    {
+        "identifier": "linkedin",
+        "title": "Linkedin",
+        "url": "https://pt.linkedin.com/in/andreffs18",
+        "class": "fa fa-linkedin"
+    },
+    {
+        "identifier": "e-mail",
+        "title": "E-mail",
+        "url": "mailto:andreffs18@gmail.com",
+        "class": "fa fa-envelope"
+    }
+]

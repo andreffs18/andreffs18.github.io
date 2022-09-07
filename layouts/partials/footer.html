@@ -4,18 +4,18 @@
         <div class="row">
             <div class="col-md-6">
                 <ul class="navbar menu pull-left">
-                  {{ range .Site.Menus.main }}
-                      <li class="nav-item {{ if eq $currentPage.RelPermalink .URL }}active{{ end }}">
-                          <a class="nav-link" href="{{ .URL | absURL }}" title="{{ .Title }}">{{ .Name }}</a>
+                  {{ range .Site.Data.navbar }}
+                      <li class="nav-item {{ if eq $currentPage.RelPermalink .url }}active{{ end }}">
+                          <a class="nav-link" href="{{ .url | absURL }}" title="{{ .title }}">{{ .name }}</a>
                       </li>
                   {{ end }}
                 </ul>
             </div>
             <div class="col-md-6">
                 <ul class="navbar social pull-right">
-                    {{ range .Site.Menus.social }}
+                    {{ range .Site.Data.social }}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ .URL }}" target="_blank"><i class="{{ .Post }}"></i></a>
+                            <a class="nav-link" href="{{ .url }}" target="_blank" data-toggle="tooltip" data-placement="top" title="{{ .title }}"><i class="{{ .class }}"></i></a>
                         </li>
                     {{ end }}
                 </ul>
