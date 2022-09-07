@@ -203,7 +203,7 @@ Since I initially wrote this blogpost, I've posted this on [Ebay](https://www.eb
 
 I've shared it with a couple of friends as well which brought some interesting ideas like, using the data from the spreadsheet to have some type of AI to figure out the best decks from all these cards.
 
-This idea *is not new* ([1](https://www.pyimagesearch.com/2021/03/03/an-interview-with-anthony-lowhur-recognizing-10000-yugioh-cards-with-computer-vision-and-deep-learning/), [2](https://www.reddit.com/r/magicTCG/comments/aa0u1d/is_there_a_mtg_deck_building_ai/), [3](http://www.shoeboxmtg.com/), [4](https://bestdeckforyou.pythonanywhere.com/), [5]()), but I couldn't find anything available to "plug and play" with this, or that it actually worked. Maybe something for the future 🧐.
+This idea *is not new* ([1](https://www.pyimagesearch.com/2021/03/03/an-interview-with-anthony-lowhur-recognizing-10000-yugioh-cards-with-computer-vision-and-deep-learning/), [2](https://www.reddit.com/r/magicTCG/comments/aa0u1d/is_there_a_mtg_deck_building_ai/), [3](http://www.shoeboxmtg.com/), [4](https://bestdeckforyou.pythonanywhere.com/)), but I couldn't find anything available to "plug and play" with this, or that it actually worked. Maybe something for the future 🧐.
 
 
 
