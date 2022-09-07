@@ -97,10 +97,12 @@ html {
 	}
 
 	aside {
+		max-width: 190px;
 		position: sticky;
 		top: 2rem;
 		align-self: start;
-		padding: 0px 0px 20px 15px;
+		padding: 0px 0px 20px 10px;
+		font-size: 12px;
 
 		.toc {
 			ul {
