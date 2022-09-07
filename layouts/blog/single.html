@@ -64,11 +64,11 @@
 
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-md-auto">
+    <div class="col-md-auto text-center">
       <small>
         Last update: {{ .Lastmod.Format "January 2, 2006" }}
         {{ with .GitInfo }}
-          <a href="https://github.com/andreffs18/website/commit/{{ .Hash }}" target="_blank">({{ .AbbreviatedHash }})</a>
+          <br><a href="https://github.com/andreffs18/website/commit/{{ .Hash }}" target="_blank">See something that needs changing? ({{ .AbbreviatedHash }})</a>
         {{ end }}
       </small>
     </div>
