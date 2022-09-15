@@ -19,7 +19,7 @@ A good friend of mine gave me an old box of magic cards, like a _really_ big old
 > TL;DR the box had around 5K MTG cards with a total value of around 1,200€. If you want to check the spreadsheet feel free: https://docs.google.com/spreadsheets/d/1AY9tYBo2VmtG-y3E2Zinij17xSeoI0D4JC-rIwl-zRc/edit#gid=2119265541
 
 
-![images/box-full-of-magic-the-gathering-cards-50%.jpeg](images/box-full-of-magic-the-gathering-cards-50%.jpeg "Box full of magic the gathering cards")
+![images/box-full-of-magic-the-gathering-cards-50.jpeg](images/box-full-of-magic-the-gathering-cards-50.jpeg "Box full of magic the gathering cards")
 
 
 # Sorting and Cataloging
@@ -28,7 +28,7 @@ I started by scanning each card using [MTGoldFish](https://www.mtggoldfish.com/)
 
 That seemed much simpler, so I downloaded the app, laid all the cards on my bed, and one by one started scanning those. This took around a week to do after work while watching [MR.Robot](https://www.tvtime.com/en/show/289590).
 
-![images/sorting-cards-20%.jpeg](images/sorting-cards-20%.jpeg "Using TCGPlayer to scan magic cards")
+![images/sorting-cards-20.jpeg](images/sorting-cards-20.jpeg "Using TCGPlayer to scan magic cards")
 
 # Exporting the data
 
