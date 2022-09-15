@@ -1,15 +1,53 @@
 <head>
-    {{ hugo.Generator }}
     <meta charset="utf-8">
-    <link rel="shortcut icon" href="{{ .Site.BaseURL }}/favicon.png">
-
-    <!-- Responsive Web Design -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ANDREFFS {{ if .Page.Title }}| {{.Title}}{{ end }}</title>
-
-    <meta name="author" content="{{ .Params.author }}">
-    <meta name="description" content="{{ .Params.description }}">
     <link rel="canonical" href="{{ .Permalink }}">
+    <title>{{ partial "get_meta_title" . }}</title>
+    <meta name="author" content="{{ .Site.Author.name }}">
+    <meta name="description" content='{{ partial "get_meta_description" . }}'/>
+    {{ with .Params.tags }}
+        <meta name="keywords" content='{{ partial "get_meta_keywords" . }}'/>
+    {{ end }}
+
+    <!-- Favicons -->
+    <!-- Generated using https://realfavicongenerator.net/ -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ (resources.Get "/apple-touch-icon.png" | fingerprint).RelPermalink }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ (resources.Get "/favicon-32x32.png" | fingerprint).RelPermalink }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ (resources.Get "/favicon-16x16.png" | fingerprint).RelPermalink }}">
+    <link rel="manifest" href="{{ (resources.Get "/site.webmanifest" | fingerprint).RelPermalink }}">
+    <link rel="mask-icon" href="{{ (resources.Get "/safari-pinned-tab.svg" | fingerprint).RelPermalink }}" color="#fcca2e">
+    <meta name="msapplication-TileColor" content="#fcca2e">
+    <meta name="theme-color" content="#ff0000">
+
+    <!-- SEO Meta tags for social -->
+    <!-- https://gitlab.com/kaushalmodi/hugo-theme-refined/blob/master/layouts/partials -->
+    <meta property="og:url" content="{{ .Permalink }}"/>
+    <meta property="og:title" content='{{ partial "get_meta_title" . }}'/>
+    <meta property="og:author" content='{{ .Site.Author.name }}'/>
+    <meta property="og:description" content='{{ partial "get_meta_description" . }}'/>
+    <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}"/>
+    <meta property="og:image" content='{{ partial "get_meta_image" . }}'/>
+    {{ if .IsPage }}
+        {{ if not .Date.IsZero }}
+            <meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05-07:00" | safeHTML }}"/>
+        {{ end }}
+        {{ if not .Lastmod.IsZero }}
+            <meta property="article:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05-07:00" | safeHTML }}"/>
+        {{ end }}
+    {{ else }}
+        {{ if not .Date.IsZero }}
+            <meta property="og:updated_time" content="{{ .Date.Format "2006-01-02T15:04:05-07:00" | safeHTML }}"/>
+        {{ end }}
+    {{ end }}
+
+    <meta name="twitter:title" content='{{ partial "get_meta_title" . }}'/>
+    <meta name="twitter:card" content='{{ partial "get_meta_description" . }}'/>
+    <meta name="twitter:site" content="@{{ .Site.Params.socialHandler }}"/>
+    <meta name="twitter:creator" content="@{{ .Site.Params.socialHandler }}"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:image" content='{{ partial "get_meta_image" . }}'/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image" content='{{ partial "get_meta_image" . }}'/>
 
     <!-- Latest compiled and minified CSS -->
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -22,7 +60,14 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
+    <!-- Customizations to styles -->
     {{ $style := resources.Get "/css/main.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
     <link rel="stylesheet" type="text/css" href="{{ $style.Permalink }}">
+
+    <!-- Hugo info -->
+    <!-- https://stackoverflow.com/a/10534167/1219634 -->
+    <!-- https://w3c.github.io/html/single-page.html#the-meta-element -->
+    <meta name="hugo-build-date" content="{{ hugo.BuildDate | safeHTML }}"/>
+    <meta name="hugo-commit-hash" content="{{ hugo.CommitHash | safeHTML }}"/>
+    {{ hugo.Generator }}
 </head>

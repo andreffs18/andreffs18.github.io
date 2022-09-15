@@ -1,6 +1,7 @@
 ---
-title: About
+title: About Me
 type: about
+image: /images/about.jpeg
 ---
 
 ### 👋

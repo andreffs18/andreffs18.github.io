@@ -1,5 +1,5 @@
 ---
-
+title: Projects
 ---
 
 # Some of my side projects:

@@ -30,7 +30,16 @@ theme = ["hugo-debugprint"]
     style = "monokai"
     tabWidth = 4
 
+[author]
+  name = "André Silva"
+  email = "andreffs18@gmail.com"
+
 [params]
+    # Site HEAD's configs
+    description = "Hey, I'm André Silva, a Software Engineer from Lisbon, Portugal and this is my personal website."
+    socialHandler = "andreffs18"
+
+    # Tag cloud params
     enableTagCloud = true
     fontUnit = "em"
     largestFontSize = 2.5

@@ -1,0 +1,12 @@
+<!-- Source:
+https://gitlab.com/kaushalmodi/hugo-theme-refined/-/blob/master/layouts/partials/get_meta_description.html
+-->
+{{ $output := "" }}
+{{ if .Params.Subtitle }}
+    {{ $output = .Params.Subtitle }}
+{{ else if .Summary }}
+    {{ $output = .Summary }}
+{{ else }}
+    {{ $output = .Site.Params.Description }}
+{{ end }}
+{{ return $output }}

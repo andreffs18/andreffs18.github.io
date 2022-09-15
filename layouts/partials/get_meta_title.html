@@ -1,0 +1,7 @@
+{{ $output := "" }}
+{{ if .Page.Title }}
+    {{ $output = printf "%s | " .Title }}
+{{ end }}
+
+{{ $output = printf "%s%s" $output .Site.Title }}
+{{ return $output }}
