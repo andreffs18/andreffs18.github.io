@@ -1,0 +1,12 @@
+<!-- Source:
+https://gitlab.com/kaushalmodi/hugo-theme-refined/-/blob/master/layouts/partials/get_comma_separated.html
+https://discourse.gohugo.io/t/howto-delimiter-separated-tags/146
+-->
+{{ $output := "" }}
+{{ range $i, $elem := . }}
+    {{ if $i }} <!-- Append comma if this is not the first (0 index) element -->
+        {{ $output = printf `%s, ` $output }}
+    {{ end }}
+    {{ $output = printf `%s%s` $output $elem }}
+{{ end }}
+{{ return $output }}

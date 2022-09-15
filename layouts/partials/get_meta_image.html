@@ -1,0 +1,14 @@
+<!-- Source
+https://www.markusantonwolf.com/blog/guide-for-different-ways-to-access-your-image-resources/-->
+{{ $image := "" }}
+{{ if .Params.image }}
+    <!-- If page has configured "image" param in the front matter, use it-->
+    {{ $image = .Params.image | absURL }}
+{{ else if .Resources.ByType "image" }}
+    <!-- Get first images associated with "this" page -->
+    {{ $image = (index (.Resources.ByType "image") 0).Permalink }}
+{{ else }}
+    <!-- Default to my face -->
+    {{ $image = "/images/about.jpeg" | absURL }}
+{{ end }}
+{{ return $image }}
