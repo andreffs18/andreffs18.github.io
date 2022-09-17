@@ -47,11 +47,10 @@
                         <p class="text-muted mt-5">{{ $year }}</p>
                         {{ $.Scratch.Set "lastYear" $year }}
                     {{ end }}
-                    <a class="text-body" href="{{ .URL | absURL }}">{{ if .Draft }}DRAFT:{{ end }}{{ .Title | markdownify }}</a>
+                    <a class="text-body" href="{{ .Permalink }}">{{ if .Draft }}DRAFT:{{ end }}{{ .Title | markdownify }}</a>
                 </div>
             </div>
         {{ end }}
     {{ end }}
-
 </div>
 {{ end }}
