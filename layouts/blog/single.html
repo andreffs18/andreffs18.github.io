@@ -83,12 +83,12 @@
         <div class="row">
             <div class="col-md-6 text-left">
                 {{ if (eq .Prev.Type "blog") }}
-                Previous Post: ◀ <a href="{{ .Prev.URL | absURL}}">{{ .Prev.Title | markdownify }}</a>
+                Previous Post: ◀ <a href="{{ .Prev.Permalink }}">{{ .Prev.Title | markdownify }}</a>
                 {{ end }}
             </div>
             <div class="col-md-6 text-right">
                 {{ if .Next  }}
-                Next Post: ▶ <a href="{{ .Next.URL | absURL }}">{{ .Next.Title | markdownify }}</a>
+                Next Post: ▶ <a href="{{ .Next.Permalink }}">{{ .Next.Title | markdownify }}</a>
                 {{ end }}
             </div>
         </div>
