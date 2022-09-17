@@ -6,16 +6,14 @@
     <description>Recent content in plotly on ANDREFFS</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 03 Jul 2017 17:44:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://www.andreffs.com/tags/plotly/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <managingEditor>andreffs18@gmail.com (André Silva)</managingEditor>
+    <webMaster>andreffs18@gmail.com (André Silva)</webMaster>
+    <lastBuildDate>Mon, 03 Jul 2017 17:44:00 +0000</lastBuildDate><atom:link href="https://www.andreffs.com/tags/plotly/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>💰 Personal Finance</title>
       <link>https://www.andreffs.com/blog/personal-finance/</link>
       <pubDate>Mon, 03 Jul 2017 17:44:00 +0000</pubDate>
-      
+      <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/blog/personal-finance/</guid>
       <description>Well, after reading a couple of books on the topic, they all talk about the same thing: you should diversify your portfolio.
 Code could not finish, this are some reasons why this happen. - Plot name not defined. The first parameter of the shortcode is the name. - There is a syntax error. check browser console.   function draw(){ test = document.getElementById(&#34;piechart&#34;); if (test == null){ console.log(&#34;The plot name is not defined&#34;</description>
@@ -25,7 +23,7 @@ Code could not finish, this are some reasons why this happen. - Plot name not de
       <title>Get Paid For Pooping</title>
       <link>https://www.andreffs.com/blog/get-paid-for-pooping/</link>
       <pubDate>Thu, 10 Dec 2015 13:38:09 +0000</pubDate>
-      
+      <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/blog/get-paid-for-pooping/</guid>
       <description>Yes I know it sounds dumb but, if during your working hours you go to the toilet, technically, you are getting paid for it. 💩
 Use case Alright, lets say you you earn $10 an hour and during those 8 hours of daily work, you go twice to the bathroom, for around 10 minutes each time.

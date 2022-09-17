@@ -30,6 +30,12 @@
         "class": "fa fa-linkedin"
     },
     {
+        "identifier": "rss",
+        "title": "RSS",
+        "url": "https://www.andreffs.com/blog/index.xml",
+        "class": "fa fa-rss"
+    },
+    {
         "identifier": "e-mail",
         "title": "E-mail",
         "url": "mailto:andreffs18@gmail.com",

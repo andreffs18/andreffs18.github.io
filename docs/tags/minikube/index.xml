@@ -6,16 +6,14 @@
     <description>Recent content in minikube on ANDREFFS</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 29 Apr 2021 23:52:17 +0100</lastBuildDate>
-    
-	<atom:link href="https://www.andreffs.com/tags/minikube/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <managingEditor>andreffs18@gmail.com (André Silva)</managingEditor>
+    <webMaster>andreffs18@gmail.com (André Silva)</webMaster>
+    <lastBuildDate>Thu, 29 Apr 2021 23:52:17 +0100</lastBuildDate><atom:link href="https://www.andreffs.com/tags/minikube/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Observability on n8n</title>
       <link>https://www.andreffs.com/blog/observability-on-n8n/</link>
       <pubDate>Thu, 29 Apr 2021 23:52:17 +0100</pubDate>
-      
+      <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/blog/observability-on-n8n/</guid>
       <description>This post is a continuation on &amp;ldquo;Setup n8n on Kubernetes&amp;rdquo;, so most of the things we talk here assume that you&amp;rsquo;ve followed/read this one as well.
  You have your own n8n instance running in Kubernetes, taking advantage of all amazing functionality and capabilities of it, but you are still going in blind right now. I mean, how can you check if your service is healthy? Is it running? How much memory is it using?</description>
@@ -25,7 +23,7 @@
       <title>Setup n8n on Kubernetes</title>
       <link>https://www.andreffs.com/blog/setup-n8n-on-kubernetes/</link>
       <pubDate>Mon, 05 Apr 2021 21:16:27 +0100</pubDate>
-      
+      <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/blog/setup-n8n-on-kubernetes/</guid>
       <description>Update 2021-05-23: Decided to split this post into 3 different ones to be more easily read. You can find the other two here: &amp;ldquo;Observability on n8n&amp;rdquo; and &amp;ldquo;n8n customizations for Production&amp;rdquo;.
  So at my company we started using n8n to setup some MVP&amp;rsquo;s, build workflows and glue together some of our internal tools in order to automate some of our processes.

@@ -6,16 +6,14 @@
     <description>Recent content in gotchas on ANDREFFS</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 05 Feb 2019 20:07:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://www.andreffs.com/tags/gotchas/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <managingEditor>andreffs18@gmail.com (André Silva)</managingEditor>
+    <webMaster>andreffs18@gmail.com (André Silva)</webMaster>
+    <lastBuildDate>Tue, 05 Feb 2019 20:07:00 +0000</lastBuildDate><atom:link href="https://www.andreffs.com/tags/gotchas/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>SSH ForwardAgent Gotchas</title>
       <link>https://www.andreffs.com/blog/ssh-forwardagent-gotchas/</link>
       <pubDate>Tue, 05 Feb 2019 20:07:00 +0000</pubDate>
-      
+      <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/blog/ssh-forwardagent-gotchas/</guid>
       <description>So, you’re trying to create an SSH Tunnel to your remote machine to make some gitlab/github clones.
 That’s all fine and well until you don’t want to post your password on to the terminal.

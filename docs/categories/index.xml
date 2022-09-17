@@ -6,9 +6,7 @@
     <description>Recent content in Categories on ANDREFFS</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    
-	<atom:link href="https://www.andreffs.com/categories/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <managingEditor>andreffs18@gmail.com (André Silva)</managingEditor>
+    <webMaster>andreffs18@gmail.com (André Silva)</webMaster><atom:link href="https://www.andreffs.com/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

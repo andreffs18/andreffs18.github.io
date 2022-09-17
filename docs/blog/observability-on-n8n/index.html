@@ -1,17 +1,54 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <meta name="generator" content="Hugo 0.67.1" />
     <meta charset="utf-8">
-    <link rel="shortcut icon" href="https://www.andreffs.com/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="canonical" href="https://www.andreffs.com/blog/observability-on-n8n/">
+    <title>Observability on n8n | ANDREFFS</title>
+    <meta name="author" content="André Silva">
+    <meta name="description" content='This post is a continuation on &ldquo;Setup n8n on Kubernetes&rdquo;, so most of the things we talk here assume that you&rsquo;ve followed/read this one as well.
+ You have your own n8n instance running in Kubernetes, taking advantage of all amazing functionality and capabilities of it, but you are still going in blind right now. I mean, how can you check if your service is healthy? Is it running? How much memory is it using?'/>
+    
+        <meta name="keywords" content='n8n, nodejs, kubernetes, grafana, minikube'/>
+    
 
     
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ANDREFFS | Observability on n8n</title>
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.7ff137aa868a5eaaecb8ec74645241657334a65f06b7388190d3be5b5a2c2b2d.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.1fe1ae2b9b51eaa490893c7864395899c62452ca613e42c470ecbeed8b37e224.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.e8f8a353627f38b314ed9c4d9fc503eafe35b6ee114f887ce768987c123a9a8c.png">
+    <link rel="manifest" href="/site.4c996c5865b442c41bfac76f2c38845e0eba779436c1411f03a4d02d92598ed6.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.44a396c2b7e7cea3fe3ff9e275ec6cd6116459c64ebe691042e013659ddb8077.svg" color="#fcca2e">
+    <meta name="msapplication-TileColor" content="#fcca2e">
+    <meta name="theme-color" content="#ff0000">
 
-    <meta name="author" content="">
-    <meta name="description" content="">
-    <link rel="canonical" href="https://www.andreffs.com/blog/observability-on-n8n/">
+    
+    
+    <meta property="og:url" content="https://www.andreffs.com/blog/observability-on-n8n/"/>
+    <meta property="og:title" content='Observability on n8n | ANDREFFS'/>
+    <meta property="og:author" content='André Silva'/>
+    <meta property="og:description" content='This post is a continuation on &ldquo;Setup n8n on Kubernetes&rdquo;, so most of the things we talk here assume that you&rsquo;ve followed/read this one as well.
+ You have your own n8n instance running in Kubernetes, taking advantage of all amazing functionality and capabilities of it, but you are still going in blind right now. I mean, how can you check if your service is healthy? Is it running? How much memory is it using?'/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:image" content='https://www.andreffs.com/blog/observability-on-n8n/images/grafana-configure-first-dashboard.gif'/>
+    
+        
+            <meta property="article:published_time" content="2021-04-29T23:52:17&#43;01:00"/>
+        
+        
+            <meta property="article:modified_time" content="2021-05-23T22:25:46&#43;01:00"/>
+        
+    
+
+    <meta name="twitter:title" content='Observability on n8n | ANDREFFS'/>
+    <meta name="twitter:card" content='This post is a continuation on &ldquo;Setup n8n on Kubernetes&rdquo;, so most of the things we talk here assume that you&rsquo;ve followed/read this one as well.
+ You have your own n8n instance running in Kubernetes, taking advantage of all amazing functionality and capabilities of it, but you are still going in blind right now. I mean, how can you check if your service is healthy? Is it running? How much memory is it using?'/>
+    <meta name="twitter:site" content="@andreffs18"/>
+    <meta name="twitter:creator" content="@andreffs18"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:image" content='https://www.andreffs.com/blog/observability-on-n8n/images/grafana-configure-first-dashboard.gif'/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image" content='https://www.andreffs.com/blog/observability-on-n8n/images/grafana-configure-first-dashboard.gif'/>
 
     
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -24,9 +61,19 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+    
+    <link rel="stylesheet" type="text/css" href="https://www.andreffs.com/css/main.min.720ef640198c3462ac63cbce84e48b280265bb7e01d4d41f8f1e066c908e34b9.css">
 
     
-    <link rel="stylesheet" type="text/css" href="https://www.andreffs.com/css/main.min.2623349fa9762b7582fc7ec2ace6404ca36556bc5dae11d474e5b870e0d3d1f3.css">
+    
+    
+    
+    
+    
+    <meta name="hugo-build-date" content=""/>
+    <meta name="hugo-commit-hash" content=""/>
+    <meta name="generator" content="Hugo 0.78.2" />
 </head>
 
     <body>
@@ -76,7 +123,7 @@
             <p><em>This post is a continuation on <a href="/blog/setup-n8n-on-kubernetes">&ldquo;Setup n8n on Kubernetes&rdquo;</a>, so most of the things we talk here assume that you&rsquo;ve followed/read this one as well.</em></p>
 <hr>
 <p>You have your own n8n instance running in Kubernetes, taking advantage of all amazing functionality and capabilities of it, but you are still going in blind right now. I mean, how can you check if your service is healthy? Is it running? How much memory is it using? 🤔</p>
-<p>Since version <a href="https://github.com/n8n-io/n8n/releases/tag/n8n%400.111.0">@0.111.0</a> n8n has the ability to expose its metrics from a <strong>&quot;/metrics&rdquo;</strong> endpoint. This is great because with that we can setup a Grafana dashboard, reading from a Prometheus data source, which scrapes all containers in our Kubernetes cluster emitting metrics from, you guess it, a <em>&quot;/metrics&rdquo;</em> endpoint 😁.</p>
+<p>Since version <a href="https://github.com/n8n-io/n8n/releases/tag/n8n%400.111.0">@0.111.0</a> n8n has the ability to expose its metrics from a <strong>&quot;/metrics&quot;</strong> endpoint. This is great because with that we can setup a Grafana dashboard, reading from a Prometheus data source, which scrapes all containers in our Kubernetes cluster emitting metrics from, you guess it, a <em>&quot;/metrics&quot;</em> endpoint 😁.</p>
 <blockquote>
 <p>If you want to check how we&rsquo;ve done that, feel free: <a href="https://github.com/n8n-io/n8n/pull/1515">https://github.com/n8n-io/n8n/pull/1515</a></p>
 </blockquote>
@@ -102,19 +149,19 @@
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># On our ~/k8s/n8n-configmap.yaml</span>
 ---
-<span style="color:#66d9ef">apiVersion</span>: v1
-<span style="color:#66d9ef">kind</span>: ConfigMap
-<span style="color:#66d9ef">metadata</span>:
-  <span style="color:#66d9ef">name</span>: n8n-configmap
-  <span style="color:#66d9ef">namespace</span>: default
-  <span style="color:#66d9ef">labels</span>:
-    <span style="color:#66d9ef">app</span>: n8n
-    <span style="color:#66d9ef">component</span>: configmap
-<span style="color:#66d9ef">data</span>:
-  <span style="color:#66d9ef">NODE_ENV</span>: <span style="color:#e6db74">&#34;production&#34;</span>
-  (...)
+<span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ConfigMap</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">n8n-configmap</span>
+  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">default</span>
+  <span style="color:#f92672">labels</span>:
+    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">n8n</span>
+    <span style="color:#f92672">component</span>: <span style="color:#ae81ff">configmap</span>
+<span style="color:#f92672">data</span>:
+  <span style="color:#f92672">NODE_ENV</span>: <span style="color:#e6db74">&#34;production&#34;</span>
+  <span style="color:#ae81ff">(...)</span>
   <span style="color:#75715e"># Emit metrics from n8n service</span>
-<span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#66d9ef">N8N_METRICS</span>: <span style="color:#e6db74">&#34;true&#34;</span></span></code></pre></td></tr></table>
+<span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#f92672">N8N_METRICS</span>: <span style="color:#e6db74">&#34;true&#34;</span></span></code></pre></td></tr></table>
 </div>
 </div>
 <p>And restart our n8n deployment so these changes take effect:</p>
@@ -407,31 +454,31 @@ SUuhmONZtGtCCCqHkMQnIz6H2NLB7k12muqiMtbw
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># ~/k8s/n8n-deployment.yaml</span>
 ---
-<span style="color:#66d9ef">apiVersion</span>: apps/v1
-<span style="color:#66d9ef">kind</span>: Deployment
-<span style="color:#66d9ef">metadata</span>:
-  <span style="color:#66d9ef">name</span>: n8n-deployment
-  <span style="color:#66d9ef">namespace</span>: default
-  <span style="color:#66d9ef">labels</span>: <span style="color:#75715e">&amp;labels</span>
-    <span style="color:#66d9ef">app</span>: n8n
-    <span style="color:#66d9ef">component</span>: deployment
-<span style="color:#66d9ef">spec</span>:
-  <span style="color:#66d9ef">replicas</span>: <span style="color:#ae81ff">1</span>
-  <span style="color:#66d9ef">selector</span>:
-    <span style="color:#66d9ef">matchLabels</span>: <span style="color:#75715e">*labels</span>
-  <span style="color:#66d9ef">template</span>:
-    <span style="color:#66d9ef">metadata</span>:
-      <span style="color:#66d9ef">labels</span>: <span style="color:#75715e">*labels</span>
-<span style="display:block;width:100%;background-color:#3c3d38">      <span style="color:#66d9ef">annotations</span>:
-</span><span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#66d9ef">prometheus.io/scrape</span>: <span style="color:#e6db74">&#34;true&#34;</span>
-</span><span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#66d9ef">prometheus.io/path</span>: /metrics
-</span><span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#66d9ef">prometheus.io/port</span>: <span style="color:#e6db74">&#34;5678&#34;</span>
-</span>    <span style="color:#66d9ef">spec</span>:
-      <span style="color:#66d9ef">containers</span>:
-      - <span style="color:#66d9ef">name</span>: n8n
-        <span style="color:#66d9ef">image</span>: n8nio/n8n:latest
-        <span style="color:#66d9ef">imagePullPolicy</span>: IfNotPresent
-        (...)</code></pre></td></tr></table>
+<span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">n8n-deployment</span>
+  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">default</span>
+  <span style="color:#f92672">labels</span>: <span style="color:#75715e">&amp;labels</span>
+    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">n8n</span>
+    <span style="color:#f92672">component</span>: <span style="color:#ae81ff">deployment</span>
+<span style="color:#f92672">spec</span>:
+  <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">1</span>
+  <span style="color:#f92672">selector</span>:
+    <span style="color:#f92672">matchLabels</span>: <span style="color:#75715e">*labels</span>
+  <span style="color:#f92672">template</span>:
+    <span style="color:#f92672">metadata</span>:
+      <span style="color:#f92672">labels</span>: <span style="color:#75715e">*labels</span>
+<span style="display:block;width:100%;background-color:#3c3d38">      <span style="color:#f92672">annotations</span>:
+</span><span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#f92672">prometheus.io/scrape</span>: <span style="color:#e6db74">&#34;true&#34;</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#f92672">prometheus.io/path</span>: <span style="color:#ae81ff">/metrics</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#f92672">prometheus.io/port</span>: <span style="color:#e6db74">&#34;5678&#34;</span>
+</span>    <span style="color:#f92672">spec</span>:
+      <span style="color:#f92672">containers</span>:
+      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">n8n</span>
+        <span style="color:#f92672">image</span>: <span style="color:#ae81ff">n8nio/n8n:latest</span>
+        <span style="color:#f92672">imagePullPolicy</span>: <span style="color:#ae81ff">IfNotPresent</span>
+        <span style="color:#ae81ff">(...)</span></code></pre></td></tr></table>
 </div>
 </div>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
@@ -558,7 +605,7 @@ sum<span style="color:#f92672">(</span>rate<span style="color:#f92672">(</span>c
 </div>
 </div><p><img src="images/grafana-network-usage.png" alt="images/grafana-network-usage.png" title="Grafana network usage"></p>
 <h2 id="availability-of-our-service">Availability of our service</h2>
-<p>Here we just want to check, if the service is up. A simple health check request to our server <strong>&quot;/healthz&rdquo;</strong> endpoint is enough.</p>
+<p>Here we just want to check, if the service is up. A simple health check request to our server <strong>&quot;/healthz&quot;</strong> endpoint is enough.</p>
 <blockquote>
 <p>n8n offers this endpoint to check if the service is up, returning a HTTP 200 OK response. (<a href="https://github.com/n8n-io/n8n/commit/0214b44d513d47758ab677bd4a3a2efedb912110">source</a>)</p>
 </blockquote>
@@ -618,31 +665,31 @@ sum<span style="color:#f92672">(</span>rate<span style="color:#f92672">(</span>c
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># ~/k8s/n8n-service.yaml</span>
 ---
-<span style="color:#66d9ef">apiVersion</span>: v1
-<span style="color:#66d9ef">kind</span>: Service
-<span style="color:#66d9ef">metadata</span>:
-  <span style="color:#66d9ef">name</span>: n8n-service
-  <span style="color:#66d9ef">namespace</span>: default
-<span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#66d9ef">annotations</span>:
-</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">prometheus.io/probe</span>: <span style="color:#e6db74">&#34;true&#34;</span>
-</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">prometheus.io/probe-path</span>: <span style="color:#e6db74">&#34;/healthz&#34;</span>
-</span>  <span style="color:#66d9ef">labels</span>:
-    <span style="color:#66d9ef">app</span>: n8n
-    <span style="color:#66d9ef">component</span>: service
-<span style="color:#66d9ef">spec</span>:
-  <span style="color:#66d9ef">type</span>: NodePort
-  <span style="color:#66d9ef">selector</span>:
-    <span style="color:#66d9ef">app</span>: n8n
-    <span style="color:#66d9ef">component</span>: deployment
-  <span style="color:#66d9ef">ports</span>:
-  - <span style="color:#66d9ef">protocol</span>: TCP
-    <span style="color:#66d9ef">name</span>: http
-    <span style="color:#66d9ef">port</span>: <span style="color:#ae81ff">80</span>
-    <span style="color:#66d9ef">targetPort</span>: <span style="color:#ae81ff">5678</span></code></pre></td></tr></table>
+<span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Service</span>
+<span style="color:#f92672">metadata</span>:
+  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">n8n-service</span>
+  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">default</span>
+<span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#f92672">annotations</span>:
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#f92672">prometheus.io/probe</span>: <span style="color:#e6db74">&#34;true&#34;</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#f92672">prometheus.io/probe-path</span>: <span style="color:#e6db74">&#34;/healthz&#34;</span>
+</span>  <span style="color:#f92672">labels</span>:
+    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">n8n</span>
+    <span style="color:#f92672">component</span>: <span style="color:#ae81ff">service</span>
+<span style="color:#f92672">spec</span>:
+  <span style="color:#f92672">type</span>: <span style="color:#ae81ff">NodePort</span>
+  <span style="color:#f92672">selector</span>:
+    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">n8n</span>
+    <span style="color:#f92672">component</span>: <span style="color:#ae81ff">deployment</span>
+  <span style="color:#f92672">ports</span>:
+  - <span style="color:#f92672">protocol</span>: <span style="color:#ae81ff">TCP</span>
+    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">http</span>
+    <span style="color:#f92672">port</span>: <span style="color:#ae81ff">80</span>
+    <span style="color:#f92672">targetPort</span>: <span style="color:#ae81ff">5678</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>😓 <em>We&rsquo;re almost there.</em></p>
-<p>The default Prometheus configuration tries to check if the <strong>&quot;/probe&rdquo;</strong> endpoint of the service is returning 200 OK. This is a problem for us because we can&rsquo;t override the n8n <strong>&quot;/healthz&rdquo;</strong> endpoint to &ldquo;/probe&rdquo;. So, the next best solution is to add this configuration to our <strong>prometheus.yaml</strong> ConfigMap.</p>
+<p>The default Prometheus configuration tries to check if the <strong>&quot;/probe&quot;</strong> endpoint of the service is returning 200 OK. This is a problem for us because we can&rsquo;t override the n8n <strong>&quot;/healthz&quot;</strong> endpoint to &ldquo;/probe&rdquo;. So, the next best solution is to add this configuration to our <strong>prometheus.yaml</strong> ConfigMap.</p>
 <p>This might feel daunting at first, but its actually pretty straightforward. We just need to edit our <strong>prometheus-service</strong> ConfigMap like so:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -694,40 +741,40 @@ sum<span style="color:#f92672">(</span>rate<span style="color:#f92672">(</span>c
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># ...</span>
-- <span style="color:#66d9ef">job_name</span>: kubernetes-services
-  <span style="color:#66d9ef">kubernetes_sd_configs</span>:
-  - <span style="color:#66d9ef">role</span>: service
-  <span style="color:#66d9ef">metrics_path</span>: /probe
-  <span style="color:#66d9ef">params</span>:
-    <span style="color:#66d9ef">module</span>:
-    - http_2xx
-  <span style="color:#66d9ef">relabel_configs</span>:
-  - <span style="color:#66d9ef">action</span>: keep
-    <span style="color:#66d9ef">regex</span>: <span style="color:#66d9ef">true</span>
-    <span style="color:#66d9ef">source_labels</span>:
-    - __meta_kubernetes_service_annotation_prometheus_io_probe
-  - <span style="color:#66d9ef">source_labels</span>:
-    - __address__
-    <span style="color:#66d9ef">target_label</span>: __param_target
-  - <span style="color:#66d9ef">replacement</span>: blackbox
-    <span style="color:#66d9ef">target_label</span>: __address__
-  - <span style="color:#66d9ef">source_labels</span>:
-    - __param_target
-    <span style="color:#66d9ef">target_label</span>: instance
-  - <span style="color:#66d9ef">action</span>: labelmap
-    <span style="color:#66d9ef">regex</span>: __meta_kubernetes_service_label_(.+)
-  - <span style="color:#66d9ef">source_labels</span>:
-    - __meta_kubernetes_namespace
-    <span style="color:#66d9ef">target_label</span>: kubernetes_namespace
-  - <span style="color:#66d9ef">source_labels</span>:
-    - __meta_kubernetes_service_name
-    <span style="color:#66d9ef">target_label</span>: kubernetes_name
-<span style="display:block;width:100%;background-color:#3c3d38">  - <span style="color:#66d9ef">source_labels</span>: [__param_target, __meta_kubernetes_service_annotation_prometheus_io_probe_path]
-</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">separator</span>: <span style="color:#e6db74">&#39;;&#39;</span>
-</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">regex</span>: (.<span style="color:#75715e">*?);(.*?)</span>
-</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">target_label</span>: __param_target
-</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">replacement</span>: ${<span style="color:#ae81ff">1</span>}${<span style="color:#ae81ff">2</span>}
-</span>- <span style="color:#66d9ef">job_name</span>: kubernetes-pods
+- <span style="color:#f92672">job_name</span>: <span style="color:#ae81ff">kubernetes-services</span>
+  <span style="color:#f92672">kubernetes_sd_configs</span>:
+  - <span style="color:#f92672">role</span>: <span style="color:#ae81ff">service</span>
+  <span style="color:#f92672">metrics_path</span>: <span style="color:#ae81ff">/probe</span>
+  <span style="color:#f92672">params</span>:
+    <span style="color:#f92672">module</span>:
+    - <span style="color:#ae81ff">http_2xx</span>
+  <span style="color:#f92672">relabel_configs</span>:
+  - <span style="color:#f92672">action</span>: <span style="color:#ae81ff">keep</span>
+    <span style="color:#f92672">regex</span>: <span style="color:#66d9ef">true</span>
+    <span style="color:#f92672">source_labels</span>:
+    - <span style="color:#ae81ff">__meta_kubernetes_service_annotation_prometheus_io_probe</span>
+  - <span style="color:#f92672">source_labels</span>:
+    - <span style="color:#ae81ff">__address__</span>
+    <span style="color:#f92672">target_label</span>: <span style="color:#ae81ff">__param_target</span>
+  - <span style="color:#f92672">replacement</span>: <span style="color:#ae81ff">blackbox</span>
+    <span style="color:#f92672">target_label</span>: <span style="color:#ae81ff">__address__</span>
+  - <span style="color:#f92672">source_labels</span>:
+    - <span style="color:#ae81ff">__param_target</span>
+    <span style="color:#f92672">target_label</span>: <span style="color:#ae81ff">instance</span>
+  - <span style="color:#f92672">action</span>: <span style="color:#ae81ff">labelmap</span>
+    <span style="color:#f92672">regex</span>: <span style="color:#ae81ff">__meta_kubernetes_service_label_(.+)</span>
+  - <span style="color:#f92672">source_labels</span>:
+    - <span style="color:#ae81ff">__meta_kubernetes_namespace</span>
+    <span style="color:#f92672">target_label</span>: <span style="color:#ae81ff">kubernetes_namespace</span>
+  - <span style="color:#f92672">source_labels</span>:
+    - <span style="color:#ae81ff">__meta_kubernetes_service_name</span>
+    <span style="color:#f92672">target_label</span>: <span style="color:#ae81ff">kubernetes_name</span>
+<span style="display:block;width:100%;background-color:#3c3d38">  - <span style="color:#f92672">source_labels</span>: [<span style="color:#ae81ff">__param_target, __meta_kubernetes_service_annotation_prometheus_io_probe_path]</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#f92672">separator</span>: <span style="color:#e6db74">&#39;;&#39;</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#f92672">regex</span>: <span style="color:#ae81ff">(.*?);(.*?)</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#f92672">target_label</span>: <span style="color:#ae81ff">__param_target</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#f92672">replacement</span>: <span style="color:#ae81ff">${1}${2}</span>
+</span>- <span style="color:#f92672">job_name</span>: <span style="color:#ae81ff">kubernetes-pods</span>
 <span style="color:#75715e"># ...</span></code></pre></td></tr></table>
 </div>
 </div>
@@ -843,11 +890,11 @@ probe_success<span style="color:#f92672">{</span>app<span style="color:#f92672">
 
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-md-auto">
+    <div class="col-md-auto text-center">
       <small>
         Last update: May 23, 2021
         
-          <a href="https://github.com/andreffs18/website/commit/00a3538dec010c49ab147c2d3fc15b6475fb14a2" target="_blank">(00a3538)</a>
+          <br><a href="https://github.com/andreffs18/website/commit/00a3538dec010c49ab147c2d3fc15b6475fb14a2" target="_blank">See something that needs changing? (00a3538)</a>
         
       </small>
     </div>
@@ -970,27 +1017,31 @@ window.addEventListener('DOMContentLoaded', () => {
                 <ul class="navbar social pull-right">
                     
                         <li class="nav-item">
-                            <a class="nav-link" href="mailto:andreffs18@gmail.com" target="_blank"><i class="fa fa-envelope"></i></a>
+                            <a class="nav-link" href="https://github.com/andreffs18" target="_blank" data-toggle="tooltip" data-placement="top" title="Github"><i class="fa fa-github"></i></a>
                         </li>
                     
                         <li class="nav-item">
-                            <a class="nav-link" href="https://www.facebook.com/andreffs18" target="_blank"><i class="fa fa-facebook"></i></a>
+                            <a class="nav-link" href="https://twitter.com/andreffs18" target="_blank" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter"></i></a>
                         </li>
                     
                         <li class="nav-item">
-                            <a class="nav-link" href="https://github.com/andreffs18" target="_blank"><i class="fa fa-github"></i></a>
+                            <a class="nav-link" href="http://instagram.com/andreffs18" target="_blank" data-toggle="tooltip" data-placement="top" title="Instagram"><i class="fa fa-instagram"></i></a>
                         </li>
                     
                         <li class="nav-item">
-                            <a class="nav-link" href="http://instagram.com/andreffs18" target="_blank"><i class="fa fa-instagram"></i></a>
+                            <a class="nav-link" href="https://www.facebook.com/andreffs18" target="_blank" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook"></i></a>
                         </li>
                     
                         <li class="nav-item">
-                            <a class="nav-link" href="https://pt.linkedin.com/in/andreffs18" target="_blank"><i class="fa fa-linkedin"></i></a>
+                            <a class="nav-link" href="https://pt.linkedin.com/in/andreffs18" target="_blank" data-toggle="tooltip" data-placement="top" title="Linkedin"><i class="fa fa-linkedin"></i></a>
                         </li>
                     
                         <li class="nav-item">
-                            <a class="nav-link" href="https://twitter.com/andreffs18" target="_blank"><i class="fa fa-twitter"></i></a>
+                            <a class="nav-link" href="https://www.andreffs.com/blog/index.xml" target="_blank" data-toggle="tooltip" data-placement="top" title="RSS"><i class="fa fa-rss"></i></a>
+                        </li>
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="mailto:andreffs18@gmail.com" target="_blank" data-toggle="tooltip" data-placement="top" title="E-mail"><i class="fa fa-envelope"></i></a>
                         </li>
                     
                 </ul>
@@ -1002,6 +1053,7 @@ window.addEventListener('DOMContentLoaded', () => {
     </body>
 
     
+        
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -1015,4 +1067,7 @@ if (!doNotTrack) {
 }
 </script>
 
+    
+
+    <script type="text/javascript" src="https://www.andreffs.com/js/main.js"></script>
 </html>

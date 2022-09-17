@@ -6,16 +6,14 @@
     <description>Recent content in hugo on ANDREFFS</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 25 May 2020 06:37:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://www.andreffs.com/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <managingEditor>andreffs18@gmail.com (André Silva)</managingEditor>
+    <webMaster>andreffs18@gmail.com (André Silva)</webMaster>
+    <lastBuildDate>Mon, 25 May 2020 06:37:00 +0000</lastBuildDate><atom:link href="https://www.andreffs.com/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Debug in Hugo</title>
       <link>https://www.andreffs.com/blog/debug-in-hugo/</link>
       <pubDate>Mon, 25 May 2020 06:37:00 +0000</pubDate>
-      
+      <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/blog/debug-in-hugo/</guid>
       <description>While building this website I needed to understand a bit more about the internals and its variables. Even though Hugo&amp;rsquo;s documentation about debugging is pretty &amp;ldquo;okay&amp;rdquo;, there are a lot of attributes that are really hard to figure out, specially if you can&amp;rsquo;t see them on the documentation.
 So I started to look online for something to help me out debugging Hugo templates and the usual 3 options were:

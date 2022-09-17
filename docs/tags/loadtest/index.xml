@@ -6,16 +6,14 @@
     <description>Recent content in loadtest on ANDREFFS</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 17 May 2021 16:58:27 +0100</lastBuildDate>
-    
-	<atom:link href="https://www.andreffs.com/tags/loadtest/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <managingEditor>andreffs18@gmail.com (André Silva)</managingEditor>
+    <webMaster>andreffs18@gmail.com (André Silva)</webMaster>
+    <lastBuildDate>Mon, 17 May 2021 16:58:27 +0100</lastBuildDate><atom:link href="https://www.andreffs.com/tags/loadtest/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>n8n customizations for Production</title>
       <link>https://www.andreffs.com/blog/n8n-customizations-for-production/</link>
       <pubDate>Mon, 17 May 2021 16:58:27 +0100</pubDate>
-      
+      <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/blog/n8n-customizations-for-production/</guid>
       <description>This post is a continuation on &amp;ldquo;Setup n8n on Kubernetes&amp;rdquo;, so most of the things we talk here assume that you&amp;rsquo;ve followed/read this one as well.
  After running n8n during a couple of months in production, me and my team realized that the default configuration do not work very well for us.

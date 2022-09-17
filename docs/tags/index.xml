@@ -6,16 +6,14 @@
     <description>Recent content in Tags on ANDREFFS</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 17 May 2021 16:58:27 +0100</lastBuildDate>
-    
-	<atom:link href="https://www.andreffs.com/tags/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <managingEditor>andreffs18@gmail.com (André Silva)</managingEditor>
+    <webMaster>andreffs18@gmail.com (André Silva)</webMaster>
+    <lastBuildDate>Mon, 17 May 2021 16:58:27 +0100</lastBuildDate><atom:link href="https://www.andreffs.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>grafana</title>
       <link>https://www.andreffs.com/tags/grafana/</link>
       <pubDate>Mon, 17 May 2021 16:58:27 +0100</pubDate>
-      
+      <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/tags/grafana/</guid>
       <description></description>
     </item>
@@ -24,7 +22,7 @@
       <title>kubernetes</title>
       <link>https://www.andreffs.com/tags/kubernetes/</link>
       <pubDate>Mon, 17 May 2021 16:58:27 +0100</pubDate>
-      
+      <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/tags/kubernetes/</guid>
       <description></description>
     </item>
@@ -33,7 +31,7 @@
       <title>loadtest</title>
       <link>https://www.andreffs.com/tags/loadtest/</link>
       <pubDate>Mon, 17 May 2021 16:58:27 +0100</pubDate>
-      
+      <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/tags/loadtest/</guid>
       <description></description>
     </item>
@@ -42,7 +40,7 @@
       <title>n8n</title>
       <link>https://www.andreffs.com/tags/n8n/</link>
       <pubDate>Mon, 17 May 2021 16:58:27 +0100</pubDate>
-      
+      <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/tags/n8n/</guid>
       <description></description>
     </item>
@@ -51,7 +49,7 @@
       <title>nodejs</title>
       <link>https://www.andreffs.com/tags/nodejs/</link>
       <pubDate>Mon, 17 May 2021 16:58:27 +0100</pubDate>
-      
+      <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/tags/nodejs/</guid>
       <description></description>
     </item>
@@ -60,7 +58,7 @@
       <title>production</title>
       <link>https://www.andreffs.com/tags/production/</link>
       <pubDate>Mon, 17 May 2021 16:58:27 +0100</pubDate>
-      
+      <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/tags/production/</guid>
       <description></description>
     </item>
@@ -69,7 +67,7 @@
       <title>minikube</title>
       <link>https://www.andreffs.com/tags/minikube/</link>
       <pubDate>Thu, 29 Apr 2021 23:52:17 +0100</pubDate>
-      
+      <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/tags/minikube/</guid>
       <description></description>
     </item>
@@ -78,7 +76,7 @@
       <title>debugging</title>
       <link>https://www.andreffs.com/tags/debugging/</link>
       <pubDate>Mon, 25 May 2020 06:37:00 +0000</pubDate>
-      
+      <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/tags/debugging/</guid>
       <description></description>
     </item>
@@ -87,7 +85,7 @@
       <title>hugo</title>
       <link>https://www.andreffs.com/tags/hugo/</link>
       <pubDate>Mon, 25 May 2020 06:37:00 +0000</pubDate>
-      
+      <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/tags/hugo/</guid>
       <description></description>
     </item>
@@ -96,7 +94,7 @@
       <title>android</title>
       <link>https://www.andreffs.com/tags/android/</link>
       <pubDate>Thu, 14 May 2020 23:12:18 +0000</pubDate>
-      
+      <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/tags/android/</guid>
       <description></description>
     </item>
@@ -105,7 +103,7 @@
       <title>databases</title>
       <link>https://www.andreffs.com/tags/databases/</link>
       <pubDate>Thu, 14 May 2020 23:12:18 +0000</pubDate>
-      
+      <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/tags/databases/</guid>
       <description></description>
     </item>
@@ -114,7 +112,7 @@
       <title>dbeaver</title>
       <link>https://www.andreffs.com/tags/dbeaver/</link>
       <pubDate>Thu, 14 May 2020 23:12:18 +0000</pubDate>
-      
+      <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/tags/dbeaver/</guid>
       <description></description>
     </item>
@@ -123,7 +121,7 @@
       <title>magic-the-gathering</title>
       <link>https://www.andreffs.com/tags/magic-the-gathering/</link>
       <pubDate>Thu, 14 May 2020 23:12:18 +0000</pubDate>
-      
+      <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/tags/magic-the-gathering/</guid>
       <description></description>
     </item>
@@ -132,7 +130,7 @@
       <title>sqlite</title>
       <link>https://www.andreffs.com/tags/sqlite/</link>
       <pubDate>Thu, 14 May 2020 23:12:18 +0000</pubDate>
-      
+      <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/tags/sqlite/</guid>
       <description></description>
     </item>
@@ -141,7 +139,7 @@
       <title>automation</title>
       <link>https://www.andreffs.com/tags/automation/</link>
       <pubDate>Mon, 30 Mar 2020 10:50:00 +0000</pubDate>
-      
+      <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/tags/automation/</guid>
       <description></description>
     </item>
@@ -150,7 +148,7 @@
       <title>bash</title>
       <link>https://www.andreffs.com/tags/bash/</link>
       <pubDate>Mon, 30 Mar 2020 10:50:00 +0000</pubDate>
-      
+      <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/tags/bash/</guid>
       <description></description>
     </item>
@@ -159,7 +157,7 @@
       <title>dotfiles</title>
       <link>https://www.andreffs.com/tags/dotfiles/</link>
       <pubDate>Mon, 30 Mar 2020 10:50:00 +0000</pubDate>
-      
+      <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/tags/dotfiles/</guid>
       <description></description>
     </item>
@@ -168,7 +166,7 @@
       <title>feedly</title>
       <link>https://www.andreffs.com/tags/feedly/</link>
       <pubDate>Mon, 30 Mar 2020 10:50:00 +0000</pubDate>
-      
+      <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/tags/feedly/</guid>
       <description></description>
     </item>
@@ -177,7 +175,7 @@
       <title>python</title>
       <link>https://www.andreffs.com/tags/python/</link>
       <pubDate>Mon, 30 Mar 2020 10:50:00 +0000</pubDate>
-      
+      <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/tags/python/</guid>
       <description></description>
     </item>
@@ -186,170 +184,8 @@
       <title>rss</title>
       <link>https://www.andreffs.com/tags/rss/</link>
       <pubDate>Mon, 30 Mar 2020 10:50:00 +0000</pubDate>
-      
+      <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/tags/rss/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>self-improving</title>
-      <link>https://www.andreffs.com/tags/self-improving/</link>
-      <pubDate>Mon, 30 Mar 2020 10:50:00 +0000</pubDate>
-      
-      <guid>https://www.andreffs.com/tags/self-improving/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>docker</title>
-      <link>https://www.andreffs.com/tags/docker/</link>
-      <pubDate>Tue, 18 Feb 2020 17:14:00 +0000</pubDate>
-      
-      <guid>https://www.andreffs.com/tags/docker/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>postgres</title>
-      <link>https://www.andreffs.com/tags/postgres/</link>
-      <pubDate>Tue, 18 Feb 2020 17:14:00 +0000</pubDate>
-      
-      <guid>https://www.andreffs.com/tags/postgres/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>postgresql</title>
-      <link>https://www.andreffs.com/tags/postgresql/</link>
-      <pubDate>Tue, 18 Feb 2020 17:14:00 +0000</pubDate>
-      
-      <guid>https://www.andreffs.com/tags/postgresql/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ssh</title>
-      <link>https://www.andreffs.com/tags/ssh/</link>
-      <pubDate>Tue, 18 Feb 2020 17:14:00 +0000</pubDate>
-      
-      <guid>https://www.andreffs.com/tags/ssh/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>canary</title>
-      <link>https://www.andreffs.com/tags/canary/</link>
-      <pubDate>Fri, 14 Feb 2020 09:05:00 +0000</pubDate>
-      
-      <guid>https://www.andreffs.com/tags/canary/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>gitlab</title>
-      <link>https://www.andreffs.com/tags/gitlab/</link>
-      <pubDate>Fri, 14 Feb 2020 09:05:00 +0000</pubDate>
-      
-      <guid>https://www.andreffs.com/tags/gitlab/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>emoji</title>
-      <link>https://www.andreffs.com/tags/emoji/</link>
-      <pubDate>Fri, 15 Mar 2019 19:08:22 +0000</pubDate>
-      
-      <guid>https://www.andreffs.com/tags/emoji/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>zsh</title>
-      <link>https://www.andreffs.com/tags/zsh/</link>
-      <pubDate>Fri, 15 Mar 2019 19:08:22 +0000</pubDate>
-      
-      <guid>https://www.andreffs.com/tags/zsh/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>gotchas</title>
-      <link>https://www.andreffs.com/tags/gotchas/</link>
-      <pubDate>Tue, 05 Feb 2019 20:07:00 +0000</pubDate>
-      
-      <guid>https://www.andreffs.com/tags/gotchas/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tips</title>
-      <link>https://www.andreffs.com/tags/tips/</link>
-      <pubDate>Tue, 05 Feb 2019 20:07:00 +0000</pubDate>
-      
-      <guid>https://www.andreffs.com/tags/tips/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>finance</title>
-      <link>https://www.andreffs.com/tags/finance/</link>
-      <pubDate>Mon, 03 Jul 2017 17:44:00 +0000</pubDate>
-      
-      <guid>https://www.andreffs.com/tags/finance/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>plotly</title>
-      <link>https://www.andreffs.com/tags/plotly/</link>
-      <pubDate>Mon, 03 Jul 2017 17:44:00 +0000</pubDate>
-      
-      <guid>https://www.andreffs.com/tags/plotly/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>git-hooks</title>
-      <link>https://www.andreffs.com/tags/git-hooks/</link>
-      <pubDate>Fri, 17 Feb 2017 00:45:32 +0000</pubDate>
-      
-      <guid>https://www.andreffs.com/tags/git-hooks/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>seo</title>
-      <link>https://www.andreffs.com/tags/seo/</link>
-      <pubDate>Fri, 17 Feb 2017 00:45:32 +0000</pubDate>
-      
-      <guid>https://www.andreffs.com/tags/seo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>nfc</title>
-      <link>https://www.andreffs.com/tags/nfc/</link>
-      <pubDate>Thu, 10 Dec 2015 13:38:09 +0000</pubDate>
-      
-      <guid>https://www.andreffs.com/tags/nfc/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>zapier</title>
-      <link>https://www.andreffs.com/tags/zapier/</link>
-      <pubDate>Thu, 10 Dec 2015 13:38:09 +0000</pubDate>
-      
-      <guid>https://www.andreffs.com/tags/zapier/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ci/cd</title>
-      <link>https://www.andreffs.com/tags/ci/cd/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.andreffs.com/tags/ci/cd/</guid>
       <description></description>
     </item>
     

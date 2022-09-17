@@ -6,16 +6,14 @@
     <description>Recent content in postgres on ANDREFFS</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 18 Feb 2020 17:14:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://www.andreffs.com/tags/postgres/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <managingEditor>andreffs18@gmail.com (André Silva)</managingEditor>
+    <webMaster>andreffs18@gmail.com (André Silva)</webMaster>
+    <lastBuildDate>Wed, 20 Sep 2017 10:53:00 +0000</lastBuildDate><atom:link href="https://www.andreffs.com/tags/postgres/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Postgres Is Now Running</title>
       <link>https://www.andreffs.com/blog/postgres-is-now-running/</link>
       <pubDate>Wed, 20 Sep 2017 10:53:00 +0000</pubDate>
-      
+      <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/blog/postgres-is-now-running/</guid>
       <description>My Macbook has OSX Mavericks installed and sometimes it crashes for no reason, breaking my local postgres server. After restarting and running again &amp;quot;$ brew services postgres&amp;quot;, Postgres becomes yellow and I end up spending sometime looking confused and frustrated.
 Looking at the logs you can get a sense of whats happening:

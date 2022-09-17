@@ -1,17 +1,51 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <meta name="generator" content="Hugo 0.67.1" />
     <meta charset="utf-8">
-    <link rel="shortcut icon" href="https://www.andreffs.com/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="canonical" href="https://www.andreffs.com/blog/how-i-ve-scanned-5k-mtg-cards/">
+    <title>How I&#39;ve Scanned 5K MTG Cards | ANDREFFS</title>
+    <meta name="author" content="André Silva">
+    <meta name="description" content='How I over-engineered a way to find out how much money my magic the gathering card collection was worth by &#34;exploring&#34; my phone.'/>
+    
+        <meta name="keywords" content='magic-the-gathering, android, dbeaver, databases, sqlite'/>
+    
 
     
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ANDREFFS | How I&#39;ve Scanned 5K MTG Cards</title>
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.7ff137aa868a5eaaecb8ec74645241657334a65f06b7388190d3be5b5a2c2b2d.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.1fe1ae2b9b51eaa490893c7864395899c62452ca613e42c470ecbeed8b37e224.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.e8f8a353627f38b314ed9c4d9fc503eafe35b6ee114f887ce768987c123a9a8c.png">
+    <link rel="manifest" href="/site.4c996c5865b442c41bfac76f2c38845e0eba779436c1411f03a4d02d92598ed6.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.44a396c2b7e7cea3fe3ff9e275ec6cd6116459c64ebe691042e013659ddb8077.svg" color="#fcca2e">
+    <meta name="msapplication-TileColor" content="#fcca2e">
+    <meta name="theme-color" content="#ff0000">
 
-    <meta name="author" content="">
-    <meta name="description" content="">
-    <link rel="canonical" href="https://www.andreffs.com/blog/how-i-ve-scanned-5k-mtg-cards/">
+    
+    
+    <meta property="og:url" content="https://www.andreffs.com/blog/how-i-ve-scanned-5k-mtg-cards/"/>
+    <meta property="og:title" content='How I&#39;ve Scanned 5K MTG Cards | ANDREFFS'/>
+    <meta property="og:author" content='André Silva'/>
+    <meta property="og:description" content='How I over-engineered a way to find out how much money my magic the gathering card collection was worth by &#34;exploring&#34; my phone.'/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:image" content='https://www.andreffs.com/blog/how-i-ve-scanned-5k-mtg-cards/images/android-config-file-transfer.png'/>
+    
+        
+            <meta property="article:published_time" content="2020-05-14T23:12:18&#43;00:00"/>
+        
+        
+            <meta property="article:modified_time" content="2022-09-15T08:24:54&#43;01:00"/>
+        
+    
+
+    <meta name="twitter:title" content='How I&#39;ve Scanned 5K MTG Cards | ANDREFFS'/>
+    <meta name="twitter:card" content='How I over-engineered a way to find out how much money my magic the gathering card collection was worth by &#34;exploring&#34; my phone.'/>
+    <meta name="twitter:site" content="@andreffs18"/>
+    <meta name="twitter:creator" content="@andreffs18"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:image" content='https://www.andreffs.com/blog/how-i-ve-scanned-5k-mtg-cards/images/android-config-file-transfer.png'/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image" content='https://www.andreffs.com/blog/how-i-ve-scanned-5k-mtg-cards/images/android-config-file-transfer.png'/>
 
     
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -24,9 +58,19 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+    
+    <link rel="stylesheet" type="text/css" href="https://www.andreffs.com/css/main.min.720ef640198c3462ac63cbce84e48b280265bb7e01d4d41f8f1e066c908e34b9.css">
 
     
-    <link rel="stylesheet" type="text/css" href="https://www.andreffs.com/css/main.min.2623349fa9762b7582fc7ec2ace6404ca36556bc5dae11d474e5b870e0d3d1f3.css">
+    
+    
+    
+    
+    
+    <meta name="hugo-build-date" content=""/>
+    <meta name="hugo-commit-hash" content=""/>
+    <meta name="generator" content="Hugo 0.78.2" />
 </head>
 
     <body>
@@ -81,11 +125,11 @@
 <blockquote>
 <p>TL;DR the box had around 5K MTG cards with a total value of around 1,200€. If you want to check the spreadsheet feel free: <a href="https://docs.google.com/spreadsheets/d/1AY9tYBo2VmtG-y3E2Zinij17xSeoI0D4JC-rIwl-zRc/edit#gid=2119265541">https://docs.google.com/spreadsheets/d/1AY9tYBo2VmtG-y3E2Zinij17xSeoI0D4JC-rIwl-zRc/edit#gid=2119265541</a></p>
 </blockquote>
-<p><img src="images/box-full-of-magic-the-gathering-cards-50%25.jpeg" alt="images/box-full-of-magic-the-gathering-cards-50%.jpeg" title="Box full of magic the gathering cards"></p>
+<p><img src="images/box-full-of-magic-the-gathering-cards-50.jpeg" alt="images/box-full-of-magic-the-gathering-cards-50.jpeg" title="Box full of magic the gathering cards"></p>
 <h1 id="sorting-and-cataloging">Sorting and Cataloging</h1>
 <p>I started by scanning each card using <a href="https://www.mtggoldfish.com/">MTGoldFish</a> website, but as you can imagine, that was painful. While looking for other options I came across <a href="https://play.google.com/store/apps/details?id=com.tcgplayer.tcgplayer&amp;hl=pt_PT&amp;gl=US">TCGPlayer</a> App, which allows you to scan cards from your phone, like a cashier at the supermarket.</p>
 <p>That seemed much simpler, so I downloaded the app, laid all the cards on my bed, and one by one started scanning those. This took around a week to do after work while watching <a href="https://www.tvtime.com/en/show/289590">MR.Robot</a>.</p>
-<p><img src="images/sorting-cards-20%25.jpeg" alt="images/sorting-cards-20%.jpeg" title="Using TCGPlayer to scan magic cards"></p>
+<p><img src="images/sorting-cards-20.jpeg" alt="images/sorting-cards-20.jpeg" title="Using TCGPlayer to scan magic cards"></p>
 <h1 id="exporting-the-data">Exporting the data</h1>
 <p>After a very long week, TCGPlayer had registered all +5k cards.</p>
 <p>I wanted to check the price for my whole collection but since I could only check one by one manually, that was a problem.
@@ -229,7 +273,7 @@ List of devices attached
 <p>Great stuff! A simple &ldquo;Export&rdquo; to a .csv will do the work! 🚀</p>
 <h1 id="into-a-shareable-spreadsheet">Into a shareable spreadsheet</h1>
 <p>Finally 🍰.</p>
-<p>Opening a browser tag and typing &ldquo;<a href="https://sheets.new">sheets.new</a>&quot;, and then &ldquo;File &gt; Importing &gt; Upload&rdquo; will move our exported .csv into a brand new, <strong>shareable</strong> spreadsheet which we can format accordingly.</p>
+<p>Opening a browser tag and typing &ldquo;<a href="https://sheets.new">sheets.new</a>&rdquo;, and then &ldquo;File &gt; Importing &gt; Upload&rdquo; will move our exported .csv into a brand new, <strong>shareable</strong> spreadsheet which we can format accordingly.</p>
 <p>To make it pretty, there is this great website (<a href="http://eakett.ca/mtgimage/#top">eakett.ca</a>) where I found those SVG images by providing on the URL the mana or collection symbols. We just need to add a column to our spreadsheet with this snippet and that&rsquo;s it:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
@@ -245,7 +289,7 @@ List of devices attached
 <h1 id="you-know-what-would-be-cool-an-ai-to-find-the-best-decks">&ldquo;You know what would be cool? An AI to find the best decks&rdquo;</h1>
 <p>Since I initially wrote this blogpost, I&rsquo;ve posted this on <a href="https://www.ebay.com/itm/185541996242?ViewItem=&amp;item=185541996242">Ebay</a> (and the Portuguese equivalent <a href="https://www.olx.pt/d/anuncio/5000-magic-the-gathering-mtg-card-collection-IDH8sWf.html">Olx</a>) to see if I could sell it and buy my friend some fancy dinner.</p>
 <p>I&rsquo;ve shared it with a couple of friends as well which brought some interesting ideas like, using the data from the spreadsheet to have some type of AI to figure out the best decks from all these cards.</p>
-<p>This idea <em>is not new</em> (<a href="https://www.pyimagesearch.com/2021/03/03/an-interview-with-anthony-lowhur-recognizing-10000-yugioh-cards-with-computer-vision-and-deep-learning/">1</a>, <a href="https://www.reddit.com/r/magicTCG/comments/aa0u1d/is_there_a_mtg_deck_building_ai/">2</a>, <a href="http://www.shoeboxmtg.com/">3</a>, <a href="https://bestdeckforyou.pythonanywhere.com/">4</a>, <a href="">5</a>), but I couldn&rsquo;t find anything available to &ldquo;plug and play&rdquo; with this, or that it actually worked. Maybe something for the future 🧐.</p>
+<p>This idea <em>is not new</em> (<a href="https://www.pyimagesearch.com/2021/03/03/an-interview-with-anthony-lowhur-recognizing-10000-yugioh-cards-with-computer-vision-and-deep-learning/">1</a>, <a href="https://www.reddit.com/r/magicTCG/comments/aa0u1d/is_there_a_mtg_deck_building_ai/">2</a>, <a href="http://www.shoeboxmtg.com/">3</a>, <a href="https://bestdeckforyou.pythonanywhere.com/">4</a>), but I couldn&rsquo;t find anything available to &ldquo;plug and play&rdquo; with this, or that it actually worked. Maybe something for the future 🧐.</p>
 <h1 id="resources">Resources:</h1>
 <ul>
 <li>How to sell mtg cards: <a href="https://strategy.channelfireball.com/all-strategy/mtg/channelmagic-articles/how-to-sell-magic-cards/">https://strategy.channelfireball.com/all-strategy/mtg/channelmagic-articles/how-to-sell-magic-cards/</a> and <a href="https://www.youtube.com/watch?v=7sV8F1qaFNc">https://www.youtube.com/watch?v=7sV8F1qaFNc</a></li>
@@ -316,11 +360,11 @@ List of devices attached
 
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-md-auto">
+    <div class="col-md-auto text-center">
       <small>
-        Last update: September 2, 2022
+        Last update: September 15, 2022
         
-          <a href="https://github.com/andreffs18/website/commit/52d8f167fbf2bbc41b98e005d3a01bdaf29261e4" target="_blank">(52d8f16)</a>
+          <br><a href="https://github.com/andreffs18/website/commit/66cce9169b4862528da303ba5875e8ec70369c0b" target="_blank">See something that needs changing? (66cce91)</a>
         
       </small>
     </div>
@@ -443,27 +487,31 @@ window.addEventListener('DOMContentLoaded', () => {
                 <ul class="navbar social pull-right">
                     
                         <li class="nav-item">
-                            <a class="nav-link" href="mailto:andreffs18@gmail.com" target="_blank"><i class="fa fa-envelope"></i></a>
+                            <a class="nav-link" href="https://github.com/andreffs18" target="_blank" data-toggle="tooltip" data-placement="top" title="Github"><i class="fa fa-github"></i></a>
                         </li>
                     
                         <li class="nav-item">
-                            <a class="nav-link" href="https://www.facebook.com/andreffs18" target="_blank"><i class="fa fa-facebook"></i></a>
+                            <a class="nav-link" href="https://twitter.com/andreffs18" target="_blank" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter"></i></a>
                         </li>
                     
                         <li class="nav-item">
-                            <a class="nav-link" href="https://github.com/andreffs18" target="_blank"><i class="fa fa-github"></i></a>
+                            <a class="nav-link" href="http://instagram.com/andreffs18" target="_blank" data-toggle="tooltip" data-placement="top" title="Instagram"><i class="fa fa-instagram"></i></a>
                         </li>
                     
                         <li class="nav-item">
-                            <a class="nav-link" href="http://instagram.com/andreffs18" target="_blank"><i class="fa fa-instagram"></i></a>
+                            <a class="nav-link" href="https://www.facebook.com/andreffs18" target="_blank" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook"></i></a>
                         </li>
                     
                         <li class="nav-item">
-                            <a class="nav-link" href="https://pt.linkedin.com/in/andreffs18" target="_blank"><i class="fa fa-linkedin"></i></a>
+                            <a class="nav-link" href="https://pt.linkedin.com/in/andreffs18" target="_blank" data-toggle="tooltip" data-placement="top" title="Linkedin"><i class="fa fa-linkedin"></i></a>
                         </li>
                     
                         <li class="nav-item">
-                            <a class="nav-link" href="https://twitter.com/andreffs18" target="_blank"><i class="fa fa-twitter"></i></a>
+                            <a class="nav-link" href="https://www.andreffs.com/blog/index.xml" target="_blank" data-toggle="tooltip" data-placement="top" title="RSS"><i class="fa fa-rss"></i></a>
+                        </li>
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="mailto:andreffs18@gmail.com" target="_blank" data-toggle="tooltip" data-placement="top" title="E-mail"><i class="fa fa-envelope"></i></a>
                         </li>
                     
                 </ul>
@@ -475,6 +523,7 @@ window.addEventListener('DOMContentLoaded', () => {
     </body>
 
     
+        
 <script type="application/javascript">
 var doNotTrack = false;
 if (!doNotTrack) {
@@ -488,4 +537,7 @@ if (!doNotTrack) {
 }
 </script>
 
+    
+
+    <script type="text/javascript" src="https://www.andreffs.com/js/main.js"></script>
 </html>
