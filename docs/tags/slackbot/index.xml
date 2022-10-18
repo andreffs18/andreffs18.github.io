@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>slackbot on ANDREFFS</title>
+    <link>https://www.andreffs.com/tags/slackbot/</link>
+    <description>Recent content in slackbot on ANDREFFS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>andreffs18@gmail.com (André Silva)</managingEditor>
+    <webMaster>andreffs18@gmail.com (André Silva)</webMaster>
+    <lastBuildDate>Sat, 28 Mar 2020 11:33:00 +0000</lastBuildDate><atom:link href="https://www.andreffs.com/tags/slackbot/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Host a Slack Bot in Heroku for Free</title>
+      <link>https://www.andreffs.com/blog/host-slack-bot-in-heroku-for-free/</link>
+      <pubDate>Sat, 28 Mar 2020 11:33:00 +0000</pubDate>
+      <author>andreffs18@gmail.com (André Silva)</author>
+      <guid>https://www.andreffs.com/blog/host-slack-bot-in-heroku-for-free/</guid>
+      <description>Update 2022-09-25: Well damn&amp;hellip; I guess I need to think of another way to do this.   There is a Portuguese &amp;ldquo;motivational guru&amp;rdquo; called Gustavo Santos that has been in the news for some dumb reason. He&amp;rsquo;s the type of character that will say something like &amp;ldquo;A mente chama-se mente porque te mente&amp;rdquo;, and come off as super profound.
+ &amp;ldquo;Mind is called mind because it lies&amp;rdquo;&amp;hellip; in Portuguese sounds &amp;ldquo;better&amp;rdquo; 😅</description>
+    </item>
+    
+  </channel>
+</rss>

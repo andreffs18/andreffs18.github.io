@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="canonical" href="https://www.andreffs.com/blog/host-slack-bot-in-heroku-for-free/">
+    <title>Host a Slack Bot in Heroku for Free | ANDREFFS</title>
+    <meta name="author" content="André Silva">
+    <meta name="description" content='A motivational guru slack bot that will make you change nothing.'/>
+    
+        <meta name="keywords" content='heroku, slackbot, fastapi, python, vuejs'/>
+    
+
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.7ff137aa868a5eaaecb8ec74645241657334a65f06b7388190d3be5b5a2c2b2d.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.1fe1ae2b9b51eaa490893c7864395899c62452ca613e42c470ecbeed8b37e224.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.e8f8a353627f38b314ed9c4d9fc503eafe35b6ee114f887ce768987c123a9a8c.png">
+    <link rel="manifest" href="/site.4c996c5865b442c41bfac76f2c38845e0eba779436c1411f03a4d02d92598ed6.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.44a396c2b7e7cea3fe3ff9e275ec6cd6116459c64ebe691042e013659ddb8077.svg" color="#fcca2e">
+    <meta name="msapplication-TileColor" content="#fcca2e">
+    <meta name="theme-color" content="#ff0000">
+
+    
+    
+    <meta property="og:url" content="https://www.andreffs.com/blog/host-slack-bot-in-heroku-for-free/"/>
+    <meta property="og:title" content='Host a Slack Bot in Heroku for Free | ANDREFFS'/>
+    <meta property="og:author" content='André Silva'/>
+    <meta property="og:description" content='A motivational guru slack bot that will make you change nothing.'/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:image" content='https://i.imgur.com/nM3mJd3.jpg'/>
+    
+        
+            <meta property="article:published_time" content="2020-03-28T11:33:00&#43;00:00"/>
+        
+        
+            <meta property="article:modified_time" content="2022-10-18T22:39:26&#43;01:00"/>
+        
+    
+
+    <meta name="twitter:title" content='Host a Slack Bot in Heroku for Free | ANDREFFS'/>
+    <meta name="twitter:card" content='A motivational guru slack bot that will make you change nothing.'/>
+    <meta name="twitter:site" content="@andreffs18"/>
+    <meta name="twitter:creator" content="@andreffs18"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:image" content='https://i.imgur.com/nM3mJd3.jpg'/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image" content='https://i.imgur.com/nM3mJd3.jpg'/>
+
+    
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+    
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+    
+    <link rel="stylesheet" type="text/css" href="https://www.andreffs.com/css/main.min.c3a35e2a5a1983865bf54dafa5faa194b11159a455ebf41e143218fdeb0c39a6.css">
+
+    
+    
+    
+    
+    
+    
+    <meta name="hugo-build-date" content=""/>
+    <meta name="hugo-commit-hash" content=""/>
+    <meta name="generator" content="Hugo 0.78.2" />
+</head>
+
+    <body>
+        <div class="container pb-5">
+            <header>
+    <div class="page-header pb-4 mt-5 mb-4">
+        
+            <a href="https://www.andreffs.com" class="text-decoration-none">
+                <h1 class="text3d text-right text-uppercase"><span id="">André Silva</span><br/></h1>
+            </a>
+            <small class="letterpress text-right text-uppercase">29 y/old workaholic from Lisbon.</small>
+        
+    </div>
+</header>
+            
+
+<main class="row blog">
+    <section>
+        <header>
+            <h1 class="">Host a Slack Bot in Heroku for Free</h1>
+
+            
+            <h2 class="font-weight-light font-italic mb-3">A motivational guru slack bot that will make you change nothing.</h2>
+            
+
+            <a class="text-muted mt-3">
+                <a class="text-muted" href="https://www.andreffs.com/blog/host-slack-bot-in-heroku-for-free/">Published March 28, 2020</a>
+
+                
+                    <span>|</span>
+                    
+                    <a class="text-muted" href="https://www.andreffs.com/tags/heroku">#heroku</a>
+                    
+                    <a class="text-muted" href="https://www.andreffs.com/tags/slackbot">#slackbot</a>
+                    
+                    <a class="text-muted" href="https://www.andreffs.com/tags/fastapi">#fastapi</a>
+                    
+                    <a class="text-muted" href="https://www.andreffs.com/tags/python">#python</a>
+                    
+                    <a class="text-muted" href="https://www.andreffs.com/tags/vuejs">#vuejs</a>
+                    
+                
+                <span>|</span>
+                <a class="text-muted text-decoration-none">± 11 mins</a>
+            </p>
+        </header>
+        <article class="markdown-body">
+            <blockquote>
+<p>Update 2022-09-25: Well damn&hellip; I guess I need to think of another way to do this.
+<img src="images/well-damn.png" alt="images/well-damn.png"></p>
+</blockquote>
+<hr>
+<p><img src="https://i.imgur.com/nM3mJd3.jpg" alt="https://i.imgur.com/nM3mJd3.jpg"></p>
+<p>There is a Portuguese &ldquo;motivational guru&rdquo; called Gustavo Santos that has been in the news for some dumb reason. He&rsquo;s the type of character that will say something like &ldquo;<em>A mente chama-se mente porque te mente</em>&rdquo;, and come off as super profound.</p>
+<blockquote>
+<p>&ldquo;Mind is called mind because it <em>lies</em>&rdquo;&hellip; in Portuguese sounds &ldquo;better&rdquo; 😅</p>
+</blockquote>
+<p>Me and a couple of friends were talking about his books, quotes, tv shows, and <em>whell</em>&hellip; the guy must be doing something right if he&rsquo;s having all this success.</p>
+<p>So, because I was playing with Slack&rsquo;s API and &ldquo;slack bots are all the rage now&rdquo;, I decided to build one just to get a look at how it&rsquo;s done and, why not start with building a &ldquo;Motivational Gustavo Santos Slack Bot&rdquo;.</p>
+<p>In this post, I briefly talk about what the slack bot does, how it is built, and (the best part) how I manage to deploy three apps in Heroku without any cost.</p>
+<h1 id="idea">Idea</h1>
+<p>I want a bot that listens to certain keywords like &ldquo;love&rdquo;, &ldquo;mind&rdquo; and &ldquo;passion&rdquo;, and replies with a quote from Gustavo Santos. The high-level architecture for this is as follows:</p>
+<p><img src="images/architecture.jpg" alt="Image"></p>
+<ul>
+<li>Frontend App: <a href="https://vuejs.org/guide/introduction.html">VueJS</a> app that helps to showcase bot functionality. You can find it at <a href="http://santosbot.herokuapp.com/">http://santosbot.herokuapp.com/</a></li>
+<li>Backend API: Python ASGI web server (<a href="https://fastapi.tiangolo.com/">FastAPI</a>) that exposes a Web API for getting quotes based on given input</li>
+<li>Slack Bot: Simple Python bot that uses <a href="https://api.slack.com/rtm">Real Time Messaging API</a> from Slack, that listens to messages from the connected slack instance, which then interacts with the Backend API to post a quote.</li>
+</ul>
+<blockquote>
+<p>You can find the project here: <a href="https://github.com/andreffs18/santosbot">https://github.com/andreffs18/santosbot</a></p>
+</blockquote>
+<h2 id="backend">Backend</h2>
+<p>The backend system just holds a dictionary with known quotes from <a href="http://www.citador.pt/frases/citacoes/a/gustavo-santos/1">Gustavo Santos</a>, and decides, based on the logic described below, what quote to use. Simply put, the logic behind the <code>&quot;GET /api/bot?text={ message }&quot;</code> endpoint is the following:</p>
+
+<script async src="https://unpkg.com/mermaid@8.9.1/dist/mermaid.min.js"></script>
+<div class="mermaid">
+    
+graph TD
+    A[GET /bot?text=Hello World] --> B
+    B[Get 'text' params from <br>request args and split<br> into 'tokens'] --> C
+    C{Intersect 'tokens' <br>with 'TRIGGER_WORDS'}
+    C --> |No intersection<br>found| D
+    C --> |Found intersection| E
+    D[Return empty quote]
+    E[Get random 'TRIGGER_WORD'<br>from intersection] --> F
+    F[Get random quote <br>associated with 'TRIGGER_WORD'] --> G
+    G{Was the quote used in <br>the last X seconds?}
+    G --> |Yes| D
+    G --> |No| H
+    H[Update 'last_used_at' date for given quote] --> I
+    I[Return quote]
+
+</div>
+
+<h2 id="frontend">Frontend</h2>
+<p>This part of the app was built for two simple reasons:</p>
+<ul>
+<li>Helps to show a &ldquo;<em>slack-alike</em>&rdquo; interface to showcase &ldquo;Gustavo Santos&rdquo; bot functionality, without having to install it</li>
+<li>I wanted to learn VueJS 🤓</li>
+</ul>
+<p>It just interacts with the <code>&quot;GET /api/bot?&quot;</code> endpoint with the text we input on the form:</p>
+<p><img src="https://i.imgur.com/UJPRbU0.png" alt=""></p>
+<h2 id="bot">Bot</h2>
+<p>It runs entirely on the <a href="https://github.com/slackapi/python-slackclient">SlackClient</a> for Python by using the <a href="https://api.slack.com/rtm">Real Time Messaging Api</a>.</p>
+<p>It&rsquo;s a simple &ldquo;while loop&rdquo; that iterates over all messages that are sent to the channel where the slack bot was added, and then it makes a request to the <code>GET /api/bot?</code> endpoint. If any quotes are returned then the bot posts them on the channel.</p>
+<blockquote>
+<p>In case you want to set it up for yourself, just follow the instructions here: <a href="https://github.com/andreffs18/santosbot/tree/master/bot">https://github.com/andreffs18/santosbot/tree/master/bot</a></p>
+</blockquote>
+<p>
+<script async src="https://unpkg.com/mermaid@8.9.1/dist/mermaid.min.js"></script>
+<div class="mermaid">
+    
+sequenceDiagram
+    Slack Instance->>Bot: andreffs18: "Do you mind?"
+    Bot->>Backend: GET /api/bot?text="Do you mind?"
+    Backend->>Bot: HTTP 200 "Mind is called mind..."
+    Bot-->>Slack Instance: santosbot: "Mind is called mind..."
+
+</div>
+
+<img src="https://i.imgur.com/56XcpeI.png" alt=""></p>
+<h1 id="deployment">Deployment</h1>
+<p>This project is hosted on Heroku, on just one dyno! Yup, three apps, different languages, one dyno. You can check it on <a href="https://santosbot.herokuapp.com">https://santosbot.herokuapp.com</a> (it takes almost a minute to load) or here <a href="https://github.com/andreffs18/santosbot">https://github.com/andreffs18/santosbot</a></p>
+<p><img src="images/just-one-dyno.png" alt="images/just-one-dyno.png" title="Just one dyno"></p>
+<h2 id="rationale-for-this-solution">Rationale for this solution:</h2>
+<p>My idea is very simple: I want to deploy the whole project infrastructure on Heroku <strong>without paying</strong>.</p>
+<p>Heroku has some restrictions, like:</p>
+<ul>
+<li>Only allows 2 dynos of different types per project (ie: one worker and one web)</li>
+<li>Configured by setting up &ldquo;Builpacks&rdquo;, to define your dyno environment</li>
+</ul>
+<blockquote>
+<p>Buildpack is the way Heroku finds out which stack you are running:</p>
+<ul>
+<li>Lifecycle <a href="https://devcenter.heroku.com/articles/buildpack-api#bin-detect">https://devcenter.heroku.com/articles/buildpack-api#bin-detect</a></li>
+<li>Python <a href="https://github.com/heroku/heroku-buildpack-python/blob/master/bin/detect">https://github.com/heroku/heroku-buildpack-python/blob/master/bin/detect</a></li>
+<li>Ruby <a href="https://github.com/heroku/heroku-buildpack-ruby/blob/master/bin/detect">https://github.com/heroku/heroku-buildpack-ruby/blob/master/bin/detect</a></li>
+</ul>
+</blockquote>
+<p>While looking around the web, I found a couple of ways to achieve this:</p>
+<ul>
+<li>Use three dynos, one for each app (this means I pay 😟)</li>
+<li>Use one Heroku project, with one dyno, with three different apps (ie: multi deploy pipelines, also costly 😟)
+<ul>
+<li>Deploying multiple apps and then exposing them will cost me &ldquo;time-money&rdquo; and having two different pipelines to deploy one app seems hackish.</li>
+</ul>
+</li>
+</ul>
+<p>Although, I didn&rsquo;t find anything out there about another option, which is what I&rsquo;m trying to do: <strong>Use three apps within one dyno 😄.</strong></p>
+<h2 id="process-management-to-the-rescue">Process management to the rescue</h2>
+
+<script async src="https://unpkg.com/mermaid@8.9.1/dist/mermaid.min.js"></script>
+<div class="mermaid">
+    
+graph TD
+    classDef one fill:#073d81,stroke:#031f41,stroke-width:2px,color:#fff;
+    classDef two fill:#107cc5,stroke:#052c75,stroke-width:2px,color:#fff;
+    classDef three fill:#8e8e8e,stroke:#4e4e4e,stroke-width:2px,color:#fff;
+
+    A[How to deploy a multi-app in Heroku?]
+    B[fa:fa-dollar Use one dyno per App]
+    C[fa:fa-dollar Use Multi-deploy pipeline]
+    D[fa:fa-smile-o Use process management]
+
+    E["fa:fa-times Containerization (Docker Compose)"]
+    F["fa:fa-check Process Management (Foreman)"]
+    G[Nginx]
+
+    A --> B
+    A --> C
+    A --> D
+
+    D --> E
+    D --> F
+    F --> |Using| G
+
+    class A one;
+    class D two;
+    class F three;
+
+</div>
+
+<p>Going back to the &ldquo;Procfile&rdquo;, and realizing that this is the process manager for the &ldquo;web&rdquo; or &ldquo;worker&rdquo; dynos, gave me an idea:</p>
+<p>💡 I could set up one web dyno, as an entry point to a <a href="https://github.com/ddollar/foreman">Foreman</a> script which would set up for me the different processes. Each would be looked after (in case of crashes or something) and I could just expose the right ports and connections that would make my app finally alive.</p>
+<p>This would solve my main concern (only one project to run my whole app) plus an extra benefit: since Heroku charges you &ldquo;dyno hours&rdquo; (<a href="https://help.heroku.com/8E2A2AIU/how-do-free-dyno-hours-work">&quot;<em>you have 1000 hours per month</em>&quot;</a>), having three apps running is expensive &ldquo;<em>in hours&rdquo;</em>. This would prevent that!</p>
+<p>While researching options on how to have multiple apps running in the same dyno, I end up categorizing them in two ways:</p>
+<ul>
+<li>Containerization (Docker): Using build pack and pulling from my registry (not really usable)</li>
+<li>Process Management (Foreman): Three apps running with <strong>Nginx (the old savior) that port-forwards to all different processes</strong></li>
+</ul>
+<blockquote>
+<p>While researching this, I tried to set up all different processes to run on containers like &ldquo;docker run &hellip;&rdquo;. While trying to figure out this option, I discover that there is a service called <a href="https://dockhero.io/">DockHero.io</a> that we can use, and since we just need the <a href="https://elements.heroku.com/buildpacks/dockhero/heroku-buildpack-docker-compose">buildpack</a> to have access to our docker binaries we could use that instead. Although, as they state it pretty well: &ldquo;IMPORTANT: in no way this buildpack helps you deploy your docker-compose.yml to Heroku Docker runtime&rdquo;&hellip; so no luck here.</p>
+</blockquote>
+<p>There are two big caveats to this second option:</p>
+<ol>
+<li>Since Heroku runs with <code>systemd</code> on each dyno (process management on Ubuntu), this means if one of our processes fails, Heroku doesn&rsquo;t restart it. Only if the Nginx fails <code>systemd</code> will restart that instance.</li>
+</ol>
+<blockquote>
+<p>I still need to figure out how to bypass this limitation of this system. Maybe this could be another post 🤔&hellip;</p>
+</blockquote>
+<ol start="2">
+<li>It sucks to run the whole project since we need to install all requirements every time it boots up, which might become a problem if it takes <a href="https://tools.heroku.support/limits/boot_timeout">more than 60 seconds</a></li>
+</ol>
+<blockquote>
+<p>While you can <a href="https://devcenter.heroku.com/articles/preboot">change this timeout</a> it is not advisable because:</p>
+<ul>
+<li>If your app fails or crashes, Heroku will restart it and it will take all that time again to start up</li>
+<li>If any requirement is missing, your app will continue to fail to start, staying on this endless loop</li>
+</ul>
+</blockquote>
+<p>Still, the structure of the project becomes simpler, and to have all apps talk with each other, I just need to:</p>
+<ul>
+<li>Set up an Nginx app, working as a reverse proxy, that redirects all requests to the frontend app;</li>
+<li>All &ldquo;/api&rdquo; requests are proxied to the backend server;</li>
+<li>The actual bot is just running on a different process and connects to my slack account using <a href="https://api.slack.com/rtm">Slack RTM library</a></li>
+</ul>
+<p>So, to manage all processes, and since I&rsquo;m already using Python, I used <a href="https://honcho.readthedocs.io/en/latest/">Honcho</a> (Foreman port to Python) to bypass the number of dynos restriction on Heroku.</p>
+<p><img src="images/heroku-diagram.jpg" alt="images/heroku-diagram.jpg" title="Heroku architecture diagram"></p>
+<p>The traffic is routed through a Nginx configuration, that you can configure by creating a <a href="https://github.com/andreffs18/santosbot/blob/master/config/nginx.conf.erb"><code>&quot;~/config/nginx.conf.erb&quot;</code></a> config file, and adding the following:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nginx" data-lang="nginx"><span style="color:#75715e"># part of the Nginx configuration
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">http</span> {
+  <span style="color:#f92672">server</span> {
+    <span style="color:#75715e"># Proxy pass ExpressJS Server.
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#75715e"></span>    <span style="color:#f92672">location</span>  <span style="color:#e6db74">/</span> {
+</span><span style="display:block;width:100%;background-color:#3c3d38">      <span style="color:#f92672">proxy_pass</span>          <span style="color:#e6db74">http://127.0.0.1:8080</span>;
+</span>      <span style="color:#f92672">proxy_redirect</span>      <span style="color:#66d9ef">off</span>;
+      <span style="color:#f92672">proxy_set_header</span>    <span style="color:#e6db74">X-Forwarded-For</span> $proxy_add_x_forwarded_for;
+      <span style="color:#f92672">proxy_set_header</span>    <span style="color:#e6db74">Host</span> $http_host;
+    }
+
+    <span style="color:#75715e"># Proxy pass to Backend service
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#75715e"></span>    <span style="color:#f92672">location</span> <span style="color:#e6db74">/api/</span> {
+</span><span style="display:block;width:100%;background-color:#3c3d38">      <span style="color:#f92672">proxy_pass</span>          <span style="color:#e6db74">http://127.0.0.1:8888/</span>;
+</span>      <span style="color:#f92672">proxy_http_version</span>  <span style="color:#ae81ff">1</span><span style="color:#e6db74">.1</span>;
+      <span style="color:#f92672">proxy_redirect</span>      <span style="color:#e6db74">default</span>;
+      <span style="color:#f92672">proxy_set_header</span>    <span style="color:#e6db74">Upgrade</span> $http_upgrade;
+      <span style="color:#f92672">proxy_set_header</span>    <span style="color:#e6db74">Connection</span> <span style="color:#e6db74">&#34;upgrade&#34;</span>;
+      <span style="color:#f92672">proxy_set_header</span>    <span style="color:#e6db74">Host</span> $host;
+      <span style="color:#f92672">proxy_set_header</span>    <span style="color:#e6db74">X-Real-IP</span> $remote_addr;
+      <span style="color:#f92672">proxy_set_header</span>    <span style="color:#e6db74">X-Forwarded-For</span> $proxy_add_x_forwarded_for;
+      <span style="color:#f92672">proxy_set_header</span>    <span style="color:#e6db74">X-Forwarded-Host</span> $server_name;
+    }
+  }
+}</code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="testing-the-multi-process-hypotheses">Testing the multi-process hypotheses</h1>
+<p>To test this out, I wanted to just run some simple commands on the <code>Procfile: web</code>:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># ~/Procfile</span>
+$ ls -lha
+$ env
+</code></pre></td></tr></table>
+</div>
+</div><p>This was the result:</p>
+<p><img src="images/ls-in-heroku-procfile.png" alt="images/ls-in-heroku-procfile.png"></p>
+<blockquote>
+<p>#fyi, if you are curious about the <code>.heroku</code> and <code>.profile.d</code> files, those are just folders with default configuration for setting up the dynos environments like the amount of memory available on the unicorn workers and set up of environment variables.</p>
+</blockquote>
+<p>We have access to everything we need, let&rsquo;s test it out by creating a simple Procfile, one that simulates our services. Let&rsquo;s call it “santosbot.Procfile” and have just &ldquo;echo&rsquo;s&rdquo; for each service:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># ~/santosbot.Procfile</span>
+web: <span style="color:#66d9ef">while</span> true; <span style="color:#66d9ef">do</span> echo <span style="color:#e6db74">&#34;frontend service&#34;</span>; sleep 2; <span style="color:#66d9ef">done</span>
+api: <span style="color:#66d9ef">while</span> true; <span style="color:#66d9ef">do</span> echo <span style="color:#e6db74">&#34;backend service&#34;</span>; sleep 1; <span style="color:#66d9ef">done</span>
+bot: <span style="color:#66d9ef">while</span> true; <span style="color:#66d9ef">do</span> echo <span style="color:#e6db74">&#34;bot service&#34;</span>; sleep 5; <span style="color:#66d9ef">done</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>And to make sure nothing gets in the way, let&rsquo;s make sure no buildpacks are configured:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ heroku buildpacks:clear
+</code></pre></td></tr></table>
+</div>
+</div><p>Now to test this, just push it and look at the logs:</p>
+<p><img src="images/app-logs.png" alt="images/app-logs.png"></p>
+<p>Okay, <em>very nice</em> 😎!</p>
+<h1 id="handling-project-dependencies">Handling project dependencies</h1>
+<p>Since the project is divided into different folders, I first need to enter each one and then run the initialization script:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># ~/santosbot.Procfile</span>
+web: cd frontend <span style="color:#f92672">&amp;&amp;</span> npm run build <span style="color:#f92672">&amp;&amp;</span> npm run start
+api: cd backend <span style="color:#f92672">&amp;&amp;</span> uvicorn api:app --port <span style="color:#ae81ff">8888</span> --host 0.0.0.0
+bot: cd bot <span style="color:#f92672">&amp;&amp;</span> python main.py
+</code></pre></td></tr></table>
+</div>
+</div><p><em>Annd</em> right, we need to install all different dependencies for the different projects, which means running specific commands like <code>npm run build</code>. Since adding all of them into <code>~/santosbot.Procfile</code> means making some sort of &ldquo;<em>this</em>&quot;:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">web: cd frontend <span style="color:#f92672">&amp;&amp;</span> EXPORT NODE_ENV<span style="color:#f92672">=</span>development <span style="color:#f92672">&amp;&amp;</span> npm install <span style="color:#f92672">&amp;&amp;</span> npm run build <span style="color:#f92672">&amp;&amp;</span> npm run start...
+</code></pre></td></tr></table>
+</div>
+</div><p>I&rsquo;ve abstracted that away and moved that initialization code into a <code>~/{ APP }/heroku.sh</code> file, located in each project folder:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ tree ~/santosbot
+.
+├── Procfile
+├── santosbot.Procfile
+├── backend
+│   ├── heroku.sh
+│   └── <span style="color:#f92672">(</span>...<span style="color:#f92672">)</span>
+├── bot
+│   ├── heroku.sh
+│   └── <span style="color:#f92672">(</span>...<span style="color:#f92672">)</span>
+└── frontend
+    ├── heroku.sh
+    └── <span style="color:#f92672">(</span>...<span style="color:#f92672">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>And so, our <code>~/santosbot.Procfile</code> can now look like this:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># ~/santosbot.Procfile</span>
+frontend: cd frontend <span style="color:#f92672">&amp;&amp;</span> ./heroku.sh
+backend: cd backend <span style="color:#f92672">&amp;&amp;</span> ./heroku.sh
+bot: cd bot <span style="color:#f92672">&amp;&amp;</span> ./heroku.sh
+</code></pre></td></tr></table>
+</div>
+</div><p>With that, we just need to make sure we clear our buildpacks and set up the necessary ones:</p>
+<ul>
+<li>Python: To run our bot and backend service</li>
+<li>Node: To run our frontend app</li>
+<li>Nginx: To run the reverse proxy</li>
+</ul>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Don’t forget to Clear the buildpack and </span>
+$ heroku stack:set heroku-18 --app santosbot
+$ heroku buildpacks:clear
+<span style="color:#75715e"># Set all necessary buildpack configurations for the project dependencies</span>
+heroku buildpacks:add --index <span style="color:#ae81ff">1</span> https://github.com/heroku/heroku-buildpack-nginx.git
+heroku buildpacks:add --index <span style="color:#ae81ff">2</span> heroku/python
+heroku buildpacks:add --index <span style="color:#ae81ff">3</span> https://github.com/heroku/heroku-buildpack-nodejs#v170
+<span style="color:#75715e"># Just print the buildpack configuration</span>
+heroku buildpacks
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>You can also just save those into your <a href="https://github.com/andreffs18/santosbot/blob/master/.buildpacks"><code>~/.buildpacks</code></a> file.</p>
+</blockquote>
+<p>Next, we just need to set up Heroku runtime to be &ldquo;Python&rdquo; and install &ldquo;Honcho&rdquo;.
+This is done by creating a <code>~/runtime.txt</code> and <code>~/requirements.txt</code> files with the following:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># ~/runtime.txt</span>
+python-3.7.2
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># ~/requirements.txt</span>
+honcho
+</code></pre></td></tr></table>
+</div>
+</div><p>Finally, you can add to your <code>~/Procfile</code> the necessary command to start the whole project:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># ~/Procfile</span>
+web: honcho start -f santosbot.Procfile
+</code></pre></td></tr></table>
+</div>
+</div><p>And that&rsquo;s it. This will take care of starting up your Dyno with Honcho as the Process manager, where it runs 3 processes:</p>
+<ul>
+<li>Nginx to forward the traffic between the frontend app and all other services (on port 8080)</li>
+<li>Backend app, running on port 8888, accepting traffic that comes from /api</li>
+<li>Bot app, running on another process and connected through the <code>SLACK_BOT_TOKEN</code> environment variable</li>
+</ul>
+<h1 id="conclusion">Conclusion</h1>
+<p>⚠️ This is by far an unsuitable &ldquo;production system&rdquo;.</p>
+<p>The goal I had with this blog post was to document my rationale while building this project, as well practice a bit my writing and my communication skills.</p>
+<p>There is a lot of room to improve with this project. Maybe sometime in the future I can revamp this and start by fixing the startup time, which is a long time (ie: you need to refresh twice the page to be able to see the app).</p>
+<p>I also need to find a better way to handle dependencies for each project. Since we need to install them every time the Heroku Dyno boots up, it makes the startup very slow.</p>
+<p>Well, that&rsquo;s it for now. Thanks for reading :)</p>
+<p>👋</p>
+
+        </article>
+    </section>
+
+    <aside>
+        <div class="d-none d-xl-block">
+            
+                <div class="toc">
+                    <h5>Table of contents</h5>
+                    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#idea">Idea</a>
+      <ul>
+        <li><a href="#backend">Backend</a></li>
+        <li><a href="#frontend">Frontend</a></li>
+        <li><a href="#bot">Bot</a></li>
+      </ul>
+    </li>
+    <li><a href="#deployment">Deployment</a>
+      <ul>
+        <li><a href="#rationale-for-this-solution">Rationale for this solution:</a></li>
+        <li><a href="#process-management-to-the-rescue">Process management to the rescue</a></li>
+      </ul>
+    </li>
+    <li><a href="#testing-the-multi-process-hypotheses">Testing the multi-process hypotheses</a></li>
+    <li><a href="#handling-project-dependencies">Handling project dependencies</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+                </div>
+            
+        </div>
+    </aside>
+</main>
+
+<hr>
+
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "andreffs" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<hr>
+
+<div class="container">
+  <div class="row justify-content-center align-content-space-around align-items-center flex-column">
+    <div><div id="share-article" class="d-flex">
+    <span>Share on:</span>
+    <a class="facebook" title="Share this on Facebook" href="https://www.facebook.com/share.php?u=https%3a%2f%2fwww.andreffs.com%2fblog%2fhost-slack-bot-in-heroku-for-free%2f">
+        <i class="fa fa-facebook"></i>
+    </a>
+    <a class="twitter" title="Share this on Twitter" href="https://twitter.com/intent/tweet?text=Host%20a%20Slack%20Bot%20in%20Heroku%20for%20Free&url=https%3a%2f%2fwww.andreffs.com%2fblog%2fhost-slack-bot-in-heroku-for-free%2f">
+        <i class="fa fa-twitter"></i>
+    </a>
+    <a class="linkedin" title="Share this on Linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fwww.andreffs.com%2fblog%2fhost-slack-bot-in-heroku-for-free%2f&title=Host%20a%20Slack%20Bot%20in%20Heroku%20for%20Free&summary=Update%202022-09-25%3a%20Well%20damn%26hellip%3b%20I%20guess%20I%20need%20to%20think%20of%20another%20way%20to%20do%20this.%20%20%20There%20is%20a%20Portuguese%20%26ldquo%3bmotivational%20guru%26rdquo%3b%20called%20Gustavo%20Santos%20that%20has%20been%20in%20the%20news%20for%20some%20dumb%20reason.%20He%26rsquo%3bs%20the%20type%20of%20character%20that%20will%20say%20something%20like%20%26ldquo%3bA%20mente%20chama-se%20%e2%80%a6&source=">
+        <i class="fa fa-linkedin"></i>
+    </a>
+    <a class="mail" title="Share this through Email" href="mailto:?subject=Host%20a%20Slack%20Bot%20in%20Heroku%20for%20Free&body=https%3a%2f%2fwww.andreffs.com%2fblog%2fhost-slack-bot-in-heroku-for-free%2f">
+        <i class="fa fa-envelope"></i>
+    </a>
+    <span>or</span>
+    <a class="buy-me-a-coffee" title="Buy me a coffee :)" href="https://www.buymeacoffee.com/andreffs18">
+        <svg viewBox="0 0 884 1279" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M791.109 297.518L790.231 297.002L788.201 296.383C789.018 297.072 790.04 297.472 791.109 297.518Z" fill="#0D0C22"></path>
+            <path d="M803.896 388.891L802.916 389.166L803.896 388.891Z" fill="#0D0C22"></path>
+            <path d="M791.484 297.377C791.359 297.361 791.237 297.332 791.118 297.29C791.111 297.371 791.111 297.453 791.118 297.534C791.252 297.516 791.379 297.462 791.484 297.377Z" fill="#0D0C22"></path>
+            <path d="M791.113 297.529H791.244V297.447L791.113 297.529Z" fill="#0D0C22"></path>
+            <path d="M803.111 388.726L804.591 387.883L805.142 387.573L805.641 387.04C804.702 387.444 803.846 388.016 803.111 388.726Z" fill="#0D0C22"></path>
+            <path d="M793.669 299.515L792.223 298.138L791.243 297.605C791.77 298.535 792.641 299.221 793.669 299.515Z" fill="#0D0C22"></path>
+            <path d="M430.019 1186.18C428.864 1186.68 427.852 1187.46 427.076 1188.45L427.988 1187.87C428.608 1187.3 429.485 1186.63 430.019 1186.18Z" fill="#0D0C22"></path>
+            <path d="M641.187 1144.63C641.187 1143.33 640.551 1143.57 640.705 1148.21C640.705 1147.84 640.86 1147.46 640.929 1147.1C641.015 1146.27 641.084 1145.46 641.187 1144.63Z" fill="#0D0C22"></path>
+            <path d="M619.284 1186.18C618.129 1186.68 617.118 1187.46 616.342 1188.45L617.254 1187.87C617.873 1187.3 618.751 1186.63 619.284 1186.18Z" fill="#0D0C22"></path>
+            <path d="M281.304 1196.06C280.427 1195.3 279.354 1194.8 278.207 1194.61C279.136 1195.06 280.065 1195.51 280.684 1195.85L281.304 1196.06Z" fill="#0D0C22"></path>
+            <path d="M247.841 1164.01C247.704 1162.66 247.288 1161.35 246.619 1160.16C247.093 1161.39 247.489 1162.66 247.806 1163.94L247.841 1164.01Z" fill="#0D0C22"></path>
+            <path class="logo-coffee" d="M472.623 590.836C426.682 610.503 374.546 632.802 306.976 632.802C278.71 632.746 250.58 628.868 223.353 621.274L270.086 1101.08C271.74 1121.13 280.876 1139.83 295.679 1153.46C310.482 1167.09 329.87 1174.65 349.992 1174.65C349.992 1174.65 416.254 1178.09 438.365 1178.09C462.161 1178.09 533.516 1174.65 533.516 1174.65C553.636 1174.65 573.019 1167.08 587.819 1153.45C602.619 1139.82 611.752 1121.13 613.406 1101.08L663.459 570.876C641.091 563.237 618.516 558.161 593.068 558.161C549.054 558.144 513.591 573.303 472.623 590.836Z" fill="#FFDD00"></path>
+            <path d="M78.6885 386.132L79.4799 386.872L79.9962 387.182C79.5987 386.787 79.1603 386.435 78.6885 386.132Z" fill="#0D0C22"></path>
+            <path class="logo-outline" d="M879.567 341.849L872.53 306.352C866.215 274.503 851.882 244.409 819.19 232.898C808.711 229.215 796.821 227.633 788.786 220.01C780.751 212.388 778.376 200.55 776.518 189.572C773.076 169.423 769.842 149.257 766.314 129.143C763.269 111.85 760.86 92.4243 752.928 76.56C742.604 55.2584 721.182 42.8009 699.88 34.559C688.965 30.4844 677.826 27.0375 666.517 24.2352C613.297 10.1947 557.342 5.03277 502.591 2.09047C436.875 -1.53577 370.983 -0.443234 305.422 5.35968C256.625 9.79894 205.229 15.1674 158.858 32.0469C141.91 38.224 124.445 45.6399 111.558 58.7341C95.7448 74.8221 90.5829 99.7026 102.128 119.765C110.336 134.012 124.239 144.078 138.985 150.737C158.192 159.317 178.251 165.846 198.829 170.215C256.126 182.879 315.471 187.851 374.007 189.968C438.887 192.586 503.87 190.464 568.44 183.618C584.408 181.863 600.347 179.758 616.257 177.304C634.995 174.43 647.022 149.928 641.499 132.859C634.891 112.453 617.134 104.538 597.055 107.618C594.095 108.082 591.153 108.512 588.193 108.942L586.06 109.252C579.257 110.113 572.455 110.915 565.653 111.661C551.601 113.175 537.515 114.414 523.394 115.378C491.768 117.58 460.057 118.595 428.363 118.647C397.219 118.647 366.058 117.769 334.983 115.722C320.805 114.793 306.661 113.611 292.552 112.177C286.134 111.506 279.733 110.801 273.333 110.009L267.241 109.235L265.917 109.046L259.602 108.134C246.697 106.189 233.792 103.953 221.025 101.251C219.737 100.965 218.584 100.249 217.758 99.2193C216.932 98.1901 216.482 96.9099 216.482 95.5903C216.482 94.2706 216.932 92.9904 217.758 91.9612C218.584 90.9319 219.737 90.2152 221.025 89.9293H221.266C232.33 87.5721 243.479 85.5589 254.663 83.8038C258.392 83.2188 262.131 82.6453 265.882 82.0832H265.985C272.988 81.6186 280.026 80.3625 286.994 79.5366C347.624 73.2301 408.614 71.0801 469.538 73.1014C499.115 73.9618 528.676 75.6996 558.116 78.6935C564.448 79.3474 570.746 80.0357 577.043 80.8099C579.452 81.1025 581.878 81.4465 584.305 81.7391L589.191 82.4445C603.438 84.5667 617.61 87.1419 631.708 90.1703C652.597 94.7128 679.422 96.1925 688.713 119.077C691.673 126.338 693.015 134.408 694.649 142.03L696.732 151.752C696.786 151.926 696.826 152.105 696.852 152.285C701.773 175.227 706.7 198.169 711.632 221.111C711.994 222.806 712.002 224.557 711.657 226.255C711.312 227.954 710.621 229.562 709.626 230.982C708.632 232.401 707.355 233.6 705.877 234.504C704.398 235.408 702.75 235.997 701.033 236.236H700.895L697.884 236.649L694.908 237.044C685.478 238.272 676.038 239.419 666.586 240.486C647.968 242.608 629.322 244.443 610.648 245.992C573.539 249.077 536.356 251.102 499.098 252.066C480.114 252.57 461.135 252.806 442.162 252.771C366.643 252.712 291.189 248.322 216.173 239.625C208.051 238.662 199.93 237.629 191.808 236.58C198.106 237.389 187.231 235.96 185.029 235.651C179.867 234.928 174.705 234.177 169.543 233.397C152.216 230.798 134.993 227.598 117.7 224.793C96.7944 221.352 76.8005 223.073 57.8906 233.397C42.3685 241.891 29.8055 254.916 21.8776 270.735C13.7217 287.597 11.2956 305.956 7.64786 324.075C4.00009 342.193 -1.67805 361.688 0.472751 380.288C5.10128 420.431 33.165 453.054 73.5313 460.35C111.506 467.232 149.687 472.807 187.971 477.556C338.361 495.975 490.294 498.178 641.155 484.129C653.44 482.982 665.708 481.732 677.959 480.378C681.786 479.958 685.658 480.398 689.292 481.668C692.926 482.938 696.23 485.005 698.962 487.717C701.694 490.429 703.784 493.718 705.08 497.342C706.377 500.967 706.846 504.836 706.453 508.665L702.633 545.797C694.936 620.828 687.239 695.854 679.542 770.874C671.513 849.657 663.431 928.434 655.298 1007.2C653.004 1029.39 650.71 1051.57 648.416 1073.74C646.213 1095.58 645.904 1118.1 641.757 1139.68C635.218 1173.61 612.248 1194.45 578.73 1202.07C548.022 1209.06 516.652 1212.73 485.161 1213.01C450.249 1213.2 415.355 1211.65 380.443 1211.84C343.173 1212.05 297.525 1208.61 268.756 1180.87C243.479 1156.51 239.986 1118.36 236.545 1085.37C231.957 1041.7 227.409 998.039 222.9 954.381L197.607 711.615L181.244 554.538C180.968 551.94 180.693 549.376 180.435 546.76C178.473 528.023 165.207 509.681 144.301 510.627C126.407 511.418 106.069 526.629 108.168 546.76L120.298 663.214L145.385 904.104C152.532 972.528 159.661 1040.96 166.773 1109.41C168.15 1122.52 169.44 1135.67 170.885 1148.78C178.749 1220.43 233.465 1259.04 301.224 1269.91C340.799 1276.28 381.337 1277.59 421.497 1278.24C472.979 1279.07 524.977 1281.05 575.615 1271.72C650.653 1257.95 706.952 1207.85 714.987 1130.13C717.282 1107.69 719.576 1085.25 721.87 1062.8C729.498 988.559 737.115 914.313 744.72 840.061L769.601 597.451L781.009 486.263C781.577 480.749 783.905 475.565 787.649 471.478C791.392 467.391 796.352 464.617 801.794 463.567C823.25 459.386 843.761 452.245 859.023 435.916C883.318 409.918 888.153 376.021 879.567 341.849ZM72.4301 365.835C72.757 365.68 72.1548 368.484 71.8967 369.792C71.8451 367.813 71.9483 366.058 72.4301 365.835ZM74.5121 381.94C74.6842 381.819 75.2003 382.508 75.7337 383.334C74.925 382.576 74.4089 382.009 74.4949 381.94H74.5121ZM76.5597 384.641C77.2996 385.897 77.6953 386.689 76.5597 384.641V384.641ZM80.672 387.979H80.7752C80.7752 388.1 80.9645 388.22 81.0333 388.341C80.9192 388.208 80.7925 388.087 80.6548 387.979H80.672ZM800.796 382.989C793.088 390.319 781.473 393.726 769.996 395.43C641.292 414.529 510.713 424.199 380.597 419.932C287.476 416.749 195.336 406.407 103.144 393.382C94.1102 392.109 84.3197 390.457 78.1082 383.798C66.4078 371.237 72.1548 345.944 75.2003 330.768C77.9878 316.865 83.3218 298.334 99.8572 296.355C125.667 293.327 155.64 304.218 181.175 308.09C211.917 312.781 242.774 316.538 273.745 319.36C405.925 331.405 540.325 329.529 671.92 311.91C695.906 308.686 719.805 304.941 743.619 300.674C764.835 296.871 788.356 289.731 801.175 311.703C809.967 326.673 811.137 346.701 809.778 363.615C809.359 370.984 806.139 377.915 800.779 382.989H800.796Z" fill="#0D0C22"></path>
+        </svg>
+    </a>
+    <a class="buy-me-a-coffee" href="https://www.buymeacoffee.com/andreffs18">
+        <span class="buy-me-a-coffee">Buy me a coffee :)</span>
+    </a>
+</div>
+</div>
+    <div class="col-md-auto text-center">
+      <small>
+        Last update: October 18, 2022
+        
+          <br><a href="https://github.com/andreffs18/website/commit/1bcc5e9cd3242af4be4c02af882aea93616d1de4" target="_blank">See something that needs changing? (1bcc5e9)</a>
+        
+      </small>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="pt-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 text-left">
+                
+                Previous Post: ◀ <a href="https://www.andreffs.com/blog/docker-postgresql/">Docker + PostgreSQL</a>
+                
+            </div>
+            <div class="col-md-6 text-right">
+                
+                Next Post: ▶ <a href="https://www.andreffs.com/blog/just-keep-on-save-for-later/">Just keep on &ldquo;Save for later&rdquo;</a>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+const BLOG_TITLE_SELECTORS = '.blog article h1, .blog article h2, .blog article h3, .blog article h4, .blog article h5, .blog article h6';
+
+function addAnchor(element) {
+    element.innerHTML = `<a class="anchor" href="#${element.id}" aria-hidden="true"><span class="octicon octicon-link"></span></a>${element.innerText}`
+}
+document.addEventListener('DOMContentLoaded', () => {
+    var headers = document.querySelectorAll(BLOG_TITLE_SELECTORS)
+    if (headers) {
+        headers.forEach(addAnchor)
+    }
+})
+
+
+window.addEventListener('DOMContentLoaded', () => {
+	const observer = new IntersectionObserver(entries => {
+    let container = document.querySelector('.toc');
+    let links = [...container.querySelectorAll('a')]
+    let headings = links.map(link => {
+      let id = link.getAttribute('href')
+      return document.querySelector(id)
+    })
+
+    entries.forEach(entry => {
+      let previousSection = undefined;
+      let href = `#${entry.target.getAttribute('id')}`;
+      let link = links.find(l => l.getAttribute('href') === href);
+
+      if (entry.intersectionRatio > 0) {
+        link.classList.add('is-visible');
+        previousSection = entry.target.getAttribute('id');
+      } else {
+        link.classList.remove('is-visible');
+      }
+
+      links.forEach(link => {
+        link.classList.remove('is-active');
+      })
+
+      let firstVisibleLink = container.querySelector('.is-visible');
+      if (firstVisibleLink) {
+        firstVisibleLink.classList.add('is-active');
+      }
+      if (!firstVisibleLink && previousSection) {
+        container.querySelector(`a[href="#${previousSection}"]`).classList.add('is-active');
+      }
+    })
+    
+    if(entries.length === 1){
+      let entry = entries[0];
+      let lastHeadingOfBlogpost = headings[headings.length - 1];
+      if(
+        entry.intersectionRatio === 0 && 
+        entry.target === lastHeadingOfBlogpost 
+      ) {
+        let href = `#${entry.target.getAttribute('id')}`;
+        container.querySelector(`a[href="${href}"]`).classList.add('is-active');
+      }
+    }
+	});
+	
+	document.querySelectorAll(BLOG_TITLE_SELECTORS).forEach((title) => {
+		observer.observe(title);
+	});
+});
+
+</script>
+
+        </div>
+        
+<footer>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <ul class="navbar menu pull-left">
+                  
+                      <li class="nav-item ">
+                          <a class="nav-link" href="https://www.andreffs.com/cv/" title="">CV</a>
+                      </li>
+                  
+                      <li class="nav-item ">
+                          <a class="nav-link" href="https://www.andreffs.com/about/" title="">About</a>
+                      </li>
+                  
+                      <li class="nav-item ">
+                          <a class="nav-link" href="https://www.andreffs.com/blog/" title="">Blog</a>
+                      </li>
+                  
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <ul class="navbar social pull-right">
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://github.com/andreffs18" target="_blank" data-toggle="tooltip" data-placement="top" title="Github"><i class="fa fa-github"></i></a>
+                        </li>
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://twitter.com/andreffs18" target="_blank" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter"></i></a>
+                        </li>
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://instagram.com/andreffs18" target="_blank" data-toggle="tooltip" data-placement="top" title="Instagram"><i class="fa fa-instagram"></i></a>
+                        </li>
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://www.facebook.com/andreffs18" target="_blank" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook"></i></a>
+                        </li>
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://pt.linkedin.com/in/andreffs18" target="_blank" data-toggle="tooltip" data-placement="top" title="Linkedin"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://www.andreffs.com/blog/index.xml" target="_blank" data-toggle="tooltip" data-placement="top" title="RSS"><i class="fa fa-rss"></i></a>
+                        </li>
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="mailto:andreffs18@gmail.com" target="_blank" data-toggle="tooltip" data-placement="top" title="E-mail"><i class="fa fa-envelope"></i></a>
+                        </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    </body>
+
+    
+        
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-71884481-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+
+    <script type="text/javascript" src="https://www.andreffs.com/js/main.js"></script>
+</html>
