@@ -13,12 +13,21 @@ plotly:
 	open $$URL && \
 	docker logs -t myplotly
 
+# Deploy codebase by ammending and force pushing the freshly generated /docs folder
+# Validates first if we are in "master" to generate the new version
 deploy:
-	hugo --baseUrl https://www.andreffs.com && \
-	touch docs/.nojekyll && \
-	git add docs/ && \
-	git commit --amend --no-edit && \
-	git push -f origin master
+	if [[ "$$(git rev-parse --abbrev-ref HEAD)" != "master" ]]; then \
+		echo "❌ Not master branch."; \
+		exit; \
+	else \
+		echo "⏳ Deploying"; \
+		hugo --baseUrl https://www.andreffs.com; \
+		touch docs/.nojekyll; \
+		git add docs/; \
+		git commit --amend --no-edit; \
+		git push -f origin master; \
+		echo "✅ Deployed"; \
+	fi; \
 
 # Get last tagged version that was pushed to repository or if non existent, use first commit of tree
 # Then get logs from $TAG until now and run then through our generate-changelog.py script
