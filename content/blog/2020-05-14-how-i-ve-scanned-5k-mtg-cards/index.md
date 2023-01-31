@@ -211,5 +211,6 @@ This idea *is not new* ([1](https://www.pyimagesearch.com/2021/03/03/an-intervie
 * How to sell mtg cards: https://strategy.channelfireball.com/all-strategy/mtg/channelmagic-articles/how-to-sell-magic-cards/ and https://www.youtube.com/watch?v=7sV8F1qaFNc
 * What did you guys automate in your life: https://www.reddit.com/r/Python/comments/miqt0d/what_did_you_guys_automate_in_your_life/
 * Interview with Anthony Lowhur – Recognizing 10,000 Yugioh Cards: https://www.pyimagesearch.com/2021/03/03/an-interview-with-anthony-lowhur-recognizing-10000-yugioh-cards-with-computer-vision-and-deep-learning/
+* Magic: The Gathering is Turing Complete: https://arxiv.org/abs/1904.09828
 
 👋
