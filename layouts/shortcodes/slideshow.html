@@ -2,7 +2,6 @@
     <div id="{{ .Get 0 }}"></div>
     <div class="d-flex justify-content-between">
 
-
     </div>
 </div>
 
@@ -12,7 +11,7 @@
     const img = document.createElement("img");
     img.src = slide.url;
     const p = document.createElement("p");
-    p.innerHTML = slide.description;
+    p.innerHTML = slide.description || "";
     div.appendChild(img);
     div.appendChild(p)
     document.getElementById("{{ .Get 0}}").appendChild(div);
