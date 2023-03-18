@@ -7,21 +7,20 @@
 </div>
 <script>
   function draw(){
-	test = document.getElementById("{{ .Get 0 }}");
-	if (test == null){
-		console.log("The plot name is not defined")
-		return
-	}
+		test = document.getElementById("{{ .Get 0 }}");
+		if (test == null){
+			console.log("The plot name is not defined")
+			return
+		}
 
-	fig = null
-	{{ .Inner | safeJS }}
+		fig = {{ .Inner | safeJS }}
 
-	if (!fig) {
-		test.innerText = "ERROR: fig variable is not defined"
-		return
-	}
-	test.innerText = null
-	Plotly.plot(test ,fig);
+		if (!fig) {
+			test.innerText = "ERROR: fig variable is not defined"
+			return
+		}
+		test.innerText = null
+		Plotly.plot(test ,fig);
   }
   draw()
 </script>
