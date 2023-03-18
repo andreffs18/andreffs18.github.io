@@ -5,11 +5,11 @@ build:
 	docker build -t myplotly -f plotly.Dockerfile . && \
 	echo "✅ `myplotly` image created!"
 
-plotly:
+plotly: build
 	docker stop myplotly && \
 	docker run -d -v $$(pwd):/work -p 8888:8888 --rm --name myplotly myplotly && \
 	sleep 2 && \
-	URL=$$(docker logs myplotly 2>&1 | head -n10 | grep "http://127.0.0.1:8888/?token=" | egrep -o 'https?://[^ ]+') && \
+	URL=$$(docker logs myplotly 2>&1 | grep "http://127.0.0.1:8888/lab?token=" | egrep -o 'https?://[^ ]+') && \
 	open $$URL && \
 	docker logs -t myplotly
 
