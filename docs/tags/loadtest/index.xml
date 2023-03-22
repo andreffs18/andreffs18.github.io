@@ -16,7 +16,7 @@
       <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/blog/n8n-customizations-for-production/</guid>
       <description>This post is a continuation on &amp;ldquo;Setup n8n on Kubernetes&amp;rdquo;, so most of the things we talk here assume that you&amp;rsquo;ve followed/read this one as well.
- After running n8n during a couple of months in production, me and my team realized that the default configuration do not work very well for us.
+After running n8n during a couple of months in production, me and my team realized that the default configuration do not work very well for us.
 So here in this post I go over the changes we did to allow n8n to scale and work without problems.</description>
     </item>
     

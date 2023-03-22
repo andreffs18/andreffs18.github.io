@@ -16,8 +16,8 @@
       <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/blog/docker-postgresql/</guid>
       <description>More often than not, I end up going online to look up on how to use docker as the middle man on interacting with Postgres.
- Usually for me its Postgres, but this &amp;ldquo;recipe&amp;rdquo; can be applied to any piece of software that has more than one version which you don&amp;rsquo;t have installed on your laptop.
- Because of this whole back and forth I compiled a small list of &amp;ldquo;how-tos&amp;rdquo; to help me remember.</description>
+Usually for me its Postgres, but this &amp;ldquo;recipe&amp;rdquo; can be applied to any piece of software that has more than one version which you don&amp;rsquo;t have installed on your laptop.
+Because of this whole back and forth I compiled a small list of &amp;ldquo;how-tos&amp;rdquo; to help me remember.</description>
     </item>
     
   </channel>

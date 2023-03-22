@@ -18,7 +18,7 @@
       <description>So, you’re trying to create an SSH Tunnel to your remote machine to make some gitlab/github clones.
 That’s all fine and well until you don’t want to post your password on to the terminal.
 First, look at you ~/.ssh/config file and add the “ForwardAgent yes” to that machines ip.
-1 2 3  Host 35.241.133.24 IdentityFile ~/.ssh/id_rsa ForwardAgent yes   That says to use your local private key as identification when accessing gitlab on your remote’s machine.</description>
+1 2 3 Host 35.241.133.24 IdentityFile ~/.ssh/id_rsa ForwardAgent yes That says to use your local private key as identification when accessing gitlab on your remote’s machine.</description>
     </item>
     
   </channel>

@@ -7,7 +7,7 @@
     <title>n8n customizations for Production | ANDREFFS</title>
     <meta name="author" content="André Silva">
     <meta name="description" content='This post is a continuation on &ldquo;Setup n8n on Kubernetes&rdquo;, so most of the things we talk here assume that you&rsquo;ve followed/read this one as well.
- After running n8n during a couple of months in production, me and my team realized that the default configuration do not work very well for us.
+After running n8n during a couple of months in production, me and my team realized that the default configuration do not work very well for us.
 So here in this post I go over the changes we did to allow n8n to scale and work without problems.'/>
     
         <meta name="keywords" content='n8n, nodejs, production, grafana, kubernetes, loadtest'/>
@@ -29,7 +29,7 @@ So here in this post I go over the changes we did to allow n8n to scale and work
     <meta property="og:title" content='n8n customizations for Production | ANDREFFS'/>
     <meta property="og:author" content='André Silva'/>
     <meta property="og:description" content='This post is a continuation on &ldquo;Setup n8n on Kubernetes&rdquo;, so most of the things we talk here assume that you&rsquo;ve followed/read this one as well.
- After running n8n during a couple of months in production, me and my team realized that the default configuration do not work very well for us.
+After running n8n during a couple of months in production, me and my team realized that the default configuration do not work very well for us.
 So here in this post I go over the changes we did to allow n8n to scale and work without problems.'/>
     <meta property="og:type" content="article"/>
     <meta property="og:image" content='https://www.andreffs.com/blog/n8n-customizations-for-production/images/grafana-execution-process-main.png'/>
@@ -44,7 +44,7 @@ So here in this post I go over the changes we did to allow n8n to scale and work
 
     <meta name="twitter:title" content='n8n customizations for Production | ANDREFFS'/>
     <meta name="twitter:card" content='This post is a continuation on &ldquo;Setup n8n on Kubernetes&rdquo;, so most of the things we talk here assume that you&rsquo;ve followed/read this one as well.
- After running n8n during a couple of months in production, me and my team realized that the default configuration do not work very well for us.
+After running n8n during a couple of months in production, me and my team realized that the default configuration do not work very well for us.
 So here in this post I go over the changes we did to allow n8n to scale and work without problems.'/>
     <meta name="twitter:site" content="@andreffs18"/>
     <meta name="twitter:creator" content="@andreffs18"/>
@@ -56,7 +56,7 @@ So here in this post I go over the changes we did to allow n8n to scale and work
     
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown.min.css">
     
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     
@@ -66,7 +66,7 @@ So here in this post I go over the changes we did to allow n8n to scale and work
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     
     
-    <link rel="stylesheet" type="text/css" href="https://www.andreffs.com/css/main.min.c3a35e2a5a1983865bf54dafa5faa194b11159a455ebf41e143218fdeb0c39a6.css">
+    <link rel="stylesheet" type="text/css" href="https://www.andreffs.com/css/main.min.e0ab7e2fbbd40db87e640fab9a0fc155c2451bd11e7ec1f9e5118d96fb4bf98a.css">
 
     
     
@@ -76,7 +76,7 @@ So here in this post I go over the changes we did to allow n8n to scale and work
     
     <meta name="hugo-build-date" content=""/>
     <meta name="hugo-commit-hash" content=""/>
-    <meta name="generator" content="Hugo 0.78.2" />
+    <meta name="generator" content="Hugo 0.111.1">
 </head>
 
     <body>
@@ -87,7 +87,7 @@ So here in this post I go over the changes we did to allow n8n to scale and work
             <a href="https://www.andreffs.com" class="text-decoration-none">
                 <h1 class="text3d text-right text-uppercase"><span id="">André Silva</span><br/></h1>
             </a>
-            <small class="letterpress text-right text-uppercase">29 y/old workaholic from Lisbon.</small>
+            <small class="letterpress text-right text-uppercase">30 y/old workaholic from Lisbon.</small>
         
     </div>
 </header>
@@ -131,76 +131,76 @@ So here in this post I go over the changes we did to allow n8n to scale and work
 <p>So here in this post I go over the changes we did to allow n8n to scale and work without problems.</p>
 <h1 id="nodejs-default-max-memory">NodeJS default max memory</h1>
 <p>If you look closely on our resource allocation for our n8n service, you will see that we&rsquo;ve requested Kubernetes to allocate for us <strong>1Gbi of memory</strong>, although we are not using it all <em>yet</em>.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
-</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
-</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
-</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span></span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span></span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span></span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span></span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span></span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span></span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span></span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># ~/k8s/n8n-deployment.yaml</span>
----
-<span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
-<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
-<span style="color:#f92672">metadata</span>:
-  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">n8n-deployment</span>
-  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">default</span>
-  <span style="color:#f92672">labels</span>: <span style="color:#75715e">&amp;labels</span>
-    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">n8n</span>
-    <span style="color:#f92672">component</span>: <span style="color:#ae81ff">deployment</span>
-<span style="color:#f92672">spec</span>:
-  <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">1</span>
-  <span style="color:#f92672">selector</span>:
-    <span style="color:#f92672">matchLabels</span>: <span style="color:#75715e">*labels</span>
-  <span style="color:#f92672">template</span>:
-    <span style="color:#f92672">metadata</span>:
-      <span style="color:#f92672">labels</span>: <span style="color:#75715e">*labels</span>
-    <span style="color:#f92672">spec</span>:
-      <span style="color:#f92672">containers</span>:
-      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">n8n</span>
-        <span style="color:#f92672">image</span>: <span style="color:#ae81ff">n8nio/n8n:latest</span>
-        <span style="color:#f92672">imagePullPolicy</span>: <span style="color:#ae81ff">IfNotPresent</span>
-        <span style="color:#f92672">ports</span>:
-        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">http</span>
-          <span style="color:#f92672">containerPort</span>: <span style="color:#ae81ff">5678</span>
-<span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#f92672">resources</span>:
-</span><span style="display:block;width:100%;background-color:#3c3d38">          <span style="color:#f92672">limits</span>:
-</span><span style="display:block;width:100%;background-color:#3c3d38">            <span style="color:#f92672">cpu</span>: <span style="color:#e6db74">&#34;1.0&#34;</span>
-</span><span style="display:block;width:100%;background-color:#3c3d38">            <span style="color:#f92672">memory</span>: <span style="color:#e6db74">&#34;1024Mi&#34;</span>
-</span><span style="display:block;width:100%;background-color:#3c3d38">          <span style="color:#f92672">requests</span>:
-</span><span style="display:block;width:100%;background-color:#3c3d38">            <span style="color:#f92672">cpu</span>: <span style="color:#e6db74">&#34;0.5&#34;</span>
-</span><span style="display:block;width:100%;background-color:#3c3d38">            <span style="color:#f92672">memory</span>: <span style="color:#e6db74">&#34;512Mi&#34;</span>
-</span>        <span style="color:#ae81ff">(...)</span></code></pre></td></tr></table>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># ~/k8s/n8n-deployment.yaml</span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">n8n-deployment</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">default</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">labels</span>: <span style="color:#75715e">&amp;labels</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">n8n</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">component</span>: <span style="color:#ae81ff">deployment</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">matchLabels</span>: <span style="color:#75715e">*labels</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">template</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">labels</span>: <span style="color:#75715e">*labels</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">containers</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">n8n</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">image</span>: <span style="color:#ae81ff">n8nio/n8n:latest</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">imagePullPolicy</span>: <span style="color:#ae81ff">IfNotPresent</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">http</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">containerPort</span>: <span style="color:#ae81ff">5678</span>
+</span></span><span style="display:flex; background-color:#3c3d38"><span>        <span style="color:#f92672">resources</span>:
+</span></span><span style="display:flex; background-color:#3c3d38"><span>          <span style="color:#f92672">limits</span>:
+</span></span><span style="display:flex; background-color:#3c3d38"><span>            <span style="color:#f92672">cpu</span>: <span style="color:#e6db74">&#34;1.0&#34;</span>
+</span></span><span style="display:flex; background-color:#3c3d38"><span>            <span style="color:#f92672">memory</span>: <span style="color:#e6db74">&#34;1024Mi&#34;</span>
+</span></span><span style="display:flex; background-color:#3c3d38"><span>          <span style="color:#f92672">requests</span>:
+</span></span><span style="display:flex; background-color:#3c3d38"><span>            <span style="color:#f92672">cpu</span>: <span style="color:#e6db74">&#34;0.5&#34;</span>
+</span></span><span style="display:flex; background-color:#3c3d38"><span>            <span style="color:#f92672">memory</span>: <span style="color:#e6db74">&#34;512Mi&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">(...)</span></span></span></code></pre></td></tr></table>
 </div>
 </div>
 <p>It seems that NodeJS allocates memory differently, depending on the architecture (<a href="https://bugs.chromium.org/p/v8/issues/detail?id=847"><em>source</em></a>):</p>
@@ -210,103 +210,103 @@ So here in this post I go over the changes we did to allow n8n to scale and work
 </ul>
 <p>To play around with this limit, we&rsquo;re gonna create a memory intensive workflow and see if n8n can handle it.</p>
 <p>A simple <a href="https://docs.n8n.io/nodes/n8n-nodes-base.interval/">Interval</a> + <a href="https://docs.n8n.io/nodes/n8n-nodes-base.function/">Function</a> workflow will do the trick. Setting up our Interval node to run every 5 seconds, + we can just paste the following code in the Function node, which just generates a big string and reverses it.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">big_string</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;x&#39;</span>.<span style="color:#a6e22e">repeat</span>(<span style="color:#ae81ff">1024</span><span style="color:#f92672">*</span><span style="color:#ae81ff">1024</span><span style="color:#f92672">*</span><span style="color:#ae81ff">512</span>) <span style="color:#75715e">// 512mb
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">big_string</span>.<span style="color:#a6e22e">reverse</span>();
-<span style="color:#a6e22e">items</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">json</span>.<span style="color:#a6e22e">big_string</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">big_string</span>;
-<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">items</span>;
-</code></pre></td></tr></table>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">big_string</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;x&#39;</span>.<span style="color:#a6e22e">repeat</span>(<span style="color:#ae81ff">1024</span><span style="color:#f92672">*</span><span style="color:#ae81ff">1024</span><span style="color:#f92672">*</span><span style="color:#ae81ff">512</span>) <span style="color:#75715e">// 512mb
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">big_string</span>.<span style="color:#a6e22e">reverse</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">items</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">json</span>.<span style="color:#a6e22e">big_string</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">big_string</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> <span style="color:#a6e22e">items</span>;
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>If you look at the container logs, you will see something like: <strong><code>JavaScript heap out of memory</code></strong>.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
 </span></span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl logs -f -l app<span style="color:#f92672">=</span>n8n
-Version: 0.117.0
-
- <span style="color:#f92672">================================</span>
-   Start Active Workflows:
- <span style="color:#f92672">================================</span>
-   - Memory Intensive Workflow
-     <span style="color:#f92672">=</span>&gt; Started
-
-Editor is now accessible via:
-http://localhost:5678/
-
-&lt;--- Last few GCs ---&gt;
-
-<span style="color:#f92672">[</span>2010:0x562ff62b6f80<span style="color:#f92672">]</span>    <span style="color:#ae81ff">63991</span> ms: Scavenge 485.5 <span style="color:#f92672">(</span>513.8<span style="color:#f92672">)</span> -&gt; 485.4 <span style="color:#f92672">(</span>514.8<span style="color:#f92672">)</span> MB, 71.3 / 0.0 ms  <span style="color:#f92672">(</span>average mu <span style="color:#f92672">=</span> 0.845, current mu <span style="color:#f92672">=</span> 0.771<span style="color:#f92672">)</span> allocation failure
-<span style="color:#f92672">[</span>2010:0x562ff62b6f80<span style="color:#f92672">]</span>    <span style="color:#ae81ff">64024</span> ms: Scavenge 486.4 <span style="color:#f92672">(</span>514.8<span style="color:#f92672">)</span> -&gt; 486.2 <span style="color:#f92672">(</span>517.8<span style="color:#f92672">)</span> MB, 19.9 / 0.0 ms  <span style="color:#f92672">(</span>average mu <span style="color:#f92672">=</span> 0.845, current mu <span style="color:#f92672">=</span> 0.771<span style="color:#f92672">)</span> allocation failure
-<span style="color:#f92672">[</span>2010:0x562ff62b6f80<span style="color:#f92672">]</span>    <span style="color:#ae81ff">64810</span> ms: Mark-sweep 489.2 <span style="color:#f92672">(</span>517.8<span style="color:#f92672">)</span> -&gt; 488.8 <span style="color:#f92672">(</span>521.8<span style="color:#f92672">)</span> MB, 723.0 / 0.0 ms  <span style="color:#f92672">(</span>average mu <span style="color:#f92672">=</span> 0.791, current mu <span style="color:#f92672">=</span> 0.619<span style="color:#f92672">)</span> allocation failure scavenge might not succeed
-
-&lt;--- JS stacktrace ---&gt;
-
-<span style="display:block;width:100%;background-color:#3c3d38">FATAL ERROR: MarkCompactCollector: young object promotion failed Allocation failed - JavaScript heap out of memory</span></code></pre></td></tr></table>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ kubectl logs -f -l app<span style="color:#f92672">=</span>n8n
+</span></span><span style="display:flex;"><span>Version: 0.117.0
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> <span style="color:#f92672">================================</span>
+</span></span><span style="display:flex;"><span>   Start Active Workflows:
+</span></span><span style="display:flex;"><span> <span style="color:#f92672">================================</span>
+</span></span><span style="display:flex;"><span>   - Memory Intensive Workflow
+</span></span><span style="display:flex;"><span>     <span style="color:#f92672">=</span>&gt; Started
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Editor is now accessible via:
+</span></span><span style="display:flex;"><span>http://localhost:5678/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;--- Last few GCs ---&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>2010:0x562ff62b6f80<span style="color:#f92672">]</span>    <span style="color:#ae81ff">63991</span> ms: Scavenge 485.5 <span style="color:#f92672">(</span>513.8<span style="color:#f92672">)</span> -&gt; 485.4 <span style="color:#f92672">(</span>514.8<span style="color:#f92672">)</span> MB, 71.3 / 0.0 ms  <span style="color:#f92672">(</span>average mu <span style="color:#f92672">=</span> 0.845, current mu <span style="color:#f92672">=</span> 0.771<span style="color:#f92672">)</span> allocation failure
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>2010:0x562ff62b6f80<span style="color:#f92672">]</span>    <span style="color:#ae81ff">64024</span> ms: Scavenge 486.4 <span style="color:#f92672">(</span>514.8<span style="color:#f92672">)</span> -&gt; 486.2 <span style="color:#f92672">(</span>517.8<span style="color:#f92672">)</span> MB, 19.9 / 0.0 ms  <span style="color:#f92672">(</span>average mu <span style="color:#f92672">=</span> 0.845, current mu <span style="color:#f92672">=</span> 0.771<span style="color:#f92672">)</span> allocation failure
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>2010:0x562ff62b6f80<span style="color:#f92672">]</span>    <span style="color:#ae81ff">64810</span> ms: Mark-sweep 489.2 <span style="color:#f92672">(</span>517.8<span style="color:#f92672">)</span> -&gt; 488.8 <span style="color:#f92672">(</span>521.8<span style="color:#f92672">)</span> MB, 723.0 / 0.0 ms  <span style="color:#f92672">(</span>average mu <span style="color:#f92672">=</span> 0.791, current mu <span style="color:#f92672">=</span> 0.619<span style="color:#f92672">)</span> allocation failure scavenge might not succeed
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;--- JS stacktrace ---&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex; background-color:#3c3d38"><span>FATAL ERROR: MarkCompactCollector: young object promotion failed Allocation failed - JavaScript heap out of memory</span></span></code></pre></td></tr></table>
 </div>
 </div>
 <p>As you can see, we never reach the max memory consumed of 1Gbi because <strong>NodeJS default max allocated memory is 512mb</strong>, on my machine.</p>
 <p>To accommodate for heavy memory usage we need to increase the NodeJS default memory and for that we need to add the following configuration to our <strong>n8n-confimap.yaml</strong>:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
 </span></span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># ~/k8s/n8n-configmap.yaml</span>
----
-<span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
-<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ConfigMap</span>
-<span style="color:#f92672">metadata</span>:
-  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">n8n-configmap</span>
-  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">default</span>
-  <span style="color:#f92672">labels</span>:
-    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">n8n</span>
-    <span style="color:#f92672">component</span>: <span style="color:#ae81ff">configmap</span>
-<span style="color:#f92672">data</span>:
-  <span style="color:#ae81ff">(...)</span>
-<span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#75715e"># Increase node max memory</span>
-</span><span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#f92672">NODE_OPTIONS</span>: <span style="color:#e6db74">&#34;--max-old-space-size=1024&#34;</span></span></code></pre></td></tr></table>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># ~/k8s/n8n-configmap.yaml</span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ConfigMap</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">n8n-configmap</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">default</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">n8n</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">component</span>: <span style="color:#ae81ff">configmap</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">data</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">(...)</span>
+</span></span><span style="display:flex; background-color:#3c3d38"><span>  <span style="color:#75715e"># Increase node max memory</span>
+</span></span><span style="display:flex; background-color:#3c3d38"><span>  <span style="color:#f92672">NODE_OPTIONS</span>: <span style="color:#e6db74">&#34;--max-old-space-size=1024&#34;</span></span></span></code></pre></td></tr></table>
 </div>
 </div>
 <p>With this change the same workflow now uses much more memory (well it has more available 🙃 ). We still might hit the 1Gbi container threshold which will either:</p>
@@ -340,37 +340,37 @@ http://localhost:5678/
 </ul>
 <p><img src="images/n8n-load-test-workflow.png" alt="images/n8n-load-test-workflow.png" title="n8n load test workflow"></p>
 <p>The Function node just runs this snippet:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// Node found on https://community.n8n.io/t/wait-node-in-workflow/73/41
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">waitTimeSeconds</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>;
-
-<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Promise((<span style="color:#a6e22e">resolve</span>) =&gt; {
-  <span style="color:#a6e22e">setTimeout</span>(() =&gt; {
-    <span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">items</span>);
-  }, <span style="color:#a6e22e">waitTimeSeconds</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span>);
-});
-</code></pre></td></tr></table>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Node found on https://community.n8n.io/t/wait-node-in-workflow/73/41
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">waitTimeSeconds</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Promise((<span style="color:#a6e22e">resolve</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">setTimeout</span>(() =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">items</span>);
+</span></span><span style="display:flex;"><span>  }, <span style="color:#a6e22e">waitTimeSeconds</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="setup-of-the-test">Setup of the test</h2>
 <p>With that, we can test our endpoint with <strong><a href="https://github.com/rakyll/hey">hey</a></strong>, which is a simple load generator that you can run on your terminal:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ hey -z 1m -c <span style="color:#ae81ff">8</span> -m GET <span style="color:#66d9ef">$(</span>minikube service n8n-service --url<span style="color:#66d9ef">)</span>/webhook/load-test
-</code></pre></td></tr></table>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ hey -z 1m -c <span style="color:#ae81ff">8</span> -m GET <span style="color:#66d9ef">$(</span>minikube service n8n-service --url<span style="color:#66d9ef">)</span>/webhook/load-test
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>This will simulate 8 concurrent clients (<code>-c 8</code>) sending GET requests during 1 minute (<code>-z 1m</code>).</p>
@@ -387,228 +387,228 @@ http://localhost:5678/
 <p>If we <code>htop</code> in our container, we will see that once we start the load test, the amount of processes on the n8n pod skyrocket 📈. After a couple of seconds, the pod is forced to restart since the CPU limit was reached and the server becomes unresponsive (our /healthz probe is not returning 200 OK anymore).</p>
 <p><img src="images/grafana-execution-process-own.png" alt="images/grafana-execution-process-own.png" title="Grafana EXECUTIONS_PROCESS=own"></p>
 <p>Our <code>hey</code> test finishes after the 1 minute, but notice the amount of error responses highlighted below:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
-</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
-</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
-</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
-</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+</span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+</span></span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+</span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+</span></span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
 </span></span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Summary:
-  Total:	67.9756 secs
-  Slowest:	16.6218 secs
-  Fastest:	0.0596 secs
-  Average:	6.6657 secs
-  Requests/sec:	1.2946
-
-  Total data:	<span style="color:#ae81ff">3546</span> bytes
-  Size/request:	<span style="color:#ae81ff">45</span> bytes
-
-Response time histogram:
-  0.060 <span style="color:#f92672">[</span>1<span style="color:#f92672">]</span>		|■■■
-  1.716 <span style="color:#f92672">[</span>15<span style="color:#f92672">]</span>	|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-  3.372 <span style="color:#f92672">[</span>5<span style="color:#f92672">]</span>		|■■■■■■■■■■■■■
-  5.028 <span style="color:#f92672">[</span>16<span style="color:#f92672">]</span>	|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-  6.685 <span style="color:#f92672">[</span>9<span style="color:#f92672">]</span>		|■■■■■■■■■■■■■■■■■■■■■■■
-  8.341 <span style="color:#f92672">[</span>3<span style="color:#f92672">]</span>		|■■■■■■■■
-  9.997 <span style="color:#f92672">[</span>6<span style="color:#f92672">]</span>		|■■■■■■■■■■■■■■■
-  11.653 <span style="color:#f92672">[</span>4<span style="color:#f92672">]</span>	|■■■■■■■■■■
-  13.309 <span style="color:#f92672">[</span>7<span style="color:#f92672">]</span>	|■■■■■■■■■■■■■■■■■■
-  14.966 <span style="color:#f92672">[</span>6<span style="color:#f92672">]</span>	|■■■■■■■■■■■■■■■
-  16.622 <span style="color:#f92672">[</span>6<span style="color:#f92672">]</span>	|■■■■■■■■■■■■■■■
-
-Latency distribution:
-  10% in 0.6381 secs
-  25% in 3.0919 secs
-  50% in 5.1199 secs
-  75% in 11.6893 secs
-  90% in 14.4963 secs
-  95% in 15.4841 secs
-  0% in 0.0000 secs
-
-Details <span style="color:#f92672">(</span>average, fastest, slowest<span style="color:#f92672">)</span>:
-  DNS+dialup:	1.1981 secs, 0.0596 secs, 16.6218 secs
-  DNS-lookup:	0.0000 secs, 0.0000 secs, 0.0000 secs
-  req write:	0.0001 secs, 0.0000 secs, 0.0007 secs
-  resp wait:	5.3817 secs, 0.0485 secs, 15.4839 secs
-  resp read:	0.0001 secs, 0.0000 secs, 0.0005 secs
-
-Status code distribution:
-  <span style="color:#f92672">[</span>200<span style="color:#f92672">]</span>	<span style="color:#ae81ff">61</span> responses
-<span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#f92672">[</span>404<span style="color:#f92672">]</span>	<span style="color:#ae81ff">17</span> responses
-</span>
-<span style="display:block;width:100%;background-color:#3c3d38">Error distribution:
-</span><span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#f92672">[</span>10<span style="color:#f92672">]</span>	Get http://192.168.64.7:32495/webhook/load-test: dial tcp 192.168.64.7:32495: connect: connection refused</span></code></pre></td></tr></table>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Summary:
+</span></span><span style="display:flex;"><span>  Total:	67.9756 secs
+</span></span><span style="display:flex;"><span>  Slowest:	16.6218 secs
+</span></span><span style="display:flex;"><span>  Fastest:	0.0596 secs
+</span></span><span style="display:flex;"><span>  Average:	6.6657 secs
+</span></span><span style="display:flex;"><span>  Requests/sec:	1.2946
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  Total data:	<span style="color:#ae81ff">3546</span> bytes
+</span></span><span style="display:flex;"><span>  Size/request:	<span style="color:#ae81ff">45</span> bytes
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Response time histogram:
+</span></span><span style="display:flex;"><span>  0.060 <span style="color:#f92672">[</span>1<span style="color:#f92672">]</span>		|■■■
+</span></span><span style="display:flex;"><span>  1.716 <span style="color:#f92672">[</span>15<span style="color:#f92672">]</span>	|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+</span></span><span style="display:flex;"><span>  3.372 <span style="color:#f92672">[</span>5<span style="color:#f92672">]</span>		|■■■■■■■■■■■■■
+</span></span><span style="display:flex;"><span>  5.028 <span style="color:#f92672">[</span>16<span style="color:#f92672">]</span>	|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+</span></span><span style="display:flex;"><span>  6.685 <span style="color:#f92672">[</span>9<span style="color:#f92672">]</span>		|■■■■■■■■■■■■■■■■■■■■■■■
+</span></span><span style="display:flex;"><span>  8.341 <span style="color:#f92672">[</span>3<span style="color:#f92672">]</span>		|■■■■■■■■
+</span></span><span style="display:flex;"><span>  9.997 <span style="color:#f92672">[</span>6<span style="color:#f92672">]</span>		|■■■■■■■■■■■■■■■
+</span></span><span style="display:flex;"><span>  11.653 <span style="color:#f92672">[</span>4<span style="color:#f92672">]</span>	|■■■■■■■■■■
+</span></span><span style="display:flex;"><span>  13.309 <span style="color:#f92672">[</span>7<span style="color:#f92672">]</span>	|■■■■■■■■■■■■■■■■■■
+</span></span><span style="display:flex;"><span>  14.966 <span style="color:#f92672">[</span>6<span style="color:#f92672">]</span>	|■■■■■■■■■■■■■■■
+</span></span><span style="display:flex;"><span>  16.622 <span style="color:#f92672">[</span>6<span style="color:#f92672">]</span>	|■■■■■■■■■■■■■■■
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Latency distribution:
+</span></span><span style="display:flex;"><span>  10% in 0.6381 secs
+</span></span><span style="display:flex;"><span>  25% in 3.0919 secs
+</span></span><span style="display:flex;"><span>  50% in 5.1199 secs
+</span></span><span style="display:flex;"><span>  75% in 11.6893 secs
+</span></span><span style="display:flex;"><span>  90% in 14.4963 secs
+</span></span><span style="display:flex;"><span>  95% in 15.4841 secs
+</span></span><span style="display:flex;"><span>  0% in 0.0000 secs
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Details <span style="color:#f92672">(</span>average, fastest, slowest<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>  DNS+dialup:	1.1981 secs, 0.0596 secs, 16.6218 secs
+</span></span><span style="display:flex;"><span>  DNS-lookup:	0.0000 secs, 0.0000 secs, 0.0000 secs
+</span></span><span style="display:flex;"><span>  req write:	0.0001 secs, 0.0000 secs, 0.0007 secs
+</span></span><span style="display:flex;"><span>  resp wait:	5.3817 secs, 0.0485 secs, 15.4839 secs
+</span></span><span style="display:flex;"><span>  resp read:	0.0001 secs, 0.0000 secs, 0.0005 secs
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Status code distribution:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">[</span>200<span style="color:#f92672">]</span>	<span style="color:#ae81ff">61</span> responses
+</span></span><span style="display:flex; background-color:#3c3d38"><span>  <span style="color:#f92672">[</span>404<span style="color:#f92672">]</span>	<span style="color:#ae81ff">17</span> responses
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex; background-color:#3c3d38"><span>Error distribution:
+</span></span><span style="display:flex; background-color:#3c3d38"><span>  <span style="color:#f92672">[</span>10<span style="color:#f92672">]</span>	Get http://192.168.64.7:32495/webhook/load-test: dial tcp 192.168.64.7:32495: connect: connection refused</span></span></code></pre></td></tr></table>
 </div>
 </div>
 <h3 id="executions_process--main">EXECUTIONS_PROCESS = &ldquo;main&rdquo;</h3>
 <p>Seeing that the default configuration couldn&rsquo;t hold multiple concurrent requests, we updated ou <strong>n8n-configmap.yaml</strong> with the <code>EXECUTIONS_PROCESS=main</code> environment:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
 </span></span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># ~/k8s/n8n-configmap.yaml</span>
----
-<span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
-<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ConfigMap</span>
-<span style="color:#f92672">metadata</span>:
-  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">n8n-configmap</span>
-  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">default</span>
-  <span style="color:#f92672">labels</span>:
-    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">n8n</span>
-    <span style="color:#f92672">component</span>: <span style="color:#ae81ff">configmap</span>
-<span style="color:#f92672">data</span>:
-  <span style="color:#ae81ff">(...)</span>
-<span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#75715e"># Set n8n to work as single thread instead of forking to worker threads</span>
-</span><span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#f92672">EXECUTIONS_PROCESS</span>: <span style="color:#e6db74">&#34;main&#34;</span></span></code></pre></td></tr></table>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># ~/k8s/n8n-configmap.yaml</span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ConfigMap</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">n8n-configmap</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">default</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">n8n</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">component</span>: <span style="color:#ae81ff">configmap</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">data</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">(...)</span>
+</span></span><span style="display:flex; background-color:#3c3d38"><span>  <span style="color:#75715e"># Set n8n to work as single thread instead of forking to worker threads</span>
+</span></span><span style="display:flex; background-color:#3c3d38"><span>  <span style="color:#f92672">EXECUTIONS_PROCESS</span>: <span style="color:#e6db74">&#34;main&#34;</span></span></span></code></pre></td></tr></table>
 </div>
 </div>
 <p>With this flag, n8n will take care of asynchronously handle all the requests without forking each request into a new process, simply sending the request to its worker threads (which by default are 10)</p>
 <p>This allows the pod to be able to return a successful &ldquo;/healthz&rdquo; response and keep much better CPU utilization between the different cores.</p>
 <p><img src="images/grafana-execution-process-main.png" alt="images/grafana-execution-process-main.png" title="Grafana EXECUTIONS_PROCESS=main"></p>
 <p>This time, our <code>hey</code> test doesn&rsquo;t show any error responses:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
-</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+</span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
 </span></span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Summary:
-  Total:	60.3879 secs
-  Slowest:	0.7173 secs
-  Fastest:	0.0304 secs
-  Average:	0.0841 secs
-  Requests/sec:	95.0356
-
-  Total data:	<span style="color:#ae81ff">200865</span> bytes
-  Size/request:	<span style="color:#ae81ff">35</span> bytes
-
-Response time histogram:
-  0.030 <span style="color:#f92672">[</span>1<span style="color:#f92672">]</span>		|
-  0.099 <span style="color:#f92672">[</span>4836<span style="color:#f92672">]</span>	|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-  0.168 <span style="color:#f92672">[</span>683<span style="color:#f92672">]</span>	|■■■■■■
-  0.236 <span style="color:#f92672">[</span>83<span style="color:#f92672">]</span>	|■
-  0.305 <span style="color:#f92672">[</span>21<span style="color:#f92672">]</span>	|
-  0.374 <span style="color:#f92672">[</span>9<span style="color:#f92672">]</span>		|
-  0.443 <span style="color:#f92672">[</span>20<span style="color:#f92672">]</span>	|
-  0.511 <span style="color:#f92672">[</span>39<span style="color:#f92672">]</span>	|
-  0.580 <span style="color:#f92672">[</span>26<span style="color:#f92672">]</span>	|
-  0.649 <span style="color:#f92672">[</span>15<span style="color:#f92672">]</span>	|
-  0.717 <span style="color:#f92672">[</span>6<span style="color:#f92672">]</span>		|
-
-Latency distribution:
-  10% in 0.0511 secs
-  25% in 0.0581 secs
-  50% in 0.0685 secs
-  75% in 0.0863 secs
-  90% in 0.1135 secs
-  95% in 0.1413 secs
-  99% in 0.4957 secs
-
-Details <span style="color:#f92672">(</span>average, fastest, slowest<span style="color:#f92672">)</span>:
-  DNS+dialup:	0.0000 secs, 0.0304 secs, 0.7173 secs
-  DNS-lookup:	0.0000 secs, 0.0000 secs, 0.0000 secs
-  req write:	0.0000 secs, 0.0000 secs, 0.0008 secs
-  resp wait:	0.0840 secs, 0.0303 secs, 0.7172 secs
-  resp read:	0.0000 secs, 0.0000 secs, 0.0007 secs
-
-Status code distribution:
-<span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#f92672">[</span>200<span style="color:#f92672">]</span>	<span style="color:#ae81ff">5739</span> responses</span></code></pre></td></tr></table>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Summary:
+</span></span><span style="display:flex;"><span>  Total:	60.3879 secs
+</span></span><span style="display:flex;"><span>  Slowest:	0.7173 secs
+</span></span><span style="display:flex;"><span>  Fastest:	0.0304 secs
+</span></span><span style="display:flex;"><span>  Average:	0.0841 secs
+</span></span><span style="display:flex;"><span>  Requests/sec:	95.0356
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  Total data:	<span style="color:#ae81ff">200865</span> bytes
+</span></span><span style="display:flex;"><span>  Size/request:	<span style="color:#ae81ff">35</span> bytes
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Response time histogram:
+</span></span><span style="display:flex;"><span>  0.030 <span style="color:#f92672">[</span>1<span style="color:#f92672">]</span>		|
+</span></span><span style="display:flex;"><span>  0.099 <span style="color:#f92672">[</span>4836<span style="color:#f92672">]</span>	|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+</span></span><span style="display:flex;"><span>  0.168 <span style="color:#f92672">[</span>683<span style="color:#f92672">]</span>	|■■■■■■
+</span></span><span style="display:flex;"><span>  0.236 <span style="color:#f92672">[</span>83<span style="color:#f92672">]</span>	|■
+</span></span><span style="display:flex;"><span>  0.305 <span style="color:#f92672">[</span>21<span style="color:#f92672">]</span>	|
+</span></span><span style="display:flex;"><span>  0.374 <span style="color:#f92672">[</span>9<span style="color:#f92672">]</span>		|
+</span></span><span style="display:flex;"><span>  0.443 <span style="color:#f92672">[</span>20<span style="color:#f92672">]</span>	|
+</span></span><span style="display:flex;"><span>  0.511 <span style="color:#f92672">[</span>39<span style="color:#f92672">]</span>	|
+</span></span><span style="display:flex;"><span>  0.580 <span style="color:#f92672">[</span>26<span style="color:#f92672">]</span>	|
+</span></span><span style="display:flex;"><span>  0.649 <span style="color:#f92672">[</span>15<span style="color:#f92672">]</span>	|
+</span></span><span style="display:flex;"><span>  0.717 <span style="color:#f92672">[</span>6<span style="color:#f92672">]</span>		|
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Latency distribution:
+</span></span><span style="display:flex;"><span>  10% in 0.0511 secs
+</span></span><span style="display:flex;"><span>  25% in 0.0581 secs
+</span></span><span style="display:flex;"><span>  50% in 0.0685 secs
+</span></span><span style="display:flex;"><span>  75% in 0.0863 secs
+</span></span><span style="display:flex;"><span>  90% in 0.1135 secs
+</span></span><span style="display:flex;"><span>  95% in 0.1413 secs
+</span></span><span style="display:flex;"><span>  99% in 0.4957 secs
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Details <span style="color:#f92672">(</span>average, fastest, slowest<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>  DNS+dialup:	0.0000 secs, 0.0304 secs, 0.7173 secs
+</span></span><span style="display:flex;"><span>  DNS-lookup:	0.0000 secs, 0.0000 secs, 0.0000 secs
+</span></span><span style="display:flex;"><span>  req write:	0.0000 secs, 0.0000 secs, 0.0008 secs
+</span></span><span style="display:flex;"><span>  resp wait:	0.0840 secs, 0.0303 secs, 0.7172 secs
+</span></span><span style="display:flex;"><span>  resp read:	0.0000 secs, 0.0000 secs, 0.0007 secs
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Status code distribution:
+</span></span><span style="display:flex; background-color:#3c3d38"><span>  <span style="color:#f92672">[</span>200<span style="color:#f92672">]</span>	<span style="color:#ae81ff">5739</span> responses</span></span></code></pre></td></tr></table>
 </div>
 </div>
 <p>ℹ️ So, in conclusion, if your n8n usage follows more on the heavy I/O operations (vs CPU bound, like returning fibonacci sequences) then you want to setup the execution configuration to not fork its main process, using the <code>EXECUTIONS_PROCESS=main</code>.</p>
@@ -672,7 +672,7 @@ Status code distribution:
 
 <div id="disqus_thread"></div>
 <script type="application/javascript">
-    var disqus_config = function () {
+    window.disqus_config = function () {
     
     
     
@@ -703,7 +703,7 @@ Status code distribution:
     <a class="twitter" title="Share this on Twitter" href="https://twitter.com/intent/tweet?text=n8n%20customizations%20for%20Production&url=https%3a%2f%2fwww.andreffs.com%2fblog%2fn8n-customizations-for-production%2f">
         <i class="fa fa-twitter"></i>
     </a>
-    <a class="linkedin" title="Share this on Linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fwww.andreffs.com%2fblog%2fn8n-customizations-for-production%2f&title=n8n%20customizations%20for%20Production&summary=This%20post%20is%20a%20continuation%20on%20%26ldquo%3bSetup%20n8n%20on%20Kubernetes%26rdquo%3b%2c%20so%20most%20of%20the%20things%20we%20talk%20here%20assume%20that%20you%26rsquo%3bve%20followed%2fread%20this%20one%20as%20well.%0a%20After%20running%20n8n%20during%20a%20couple%20of%20months%20in%20production%2c%20me%20and%20my%20team%20realized%20that%20the%20default%20configuration%20do%20not%20work%20very%20well%20%e2%80%a6&source=">
+    <a class="linkedin" title="Share this on Linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fwww.andreffs.com%2fblog%2fn8n-customizations-for-production%2f&title=n8n%20customizations%20for%20Production&summary=This%20post%20is%20a%20continuation%20on%20%26ldquo%3bSetup%20n8n%20on%20Kubernetes%26rdquo%3b%2c%20so%20most%20of%20the%20things%20we%20talk%20here%20assume%20that%20you%26rsquo%3bve%20followed%2fread%20this%20one%20as%20well.%0aAfter%20running%20n8n%20during%20a%20couple%20of%20months%20in%20production%2c%20me%20and%20my%20team%20realized%20that%20the%20default%20configuration%20do%20not%20work%20very%20well%20%e2%80%a6&source=">
         <i class="fa fa-linkedin"></i>
     </a>
     <a class="mail" title="Share this through Email" href="mailto:?subject=n8n%20customizations%20for%20Production&body=https%3a%2f%2fwww.andreffs.com%2fblog%2fn8n-customizations-for-production%2f">
@@ -755,6 +755,8 @@ Status code distribution:
                 
             </div>
             <div class="col-md-6 text-right">
+                
+                Next Post: ▶ <a href="https://www.andreffs.com/blog/tools-vs-data-structures/">Tools vs Data Structures</a>
                 
             </div>
         </div>
@@ -907,7 +909,6 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
-
     
 
     <script type="text/javascript" src="https://www.andreffs.com/js/main.js"></script>

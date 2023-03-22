@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mongo on ANDREFFS</title>
+    <link>https://www.andreffs.com/tags/mongo/</link>
+    <description>Recent content in mongo on ANDREFFS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>andreffs18@gmail.com (André Silva)</managingEditor>
+    <webMaster>andreffs18@gmail.com (André Silva)</webMaster>
+    <lastBuildDate>Thu, 16 Feb 2023 07:27:00 +0000</lastBuildDate><atom:link href="https://www.andreffs.com/tags/mongo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tools vs Data Structures</title>
+      <link>https://www.andreffs.com/blog/tools-vs-data-structures/</link>
+      <pubDate>Thu, 16 Feb 2023 07:27:00 +0000</pubDate>
+      <author>andreffs18@gmail.com (André Silva)</author>
+      <guid>https://www.andreffs.com/blog/tools-vs-data-structures/</guid>
+      <description>Usually, when interviewing for an engineering or software position, you end up doing some sort of &amp;ldquo;coding challenge&amp;rdquo;. A friend of mine has recently left the company and is doing one at the moment. He asked me for help on solving a particular challenge, which I felt was a good exercise for me.
+This blog post talks a bit about the challenge and my approach to solving it. Also, this post works as a personal reminder that sometimes it is not about picking the best tool, but the right data structure.</description>
+    </item>
+    
+  </channel>
+</rss>
