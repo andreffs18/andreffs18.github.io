@@ -69,7 +69,7 @@ Although I&rsquo;m pretty happy with my terminal setup (shameless plug to 👉 m
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     
     
-    <link rel="stylesheet" type="text/css" href="https://www.andreffs.com/css/main.min.e0ab7e2fbbd40db87e640fab9a0fc155c2451bd11e7ec1f9e5118d96fb4bf98a.css">
+    <link rel="stylesheet" type="text/css" href="https://www.andreffs.com/css/main.min.2eb3a89d39218ca6f33775627f3850506f874ab5a5eff5586fcd54576f7f0c4b.css">
 
     
     
@@ -79,7 +79,7 @@ Although I&rsquo;m pretty happy with my terminal setup (shameless plug to 👉 m
     
     <meta name="hugo-build-date" content=""/>
     <meta name="hugo-commit-hash" content=""/>
-    <meta name="generator" content="Hugo 0.111.1">
+    <meta name="generator" content="Hugo 0.67.1" />
 </head>
 
     <body>
@@ -136,15 +136,15 @@ Although I&rsquo;m pretty happy with my terminal setup (shameless plug to 👉 m
 <blockquote>
 <p><a href="https://github.com/busyloop/lolcat">lolcat</a> is just a funny tool that colors everything that you pipe it through.</p>
 </blockquote>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># ~/.bashrc</span>
-</span></span><span style="display:flex;"><span>source ~/.olhaaqui | lolcat
-</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># ~/.bashrc</span>
+source ~/.olhaaqui | lolcat
+</code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>Source: <a href="https://github.com/andreffs18/dotfiles/blob/c250398591c8c32ef54fc4d0cd7a988fcf4e2e15/config/system/.olhaaqui">https://github.com/andreffs18/dotfiles/blob/c250398591c8c32ef54fc4d0cd7a988fcf4e2e15/config/system/.olhaaqui</a></p>
@@ -163,76 +163,76 @@ It worked but was kinda clunky and not easy to add more. What if I wanted to add
 </ol>
 <h2 id="one-liner-to-rule-them-all">One liner to rule them all</h2>
 <p>Alright! Changing my <code>~/.bashrc</code> is simple enough, I just need to move the code to a function and call it from there:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># ~/.bashrc</span>
-</span></span><span style="display:flex;"><span>source ~/.functions
-</span></span><span style="display:flex;"><span>olhaaqui
-</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># ~/.bashrc</span>
+source ~/.functions
+olhaaqui
+</code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</div><div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># ~/.functions</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> olhaaqui<span style="color:#f92672">(){</span>
-</span></span><span style="display:flex;"><span>  source ~/.olhaaqui | lolcat
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># ~/.functions</span>
+<span style="color:#66d9ef">function</span> olhaaqui<span style="color:#f92672">(){</span>
+  source ~/.olhaaqui | lolcat
+<span style="color:#f92672">}</span>
+</code></pre></td></tr></table>
 </div>
 </div><h2 id="select-an-emoji">Select an emoji</h2>
 <p><em>Heavily inspired</em> by Luciano&rsquo;s idea, we can change our <code>olhaaqui()</code> function to instead of sourcing a text file, to choose an emoji and print it:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># ~/.functions</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> olhaaqui<span style="color:#f92672">(){</span>
-</span></span><span style="display:flex;"><span>  EMOJIES<span style="color:#f92672">=(</span>💩 🚀 ❗️ 😭 🎉 😘 👋<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Get random emoji from list</span>
-</span></span><span style="display:flex;"><span>  EMOJI<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>EMOJIES[$RANDOM % <span style="color:#e6db74">${#</span>EMOJIES[@]<span style="color:#e6db74">}</span>]<span style="color:#e6db74">}</span>
-</span></span><span style="display:flex;"><span>  echo $EMOJI
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># ~/.functions</span>
+<span style="color:#66d9ef">function</span> olhaaqui<span style="color:#f92672">(){</span>
+  EMOJIES<span style="color:#f92672">=(</span>💩 🚀 ❗️ 😭 🎉 😘 👋<span style="color:#f92672">)</span>
+  <span style="color:#75715e"># Get random emoji from list</span>
+  EMOJI<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>EMOJIES[$RANDOM % <span style="color:#e6db74">${#</span>EMOJIES[@]<span style="color:#e6db74">}</span>]<span style="color:#e6db74">}</span>
+  echo $EMOJI
+<span style="color:#f92672">}</span>
+</code></pre></td></tr></table>
 </div>
 </div><p>Although, running it a couple of times I started to notice that we would get an empty emoji every now and then.</p>
 <p>To illustrate this, I&rsquo;m storing the random index in a variable and printing it so we can visualize better what is happening:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span></span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># ~/.functions</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> olhaaqui<span style="color:#f92672">(){</span>
-</span></span><span style="display:flex;"><span>  EMOJIES<span style="color:#f92672">=(</span>💩 🚀 ❗️ 😭 🎉 😘 👋<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Get random emoji from list</span>
-</span></span><span style="display:flex; background-color:#3c3d38"><span>  INDEX<span style="color:#f92672">=</span><span style="color:#66d9ef">$((</span>$RANDOM <span style="color:#f92672">%</span> <span style="color:#e6db74">${#</span>EMOJIES[@]<span style="color:#e6db74">}</span><span style="color:#66d9ef">))</span>
-</span></span><span style="display:flex;"><span>  EMOJI<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>EMOJIES[$INDEX]<span style="color:#e6db74">}</span>
-</span></span><span style="display:flex;"><span>  echo $INDEX $EMOJI
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span></span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># ~/.functions</span>
+<span style="color:#66d9ef">function</span> olhaaqui<span style="color:#f92672">(){</span>
+  EMOJIES<span style="color:#f92672">=(</span>💩 🚀 ❗️ 😭 🎉 😘 👋<span style="color:#f92672">)</span>
+  <span style="color:#75715e"># Get random emoji from list</span>
+<span style="display:block;width:100%;background-color:#3c3d38">  INDEX<span style="color:#f92672">=</span><span style="color:#66d9ef">$((</span>$RANDOM <span style="color:#f92672">%</span> <span style="color:#e6db74">${#</span>EMOJIES[@]<span style="color:#e6db74">}</span><span style="color:#66d9ef">))</span>
+</span>  EMOJI<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>EMOJIES[$INDEX]<span style="color:#e6db74">}</span>
+  echo $INDEX $EMOJI
+<span style="color:#f92672">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <p><img src="images/2nd-zero-index.gif" alt="images/2nd-zero-index.gif"></p>
@@ -245,28 +245,28 @@ It worked but was kinda clunky and not easy to add more. What if I wanted to add
 <li>zsh array indexing starts at 1</li>
 </ul>
 <p>This mean that we are returning values between <strong>0 and len(emojies) - 1</strong>. To fix this I opted to implement <code>max(INDEX, 1)</code>. This way if we get <strong>zero</strong> the function returns <strong>one</strong> instead.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span></span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># ~/.functions</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> olhaaqui<span style="color:#f92672">(){</span>
-</span></span><span style="display:flex;"><span>  EMOJIES<span style="color:#f92672">=(</span>💩 🚀 ❗️ 😭 🎉 😘 👋<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Get random emoji from list</span>
-</span></span><span style="display:flex;"><span>  INDEX<span style="color:#f92672">=</span><span style="color:#66d9ef">$((</span>$RANDOM <span style="color:#f92672">%</span> <span style="color:#e6db74">${#</span>EMOJIES[@]<span style="color:#e6db74">}</span><span style="color:#66d9ef">))</span>
-</span></span><span style="display:flex; background-color:#3c3d38"><span>  INDEX<span style="color:#f92672">=</span><span style="color:#66d9ef">$((</span>$INDEX&gt;0 ? $INDEX : <span style="color:#ae81ff">1</span><span style="color:#66d9ef">))</span> <span style="color:#75715e"># max($INDEX, 1)</span>
-</span></span><span style="display:flex;"><span>  EMOJI<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>EMOJIES[$INDEX]<span style="color:#e6db74">}</span>
-</span></span><span style="display:flex;"><span>  echo $INDEX $EMOJI
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span></span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># ~/.functions</span>
+<span style="color:#66d9ef">function</span> olhaaqui<span style="color:#f92672">(){</span>
+  EMOJIES<span style="color:#f92672">=(</span>💩 🚀 ❗️ 😭 🎉 😘 👋<span style="color:#f92672">)</span>
+  <span style="color:#75715e"># Get random emoji from list</span>
+  INDEX<span style="color:#f92672">=</span><span style="color:#66d9ef">$((</span>$RANDOM <span style="color:#f92672">%</span> <span style="color:#e6db74">${#</span>EMOJIES[@]<span style="color:#e6db74">}</span><span style="color:#66d9ef">))</span>
+<span style="display:block;width:100%;background-color:#3c3d38">  INDEX<span style="color:#f92672">=</span><span style="color:#66d9ef">$((</span>$INDEX&gt;0 ? $INDEX : <span style="color:#ae81ff">1</span><span style="color:#66d9ef">))</span> <span style="color:#75715e"># max($INDEX, 1)</span>
+</span>  EMOJI<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>EMOJIES[$INDEX]<span style="color:#e6db74">}</span>
+  echo $INDEX $EMOJI
+<span style="color:#f92672">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <p><img src="images/2nd-one-index.gif" alt="images/2nd-one-index.gif"></p>
@@ -274,105 +274,105 @@ It worked but was kinda clunky and not easy to add more. What if I wanted to add
 <p>Found this amazing <a href="https://emoji-domains.medium.com/free-emoji-image-generator-api-c0b7eaefa586">blogpost</a> that has some example on to convert emojis to .png images. It works just like an API endpoint, where one of the parameters is the emoji itself.</p>
 <p>For example: <a href="https://xn--i-7iq.ws/emoji-image/%F0%9F%9A%80.png?format=emojione&amp;ar=1x1"><strong>https://xn&ndash;i-7iq.ws/emoji-image/🚀.png?format=emojione&amp;ar=1x1</strong></a></p>
 <p>If you open the above link you can see that emoji as a .png image. Now we just need to download it. For that, we can rely on our good old <code>wget</code>:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ wget <span style="color:#e6db74">&#34;https://xn--i-7iq.ws/emoji-image/🚀.png?format\=emojione\&amp;ar\=1x1&#34;</span> -O rocket.png
-</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ wget <span style="color:#e6db74">&#34;https://xn--i-7iq.ws/emoji-image/🚀.png?format\=emojione\&amp;ar\=1x1&#34;</span> -O rocket.png
+</code></pre></td></tr></table>
 </div>
 </div><p>Awesome! We can now update our <code>olhaaqui()</code> snippet to also download the emoji image:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span></span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># ~/.functions</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> olhaaqui<span style="color:#f92672">(){</span>
-</span></span><span style="display:flex;"><span>  EMOJIES<span style="color:#f92672">=(</span>💩 🚀 ❗️ 😭 🎉 😘 👋<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Get random emoji from list</span>
-</span></span><span style="display:flex;"><span>  INDEX<span style="color:#f92672">=</span><span style="color:#66d9ef">$((</span>$RANDOM <span style="color:#f92672">%</span> <span style="color:#e6db74">${#</span>EMOJIES[@]<span style="color:#e6db74">}</span><span style="color:#66d9ef">))</span>
-</span></span><span style="display:flex;"><span>  INDEX<span style="color:#f92672">=</span><span style="color:#66d9ef">$((</span>$INDEX&gt;0 ? $INDEX : <span style="color:#ae81ff">1</span><span style="color:#66d9ef">))</span> <span style="color:#75715e"># max($INDEX, 1)</span>
-</span></span><span style="display:flex;"><span>  EMOJI<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>EMOJIES[$INDEX]<span style="color:#e6db74">}</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Download emoji .png image</span>
-</span></span><span style="display:flex; background-color:#3c3d38"><span>  wget --quiet <span style="color:#e6db74">&#34;https://xn--i-7iq.ws/emoji-image/</span>$EMOJI<span style="color:#e6db74">.png?format\=emojione\&amp;ar\=1x1&#34;</span> -O $EMOJI.png
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span></span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># ~/.functions</span>
+<span style="color:#66d9ef">function</span> olhaaqui<span style="color:#f92672">(){</span>
+  EMOJIES<span style="color:#f92672">=(</span>💩 🚀 ❗️ 😭 🎉 😘 👋<span style="color:#f92672">)</span>
+  <span style="color:#75715e"># Get random emoji from list</span>
+  INDEX<span style="color:#f92672">=</span><span style="color:#66d9ef">$((</span>$RANDOM <span style="color:#f92672">%</span> <span style="color:#e6db74">${#</span>EMOJIES[@]<span style="color:#e6db74">}</span><span style="color:#66d9ef">))</span>
+  INDEX<span style="color:#f92672">=</span><span style="color:#66d9ef">$((</span>$INDEX&gt;0 ? $INDEX : <span style="color:#ae81ff">1</span><span style="color:#66d9ef">))</span> <span style="color:#75715e"># max($INDEX, 1)</span>
+  EMOJI<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>EMOJIES[$INDEX]<span style="color:#e6db74">}</span>
+  <span style="color:#75715e"># Download emoji .png image</span>
+<span style="display:block;width:100%;background-color:#3c3d38">  wget --quiet <span style="color:#e6db74">&#34;https://xn--i-7iq.ws/emoji-image/</span>$EMOJI<span style="color:#e6db74">.png?format\=emojione\&amp;ar\=1x1&#34;</span> -O $EMOJI.png
+</span><span style="color:#f92672">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <h2 id="convert-into-ascii-art">Convert into Ascii art</h2>
 <p>Now we are just missing the ascii art! For that we can use <a href="https://github.com/cslarsen/jp2a"><code>jp2a</code></a>, which is a simple command line util to convert jpegs into ascii.</p>
 <p>Since our image is a .png, we also need to convert it from .png to .jpg format, which we can simply use the <a href="https://superuser.com/questions/71028/batch-converting-png-to-jpg-in-linux"><code>convert</code></a> command.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ convert $EMOJI.png $EMOJI.jpg
-</span></span><span style="display:flex;"><span>$ jp2a --size<span style="color:#f92672">=</span>96x46 $EMOJI.jpg --output<span style="color:#f92672">=</span>$EMOJI.txt
-</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ convert $EMOJI.png $EMOJI.jpg
+$ jp2a --size<span style="color:#f92672">=</span>96x46 $EMOJI.jpg --output<span style="color:#f92672">=</span>$EMOJI.txt
+</code></pre></td></tr></table>
 </div>
 </div><p>Finally, we can just pipe our ascii art .txt through lolcat and thats it:</p>
 <p><img src="images/4th-with-M.gif" alt="images/4th-with-M.gif"></p>
 <p>Hum, all white pixels are being converted to <strong>&ldquo;M&rdquo;</strong>. We can solve this by just replacing them with empty string:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sed -i.bak <span style="color:#e6db74">&#34;s/M/ /g&#34;</span> $EMOJI.txt
-</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sed -i.bak <span style="color:#e6db74">&#34;s/M/ /g&#34;</span> $EMOJI.txt
+</code></pre></td></tr></table>
 </div>
 </div><p><img src="images/4th-without-M.gif" alt="images/4th-without-M.gif"></p>
 <p>Adding those commands to our <code>olhaaqui()</code> function looks like this:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span></span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span></span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span></span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span></span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span></span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># ~/.functions</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> olhaaqui<span style="color:#f92672">(){</span>
-</span></span><span style="display:flex;"><span>  EMOJIES<span style="color:#f92672">=(</span>💩 🚀 ❗️ 😭 🎉 😘 👋<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Get random emoji from list</span>
-</span></span><span style="display:flex;"><span>  INDEX<span style="color:#f92672">=</span><span style="color:#66d9ef">$((</span>$RANDOM <span style="color:#f92672">%</span> <span style="color:#e6db74">${#</span>EMOJIES[@]<span style="color:#e6db74">}</span><span style="color:#66d9ef">))</span>
-</span></span><span style="display:flex;"><span>  INDEX<span style="color:#f92672">=</span><span style="color:#66d9ef">$((</span>$INDEX&gt;0 ? $INDEX : <span style="color:#ae81ff">1</span><span style="color:#66d9ef">))</span> <span style="color:#75715e"># max($INDEX, 1)</span>
-</span></span><span style="display:flex;"><span>  EMOJI<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>EMOJIES[$INDEX]<span style="color:#e6db74">}</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Download emoji .png image</span>
-</span></span><span style="display:flex;"><span>  wget --quiet <span style="color:#e6db74">&#34;https://xn--i-7iq.ws/emoji-image/</span>$EMOJI<span style="color:#e6db74">.png?format\=emojione\&amp;ar\=1x1&#34;</span> -O $EMOJI.png
-</span></span><span style="display:flex; background-color:#3c3d38"><span>  <span style="color:#75715e"># Convert to ascii art</span>
-</span></span><span style="display:flex; background-color:#3c3d38"><span>  convert $EMOJI.png $EMOJI.jpg
-</span></span><span style="display:flex; background-color:#3c3d38"><span>  jp2a --size<span style="color:#f92672">=</span>96x46 $EMOJI.jpg --output<span style="color:#f92672">=</span>$EMOJI.txt
-</span></span><span style="display:flex; background-color:#3c3d38"><span>  <span style="color:#75715e"># Replace &#34;M&#34; character with &#34; &#34; (empty character)</span>
-</span></span><span style="display:flex; background-color:#3c3d38"><span>  sed -i.bak <span style="color:#e6db74">&#34;s/M/ /g&#34;</span> $EMOJI.txt
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Welcome!</span>
-</span></span><span style="display:flex;"><span>  cat $EMOJI.txt | lolcat
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span></span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># ~/.functions</span>
+<span style="color:#66d9ef">function</span> olhaaqui<span style="color:#f92672">(){</span>
+  EMOJIES<span style="color:#f92672">=(</span>💩 🚀 ❗️ 😭 🎉 😘 👋<span style="color:#f92672">)</span>
+  <span style="color:#75715e"># Get random emoji from list</span>
+  INDEX<span style="color:#f92672">=</span><span style="color:#66d9ef">$((</span>$RANDOM <span style="color:#f92672">%</span> <span style="color:#e6db74">${#</span>EMOJIES[@]<span style="color:#e6db74">}</span><span style="color:#66d9ef">))</span>
+  INDEX<span style="color:#f92672">=</span><span style="color:#66d9ef">$((</span>$INDEX&gt;0 ? $INDEX : <span style="color:#ae81ff">1</span><span style="color:#66d9ef">))</span> <span style="color:#75715e"># max($INDEX, 1)</span>
+  EMOJI<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>EMOJIES[$INDEX]<span style="color:#e6db74">}</span>
+  <span style="color:#75715e"># Download emoji .png image</span>
+  wget --quiet <span style="color:#e6db74">&#34;https://xn--i-7iq.ws/emoji-image/</span>$EMOJI<span style="color:#e6db74">.png?format\=emojione\&amp;ar\=1x1&#34;</span> -O $EMOJI.png
+<span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#75715e"># Convert to ascii art</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">  convert $EMOJI.png $EMOJI.jpg
+</span><span style="display:block;width:100%;background-color:#3c3d38">  jp2a --size<span style="color:#f92672">=</span>96x46 $EMOJI.jpg --output<span style="color:#f92672">=</span>$EMOJI.txt
+</span><span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#75715e"># Replace &#34;M&#34; character with &#34; &#34; (empty character)</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">  sed -i.bak <span style="color:#e6db74">&#34;s/M/ /g&#34;</span> $EMOJI.txt
+</span>  <span style="color:#75715e"># Welcome!</span>
+  cat $EMOJI.txt | lolcat
+<span style="color:#f92672">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <h1 id="cache-it">Cache it</h1>
@@ -407,69 +407,69 @@ Z["$ cat $EMOJI | lolcat"]
 The <em>.txt.bak</em> file is created when we run the <code>sed</code> command with the <code>-i</code> flag. It overrides the original $EMOJI file but also generates a backup with the .bak extension.
 We don&rsquo;t need those.</p>
 </blockquote>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> olhaaqui<span style="color:#f92672">(){</span>
-</span></span><span style="display:flex;"><span>  FOLDER<span style="color:#f92672">=</span>~/.emoji
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Create folder if doesn&#39;t exist</span>
-</span></span><span style="display:flex;"><span>  mkdir -p $FOLDER
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Get random emoji from list</span>
-</span></span><span style="display:flex;"><span>  EMOJIES<span style="color:#f92672">=(</span>💩 🚀 ❗️ 😭 🎉 😘 👋<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>  EMOJI<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>EMOJIES[$RANDOM % <span style="color:#e6db74">${#</span>EMOJIES[@]<span style="color:#e6db74">}</span>]<span style="color:#e6db74">}</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Check if emoji was previously used. If so use that, otherwise, download it.</span>
-</span></span><span style="display:flex;"><span>  OLD_PWD<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>PWD<span style="color:#66d9ef">)</span>
-</span></span><span style="display:flex;"><span>  cd ~/
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> ! -f <span style="color:#e6db74">&#34;</span>$FOLDER<span style="color:#e6db74">/</span>$EMOJI<span style="color:#e6db74">.txt&#34;</span> <span style="color:#f92672">]</span> ; <span style="color:#66d9ef">then</span>
-</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;Downloading \&#34;</span>$EMOJI<span style="color:#e6db74">\&#34;...&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Download image using Emoji API</span>
-</span></span><span style="display:flex;"><span>    wget --quiet <span style="color:#e6db74">&#34;https://xn--i-7iq.ws/emoji-image/</span>$EMOJI<span style="color:#e6db74">.png?format\=emojione\&amp;ar\=1x1&#34;</span> -O $FOLDER/$EMOJI.png
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Convert image from .png to .jpg</span>
-</span></span><span style="display:flex;"><span>    convert $FOLDER/$EMOJI.png $FOLDER/$EMOJI.jpg
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Convert image to ascii art</span>
-</span></span><span style="display:flex;"><span>    jp2a --size<span style="color:#f92672">=</span>96x46 $FOLDER/$EMOJI.jpg --output<span style="color:#f92672">=</span>$FOLDER/$EMOJI.txt
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Replace all border &#34;M&#34; characters with empty space</span>
-</span></span><span style="display:flex;"><span>    sed -i.bak <span style="color:#e6db74">&#34;s/M/ /g&#34;</span> $FOLDER/$EMOJI.txt
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Delete temp files</span>
-</span></span><span style="display:flex;"><span>    rm $FOLDER/$EMOJI.png $FOLDER/$EMOJI.jpg $FOLDER/$EMOJI.txt.bak
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">fi</span>
-</span></span><span style="display:flex;"><span>  cd $OLD_PWD
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Print image</span>
-</span></span><span style="display:flex;"><span>  cat $FOLDER/$EMOJI.txt | lolcat
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#66d9ef">function</span> olhaaqui<span style="color:#f92672">(){</span>
+  FOLDER<span style="color:#f92672">=</span>~/.emoji
+  <span style="color:#75715e"># Create folder if doesn&#39;t exist</span>
+  mkdir -p $FOLDER
+
+  <span style="color:#75715e"># Get random emoji from list</span>
+  EMOJIES<span style="color:#f92672">=(</span>💩 🚀 ❗️ 😭 🎉 😘 👋<span style="color:#f92672">)</span>
+  EMOJI<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>EMOJIES[$RANDOM % <span style="color:#e6db74">${#</span>EMOJIES[@]<span style="color:#e6db74">}</span>]<span style="color:#e6db74">}</span>
+
+  <span style="color:#75715e"># Check if emoji was previously used. If so use that, otherwise, download it.</span>
+  OLD_PWD<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>PWD<span style="color:#66d9ef">)</span>
+  cd ~/
+  <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> ! -f <span style="color:#e6db74">&#34;</span>$FOLDER<span style="color:#e6db74">/</span>$EMOJI<span style="color:#e6db74">.txt&#34;</span> <span style="color:#f92672">]</span> ; <span style="color:#66d9ef">then</span>
+    echo <span style="color:#e6db74">&#34;Downloading \&#34;</span>$EMOJI<span style="color:#e6db74">\&#34;...&#34;</span>
+    <span style="color:#75715e"># Download image using Emoji API</span>
+    wget --quiet <span style="color:#e6db74">&#34;https://xn--i-7iq.ws/emoji-image/</span>$EMOJI<span style="color:#e6db74">.png?format\=emojione\&amp;ar\=1x1&#34;</span> -O $FOLDER/$EMOJI.png
+    <span style="color:#75715e"># Convert image from .png to .jpg</span>
+    convert $FOLDER/$EMOJI.png $FOLDER/$EMOJI.jpg
+    <span style="color:#75715e"># Convert image to ascii art</span>
+    jp2a --size<span style="color:#f92672">=</span>96x46 $FOLDER/$EMOJI.jpg --output<span style="color:#f92672">=</span>$FOLDER/$EMOJI.txt
+    <span style="color:#75715e"># Replace all border &#34;M&#34; characters with empty space</span>
+    sed -i.bak <span style="color:#e6db74">&#34;s/M/ /g&#34;</span> $FOLDER/$EMOJI.txt
+    <span style="color:#75715e"># Delete temp files</span>
+    rm $FOLDER/$EMOJI.png $FOLDER/$EMOJI.jpg $FOLDER/$EMOJI.txt.bak
+  <span style="color:#66d9ef">fi</span>
+  cd $OLD_PWD
+  <span style="color:#75715e"># Print image</span>
+  cat $FOLDER/$EMOJI.txt | lolcat
+<span style="color:#f92672">}</span>
+</code></pre></td></tr></table>
 </div>
 </div><p>Moving this to your <code>~/.bashrc</code> and you&rsquo;ll have the following:</p>
 <p><img src="images/welcome-final.gif" alt="images/welcome-final.gif"></p>
@@ -517,7 +517,7 @@ We don&rsquo;t need those.</p>
 
 <div id="disqus_thread"></div>
 <script type="application/javascript">
-    window.disqus_config = function () {
+    var disqus_config = function () {
     
     
     
@@ -754,6 +754,7 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
+
     
 
     <script type="text/javascript" src="https://www.andreffs.com/js/main.js"></script>

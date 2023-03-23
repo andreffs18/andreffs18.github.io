@@ -8,7 +8,11 @@
     <language>en-us</language>
     <managingEditor>andreffs18@gmail.com (André Silva)</managingEditor>
     <webMaster>andreffs18@gmail.com (André Silva)</webMaster>
-    <lastBuildDate>Thu, 16 Feb 2023 07:27:00 +0000</lastBuildDate><atom:link href="https://www.andreffs.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 16 Feb 2023 07:27:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.andreffs.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>Tools vs Data Structures</title>
       <link>https://www.andreffs.com/blog/tools-vs-data-structures/</link>
@@ -26,7 +30,7 @@ This blog post talks a bit about the challenge and my approach to solving it. Al
       <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/blog/n8n-customizations-for-production/</guid>
       <description>This post is a continuation on &amp;ldquo;Setup n8n on Kubernetes&amp;rdquo;, so most of the things we talk here assume that you&amp;rsquo;ve followed/read this one as well.
-After running n8n during a couple of months in production, me and my team realized that the default configuration do not work very well for us.
+ After running n8n during a couple of months in production, me and my team realized that the default configuration do not work very well for us.
 So here in this post I go over the changes we did to allow n8n to scale and work without problems.</description>
     </item>
     
@@ -37,7 +41,7 @@ So here in this post I go over the changes we did to allow n8n to scale and work
       <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/blog/observability-on-n8n/</guid>
       <description>This post is a continuation on &amp;ldquo;Setup n8n on Kubernetes&amp;rdquo;, so most of the things we talk here assume that you&amp;rsquo;ve followed/read this one as well.
-You have your own n8n instance running in Kubernetes, taking advantage of all amazing functionality and capabilities of it, but you are still going in blind right now. I mean, how can you check if your service is healthy? Is it running? How much memory is it using?</description>
+ You have your own n8n instance running in Kubernetes, taking advantage of all amazing functionality and capabilities of it, but you are still going in blind right now. I mean, how can you check if your service is healthy? Is it running? How much memory is it using?</description>
     </item>
     
     <item>
@@ -47,7 +51,7 @@ You have your own n8n instance running in Kubernetes, taking advantage of all am
       <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/blog/setup-n8n-on-kubernetes/</guid>
       <description>Update 2021-05-23: Decided to split this post into 3 different ones to be more easily read. You can find the other two here: &amp;ldquo;Observability on n8n&amp;rdquo; and &amp;ldquo;n8n customizations for Production&amp;rdquo;.
-So at my company we started using n8n to setup some MVP&amp;rsquo;s, build workflows and glue together some of our internal tools in order to automate some of our processes.
+ So at my company we started using n8n to setup some MVP&amp;rsquo;s, build workflows and glue together some of our internal tools in order to automate some of our processes.
 In this post I&amp;rsquo;m going to go over how we&amp;rsquo;ve deployed n8n on our Kubernetes Cluster.</description>
     </item>
     
@@ -59,7 +63,7 @@ In this post I&amp;rsquo;m going to go over how we&amp;rsquo;ve deployed n8n on 
       <guid>https://www.andreffs.com/blog/debug-in-hugo/</guid>
       <description>While building this website I needed to understand a bit more about the internals and its variables. Even though Hugo&amp;rsquo;s documentation about debugging is pretty &amp;ldquo;okay&amp;rdquo;, there are a lot of attributes that are really hard to figure out, specially if you can&amp;rsquo;t see them on the documentation.
 So I started to look online for something to help me out debugging Hugo templates and the usual 3 options were:
-🖨 printing the dot on Hugo&amp;rsquo;s templates 📝 console.</description>
+ 🖨 printing the dot on Hugo&amp;rsquo;s templates 📝 console.</description>
     </item>
     
     <item>
@@ -70,7 +74,7 @@ So I started to look online for something to help me out debugging Hugo template
       <guid>https://www.andreffs.com/blog/how-i-ve-scanned-5k-mtg-cards/</guid>
       <description>Update 2022-08-16: Same thing as last year. Also, I finally managed to sell the whole collection. Need to pay for that dinner now :)
 Update 2021-05-24: Went back to this to refresh with 2021 prices and check if those change that much after a year. Well, it seems it does 😂
-A good friend of mine gave me an old box of magic cards, like a really big old box, and during the first couple of weeks of COVID, I decided to sort them out to see how much money I had in there.</description>
+ A good friend of mine gave me an old box of magic cards, like a really big old box, and during the first couple of weeks of COVID, I decided to sort them out to see how much money I had in there.</description>
     </item>
     
     <item>
@@ -90,8 +94,8 @@ While the &amp;ldquo;Saved&amp;rdquo; section on Reddit was mostly threads from 
       <pubDate>Sat, 28 Mar 2020 11:33:00 +0000</pubDate>
       <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/blog/host-slack-bot-in-heroku-for-free/</guid>
-      <description>Update 2022-09-25: Well damn&amp;hellip; I guess I need to think of another way to do this. There is a Portuguese &amp;ldquo;motivational guru&amp;rdquo; called Gustavo Santos that has been in the news for some dumb reason. He&amp;rsquo;s the type of character that will say something like &amp;ldquo;A mente chama-se mente porque te mente&amp;rdquo;, and come off as super profound.
-&amp;ldquo;Mind is called mind because it lies&amp;rdquo;&amp;hellip; in Portuguese sounds &amp;ldquo;better&amp;rdquo; 😅</description>
+      <description>Update 2022-09-25: Well damn&amp;hellip; I guess I need to think of another way to do this.   There is a Portuguese &amp;ldquo;motivational guru&amp;rdquo; called Gustavo Santos that has been in the news for some dumb reason. He&amp;rsquo;s the type of character that will say something like &amp;ldquo;A mente chama-se mente porque te mente&amp;quot;, and come off as super profound.
+ &amp;ldquo;Mind is called mind because it lies&amp;quot;&amp;hellip; in Portuguese sounds &amp;ldquo;better&amp;rdquo; 😅</description>
     </item>
     
     <item>
@@ -101,8 +105,8 @@ While the &amp;ldquo;Saved&amp;rdquo; section on Reddit was mostly threads from 
       <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/blog/docker-postgresql/</guid>
       <description>More often than not, I end up going online to look up on how to use docker as the middle man on interacting with Postgres.
-Usually for me its Postgres, but this &amp;ldquo;recipe&amp;rdquo; can be applied to any piece of software that has more than one version which you don&amp;rsquo;t have installed on your laptop.
-Because of this whole back and forth I compiled a small list of &amp;ldquo;how-tos&amp;rdquo; to help me remember.</description>
+ Usually for me its Postgres, but this &amp;ldquo;recipe&amp;rdquo; can be applied to any piece of software that has more than one version which you don&amp;rsquo;t have installed on your laptop.
+ Because of this whole back and forth I compiled a small list of &amp;ldquo;how-tos&amp;rdquo; to help me remember.</description>
     </item>
     
     <item>
@@ -136,7 +140,7 @@ Although I&amp;rsquo;m pretty happy with my terminal setup (shameless plug to �
       <description>So, you’re trying to create an SSH Tunnel to your remote machine to make some gitlab/github clones.
 That’s all fine and well until you don’t want to post your password on to the terminal.
 First, look at you ~/.ssh/config file and add the “ForwardAgent yes” to that machines ip.
-1 2 3 Host 35.241.133.24 IdentityFile ~/.ssh/id_rsa ForwardAgent yes That says to use your local private key as identification when accessing gitlab on your remote’s machine.</description>
+1 2 3  Host 35.241.133.24 IdentityFile ~/.ssh/id_rsa ForwardAgent yes   That says to use your local private key as identification when accessing gitlab on your remote’s machine.</description>
     </item>
     
     <item>
@@ -147,7 +151,7 @@ First, look at you ~/.ssh/config file and add the “ForwardAgent yes” to that
       <guid>https://www.andreffs.com/blog/postgres-is-now-running/</guid>
       <description>My Macbook has OSX Mavericks installed and sometimes it crashes for no reason, breaking my local postgres server. After restarting and running again &amp;quot;$ brew services postgres&amp;quot;, Postgres becomes yellow and I end up spending sometime looking confused and frustrated.
 Looking at the logs you can get a sense of whats happening:
-1 2 $ tail -f /usr/local/var/postgres/server.log FATAL: lock file &amp;#34;postmaster.pid&amp;#34; already exists Simply removing the lock file that Postgres generates solves this issue:</description>
+1 2  $ tail -f /usr/local/var/postgres/server.log FATAL: lock file &amp;#34;postmaster.pid&amp;#34; already exists   Simply removing the lock file that Postgres generates solves this issue:</description>
     </item>
     
     <item>
@@ -157,7 +161,7 @@ Looking at the logs you can get a sense of whats happening:
       <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/blog/personal-finance/</guid>
       <description>Well, after reading a couple of books on the topic, they all talk about the same thing: you should diversify your portfolio.
-Code could not finish, this are some reasons why this happen. - Plot name not defined. The first parameter of the shortcode is the name. - There is a syntax error. check browser console. The major misconception is that having different tech stocks is the same as having a diverse portfolio.</description>
+Code could not finish, this are some reasons why this happen. - Plot name not defined. The first parameter of the shortcode is the name. - There is a syntax error. check browser console.   function draw(){ test = document.getElementById(&#34;piechart&#34;); if (test == null){ console.log(&#34;The plot name is not defined&#34;</description>
     </item>
     
     <item>
@@ -167,7 +171,7 @@ Code could not finish, this are some reasons why this happen. - Plot name not de
       <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/blog/seo-tips/</guid>
       <description>My key takeaways from making this website &amp;ldquo;SEO friendly&amp;rdquo;:
-Use link &amp;ldquo;tree structure&amp;rdquo; from homepage. This way, bots and crawlers can find every page on the website Good titles, under 65 characters Meta tags with good keywords under 100 characters Use canonical urls on every page 1 2 3 &amp;lt;link rel=&amp;#34;canonical&amp;#34; href=&amp;#34;http://localhost:1313/blog/seo-tips/&amp;#34;&amp;gt; &amp;lt;!-- instead of --&amp;gt; &amp;lt;link rel=&amp;#34;canonical&amp;#34; href=&amp;#34;/blog/seo-tips&amp;#34;&amp;gt; Add &amp;ldquo;alt&amp;rdquo; tag to images 1 &amp;lt;img alt=&amp;#34;About me picture&amp;#34; src=&amp;#34;/images/about.jpeg&amp;#34;&amp;gt; Pre-commit hooks Having this checklist is nice but it would be better if I didn&amp;rsquo;t have to check this by myself every time I do a side project.</description>
+ Use link &amp;ldquo;tree structure&amp;rdquo; from homepage. This way, bots and crawlers can find every page on the website Good titles, under 65 characters Meta tags with good keywords under 100 characters Use canonical urls on every page  1 2 3  &amp;lt;link rel=&amp;#34;canonical&amp;#34; href=&amp;#34;http://localhost:1313/blog/seo-tips/&amp;#34;&amp;gt; &amp;lt;!-- instead of --&amp;gt; &amp;lt;link rel=&amp;#34;canonical&amp;#34; href=&amp;#34;/blog/seo-tips&amp;#34;&amp;gt;   Add &amp;ldquo;alt&amp;rdquo; tag to images  1  &amp;lt;img alt=&amp;#34;About me picture&amp;#34; src=&amp;#34;/images/about.</description>
     </item>
     
     <item>
@@ -190,7 +194,7 @@ Then a simple multiplication shows that your &amp;ldquo;poop time&amp;rdquo; is 
       <description>Hello 😃
 So this is the mandatory &amp;ldquo;Hello World&amp;rdquo; blog post.
 The intent of this blog is just to keep track of my achievements, projects and also:
-Technical how-to/tutorials Bugs or gotchas that might be useful in the future Setup &amp;amp; configuration Stuff that I keep forgetting and keep googling. 👋</description>
+ Technical how-to/tutorials Bugs or gotchas that might be useful in the future Setup &amp;amp; configuration Stuff that I keep forgetting and keep googling.  👋</description>
     </item>
     
   </channel>

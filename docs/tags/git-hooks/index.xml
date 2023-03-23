@@ -8,7 +8,11 @@
     <language>en-us</language>
     <managingEditor>andreffs18@gmail.com (André Silva)</managingEditor>
     <webMaster>andreffs18@gmail.com (André Silva)</webMaster>
-    <lastBuildDate>Fri, 17 Feb 2017 00:45:32 +0000</lastBuildDate><atom:link href="https://www.andreffs.com/tags/git-hooks/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 17 Feb 2017 00:45:32 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.andreffs.com/tags/git-hooks/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>SEO Tips</title>
       <link>https://www.andreffs.com/blog/seo-tips/</link>
@@ -16,7 +20,7 @@
       <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/blog/seo-tips/</guid>
       <description>My key takeaways from making this website &amp;ldquo;SEO friendly&amp;rdquo;:
-Use link &amp;ldquo;tree structure&amp;rdquo; from homepage. This way, bots and crawlers can find every page on the website Good titles, under 65 characters Meta tags with good keywords under 100 characters Use canonical urls on every page 1 2 3 &amp;lt;link rel=&amp;#34;canonical&amp;#34; href=&amp;#34;http://localhost:1313/blog/seo-tips/&amp;#34;&amp;gt; &amp;lt;!-- instead of --&amp;gt; &amp;lt;link rel=&amp;#34;canonical&amp;#34; href=&amp;#34;/blog/seo-tips&amp;#34;&amp;gt; Add &amp;ldquo;alt&amp;rdquo; tag to images 1 &amp;lt;img alt=&amp;#34;About me picture&amp;#34; src=&amp;#34;/images/about.jpeg&amp;#34;&amp;gt; Pre-commit hooks Having this checklist is nice but it would be better if I didn&amp;rsquo;t have to check this by myself every time I do a side project.</description>
+ Use link &amp;ldquo;tree structure&amp;rdquo; from homepage. This way, bots and crawlers can find every page on the website Good titles, under 65 characters Meta tags with good keywords under 100 characters Use canonical urls on every page  1 2 3  &amp;lt;link rel=&amp;#34;canonical&amp;#34; href=&amp;#34;http://localhost:1313/blog/seo-tips/&amp;#34;&amp;gt; &amp;lt;!-- instead of --&amp;gt; &amp;lt;link rel=&amp;#34;canonical&amp;#34; href=&amp;#34;/blog/seo-tips&amp;#34;&amp;gt;   Add &amp;ldquo;alt&amp;rdquo; tag to images  1  &amp;lt;img alt=&amp;#34;About me picture&amp;#34; src=&amp;#34;/images/about.</description>
     </item>
     
   </channel>

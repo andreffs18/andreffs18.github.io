@@ -1,225 +1,373 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
   <url>
-    <loc>https://www.andreffs.com/</loc>
-    <lastmod>2023-03-22T09:07:48+00:00</lastmod>
-  </url><url>
     <loc>https://www.andreffs.com/tags/benchmarking/</loc>
     <lastmod>2023-03-22T09:07:48+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/blog/</loc>
     <lastmod>2023-03-22T09:07:48+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/data-structures/</loc>
     <lastmod>2023-03-22T09:07:48+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/grafana/</loc>
     <lastmod>2023-03-22T09:07:48+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/mongo/</loc>
     <lastmod>2023-03-22T09:07:48+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/openapi/</loc>
     <lastmod>2023-03-22T09:07:48+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
+    <loc>https://www.andreffs.com/tags/postgres/</loc>
+    <lastmod>2023-03-22T09:07:48+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/postgresql/</loc>
     <lastmod>2023-03-22T09:07:48+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/prism/</loc>
     <lastmod>2023-03-22T09:07:48+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/prometheus/</loc>
     <lastmod>2023-03-22T09:07:48+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/redis/</loc>
     <lastmod>2023-03-22T09:07:48+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/starlette/</loc>
     <lastmod>2023-03-22T09:07:48+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/</loc>
     <lastmod>2023-03-22T09:07:48+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/blog/tools-vs-data-structures/</loc>
     <lastmod>2023-03-22T09:07:48+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/kubernetes/</loc>
     <lastmod>2021-05-28T23:46:33+01:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/loadtest/</loc>
     <lastmod>2021-05-28T23:46:33+01:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/n8n/</loc>
     <lastmod>2021-05-28T23:46:33+01:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/blog/n8n-customizations-for-production/</loc>
     <lastmod>2021-05-28T23:46:33+01:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/nodejs/</loc>
     <lastmod>2021-05-28T23:46:33+01:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/production/</loc>
     <lastmod>2021-05-28T23:46:33+01:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/minikube/</loc>
     <lastmod>2021-05-23T22:25:46+01:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/blog/observability-on-n8n/</loc>
     <lastmod>2021-05-23T22:25:46+01:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/blog/setup-n8n-on-kubernetes/</loc>
     <lastmod>2021-05-23T22:25:46+01:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/blog/debug-in-hugo/</loc>
     <lastmod>2021-03-23T21:56:46+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/debugging/</loc>
     <lastmod>2021-03-23T21:56:46+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/hugo/</loc>
     <lastmod>2021-03-23T21:56:46+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/android/</loc>
     <lastmod>2023-03-18T15:02:38+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/databases/</loc>
     <lastmod>2023-03-18T15:02:38+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/dbeaver/</loc>
     <lastmod>2023-03-18T15:02:38+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/blog/how-i-ve-scanned-5k-mtg-cards/</loc>
     <lastmod>2023-03-18T15:02:38+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/magic-the-gathering/</loc>
     <lastmod>2023-03-18T15:02:38+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/sqlite/</loc>
     <lastmod>2023-03-18T15:02:38+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/automation/</loc>
     <lastmod>2021-05-23T22:35:36+01:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/bash/</loc>
     <lastmod>2021-03-23T21:56:46+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/dotfiles/</loc>
     <lastmod>2021-03-23T21:56:46+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/feedly/</loc>
     <lastmod>2021-03-23T21:56:46+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/blog/just-keep-on-save-for-later/</loc>
     <lastmod>2021-03-23T21:56:46+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/python/</loc>
     <lastmod>2022-10-18T22:39:26+01:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/rss/</loc>
     <lastmod>2021-03-23T21:56:46+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/self-improving/</loc>
     <lastmod>2021-03-23T21:56:46+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/fastapi/</loc>
     <lastmod>2022-10-18T22:39:26+01:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/heroku/</loc>
     <lastmod>2022-10-18T22:39:26+01:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/blog/host-slack-bot-in-heroku-for-free/</loc>
     <lastmod>2022-10-18T22:39:26+01:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/slackbot/</loc>
     <lastmod>2022-10-18T22:39:26+01:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/vuejs/</loc>
     <lastmod>2022-10-18T22:39:26+01:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/docker/</loc>
     <lastmod>2021-03-23T21:56:46+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/blog/docker-postgresql/</loc>
     <lastmod>2021-03-23T21:56:46+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/ssh/</loc>
     <lastmod>2021-05-23T22:35:36+01:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/canary/</loc>
     <lastmod>2021-03-23T21:56:46+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/gitlab/</loc>
     <lastmod>2021-03-23T21:56:46+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/blog/learning-how-to-canary-deploy-with-kubernetes/</loc>
     <lastmod>2021-03-23T21:56:46+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/emoji/</loc>
     <lastmod>2021-03-23T21:56:46+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/blog/i-really-like-emojis/</loc>
     <lastmod>2021-03-23T21:56:46+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/zsh/</loc>
     <lastmod>2021-03-23T21:56:46+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/gotchas/</loc>
     <lastmod>2021-05-23T22:35:36+01:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/blog/ssh-forwardagent-gotchas/</loc>
     <lastmod>2021-05-23T22:35:36+01:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/tips/</loc>
     <lastmod>2021-05-23T22:35:36+01:00</lastmod>
-  </url><url>
-    <loc>https://www.andreffs.com/tags/postgres/</loc>
-    <lastmod>2021-05-23T22:35:36+01:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/blog/postgres-is-now-running/</loc>
     <lastmod>2021-05-23T22:35:36+01:00</lastmod>
-  </url><url>
-    <loc>https://www.andreffs.com/blog/personal-finance/</loc>
-    <lastmod>2023-03-18T14:56:01+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/finance/</loc>
     <lastmod>2023-03-18T14:56:01+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/plotly/</loc>
     <lastmod>2023-03-18T14:56:01+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
+    <loc>https://www.andreffs.com/blog/personal-finance/</loc>
+    <lastmod>2023-03-18T14:56:01+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/git-hooks/</loc>
     <lastmod>2021-05-23T22:35:36+01:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/seo/</loc>
     <lastmod>2021-05-23T22:35:36+01:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/blog/seo-tips/</loc>
     <lastmod>2021-05-23T22:35:36+01:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/blog/get-paid-for-pooping/</loc>
     <lastmod>2023-03-18T14:56:01+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/nfc/</loc>
     <lastmod>2023-03-18T14:56:01+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/zapier/</loc>
     <lastmod>2023-03-18T14:56:01+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/blog/hello-world/</loc>
     <lastmod>2021-05-23T22:35:36+01:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/about/</loc>
     <lastmod>2022-09-15T08:24:38+01:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
+    <loc>https://www.andreffs.com/</loc>
+    <lastmod>2022-09-15T08:24:38+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/categories/</loc>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/tags/ci/cd/</loc>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/cv/</loc>
     <lastmod>2020-07-25T10:10:24+01:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.andreffs.com/projects/</loc>
     <lastmod>2022-09-15T08:24:38+01:00</lastmod>
   </url>
+  
 </urlset>

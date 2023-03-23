@@ -8,7 +8,11 @@
     <language>en-us</language>
     <managingEditor>andreffs18@gmail.com (André Silva)</managingEditor>
     <webMaster>andreffs18@gmail.com (André Silva)</webMaster>
-    <lastBuildDate>Mon, 30 Mar 2020 10:50:00 +0000</lastBuildDate><atom:link href="https://www.andreffs.com/tags/feedly/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 30 Mar 2020 10:50:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.andreffs.com/tags/feedly/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>Just keep on &#34;Save for later&#34;</title>
       <link>https://www.andreffs.com/blog/just-keep-on-save-for-later/</link>

@@ -7,7 +7,7 @@
     <title>Observability on n8n | ANDREFFS</title>
     <meta name="author" content="André Silva">
     <meta name="description" content='This post is a continuation on &ldquo;Setup n8n on Kubernetes&rdquo;, so most of the things we talk here assume that you&rsquo;ve followed/read this one as well.
-You have your own n8n instance running in Kubernetes, taking advantage of all amazing functionality and capabilities of it, but you are still going in blind right now. I mean, how can you check if your service is healthy? Is it running? How much memory is it using?'/>
+ You have your own n8n instance running in Kubernetes, taking advantage of all amazing functionality and capabilities of it, but you are still going in blind right now. I mean, how can you check if your service is healthy? Is it running? How much memory is it using?'/>
     
         <meta name="keywords" content='n8n, nodejs, kubernetes, grafana, minikube'/>
     
@@ -28,7 +28,7 @@ You have your own n8n instance running in Kubernetes, taking advantage of all am
     <meta property="og:title" content='Observability on n8n | ANDREFFS'/>
     <meta property="og:author" content='André Silva'/>
     <meta property="og:description" content='This post is a continuation on &ldquo;Setup n8n on Kubernetes&rdquo;, so most of the things we talk here assume that you&rsquo;ve followed/read this one as well.
-You have your own n8n instance running in Kubernetes, taking advantage of all amazing functionality and capabilities of it, but you are still going in blind right now. I mean, how can you check if your service is healthy? Is it running? How much memory is it using?'/>
+ You have your own n8n instance running in Kubernetes, taking advantage of all amazing functionality and capabilities of it, but you are still going in blind right now. I mean, how can you check if your service is healthy? Is it running? How much memory is it using?'/>
     <meta property="og:type" content="article"/>
     <meta property="og:image" content='https://www.andreffs.com/blog/observability-on-n8n/images/grafana-configure-first-dashboard.gif'/>
     
@@ -42,7 +42,7 @@ You have your own n8n instance running in Kubernetes, taking advantage of all am
 
     <meta name="twitter:title" content='Observability on n8n | ANDREFFS'/>
     <meta name="twitter:card" content='This post is a continuation on &ldquo;Setup n8n on Kubernetes&rdquo;, so most of the things we talk here assume that you&rsquo;ve followed/read this one as well.
-You have your own n8n instance running in Kubernetes, taking advantage of all amazing functionality and capabilities of it, but you are still going in blind right now. I mean, how can you check if your service is healthy? Is it running? How much memory is it using?'/>
+ You have your own n8n instance running in Kubernetes, taking advantage of all amazing functionality and capabilities of it, but you are still going in blind right now. I mean, how can you check if your service is healthy? Is it running? How much memory is it using?'/>
     <meta name="twitter:site" content="@andreffs18"/>
     <meta name="twitter:creator" content="@andreffs18"/>
     <meta name="twitter:card" content="summary_large_image"/>
@@ -63,7 +63,7 @@ You have your own n8n instance running in Kubernetes, taking advantage of all am
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     
     
-    <link rel="stylesheet" type="text/css" href="https://www.andreffs.com/css/main.min.e0ab7e2fbbd40db87e640fab9a0fc155c2451bd11e7ec1f9e5118d96fb4bf98a.css">
+    <link rel="stylesheet" type="text/css" href="https://www.andreffs.com/css/main.min.2eb3a89d39218ca6f33775627f3850506f874ab5a5eff5586fcd54576f7f0c4b.css">
 
     
     
@@ -73,7 +73,7 @@ You have your own n8n instance running in Kubernetes, taking advantage of all am
     
     <meta name="hugo-build-date" content=""/>
     <meta name="hugo-commit-hash" content=""/>
-    <meta name="generator" content="Hugo 0.111.1">
+    <meta name="generator" content="Hugo 0.67.1" />
 </head>
 
     <body>
@@ -123,55 +123,55 @@ You have your own n8n instance running in Kubernetes, taking advantage of all am
             <p><em>This post is a continuation on <a href="/blog/setup-n8n-on-kubernetes">&ldquo;Setup n8n on Kubernetes&rdquo;</a>, so most of the things we talk here assume that you&rsquo;ve followed/read this one as well.</em></p>
 <hr>
 <p>You have your own n8n instance running in Kubernetes, taking advantage of all amazing functionality and capabilities of it, but you are still going in blind right now. I mean, how can you check if your service is healthy? Is it running? How much memory is it using? 🤔</p>
-<p>Since version <a href="https://github.com/n8n-io/n8n/releases/tag/n8n%400.111.0">@0.111.0</a> n8n has the ability to expose its metrics from a <strong>&quot;/metrics&quot;</strong> endpoint. This is great because with that we can setup a Grafana dashboard, reading from a Prometheus data source, which scrapes all containers in our Kubernetes cluster emitting metrics from, you guess it, a <em>&quot;/metrics&quot;</em> endpoint 😁.</p>
+<p>Since version <a href="https://github.com/n8n-io/n8n/releases/tag/n8n%400.111.0">@0.111.0</a> n8n has the ability to expose its metrics from a <strong>&quot;/metrics&rdquo;</strong> endpoint. This is great because with that we can setup a Grafana dashboard, reading from a Prometheus data source, which scrapes all containers in our Kubernetes cluster emitting metrics from, you guess it, a <em>&quot;/metrics&rdquo;</em> endpoint 😁.</p>
 <blockquote>
 <p>If you want to check how we&rsquo;ve done that, feel free: <a href="https://github.com/n8n-io/n8n/pull/1515">https://github.com/n8n-io/n8n/pull/1515</a></p>
 </blockquote>
 <p>So, as <a href="https://docs.n8n.io/reference/configuration.html#prometheus">the documentation</a> explains, we just need to update our n8n configuration to have the following extra environment variable:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
 </span></span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># On our ~/k8s/n8n-configmap.yaml</span>
-</span></span><span style="display:flex;"><span>---
-</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ConfigMap</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">n8n-configmap</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">default</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">labels</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">n8n</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">component</span>: <span style="color:#ae81ff">configmap</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">data</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">NODE_ENV</span>: <span style="color:#e6db74">&#34;production&#34;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">(...)</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Emit metrics from n8n service</span>
-</span></span><span style="display:flex; background-color:#3c3d38"><span>  <span style="color:#f92672">N8N_METRICS</span>: <span style="color:#e6db74">&#34;true&#34;</span></span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># On our ~/k8s/n8n-configmap.yaml</span>
+---
+<span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: ConfigMap
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: n8n-configmap
+  <span style="color:#66d9ef">namespace</span>: default
+  <span style="color:#66d9ef">labels</span>:
+    <span style="color:#66d9ef">app</span>: n8n
+    <span style="color:#66d9ef">component</span>: configmap
+<span style="color:#66d9ef">data</span>:
+  <span style="color:#66d9ef">NODE_ENV</span>: <span style="color:#e6db74">&#34;production&#34;</span>
+  (...)
+  <span style="color:#75715e"># Emit metrics from n8n service</span>
+<span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#66d9ef">N8N_METRICS</span>: <span style="color:#e6db74">&#34;true&#34;</span></span></code></pre></td></tr></table>
 </div>
 </div>
 <p>And restart our n8n deployment so these changes take effect:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ kubectl rollout restart deployment n8n-deployment
-</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl rollout restart deployment n8n-deployment
+</code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>There are other options related to how n8n can emit metrics, which you can check here: <a href="https://docs.n8n.io/reference/configuration.html#prometheus">https://docs.n8n.io/reference/configuration.html#prometheus</a></p>
@@ -182,128 +182,128 @@ You have your own n8n instance running in Kubernetes, taking advantage of all am
 <h1 id="show-in-grafana">Show in Grafana</h1>
 <p>We will save ourselves some time and just use <a href="https://helm.sh/docs/">helm</a>, which basically is a package manager for Kubernetes. It helps us with installing most of what we need to make this work.</p>
 <p>To install it, we can just run this:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ brew install helm
-</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ brew install helm
+</code></pre></td></tr></table>
 </div>
 </div><p>For this example we will install both Grafana and Prometheus, but in a different namespace just so we don&rsquo;t end up with to much stuff on our <strong>default</strong> one (it&rsquo;s also good practice to create different namespaces for specific use cases 🙌  ).</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ kubectl create namespace monitoring
-</span></span><span style="display:flex;"><span>namespace/monitoring created
-</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl create namespace monitoring
+namespace/monitoring created
+</code></pre></td></tr></table>
 </div>
 </div><h2 id="install-grafana--prometheus-helm-charts">Install Grafana + Prometheus helm charts</h2>
 <p>Following Prometheus <a href="https://prometheus.io/docs/prometheus/latest/installation/">installation guide</a> we can just add the corresponding helm charts and install our requirements:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-</span></span><span style="display:flex;"><span>$ helm repo add grafana https://grafana.github.io/helm-charts
-</span></span><span style="display:flex;"><span>$ helm -n monitoring install prometheus prometheus-community/prometheus
-</span></span><span style="display:flex;"><span>$ helm -n monitoring install grafana grafana/grafana
-</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+$ helm repo add grafana https://grafana.github.io/helm-charts
+$ helm -n monitoring install prometheus prometheus-community/prometheus
+$ helm -n monitoring install grafana grafana/grafana
+</code></pre></td></tr></table>
 </div>
 </div><p>To check that everything is up and running, we can just <code>kubectl get all</code>, like so:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ kubectl -n monitoring get all
-</span></span><span style="display:flex;"><span>NAME                                                 READY   STATUS    RESTARTS   AGE
-</span></span><span style="display:flex;"><span>pod/grafana-55777c78b6-9nhhp                         1/1     Running   <span style="color:#ae81ff">0</span>          18s
-</span></span><span style="display:flex;"><span>pod/prometheus-alertmanager-ccf8f68cd-5cjs7          1/2     Running   <span style="color:#ae81ff">0</span>          23s
-</span></span><span style="display:flex;"><span>pod/prometheus-kube-state-metrics-685b975bb7-z46f4   1/1     Running   <span style="color:#ae81ff">0</span>          23s
-</span></span><span style="display:flex;"><span>pod/prometheus-node-exporter-4klz5                   1/1     Running   <span style="color:#ae81ff">0</span>          23s
-</span></span><span style="display:flex;"><span>pod/prometheus-pushgateway-74cb65b858-zp8gk          1/1     Running   <span style="color:#ae81ff">0</span>          23s
-</span></span><span style="display:flex;"><span>pod/prometheus-server-d9fb67455-7pv4m                1/2     Running   <span style="color:#ae81ff">0</span>          23s
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>NAME                                    TYPE        CLUSTER-IP       EXTERNAL-IP   PORT<span style="color:#f92672">(</span>S<span style="color:#f92672">)</span>    AGE
-</span></span><span style="display:flex;"><span>service/grafana                         ClusterIP   10.107.166.24    &lt;none&gt;        80/TCP     18s
-</span></span><span style="display:flex;"><span>service/prometheus-alertmanager         ClusterIP   10.100.52.188    &lt;none&gt;        80/TCP     23s
-</span></span><span style="display:flex;"><span>service/prometheus-kube-state-metrics   ClusterIP   10.98.71.76      &lt;none&gt;        8080/TCP   23s
-</span></span><span style="display:flex;"><span>service/prometheus-node-exporter        ClusterIP   None             &lt;none&gt;        9100/TCP   23s
-</span></span><span style="display:flex;"><span>service/prometheus-pushgateway          ClusterIP   10.104.143.114   &lt;none&gt;        9091/TCP   23s
-</span></span><span style="display:flex;"><span>service/prometheus-server               ClusterIP   10.111.230.177   &lt;none&gt;        80/TCP     23s
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>NAME                                      DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE
-</span></span><span style="display:flex;"><span>daemonset.apps/prometheus-node-exporter   <span style="color:#ae81ff">1</span>         <span style="color:#ae81ff">1</span>         <span style="color:#ae81ff">1</span>       <span style="color:#ae81ff">1</span>            <span style="color:#ae81ff">1</span>           &lt;none&gt;          23s
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>NAME                                            READY   UP-TO-DATE   AVAILABLE   AGE
-</span></span><span style="display:flex;"><span>deployment.apps/grafana                         1/1     <span style="color:#ae81ff">1</span>            <span style="color:#ae81ff">1</span>           18s
-</span></span><span style="display:flex;"><span>deployment.apps/prometheus-alertmanager         0/1     <span style="color:#ae81ff">1</span>            <span style="color:#ae81ff">0</span>           23s
-</span></span><span style="display:flex;"><span>deployment.apps/prometheus-kube-state-metrics   1/1     <span style="color:#ae81ff">1</span>            <span style="color:#ae81ff">1</span>           23s
-</span></span><span style="display:flex;"><span>deployment.apps/prometheus-pushgateway          1/1     <span style="color:#ae81ff">1</span>            <span style="color:#ae81ff">1</span>           23s
-</span></span><span style="display:flex;"><span>deployment.apps/prometheus-server               0/1     <span style="color:#ae81ff">1</span>            <span style="color:#ae81ff">0</span>           23s
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>NAME                                                       DESIRED   CURRENT   READY   AGE
-</span></span><span style="display:flex;"><span>replicaset.apps/grafana-55777c78b6                         <span style="color:#ae81ff">1</span>         <span style="color:#ae81ff">1</span>         <span style="color:#ae81ff">1</span>       18s
-</span></span><span style="display:flex;"><span>replicaset.apps/prometheus-alertmanager-ccf8f68cd          <span style="color:#ae81ff">1</span>         <span style="color:#ae81ff">1</span>         <span style="color:#ae81ff">0</span>       23s
-</span></span><span style="display:flex;"><span>replicaset.apps/prometheus-kube-state-metrics-685b975bb7   <span style="color:#ae81ff">1</span>         <span style="color:#ae81ff">1</span>         <span style="color:#ae81ff">1</span>       23s
-</span></span><span style="display:flex;"><span>replicaset.apps/prometheus-pushgateway-74cb65b858          <span style="color:#ae81ff">1</span>         <span style="color:#ae81ff">1</span>         <span style="color:#ae81ff">1</span>       23s
-</span></span><span style="display:flex;"><span>replicaset.apps/prometheus-server-d9fb67455                <span style="color:#ae81ff">1</span>         <span style="color:#ae81ff">1</span>         <span style="color:#ae81ff">0</span>       23s
-</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl -n monitoring get all
+NAME                                                 READY   STATUS    RESTARTS   AGE
+pod/grafana-55777c78b6-9nhhp                         1/1     Running   <span style="color:#ae81ff">0</span>          18s
+pod/prometheus-alertmanager-ccf8f68cd-5cjs7          1/2     Running   <span style="color:#ae81ff">0</span>          23s
+pod/prometheus-kube-state-metrics-685b975bb7-z46f4   1/1     Running   <span style="color:#ae81ff">0</span>          23s
+pod/prometheus-node-exporter-4klz5                   1/1     Running   <span style="color:#ae81ff">0</span>          23s
+pod/prometheus-pushgateway-74cb65b858-zp8gk          1/1     Running   <span style="color:#ae81ff">0</span>          23s
+pod/prometheus-server-d9fb67455-7pv4m                1/2     Running   <span style="color:#ae81ff">0</span>          23s
+
+NAME                                    TYPE        CLUSTER-IP       EXTERNAL-IP   PORT<span style="color:#f92672">(</span>S<span style="color:#f92672">)</span>    AGE
+service/grafana                         ClusterIP   10.107.166.24    &lt;none&gt;        80/TCP     18s
+service/prometheus-alertmanager         ClusterIP   10.100.52.188    &lt;none&gt;        80/TCP     23s
+service/prometheus-kube-state-metrics   ClusterIP   10.98.71.76      &lt;none&gt;        8080/TCP   23s
+service/prometheus-node-exporter        ClusterIP   None             &lt;none&gt;        9100/TCP   23s
+service/prometheus-pushgateway          ClusterIP   10.104.143.114   &lt;none&gt;        9091/TCP   23s
+service/prometheus-server               ClusterIP   10.111.230.177   &lt;none&gt;        80/TCP     23s
+
+NAME                                      DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE
+daemonset.apps/prometheus-node-exporter   <span style="color:#ae81ff">1</span>         <span style="color:#ae81ff">1</span>         <span style="color:#ae81ff">1</span>       <span style="color:#ae81ff">1</span>            <span style="color:#ae81ff">1</span>           &lt;none&gt;          23s
+
+NAME                                            READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/grafana                         1/1     <span style="color:#ae81ff">1</span>            <span style="color:#ae81ff">1</span>           18s
+deployment.apps/prometheus-alertmanager         0/1     <span style="color:#ae81ff">1</span>            <span style="color:#ae81ff">0</span>           23s
+deployment.apps/prometheus-kube-state-metrics   1/1     <span style="color:#ae81ff">1</span>            <span style="color:#ae81ff">1</span>           23s
+deployment.apps/prometheus-pushgateway          1/1     <span style="color:#ae81ff">1</span>            <span style="color:#ae81ff">1</span>           23s
+deployment.apps/prometheus-server               0/1     <span style="color:#ae81ff">1</span>            <span style="color:#ae81ff">0</span>           23s
+
+NAME                                                       DESIRED   CURRENT   READY   AGE
+replicaset.apps/grafana-55777c78b6                         <span style="color:#ae81ff">1</span>         <span style="color:#ae81ff">1</span>         <span style="color:#ae81ff">1</span>       18s
+replicaset.apps/prometheus-alertmanager-ccf8f68cd          <span style="color:#ae81ff">1</span>         <span style="color:#ae81ff">1</span>         <span style="color:#ae81ff">0</span>       23s
+replicaset.apps/prometheus-kube-state-metrics-685b975bb7   <span style="color:#ae81ff">1</span>         <span style="color:#ae81ff">1</span>         <span style="color:#ae81ff">1</span>       23s
+replicaset.apps/prometheus-pushgateway-74cb65b858          <span style="color:#ae81ff">1</span>         <span style="color:#ae81ff">1</span>         <span style="color:#ae81ff">1</span>       23s
+replicaset.apps/prometheus-server-d9fb67455                <span style="color:#ae81ff">1</span>         <span style="color:#ae81ff">1</span>         <span style="color:#ae81ff">0</span>       23s
+</code></pre></td></tr></table>
 </div>
 </div><h2 id="exposing-grafana-dashboard">Exposing Grafana Dashboard</h2>
 <p>So right now both our services are not exposed. For example, in order for us to access Grafana we need to <em>port-forward</em> to the service:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-bash" data-lang="bash"><span style="display:flex; background-color:#3c3d38"><span>$ kubectl -n monitoring port-forward services/grafana 8000:80
-</span></span><span style="display:flex;"><span>Forwarding from 127.0.0.1:8000 -&gt; <span style="color:#ae81ff">3000</span>
-</span></span><span style="display:flex;"><span>Forwarding from <span style="color:#f92672">[</span>::1<span style="color:#f92672">]</span>:8000 -&gt; <span style="color:#ae81ff">3000</span>
-</span></span><span style="display:flex;"><span>Handling connection <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">8000</span></span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="display:block;width:100%;background-color:#3c3d38">$ kubectl -n monitoring port-forward services/grafana 8000:80
+</span>Forwarding from 127.0.0.1:8000 -&gt; <span style="color:#ae81ff">3000</span>
+Forwarding from <span style="color:#f92672">[</span>::1<span style="color:#f92672">]</span>:8000 -&gt; <span style="color:#ae81ff">3000</span>
+Handling connection <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">8000</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>Instead, we can just change our service type form <strong>ClusterIP</strong> to <strong>NodePort</strong>.</p>
@@ -313,84 +313,84 @@ You have your own n8n instance running in Kubernetes, taking advantage of all am
 <p>There are a couple ways to get this done, we can:</p>
 <h4 id="1-create-a-new-service-which-has-type-nodeport">1️⃣ Create a new service which has type NodePort</h4>
 <p>With this solution we end up with two services;</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-bash" data-lang="bash"><span style="display:flex; background-color:#3c3d38"><span>$ kubectl -n monitoring expose deployment grafana --type<span style="color:#f92672">=</span>NodePort --target-port<span style="color:#f92672">=</span><span style="color:#ae81ff">9090</span> --name new-grafana
-</span></span><span style="display:flex;"><span>service/new-grafana exposed
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>$ kubectl -n monitoring get services | grep grafana
-</span></span><span style="display:flex;"><span>grafana                         ClusterIP   10.105.124.167   &lt;none&gt;        80/TCP                        20m
-</span></span><span style="display:flex;"><span>new-grafana                     NodePort    10.109.115.231   &lt;none&gt;        80:30361/TCP,3000:31399/TCP   2m43s</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="display:block;width:100%;background-color:#3c3d38">$ kubectl -n monitoring expose deployment grafana --type<span style="color:#f92672">=</span>NodePort --target-port<span style="color:#f92672">=</span><span style="color:#ae81ff">9090</span> --name new-grafana
+</span>service/new-grafana exposed
+
+$ kubectl -n monitoring get services | grep grafana
+grafana                         ClusterIP   10.105.124.167   &lt;none&gt;        80/TCP                        20m
+new-grafana                     NodePort    10.109.115.231   &lt;none&gt;        80:30361/TCP,3000:31399/TCP   2m43s</code></pre></td></tr></table>
 </div>
 </div>
 <h4 id="2-delete-and-create-a-new-one">2️⃣ Delete and create a new one;</h4>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span></span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-bash" data-lang="bash"><span style="display:flex; background-color:#3c3d38"><span>$ kubectl -n monitoring delete service grafana
-</span></span><span style="display:flex;"><span>service <span style="color:#e6db74">&#34;grafana&#34;</span> deleted
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex; background-color:#3c3d38"><span>$ kubectl -n monitoring expose deployment grafana --type<span style="color:#f92672">=</span>NodePort --target-port<span style="color:#f92672">=</span><span style="color:#ae81ff">9090</span>
-</span></span><span style="display:flex;"><span>service/grafana exposed
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>$ kubectl -n monitoring get services | grep grafana
-</span></span><span style="display:flex;"><span>grafana                         NodePort    10.104.74.196    &lt;none&gt;        80:30287/TCP,3000:32521/TCP   11s</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="display:block;width:100%;background-color:#3c3d38">$ kubectl -n monitoring delete service grafana
+</span>service <span style="color:#e6db74">&#34;grafana&#34;</span> deleted
+
+<span style="display:block;width:100%;background-color:#3c3d38">$ kubectl -n monitoring expose deployment grafana --type<span style="color:#f92672">=</span>NodePort --target-port<span style="color:#f92672">=</span><span style="color:#ae81ff">9090</span>
+</span>service/grafana exposed
+
+$ kubectl -n monitoring get services | grep grafana
+grafana                         NodePort    10.104.74.196    &lt;none&gt;        80:30287/TCP,3000:32521/TCP   11s</code></pre></td></tr></table>
 </div>
 </div>
 <h4 id="3-update-the-existing-one">3️⃣ Update the existing one.</h4>
 <p>Which I&rsquo;ve end up preferring:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span></span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-bash" data-lang="bash"><span style="display:flex; background-color:#3c3d38"><span>$ kubectl -n monitoring patch service grafana -p <span style="color:#e6db74">&#39;{&#34;spec&#34;: {&#34;type&#34;: &#34;NodePort&#34;}}&#39;</span>
-</span></span><span style="display:flex;"><span>service/grafana patched
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex; background-color:#3c3d38"><span>$ kubectl -n monitoring get services | grep NodePort
-</span></span><span style="display:flex;"><span>grafana                         NodePort    10.107.166.24    &lt;none&gt;        80:30732/TCP   45s</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="display:block;width:100%;background-color:#3c3d38">$ kubectl -n monitoring patch service grafana -p <span style="color:#e6db74">&#39;{&#34;spec&#34;: {&#34;type&#34;: &#34;NodePort&#34;}}&#39;</span>
+</span>service/grafana patched
+
+<span style="display:block;width:100%;background-color:#3c3d38">$ kubectl -n monitoring get services | grep NodePort
+</span>grafana                         NodePort    10.107.166.24    &lt;none&gt;        80:30732/TCP   45s</code></pre></td></tr></table>
 </div>
 </div>
 <p>This means that we now have a dedicated port on our host machine to access these services:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-bash" data-lang="bash"><span style="display:flex; background-color:#3c3d38"><span>$ minikube -n monitoring service grafana
-</span></span><span style="display:flex;"><span>|------------|---------|-------------|---------------------------|
-</span></span><span style="display:flex;"><span>| NAMESPACE  |  NAME   | TARGET PORT |            URL            |
-</span></span><span style="display:flex;"><span>|------------|---------|-------------|---------------------------|
-</span></span><span style="display:flex;"><span>| monitoring | grafana | service/80  | http://192.168.64.7:30732 |
-</span></span><span style="display:flex;"><span>|------------|---------|-------------|---------------------------|
-</span></span><span style="display:flex;"><span>🎉  Opening service monitoring/grafana in default browser...</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="display:block;width:100%;background-color:#3c3d38">$ minikube -n monitoring service grafana
+</span>|------------|---------|-------------|---------------------------|
+| NAMESPACE  |  NAME   | TARGET PORT |            URL            |
+|------------|---------|-------------|---------------------------|
+| monitoring | grafana | service/80  | http://192.168.64.7:30732 |
+|------------|---------|-------------|---------------------------|
+🎉  Opening service monitoring/grafana in default browser...</code></pre></td></tr></table>
 </div>
 </div>
 <h2 id="connecting-grafana-to-prometheus-data-source">Connecting Grafana to Prometheus data source</h2>
@@ -399,15 +399,15 @@ You have your own n8n instance running in Kubernetes, taking advantage of all am
 <p>Here we are just following the tutorial on Prometheus <a href="https://prometheus.io/docs/visualization/grafana/">documentation</a>.</p>
 </blockquote>
 <p>Before opening Grafana we need to get the <code>admin</code> account password, which we can do by running:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ kubectl -n monitoring get secret grafana -o json | jq -r <span style="color:#e6db74">&#39;.data[&#34;admin-password&#34;]&#39;</span> | base64 --decode ; echo
-</span></span><span style="display:flex;"><span>SUuhmONZtGtCCCqHkMQnIz6H2NLB7k12muqiMtbw
-</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl -n monitoring get secret grafana -o json | jq -r <span style="color:#e6db74">&#39;.data[&#34;admin-password&#34;]&#39;</span> | base64 --decode ; echo
+SUuhmONZtGtCCCqHkMQnIz6H2NLB7k12muqiMtbw
+</code></pre></td></tr></table>
 </div>
 </div><p><img src="images/grafana-data-source-configuration.gif" alt="images/grafana-data-source-configuration.gif" title="Grafana data source configuration"></p>
 <h2 id="create-n8n-dashboard">Create n8n Dashboard</h2>
@@ -421,75 +421,75 @@ You have your own n8n instance running in Kubernetes, taking advantage of all am
 <p>❗️ We can do it like this because the helm chart for Prometheus already had that configured out of the box. To check that in detail go <a href="https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus#scraping-pod-metrics-via-annotations">here</a>. <em>(Image <a href="https://sysdig.com/blog/kubernetes-monitoring-prometheus/">source</a>).</em></p>
 </blockquote>
 <p>So, in order for Prometheus to find our n8n container, we need to add these extra lines to our <strong>n8n-deployment.yaml</strong> configuration, and re-apply it:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span></span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span></span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span></span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span></span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># ~/k8s/n8n-deployment.yaml</span>
-</span></span><span style="display:flex;"><span>---
-</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">n8n-deployment</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">default</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">labels</span>: <span style="color:#75715e">&amp;labels</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">n8n</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">component</span>: <span style="color:#ae81ff">deployment</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">1</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">matchLabels</span>: <span style="color:#75715e">*labels</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">template</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">metadata</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">labels</span>: <span style="color:#75715e">*labels</span>
-</span></span><span style="display:flex; background-color:#3c3d38"><span>      <span style="color:#f92672">annotations</span>:
-</span></span><span style="display:flex; background-color:#3c3d38"><span>        <span style="color:#f92672">prometheus.io/scrape</span>: <span style="color:#e6db74">&#34;true&#34;</span>
-</span></span><span style="display:flex; background-color:#3c3d38"><span>        <span style="color:#f92672">prometheus.io/path</span>: <span style="color:#ae81ff">/metrics</span>
-</span></span><span style="display:flex; background-color:#3c3d38"><span>        <span style="color:#f92672">prometheus.io/port</span>: <span style="color:#e6db74">&#34;5678&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">containers</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">n8n</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">image</span>: <span style="color:#ae81ff">n8nio/n8n:latest</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">imagePullPolicy</span>: <span style="color:#ae81ff">IfNotPresent</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">(...)</span></span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># ~/k8s/n8n-deployment.yaml</span>
+---
+<span style="color:#66d9ef">apiVersion</span>: apps/v1
+<span style="color:#66d9ef">kind</span>: Deployment
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: n8n-deployment
+  <span style="color:#66d9ef">namespace</span>: default
+  <span style="color:#66d9ef">labels</span>: <span style="color:#75715e">&amp;labels</span>
+    <span style="color:#66d9ef">app</span>: n8n
+    <span style="color:#66d9ef">component</span>: deployment
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">replicas</span>: <span style="color:#ae81ff">1</span>
+  <span style="color:#66d9ef">selector</span>:
+    <span style="color:#66d9ef">matchLabels</span>: <span style="color:#75715e">*labels</span>
+  <span style="color:#66d9ef">template</span>:
+    <span style="color:#66d9ef">metadata</span>:
+      <span style="color:#66d9ef">labels</span>: <span style="color:#75715e">*labels</span>
+<span style="display:block;width:100%;background-color:#3c3d38">      <span style="color:#66d9ef">annotations</span>:
+</span><span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#66d9ef">prometheus.io/scrape</span>: <span style="color:#e6db74">&#34;true&#34;</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#66d9ef">prometheus.io/path</span>: /metrics
+</span><span style="display:block;width:100%;background-color:#3c3d38">        <span style="color:#66d9ef">prometheus.io/port</span>: <span style="color:#e6db74">&#34;5678&#34;</span>
+</span>    <span style="color:#66d9ef">spec</span>:
+      <span style="color:#66d9ef">containers</span>:
+      - <span style="color:#66d9ef">name</span>: n8n
+        <span style="color:#66d9ef">image</span>: n8nio/n8n:latest
+        <span style="color:#66d9ef">imagePullPolicy</span>: IfNotPresent
+        (...)</code></pre></td></tr></table>
 </div>
 </div>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ kubectl apply -f k8s/n8n-deployment.yaml
-</span></span><span style="display:flex;"><span>deployment.apps/n8n-deployment configured
-</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl apply -f k8s/n8n-deployment.yaml
+deployment.apps/n8n-deployment configured
+</code></pre></td></tr></table>
 </div>
 </div><p>Going back to Grafana, we can see that now we have some data on our dashboards:</p>
 <p><img src="images/grafana-with-data-for-the-first-time.gif" alt="images/grafana-with-data-for-the-first-time.gif" title="Grafana with data for the first time"></p>
@@ -515,33 +515,33 @@ You have your own n8n instance running in Kubernetes, taking advantage of all am
 <h3 id="cpu-usage">CPU Usage</h3>
 <p>We want to show the CPU usage from our container and also if the CPU is being throttled from heavy utilization (eg: to many threads are being created for to many requests)</p>
 <p>Also, for us to trigger alerts when we reach some % of our services capacity, we will be showing the <strong>requested container resources and limits</strong> on the dashboard. Since we asked for 1 CPU (kubernetes <code>limit</code> configuration) and 0.5 CPU&rsquo;s (kubernetes <code>requests</code> configuration) we will see those two lines represented on the dashboard:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># cpu limits value from kubernetes container</span>
-</span></span><span style="display:flex;"><span>avg<span style="color:#f92672">(</span>kube_pod_container_resource_limits_cpu_cores<span style="color:#f92672">{</span>namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;default&#34;</span>, container<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;n8n&#34;</span><span style="color:#f92672">})</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># cpu requests value from kubernetes container</span>
-</span></span><span style="display:flex;"><span>avg<span style="color:#f92672">(</span>kube_pod_container_resource_requests_cpu_cores<span style="color:#f92672">{</span>namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;default&#34;</span>, container<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;n8n&#34;</span><span style="color:#f92672">})</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># container cpu usage</span>
-</span></span><span style="display:flex;"><span>irate<span style="color:#f92672">(</span>container_cpu_usage_seconds_total<span style="color:#f92672">{</span>namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;default&#34;</span>, container<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;n8n&#34;</span>, image!<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>, container!<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;POD&#34;</span><span style="color:#f92672">}[</span>2m<span style="color:#f92672">])</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># container cpu throttling</span>
-</span></span><span style="display:flex;"><span>irate<span style="color:#f92672">(</span>container_cpu_cfs_throttled_seconds_total<span style="color:#f92672">{</span>namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;default&#34;</span>, container<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;n8n&#34;</span>, image!<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>, container!<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;POD&#34;</span><span style="color:#f92672">}[</span>2m<span style="color:#f92672">])</span>
-</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># cpu limits value from kubernetes container</span>
+avg<span style="color:#f92672">(</span>kube_pod_container_resource_limits_cpu_cores<span style="color:#f92672">{</span>namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;default&#34;</span>, container<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;n8n&#34;</span><span style="color:#f92672">})</span>
+
+<span style="color:#75715e"># cpu requests value from kubernetes container</span>
+avg<span style="color:#f92672">(</span>kube_pod_container_resource_requests_cpu_cores<span style="color:#f92672">{</span>namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;default&#34;</span>, container<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;n8n&#34;</span><span style="color:#f92672">})</span>
+
+<span style="color:#75715e"># container cpu usage</span>
+irate<span style="color:#f92672">(</span>container_cpu_usage_seconds_total<span style="color:#f92672">{</span>namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;default&#34;</span>, container<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;n8n&#34;</span>, image!<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>, container!<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;POD&#34;</span><span style="color:#f92672">}[</span>2m<span style="color:#f92672">])</span>
+
+<span style="color:#75715e"># container cpu throttling</span>
+irate<span style="color:#f92672">(</span>container_cpu_cfs_throttled_seconds_total<span style="color:#f92672">{</span>namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;default&#34;</span>, container<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;n8n&#34;</span>, image!<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>, container!<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;POD&#34;</span><span style="color:#f92672">}[</span>2m<span style="color:#f92672">])</span>
+</code></pre></td></tr></table>
 </div>
 </div><p>And just so its easier to read at a glance, we&rsquo;ll setup the colors:
 <div class="">
@@ -562,50 +562,50 @@ You have your own n8n instance running in Kubernetes, taking advantage of all am
 <li>Do we have memory leaks?</li>
 <li>Are there processes being created which use all of our available memory?</li>
 </ul>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># memory requests value from kubernetes container</span>
-</span></span><span style="display:flex;"><span>avg<span style="color:#f92672">(</span>kube_pod_container_resource_requests_memory_bytes<span style="color:#f92672">{</span>namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;default&#34;</span>, container<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;n8n&#34;</span><span style="color:#f92672">})</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># memory limits value from kubernetes container</span>
-</span></span><span style="display:flex;"><span>avg<span style="color:#f92672">(</span>kube_pod_container_resource_limits_memory_bytes<span style="color:#f92672">{</span>namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;default&#34;</span>, container<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;n8n&#34;</span><span style="color:#f92672">})</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># container memory usage</span>
-</span></span><span style="display:flex;"><span>container_memory_working_set_bytes<span style="color:#f92672">{</span>namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;default&#34;</span>, container<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;n8n&#34;</span>, image!<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>, container!<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;POD&#34;</span><span style="color:#f92672">}</span>
-</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># memory requests value from kubernetes container</span>
+avg<span style="color:#f92672">(</span>kube_pod_container_resource_requests_memory_bytes<span style="color:#f92672">{</span>namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;default&#34;</span>, container<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;n8n&#34;</span><span style="color:#f92672">})</span>
+
+<span style="color:#75715e"># memory limits value from kubernetes container</span>
+avg<span style="color:#f92672">(</span>kube_pod_container_resource_limits_memory_bytes<span style="color:#f92672">{</span>namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;default&#34;</span>, container<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;n8n&#34;</span><span style="color:#f92672">})</span>
+
+<span style="color:#75715e"># container memory usage</span>
+container_memory_working_set_bytes<span style="color:#f92672">{</span>namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;default&#34;</span>, container<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;n8n&#34;</span>, image!<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>, container!<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;POD&#34;</span><span style="color:#f92672">}</span>
+</code></pre></td></tr></table>
 </div>
 </div><p><img src="images/grafana-memory-usage.png" alt="images/grafana-memory-usage.png" title="Grafana memory usage"></p>
 <h3 id="network-uploaddownload-in-transferer-bytes">Network upload/download in transferer bytes</h3>
 <p>Lastly but as important, network data transfer. We want to monitor how much data we are reading and sending on the wire:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># ⬇️ Web Received Throughput</span>
-</span></span><span style="display:flex;"><span>sum<span style="color:#f92672">(</span>rate<span style="color:#f92672">(</span>container_network_receive_bytes_total<span style="color:#f92672">{</span>namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;default&#34;</span>, pod<span style="color:#f92672">=</span>~<span style="color:#e6db74">&#34;n8n-.*&#34;</span><span style="color:#f92672">}[</span>2m<span style="color:#f92672">]))</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># ⬆️ Web Transmitted Throughput</span>
-</span></span><span style="display:flex;"><span>sum<span style="color:#f92672">(</span>rate<span style="color:#f92672">(</span>container_network_transmit_bytes_total<span style="color:#f92672">{</span>namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;default&#34;</span>, pod<span style="color:#f92672">=</span>~<span style="color:#e6db74">&#34;n8n-.*&#34;</span><span style="color:#f92672">}[</span>2m<span style="color:#f92672">]))</span>
-</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># ⬇️ Web Received Throughput</span>
+sum<span style="color:#f92672">(</span>rate<span style="color:#f92672">(</span>container_network_receive_bytes_total<span style="color:#f92672">{</span>namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;default&#34;</span>, pod<span style="color:#f92672">=</span>~<span style="color:#e6db74">&#34;n8n-.*&#34;</span><span style="color:#f92672">}[</span>2m<span style="color:#f92672">]))</span>
+
+<span style="color:#75715e"># ⬆️ Web Transmitted Throughput</span>
+sum<span style="color:#f92672">(</span>rate<span style="color:#f92672">(</span>container_network_transmit_bytes_total<span style="color:#f92672">{</span>namespace<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;default&#34;</span>, pod<span style="color:#f92672">=</span>~<span style="color:#e6db74">&#34;n8n-.*&#34;</span><span style="color:#f92672">}[</span>2m<span style="color:#f92672">]))</span>
+</code></pre></td></tr></table>
 </div>
 </div><p><img src="images/grafana-network-usage.png" alt="images/grafana-network-usage.png" title="Grafana network usage"></p>
 <h2 id="availability-of-our-service">Availability of our service</h2>
-<p>Here we just want to check, if the service is up. A simple health check request to our server <strong>&quot;/healthz&quot;</strong> endpoint is enough.</p>
+<p>Here we just want to check, if the service is up. A simple health check request to our server <strong>&quot;/healthz&rdquo;</strong> endpoint is enough.</p>
 <blockquote>
 <p>n8n offers this endpoint to check if the service is up, returning a HTTP 200 OK response. (<a href="https://github.com/n8n-io/n8n/commit/0214b44d513d47758ab677bd4a3a2efedb912110">source</a>)</p>
 </blockquote>
@@ -613,193 +613,193 @@ You have your own n8n instance running in Kubernetes, taking advantage of all am
 <h3 id="install-blackbox">Install Blackbox</h3>
 <p>Blackbox is a module that offers a simple API to check if a service, for a given URL is returning 200 OK. The idea is to use Prometheus to automatize this check, so we can show it on our dashboard as a nice widget.</p>
 <p>To install it we can use again helm as we did before:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ helm -n monitoring install blackbox prometheus-community/prometheus-blackbox-exporter
-</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ helm -n monitoring install blackbox prometheus-community/prometheus-blackbox-exporter
+</code></pre></td></tr></table>
 </div>
 </div><p>Then to expose it to Prometheus, we just need to create a service called <strong>blackbox</strong>.</p>
 <p>⚠️ <strong>The name is the most important part!</strong> This is how Prometheus finds the blackbox exporter service:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ kubectl -n monitoring expose deployment blackbox-prometheus-blackbox-exporter --port <span style="color:#ae81ff">80</span> --target-port<span style="color:#f92672">=</span><span style="color:#ae81ff">9115</span> --name blackbox
-</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl -n monitoring expose deployment blackbox-prometheus-blackbox-exporter --port <span style="color:#ae81ff">80</span> --target-port<span style="color:#f92672">=</span><span style="color:#ae81ff">9115</span> --name blackbox
+</code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>When we install it via helm, the service that is generated is named <code>{{name}}-prometheus-blackbox-exporter</code> which Prometheus fails to find. I&rsquo;ve spend more time than I care to admit trying to understand the inner workings of Blackbox with Prometheus, and this is the simplest solution that I could find without having to go into Prometheus and tweak its scrape configurations. If you wanna go that route, you can look at these
 <a href="https://github.com/prometheus-community/helm-charts/blob/main/charts/prometheus/values.yaml#L1660-L1674">1</a>, <a href="https://stackoverflow.com/questions/55360726/how-to-add-extrascrapeconfigs-to-prometheus-helm-chart-from-set-argument">2</a>, <a href="https://ksummersill.medium.com/use-blackbox-exporter-for-http-status-checks-using-prometheus-and-grafana-bb63a4e25c1a">3</a>, <a href="https://github.com/prometheus/blackbox_exporter#prometheus-configuration">4</a>, <a href="https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus-blackbox-exporter">5</a>. Also, you might need to understand how prometheus <a href="https://prometheus.io/docs/guides/multi-target-exporter/">relabeling works</a> or different blackbox configurations <a href="https://devconnected.com/how-to-install-and-configure-blackbox-exporter-for-prometheus/">6</a>, <a href="https://www.robustperception.io/debugging-blackbox-exporter-failures">7</a>, <a href="https://github.com/prometheus-operator/prometheus-operator/issues/256#issuecomment-725479720">8</a>.</p>
 </blockquote>
 <p>Cool, now that we have our blackbox probe running, we still need to update our <strong>n8n-service.yaml</strong> configuration to be <em>&ldquo;scrappable&rdquo;</em>, and this is done by adding the <code>prometheus.io/probe</code> annotations like so:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span></span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span></span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span></span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># ~/k8s/n8n-service.yaml</span>
-</span></span><span style="display:flex;"><span>---
-</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Service</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">n8n-service</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">default</span>
-</span></span><span style="display:flex; background-color:#3c3d38"><span>  <span style="color:#f92672">annotations</span>:
-</span></span><span style="display:flex; background-color:#3c3d38"><span>    <span style="color:#f92672">prometheus.io/probe</span>: <span style="color:#e6db74">&#34;true&#34;</span>
-</span></span><span style="display:flex; background-color:#3c3d38"><span>    <span style="color:#f92672">prometheus.io/probe-path</span>: <span style="color:#e6db74">&#34;/healthz&#34;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">labels</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">n8n</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">component</span>: <span style="color:#ae81ff">service</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">type</span>: <span style="color:#ae81ff">NodePort</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">n8n</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">component</span>: <span style="color:#ae81ff">deployment</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ports</span>:
-</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">protocol</span>: <span style="color:#ae81ff">TCP</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">http</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">port</span>: <span style="color:#ae81ff">80</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">targetPort</span>: <span style="color:#ae81ff">5678</span></span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># ~/k8s/n8n-service.yaml</span>
+---
+<span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: Service
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: n8n-service
+  <span style="color:#66d9ef">namespace</span>: default
+<span style="display:block;width:100%;background-color:#3c3d38">  <span style="color:#66d9ef">annotations</span>:
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">prometheus.io/probe</span>: <span style="color:#e6db74">&#34;true&#34;</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">prometheus.io/probe-path</span>: <span style="color:#e6db74">&#34;/healthz&#34;</span>
+</span>  <span style="color:#66d9ef">labels</span>:
+    <span style="color:#66d9ef">app</span>: n8n
+    <span style="color:#66d9ef">component</span>: service
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">type</span>: NodePort
+  <span style="color:#66d9ef">selector</span>:
+    <span style="color:#66d9ef">app</span>: n8n
+    <span style="color:#66d9ef">component</span>: deployment
+  <span style="color:#66d9ef">ports</span>:
+  - <span style="color:#66d9ef">protocol</span>: TCP
+    <span style="color:#66d9ef">name</span>: http
+    <span style="color:#66d9ef">port</span>: <span style="color:#ae81ff">80</span>
+    <span style="color:#66d9ef">targetPort</span>: <span style="color:#ae81ff">5678</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>😓 <em>We&rsquo;re almost there.</em></p>
-<p>The default Prometheus configuration tries to check if the <strong>&quot;/probe&quot;</strong> endpoint of the service is returning 200 OK. This is a problem for us because we can&rsquo;t override the n8n <strong>&quot;/healthz&quot;</strong> endpoint to &ldquo;/probe&rdquo;. So, the next best solution is to add this configuration to our <strong>prometheus.yaml</strong> ConfigMap.</p>
+<p>The default Prometheus configuration tries to check if the <strong>&quot;/probe&rdquo;</strong> endpoint of the service is returning 200 OK. This is a problem for us because we can&rsquo;t override the n8n <strong>&quot;/healthz&rdquo;</strong> endpoint to &ldquo;/probe&rdquo;. So, the next best solution is to add this configuration to our <strong>prometheus.yaml</strong> ConfigMap.</p>
 <p>This might feel daunting at first, but its actually pretty straightforward. We just need to edit our <strong>prometheus-service</strong> ConfigMap like so:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ kubectl -n monitoring edit configmap prometheus-server -o yaml
-</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl -n monitoring edit configmap prometheus-server -o yaml
+</code></pre></td></tr></table>
 </div>
 </div><p>And then on the <strong>&ldquo;kubernetes-services&rdquo;</strong> section of the configuration, we need to append the following part that is highlighted below:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
-</span></span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
-</span></span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
-</span></span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
-</span></span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
-</span></span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># ...</span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">job_name</span>: <span style="color:#ae81ff">kubernetes-services</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">kubernetes_sd_configs</span>:
-</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">role</span>: <span style="color:#ae81ff">service</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">metrics_path</span>: <span style="color:#ae81ff">/probe</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">params</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">module</span>:
-</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">http_2xx</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">relabel_configs</span>:
-</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">action</span>: <span style="color:#ae81ff">keep</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">regex</span>: <span style="color:#66d9ef">true</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">source_labels</span>:
-</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">__meta_kubernetes_service_annotation_prometheus_io_probe</span>
-</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">source_labels</span>:
-</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">__address__</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">target_label</span>: <span style="color:#ae81ff">__param_target</span>
-</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">replacement</span>: <span style="color:#ae81ff">blackbox</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">target_label</span>: <span style="color:#ae81ff">__address__</span>
-</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">source_labels</span>:
-</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">__param_target</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">target_label</span>: <span style="color:#ae81ff">instance</span>
-</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">action</span>: <span style="color:#ae81ff">labelmap</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">regex</span>: <span style="color:#ae81ff">__meta_kubernetes_service_label_(.+)</span>
-</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">source_labels</span>:
-</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">__meta_kubernetes_namespace</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">target_label</span>: <span style="color:#ae81ff">kubernetes_namespace</span>
-</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">source_labels</span>:
-</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">__meta_kubernetes_service_name</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">target_label</span>: <span style="color:#ae81ff">kubernetes_name</span>
-</span></span><span style="display:flex; background-color:#3c3d38"><span>  - <span style="color:#f92672">source_labels</span>: [<span style="color:#ae81ff">__param_target, __meta_kubernetes_service_annotation_prometheus_io_probe_path]</span>
-</span></span><span style="display:flex; background-color:#3c3d38"><span>    <span style="color:#f92672">separator</span>: <span style="color:#e6db74">&#39;;&#39;</span>
-</span></span><span style="display:flex; background-color:#3c3d38"><span>    <span style="color:#f92672">regex</span>: <span style="color:#ae81ff">(.*?);(.*?)</span>
-</span></span><span style="display:flex; background-color:#3c3d38"><span>    <span style="color:#f92672">target_label</span>: <span style="color:#ae81ff">__param_target</span>
-</span></span><span style="display:flex; background-color:#3c3d38"><span>    <span style="color:#f92672">replacement</span>: <span style="color:#ae81ff">${1}${2}</span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">job_name</span>: <span style="color:#ae81ff">kubernetes-pods</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># ...</span></span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># ...</span>
+- <span style="color:#66d9ef">job_name</span>: kubernetes-services
+  <span style="color:#66d9ef">kubernetes_sd_configs</span>:
+  - <span style="color:#66d9ef">role</span>: service
+  <span style="color:#66d9ef">metrics_path</span>: /probe
+  <span style="color:#66d9ef">params</span>:
+    <span style="color:#66d9ef">module</span>:
+    - http_2xx
+  <span style="color:#66d9ef">relabel_configs</span>:
+  - <span style="color:#66d9ef">action</span>: keep
+    <span style="color:#66d9ef">regex</span>: <span style="color:#66d9ef">true</span>
+    <span style="color:#66d9ef">source_labels</span>:
+    - __meta_kubernetes_service_annotation_prometheus_io_probe
+  - <span style="color:#66d9ef">source_labels</span>:
+    - __address__
+    <span style="color:#66d9ef">target_label</span>: __param_target
+  - <span style="color:#66d9ef">replacement</span>: blackbox
+    <span style="color:#66d9ef">target_label</span>: __address__
+  - <span style="color:#66d9ef">source_labels</span>:
+    - __param_target
+    <span style="color:#66d9ef">target_label</span>: instance
+  - <span style="color:#66d9ef">action</span>: labelmap
+    <span style="color:#66d9ef">regex</span>: __meta_kubernetes_service_label_(.+)
+  - <span style="color:#66d9ef">source_labels</span>:
+    - __meta_kubernetes_namespace
+    <span style="color:#66d9ef">target_label</span>: kubernetes_namespace
+  - <span style="color:#66d9ef">source_labels</span>:
+    - __meta_kubernetes_service_name
+    <span style="color:#66d9ef">target_label</span>: kubernetes_name
+<span style="display:block;width:100%;background-color:#3c3d38">  - <span style="color:#66d9ef">source_labels</span>: [__param_target, __meta_kubernetes_service_annotation_prometheus_io_probe_path]
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">separator</span>: <span style="color:#e6db74">&#39;;&#39;</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">regex</span>: (.<span style="color:#75715e">*?);(.*?)</span>
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">target_label</span>: __param_target
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">replacement</span>: ${<span style="color:#ae81ff">1</span>}${<span style="color:#ae81ff">2</span>}
+</span>- <span style="color:#66d9ef">job_name</span>: kubernetes-pods
+<span style="color:#75715e"># ...</span></code></pre></td></tr></table>
 </div>
 </div>
 <blockquote>
 <p>This just allows us to setup, under any kubernetes Service configuration, an &ldquo;prometheus.io/probe_path&rdquo; annotation with a different endpoint that can replace the default <code>metric_path: /probe</code>. (issue that explains this: <a href="https://github.com/prometheus/blackbox_exporter/issues/113">https://github.com/prometheus/blackbox_exporter/issues/113</a>)</p>
 </blockquote>
 <h3 id="service-uptime">Service Uptime</h3>
-<p>Lastly, we just need to create two new widgets on our dashboard: <strong>&ldquo;Uptime (%)&rdquo;</strong> and <strong>&ldquo;Service Uptime&rdquo;</strong></p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+<p>Lastly, we just need to create two new widgets on our dashboard: <strong>&ldquo;Uptime (%)&quot;</strong> and <strong>&ldquo;Service Uptime&rdquo;</strong></p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># For the &#34;Uptime %&#34;, we need two queries that show 99.99 over a week/two week period</span>
-</span></span><span style="display:flex;"><span>avg_over_time<span style="color:#f92672">(</span>probe_success<span style="color:#f92672">{</span>app<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;n8n&#34;</span><span style="color:#f92672">}[</span>7d<span style="color:#f92672">])</span>
-</span></span><span style="display:flex;"><span>avg_over_time<span style="color:#f92672">(</span>probe_success<span style="color:#f92672">{</span>app<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;n8n&#34;</span><span style="color:#f92672">}[</span>14d<span style="color:#f92672">])</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># For the Service Uptime, we just want to check the `probe_success` results</span>
-</span></span><span style="display:flex;"><span>probe_success<span style="color:#f92672">{</span>app<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;n8n&#34;</span><span style="color:#f92672">}</span>
-</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># For the &#34;Uptime %&#34;, we need two queries that show 99.99 over a week/two week period</span>
+avg_over_time<span style="color:#f92672">(</span>probe_success<span style="color:#f92672">{</span>app<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;n8n&#34;</span><span style="color:#f92672">}[</span>7d<span style="color:#f92672">])</span>
+avg_over_time<span style="color:#f92672">(</span>probe_success<span style="color:#f92672">{</span>app<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;n8n&#34;</span><span style="color:#f92672">}[</span>14d<span style="color:#f92672">])</span>
+
+<span style="color:#75715e"># For the Service Uptime, we just want to check the `probe_success` results</span>
+probe_success<span style="color:#f92672">{</span>app<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;n8n&#34;</span><span style="color:#f92672">}</span>
+</code></pre></td></tr></table>
 </div>
 </div><p><img src="images/grafana-final-dashboard.png" alt="images/grafana-final-dashboard.png" title="Grafana final dashboard"></p>
 <p>And that is all, we have a good base for our n8n dashboard in grafana 🚀.</p>
@@ -867,7 +867,7 @@ You have your own n8n instance running in Kubernetes, taking advantage of all am
 
 <div id="disqus_thread"></div>
 <script type="application/javascript">
-    window.disqus_config = function () {
+    var disqus_config = function () {
     
     
     
@@ -898,7 +898,7 @@ You have your own n8n instance running in Kubernetes, taking advantage of all am
     <a class="twitter" title="Share this on Twitter" href="https://twitter.com/intent/tweet?text=Observability%20on%20n8n&url=https%3a%2f%2fwww.andreffs.com%2fblog%2fobservability-on-n8n%2f">
         <i class="fa fa-twitter"></i>
     </a>
-    <a class="linkedin" title="Share this on Linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fwww.andreffs.com%2fblog%2fobservability-on-n8n%2f&title=Observability%20on%20n8n&summary=This%20post%20is%20a%20continuation%20on%20%26ldquo%3bSetup%20n8n%20on%20Kubernetes%26rdquo%3b%2c%20so%20most%20of%20the%20things%20we%20talk%20here%20assume%20that%20you%26rsquo%3bve%20followed%2fread%20this%20one%20as%20well.%0aYou%20have%20your%20own%20n8n%20instance%20running%20in%20Kubernetes%2c%20taking%20advantage%20of%20all%20amazing%20functionality%20and%20capabilities%20of%20it%2c%20but%20you%20are%20%e2%80%a6&source=">
+    <a class="linkedin" title="Share this on Linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fwww.andreffs.com%2fblog%2fobservability-on-n8n%2f&title=Observability%20on%20n8n&summary=This%20post%20is%20a%20continuation%20on%20%26ldquo%3bSetup%20n8n%20on%20Kubernetes%26rdquo%3b%2c%20so%20most%20of%20the%20things%20we%20talk%20here%20assume%20that%20you%26rsquo%3bve%20followed%2fread%20this%20one%20as%20well.%0a%20You%20have%20your%20own%20n8n%20instance%20running%20in%20Kubernetes%2c%20taking%20advantage%20of%20all%20amazing%20functionality%20and%20capabilities%20of%20it%2c%20but%20you%20are%20%e2%80%a6&source=">
         <i class="fa fa-linkedin"></i>
     </a>
     <a class="mail" title="Share this through Email" href="mailto:?subject=Observability%20on%20n8n&body=https%3a%2f%2fwww.andreffs.com%2fblog%2fobservability-on-n8n%2f">
@@ -1104,6 +1104,7 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
+
     
 
     <script type="text/javascript" src="https://www.andreffs.com/js/main.js"></script>

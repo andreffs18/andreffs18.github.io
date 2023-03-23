@@ -66,7 +66,7 @@ Then a simple multiplication shows that your &ldquo;poop time&rdquo; is worth ar
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     
     
-    <link rel="stylesheet" type="text/css" href="https://www.andreffs.com/css/main.min.e0ab7e2fbbd40db87e640fab9a0fc155c2451bd11e7ec1f9e5118d96fb4bf98a.css">
+    <link rel="stylesheet" type="text/css" href="https://www.andreffs.com/css/main.min.2eb3a89d39218ca6f33775627f3850506f874ab5a5eff5586fcd54576f7f0c4b.css">
 
     
     
@@ -76,7 +76,7 @@ Then a simple multiplication shows that your &ldquo;poop time&rdquo; is worth ar
     
     <meta name="hugo-build-date" content=""/>
     <meta name="hugo-commit-hash" content=""/>
-    <meta name="generator" content="Hugo 0.111.1">
+    <meta name="generator" content="Hugo 0.67.1" />
 </head>
 
     <body>
@@ -115,7 +115,7 @@ Then a simple multiplication shows that your &ldquo;poop time&rdquo; is worth ar
                     
                 
                 <span>|</span>
-                <a class="text-muted text-decoration-none">± 3 mins</a>
+                <a class="text-muted text-decoration-none">± 5 mins</a>
             </p>
         </header>
         <article class="markdown-body">
@@ -140,19 +140,19 @@ so I just decide to play around with those.</p>
 <p>Since I didn&rsquo;t want to fill a Google Spreadsheet every time I went to the bathroom, I end up creating a <a href="https://zapier.com/apps/">Zapier</a> integration
 with Google Spreadsheets, that would have an exposed web hook, which would be used by tapping the NFC tag.</p>
 <p>It was a simple webhook that would store something like this:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>creation_datetime	nfc_id	event_name	event_value
-</span></span><span style="display:flex;"><span>2017-03-25 17:11:49	04:2d:d1:62:a1:48:80	take-a-shit	TRUE
-</span></span><span style="display:flex;"><span>2017-03-25 17:14:53	04:2d:d1:62:a1:48:80	take-a-shit	FALSE
-</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span>...<span style="color:#f92672">)</span>
-</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">creation_datetime	nfc_id	event_name	event_value
+2017-03-25 17:11:49	04:2d:d1:62:a1:48:80	take-a-shit	TRUE
+2017-03-25 17:14:53	04:2d:d1:62:a1:48:80	take-a-shit	FALSE
+<span style="color:#f92672">(</span>...<span style="color:#f92672">)</span>
+</code></pre></td></tr></table>
 </div>
 </div><p>The important part is the <code> event_value</code> which would work as a toggle, in which <strong>True</strong> means &ldquo;Going to the bathroom&rdquo; and <strong>False</strong> &ldquo;Coming back&rdquo;.</p>
 <h2 id="nfc-tag">NFC Tag</h2>
@@ -367,7 +367,7 @@ with Google Spreadsheets, that would have an exposed web hook, which would be us
 
 <div id="disqus_thread"></div>
 <script type="application/javascript">
-    window.disqus_config = function () {
+    var disqus_config = function () {
     
     
     
@@ -604,6 +604,7 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
+
     
 
     <script type="text/javascript" src="https://www.andreffs.com/js/main.js"></script>

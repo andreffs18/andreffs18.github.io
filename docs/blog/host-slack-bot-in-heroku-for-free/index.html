@@ -60,7 +60,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     
     
-    <link rel="stylesheet" type="text/css" href="https://www.andreffs.com/css/main.min.e0ab7e2fbbd40db87e640fab9a0fc155c2451bd11e7ec1f9e5118d96fb4bf98a.css">
+    <link rel="stylesheet" type="text/css" href="https://www.andreffs.com/css/main.min.2eb3a89d39218ca6f33775627f3850506f874ab5a5eff5586fcd54576f7f0c4b.css">
 
     
     
@@ -70,7 +70,7 @@
     
     <meta name="hugo-build-date" content=""/>
     <meta name="hugo-commit-hash" content=""/>
-    <meta name="generator" content="Hugo 0.111.1">
+    <meta name="generator" content="Hugo 0.67.1" />
 </head>
 
     <body>
@@ -124,9 +124,9 @@
 </blockquote>
 <hr>
 <p><img src="https://i.imgur.com/nM3mJd3.jpg" alt="https://i.imgur.com/nM3mJd3.jpg"></p>
-<p>There is a Portuguese &ldquo;motivational guru&rdquo; called Gustavo Santos that has been in the news for some dumb reason. He&rsquo;s the type of character that will say something like &ldquo;<em>A mente chama-se mente porque te mente</em>&rdquo;, and come off as super profound.</p>
+<p>There is a Portuguese &ldquo;motivational guru&rdquo; called Gustavo Santos that has been in the news for some dumb reason. He&rsquo;s the type of character that will say something like &ldquo;<em>A mente chama-se mente porque te mente</em>&quot;, and come off as super profound.</p>
 <blockquote>
-<p>&ldquo;Mind is called mind because it <em>lies</em>&rdquo;&hellip; in Portuguese sounds &ldquo;better&rdquo; 😅</p>
+<p>&ldquo;Mind is called mind because it <em>lies</em>&quot;&hellip; in Portuguese sounds &ldquo;better&rdquo; 😅</p>
 </blockquote>
 <p>Me and a couple of friends were talking about his books, quotes, tv shows, and <em>whell</em>&hellip; the guy must be doing something right if he&rsquo;s having all this success.</p>
 <p>So, because I was playing with Slack&rsquo;s API and &ldquo;slack bots are all the rage now&rdquo;, I decided to build one just to get a look at how it&rsquo;s done and, why not start with building a &ldquo;Motivational Gustavo Santos Slack Bot&rdquo;.</p>
@@ -262,7 +262,7 @@ graph TD
 <li>Process Management (Foreman): Three apps running with <strong>Nginx (the old savior) that port-forwards to all different processes</strong></li>
 </ul>
 <blockquote>
-<p>While researching this, I tried to set up all different processes to run on containers like &ldquo;docker run &hellip;&rdquo;. While trying to figure out this option, I discover that there is a service called <a href="https://dockhero.io/">DockHero.io</a> that we can use, and since we just need the <a href="https://elements.heroku.com/buildpacks/dockhero/heroku-buildpack-docker-compose">buildpack</a> to have access to our docker binaries we could use that instead. Although, as they state it pretty well: &ldquo;IMPORTANT: in no way this buildpack helps you deploy your docker-compose.yml to Heroku Docker runtime&rdquo;&hellip; so no luck here.</p>
+<p>While researching this, I tried to set up all different processes to run on containers like &ldquo;docker run &hellip;&quot;. While trying to figure out this option, I discover that there is a service called <a href="https://dockhero.io/">DockHero.io</a> that we can use, and since we just need the <a href="https://elements.heroku.com/buildpacks/dockhero/heroku-buildpack-docker-compose">buildpack</a> to have access to our docker binaries we could use that instead. Although, as they state it pretty well: &ldquo;IMPORTANT: in no way this buildpack helps you deploy your docker-compose.yml to Heroku Docker runtime&rdquo;&hellip; so no luck here.</p>
 </blockquote>
 <p>There are two big caveats to this second option:</p>
 <ol>
@@ -290,75 +290,75 @@ graph TD
 <p>So, to manage all processes, and since I&rsquo;m already using Python, I used <a href="https://honcho.readthedocs.io/en/latest/">Honcho</a> (Foreman port to Python) to bypass the number of dynos restriction on Heroku.</p>
 <p><img src="images/heroku-diagram.jpg" alt="images/heroku-diagram.jpg" title="Heroku architecture diagram"></p>
 <p>The traffic is routed through a Nginx configuration, that you can configure by creating a <a href="https://github.com/andreffs18/santosbot/blob/master/config/nginx.conf.erb"><code>&quot;~/config/nginx.conf.erb&quot;</code></a> config file, and adding the following:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span></span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span></span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span></span><span style="background-color:#3c3d38"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span></span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span></span><span style="display:block;width:100%;background-color:#3c3d38"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span></span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-nginx" data-lang="nginx"><span style="display:flex;"><span><span style="color:#75715e"># part of the Nginx configuration
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">http</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">server</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Proxy pass ExpressJS Server.
-</span></span></span><span style="display:flex; background-color:#3c3d38"><span><span style="color:#75715e"></span>    <span style="color:#f92672">location</span>  <span style="color:#e6db74">/</span> {
-</span></span><span style="display:flex; background-color:#3c3d38"><span>      <span style="color:#f92672">proxy_pass</span>          <span style="color:#e6db74">http://127.0.0.1:8080</span>;
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">proxy_redirect</span>      <span style="color:#66d9ef">off</span>;
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">proxy_set_header</span>    <span style="color:#e6db74">X-Forwarded-For</span> $proxy_add_x_forwarded_for;
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">proxy_set_header</span>    <span style="color:#e6db74">Host</span> $http_host;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Proxy pass to Backend service
-</span></span></span><span style="display:flex; background-color:#3c3d38"><span><span style="color:#75715e"></span>    <span style="color:#f92672">location</span> <span style="color:#e6db74">/api/</span> {
-</span></span><span style="display:flex; background-color:#3c3d38"><span>      <span style="color:#f92672">proxy_pass</span>          <span style="color:#e6db74">http://127.0.0.1:8888/</span>;
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">proxy_http_version</span>  <span style="color:#ae81ff">1</span><span style="color:#e6db74">.1</span>;
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">proxy_redirect</span>      <span style="color:#e6db74">default</span>;
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">proxy_set_header</span>    <span style="color:#e6db74">Upgrade</span> $http_upgrade;
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">proxy_set_header</span>    <span style="color:#e6db74">Connection</span> <span style="color:#e6db74">&#34;upgrade&#34;</span>;
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">proxy_set_header</span>    <span style="color:#e6db74">Host</span> $host;
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">proxy_set_header</span>    <span style="color:#e6db74">X-Real-IP</span> $remote_addr;
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">proxy_set_header</span>    <span style="color:#e6db74">X-Forwarded-For</span> $proxy_add_x_forwarded_for;
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">proxy_set_header</span>    <span style="color:#e6db74">X-Forwarded-Host</span> $server_name;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nginx" data-lang="nginx"><span style="color:#75715e"># part of the Nginx configuration
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">http</span> {
+  <span style="color:#f92672">server</span> {
+    <span style="color:#75715e"># Proxy pass ExpressJS Server.
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#75715e"></span>    <span style="color:#f92672">location</span>  <span style="color:#e6db74">/</span> {
+</span><span style="display:block;width:100%;background-color:#3c3d38">      <span style="color:#f92672">proxy_pass</span>          <span style="color:#e6db74">http://127.0.0.1:8080</span>;
+</span>      <span style="color:#f92672">proxy_redirect</span>      <span style="color:#66d9ef">off</span>;
+      <span style="color:#f92672">proxy_set_header</span>    <span style="color:#e6db74">X-Forwarded-For</span> $proxy_add_x_forwarded_for;
+      <span style="color:#f92672">proxy_set_header</span>    <span style="color:#e6db74">Host</span> $http_host;
+    }
+
+    <span style="color:#75715e"># Proxy pass to Backend service
+</span><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#75715e"></span>    <span style="color:#f92672">location</span> <span style="color:#e6db74">/api/</span> {
+</span><span style="display:block;width:100%;background-color:#3c3d38">      <span style="color:#f92672">proxy_pass</span>          <span style="color:#e6db74">http://127.0.0.1:8888/</span>;
+</span>      <span style="color:#f92672">proxy_http_version</span>  <span style="color:#ae81ff">1</span><span style="color:#e6db74">.1</span>;
+      <span style="color:#f92672">proxy_redirect</span>      <span style="color:#e6db74">default</span>;
+      <span style="color:#f92672">proxy_set_header</span>    <span style="color:#e6db74">Upgrade</span> $http_upgrade;
+      <span style="color:#f92672">proxy_set_header</span>    <span style="color:#e6db74">Connection</span> <span style="color:#e6db74">&#34;upgrade&#34;</span>;
+      <span style="color:#f92672">proxy_set_header</span>    <span style="color:#e6db74">Host</span> $host;
+      <span style="color:#f92672">proxy_set_header</span>    <span style="color:#e6db74">X-Real-IP</span> $remote_addr;
+      <span style="color:#f92672">proxy_set_header</span>    <span style="color:#e6db74">X-Forwarded-For</span> $proxy_add_x_forwarded_for;
+      <span style="color:#f92672">proxy_set_header</span>    <span style="color:#e6db74">X-Forwarded-Host</span> $server_name;
+    }
+  }
+}</code></pre></td></tr></table>
 </div>
 </div>
 <h1 id="testing-the-multi-process-hypotheses">Testing the multi-process hypotheses</h1>
 <p>To test this out, I wanted to just run some simple commands on the <code>Procfile: web</code>:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># ~/Procfile</span>
-</span></span><span style="display:flex;"><span>$ ls -lha
-</span></span><span style="display:flex;"><span>$ env
-</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># ~/Procfile</span>
+$ ls -lha
+$ env
+</code></pre></td></tr></table>
 </div>
 </div><p>This was the result:</p>
 <p><img src="images/ls-in-heroku-procfile.png" alt="images/ls-in-heroku-procfile.png"></p>
@@ -366,104 +366,104 @@ graph TD
 <p>#fyi, if you are curious about the <code>.heroku</code> and <code>.profile.d</code> files, those are just folders with default configuration for setting up the dynos environments like the amount of memory available on the unicorn workers and set up of environment variables.</p>
 </blockquote>
 <p>We have access to everything we need, let&rsquo;s test it out by creating a simple Procfile, one that simulates our services. Let&rsquo;s call it “santosbot.Procfile” and have just &ldquo;echo&rsquo;s&rdquo; for each service:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># ~/santosbot.Procfile</span>
-</span></span><span style="display:flex;"><span>web: <span style="color:#66d9ef">while</span> true; <span style="color:#66d9ef">do</span> echo <span style="color:#e6db74">&#34;frontend service&#34;</span>; sleep 2; <span style="color:#66d9ef">done</span>
-</span></span><span style="display:flex;"><span>api: <span style="color:#66d9ef">while</span> true; <span style="color:#66d9ef">do</span> echo <span style="color:#e6db74">&#34;backend service&#34;</span>; sleep 1; <span style="color:#66d9ef">done</span>
-</span></span><span style="display:flex;"><span>bot: <span style="color:#66d9ef">while</span> true; <span style="color:#66d9ef">do</span> echo <span style="color:#e6db74">&#34;bot service&#34;</span>; sleep 5; <span style="color:#66d9ef">done</span>
-</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># ~/santosbot.Procfile</span>
+web: <span style="color:#66d9ef">while</span> true; <span style="color:#66d9ef">do</span> echo <span style="color:#e6db74">&#34;frontend service&#34;</span>; sleep 2; <span style="color:#66d9ef">done</span>
+api: <span style="color:#66d9ef">while</span> true; <span style="color:#66d9ef">do</span> echo <span style="color:#e6db74">&#34;backend service&#34;</span>; sleep 1; <span style="color:#66d9ef">done</span>
+bot: <span style="color:#66d9ef">while</span> true; <span style="color:#66d9ef">do</span> echo <span style="color:#e6db74">&#34;bot service&#34;</span>; sleep 5; <span style="color:#66d9ef">done</span>
+</code></pre></td></tr></table>
 </div>
 </div><p>And to make sure nothing gets in the way, let&rsquo;s make sure no buildpacks are configured:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ heroku buildpacks:clear
-</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ heroku buildpacks:clear
+</code></pre></td></tr></table>
 </div>
 </div><p>Now to test this, just push it and look at the logs:</p>
 <p><img src="images/app-logs.png" alt="images/app-logs.png"></p>
 <p>Okay, <em>very nice</em> 😎!</p>
 <h1 id="handling-project-dependencies">Handling project dependencies</h1>
 <p>Since the project is divided into different folders, I first need to enter each one and then run the initialization script:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># ~/santosbot.Procfile</span>
-</span></span><span style="display:flex;"><span>web: cd frontend <span style="color:#f92672">&amp;&amp;</span> npm run build <span style="color:#f92672">&amp;&amp;</span> npm run start
-</span></span><span style="display:flex;"><span>api: cd backend <span style="color:#f92672">&amp;&amp;</span> uvicorn api:app --port <span style="color:#ae81ff">8888</span> --host 0.0.0.0
-</span></span><span style="display:flex;"><span>bot: cd bot <span style="color:#f92672">&amp;&amp;</span> python main.py
-</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># ~/santosbot.Procfile</span>
+web: cd frontend <span style="color:#f92672">&amp;&amp;</span> npm run build <span style="color:#f92672">&amp;&amp;</span> npm run start
+api: cd backend <span style="color:#f92672">&amp;&amp;</span> uvicorn api:app --port <span style="color:#ae81ff">8888</span> --host 0.0.0.0
+bot: cd bot <span style="color:#f92672">&amp;&amp;</span> python main.py
+</code></pre></td></tr></table>
 </div>
-</div><p><em>Annd</em> right, we need to install all different dependencies for the different projects, which means running specific commands like <code>npm run build</code>. Since adding all of them into <code>~/santosbot.Procfile</code> means making some sort of &ldquo;<em>this</em>&rdquo;:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</div><p><em>Annd</em> right, we need to install all different dependencies for the different projects, which means running specific commands like <code>npm run build</code>. Since adding all of them into <code>~/santosbot.Procfile</code> means making some sort of &ldquo;<em>this</em>&quot;:</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>web: cd frontend <span style="color:#f92672">&amp;&amp;</span> EXPORT NODE_ENV<span style="color:#f92672">=</span>development <span style="color:#f92672">&amp;&amp;</span> npm install <span style="color:#f92672">&amp;&amp;</span> npm run build <span style="color:#f92672">&amp;&amp;</span> npm run start...
-</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">web: cd frontend <span style="color:#f92672">&amp;&amp;</span> EXPORT NODE_ENV<span style="color:#f92672">=</span>development <span style="color:#f92672">&amp;&amp;</span> npm install <span style="color:#f92672">&amp;&amp;</span> npm run build <span style="color:#f92672">&amp;&amp;</span> npm run start...
+</code></pre></td></tr></table>
 </div>
 </div><p>I&rsquo;ve abstracted that away and moved that initialization code into a <code>~/{ APP }/heroku.sh</code> file, located in each project folder:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ tree ~/santosbot
-</span></span><span style="display:flex;"><span>.
-</span></span><span style="display:flex;"><span>├── Procfile
-</span></span><span style="display:flex;"><span>├── santosbot.Procfile
-</span></span><span style="display:flex;"><span>├── backend
-</span></span><span style="display:flex;"><span>│   ├── heroku.sh
-</span></span><span style="display:flex;"><span>│   └── <span style="color:#f92672">(</span>...<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>├── bot
-</span></span><span style="display:flex;"><span>│   ├── heroku.sh
-</span></span><span style="display:flex;"><span>│   └── <span style="color:#f92672">(</span>...<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>└── frontend
-</span></span><span style="display:flex;"><span>    ├── heroku.sh
-</span></span><span style="display:flex;"><span>    └── <span style="color:#f92672">(</span>...<span style="color:#f92672">)</span>
-</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ tree ~/santosbot
+.
+├── Procfile
+├── santosbot.Procfile
+├── backend
+│   ├── heroku.sh
+│   └── <span style="color:#f92672">(</span>...<span style="color:#f92672">)</span>
+├── bot
+│   ├── heroku.sh
+│   └── <span style="color:#f92672">(</span>...<span style="color:#f92672">)</span>
+└── frontend
+    ├── heroku.sh
+    └── <span style="color:#f92672">(</span>...<span style="color:#f92672">)</span>
+</code></pre></td></tr></table>
 </div>
 </div><p>And so, our <code>~/santosbot.Procfile</code> can now look like this:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># ~/santosbot.Procfile</span>
-</span></span><span style="display:flex;"><span>frontend: cd frontend <span style="color:#f92672">&amp;&amp;</span> ./heroku.sh
-</span></span><span style="display:flex;"><span>backend: cd backend <span style="color:#f92672">&amp;&amp;</span> ./heroku.sh
-</span></span><span style="display:flex;"><span>bot: cd bot <span style="color:#f92672">&amp;&amp;</span> ./heroku.sh
-</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># ~/santosbot.Procfile</span>
+frontend: cd frontend <span style="color:#f92672">&amp;&amp;</span> ./heroku.sh
+backend: cd backend <span style="color:#f92672">&amp;&amp;</span> ./heroku.sh
+bot: cd bot <span style="color:#f92672">&amp;&amp;</span> ./heroku.sh
+</code></pre></td></tr></table>
 </div>
 </div><p>With that, we just need to make sure we clear our buildpacks and set up the necessary ones:</p>
 <ul>
@@ -471,65 +471,65 @@ graph TD
 <li>Node: To run our frontend app</li>
 <li>Nginx: To run the reverse proxy</li>
 </ul>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Don’t forget to Clear the buildpack and </span>
-</span></span><span style="display:flex;"><span>$ heroku stack:set heroku-18 --app santosbot
-</span></span><span style="display:flex;"><span>$ heroku buildpacks:clear
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Set all necessary buildpack configurations for the project dependencies</span>
-</span></span><span style="display:flex;"><span>heroku buildpacks:add --index <span style="color:#ae81ff">1</span> https://github.com/heroku/heroku-buildpack-nginx.git
-</span></span><span style="display:flex;"><span>heroku buildpacks:add --index <span style="color:#ae81ff">2</span> heroku/python
-</span></span><span style="display:flex;"><span>heroku buildpacks:add --index <span style="color:#ae81ff">3</span> https://github.com/heroku/heroku-buildpack-nodejs#v170
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Just print the buildpack configuration</span>
-</span></span><span style="display:flex;"><span>heroku buildpacks
-</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Don’t forget to Clear the buildpack and</span> 
+$ heroku stack:set heroku-18 --app santosbot
+$ heroku buildpacks:clear
+<span style="color:#75715e"># Set all necessary buildpack configurations for the project dependencies</span>
+heroku buildpacks:add --index <span style="color:#ae81ff">1</span> https://github.com/heroku/heroku-buildpack-nginx.git
+heroku buildpacks:add --index <span style="color:#ae81ff">2</span> heroku/python
+heroku buildpacks:add --index <span style="color:#ae81ff">3</span> https://github.com/heroku/heroku-buildpack-nodejs#v170
+<span style="color:#75715e"># Just print the buildpack configuration</span>
+heroku buildpacks
+</code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>You can also just save those into your <a href="https://github.com/andreffs18/santosbot/blob/master/.buildpacks"><code>~/.buildpacks</code></a> file.</p>
 </blockquote>
 <p>Next, we just need to set up Heroku runtime to be &ldquo;Python&rdquo; and install &ldquo;Honcho&rdquo;.
 This is done by creating a <code>~/runtime.txt</code> and <code>~/requirements.txt</code> files with the following:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># ~/runtime.txt</span>
-</span></span><span style="display:flex;"><span>python-3.7.2
-</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># ~/runtime.txt</span>
+python-3.7.2
+</code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</div><div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># ~/requirements.txt</span>
-</span></span><span style="display:flex;"><span>honcho
-</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># ~/requirements.txt</span>
+honcho
+</code></pre></td></tr></table>
 </div>
 </div><p>Finally, you can add to your <code>~/Procfile</code> the necessary command to start the whole project:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># ~/Procfile</span>
-</span></span><span style="display:flex;"><span>web: honcho start -f santosbot.Procfile
-</span></span></code></pre></td></tr></table>
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># ~/Procfile</span>
+web: honcho start -f santosbot.Procfile
+</code></pre></td></tr></table>
 </div>
 </div><p>And that&rsquo;s it. This will take care of starting up your Dyno with Honcho as the Process manager, where it runs 3 processes:</p>
 <ul>
@@ -583,7 +583,7 @@ This is done by creating a <code>~/runtime.txt</code> and <code>~/requirements.t
 
 <div id="disqus_thread"></div>
 <script type="application/javascript">
-    window.disqus_config = function () {
+    var disqus_config = function () {
     
     
     
@@ -614,7 +614,7 @@ This is done by creating a <code>~/runtime.txt</code> and <code>~/requirements.t
     <a class="twitter" title="Share this on Twitter" href="https://twitter.com/intent/tweet?text=Host%20a%20Slack%20Bot%20in%20Heroku%20for%20Free&url=https%3a%2f%2fwww.andreffs.com%2fblog%2fhost-slack-bot-in-heroku-for-free%2f">
         <i class="fa fa-twitter"></i>
     </a>
-    <a class="linkedin" title="Share this on Linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fwww.andreffs.com%2fblog%2fhost-slack-bot-in-heroku-for-free%2f&title=Host%20a%20Slack%20Bot%20in%20Heroku%20for%20Free&summary=Update%202022-09-25%3a%20Well%20damn%26hellip%3b%20I%20guess%20I%20need%20to%20think%20of%20another%20way%20to%20do%20this.%20There%20is%20a%20Portuguese%20%26ldquo%3bmotivational%20guru%26rdquo%3b%20called%20Gustavo%20Santos%20that%20has%20been%20in%20the%20news%20for%20some%20dumb%20reason.%20He%26rsquo%3bs%20the%20type%20of%20character%20that%20will%20say%20something%20like%20%26ldquo%3bA%20mente%20chama-se%20%e2%80%a6&source=">
+    <a class="linkedin" title="Share this on Linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fwww.andreffs.com%2fblog%2fhost-slack-bot-in-heroku-for-free%2f&title=Host%20a%20Slack%20Bot%20in%20Heroku%20for%20Free&summary=Update%202022-09-25%3a%20Well%20damn%26hellip%3b%20I%20guess%20I%20need%20to%20think%20of%20another%20way%20to%20do%20this.%20%20%20There%20is%20a%20Portuguese%20%26ldquo%3bmotivational%20guru%26rdquo%3b%20called%20Gustavo%20Santos%20that%20has%20been%20in%20the%20news%20for%20some%20dumb%20reason.%20He%26rsquo%3bs%20the%20type%20of%20character%20that%20will%20say%20something%20like%20%26ldquo%3bA%20mente%20chama-se%20%e2%80%a6&source=">
         <i class="fa fa-linkedin"></i>
     </a>
     <a class="mail" title="Share this through Email" href="mailto:?subject=Host%20a%20Slack%20Bot%20in%20Heroku%20for%20Free&body=https%3a%2f%2fwww.andreffs.com%2fblog%2fhost-slack-bot-in-heroku-for-free%2f">
@@ -820,6 +820,7 @@ if (!doNotTrack) {
 	ga('send', 'pageview');
 }
 </script>
+
     
 
     <script type="text/javascript" src="https://www.andreffs.com/js/main.js"></script>
