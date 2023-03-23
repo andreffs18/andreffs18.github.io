@@ -1,11 +1,11 @@
 {{ define "main" }}
 
 {{- if .Params.Plotly }}
-<script type="text/javascript" src="https://cdn.plot.ly/plotly-1.50.0.min.js"></script>
+<script type="text/javascript" defer src="https://cdn.plot.ly/plotly-1.50.0.min.js"></script>
 {{- end }}
 
 {{- if .Params.Slideshow }}
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script type="text/javascript" defer src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 {{- end }}
 
 <main class="row blog">

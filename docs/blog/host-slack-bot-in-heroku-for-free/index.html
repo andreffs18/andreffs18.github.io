@@ -34,7 +34,7 @@
             <meta property="article:published_time" content="2020-03-28T11:33:00&#43;00:00"/>
         
         
-            <meta property="article:modified_time" content="2022-10-18T22:39:26&#43;01:00"/>
+            <meta property="article:modified_time" content="2023-03-23T18:17:28&#43;00:00"/>
         
     
 
@@ -172,7 +172,7 @@ graph TD
 <li>I wanted to learn VueJS 🤓</li>
 </ul>
 <p>It just interacts with the <code>&quot;GET /api/bot?&quot;</code> endpoint with the text we input on the form:</p>
-<p><img src="https://i.imgur.com/UJPRbU0.png" alt=""></p>
+<p><img src="https://i.imgur.com/UJPRbU0.png" alt="https://i.imgur.com/UJPRbU0.png"></p>
 <h2 id="bot">Bot</h2>
 <p>It runs entirely on the <a href="https://github.com/slackapi/python-slackclient">SlackClient</a> for Python by using the <a href="https://api.slack.com/rtm">Real Time Messaging Api</a>.</p>
 <p>It&rsquo;s a simple &ldquo;while loop&rdquo; that iterates over all messages that are sent to the channel where the slack bot was added, and then it makes a request to the <code>GET /api/bot?</code> endpoint. If any quotes are returned then the bot posts them on the channel.</p>
@@ -191,7 +191,7 @@ sequenceDiagram
 
 </div>
 
-<img src="https://i.imgur.com/56XcpeI.png" alt=""></p>
+<img src="https://i.imgur.com/56XcpeI.png" alt="https://i.imgur.com/56XcpeI.png"></p>
 <h1 id="deployment">Deployment</h1>
 <p>This project is hosted on Heroku, on just one dyno! Yup, three apps, different languages, one dyno. You can check it on <a href="https://santosbot.herokuapp.com">https://santosbot.herokuapp.com</a> (it takes almost a minute to load) or here <a href="https://github.com/andreffs18/santosbot">https://github.com/andreffs18/santosbot</a></p>
 <p><img src="images/just-one-dyno.png" alt="images/just-one-dyno.png" title="Just one dyno"></p>
@@ -646,9 +646,9 @@ web: honcho start -f santosbot.Procfile
 </div>
     <div class="col-md-auto text-center">
       <small>
-        Last update: October 18, 2022
+        Last update: March 23, 2023
         
-          <br><a href="https://github.com/andreffs18/website/commit/8f271f14a8b6061a8f57aa194914791d17121b54" target="_blank">See something that needs changing? (8f271f1)</a>
+          <br><a href="https://github.com/andreffs18/website/commit/5f8f84d6ca7050ee848c83a6b14faa1b121404ae" target="_blank">See something that needs changing? (5f8f84d)</a>
         
       </small>
     </div>

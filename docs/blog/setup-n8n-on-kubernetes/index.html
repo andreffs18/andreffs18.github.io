@@ -92,7 +92,7 @@ In this post I&rsquo;m going to go over how we&rsquo;ve deployed n8n on our Kube
     </div>
 </header>
             
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script type="text/javascript" defer src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 <main class="row blog">
     <section>
@@ -169,7 +169,8 @@ In this post I&rsquo;m going to go over how we&rsquo;ve deployed n8n on our Kube
 </div>
 
 <script type="text/javascript">
-
+window.addEventListener('DOMContentLoaded', () => {
+  
 [
   {url: "images/architecture-slide-1.png", description: "We're gonna use <a href='https://kubernetes.io/docs/tasks/tools/#minikube' target='_blank'>Minikube</a> for setting up our cluster locally. You can just follow the <a href='https://kubernetes.io/pt/docs/tutorials/hello-minikube/' target='_blank'>\"Hello World\"</a> tutorial if this is your first time using it."},
   {url: "images/architecture-slide-2.png", description: "First, we need to create our n8n instance. For that we need to setup one Deployment with one Pod. This container will use the <a href='https://hub.docker.com/r/n8nio/n8n/tags?page=1&ordering=last_updated' target='_blank'>\"n8nio/n8n:latest\"</a> image for now."},
@@ -181,25 +182,26 @@ In this post I&rsquo;m going to go over how we&rsquo;ve deployed n8n on our Kube
   {url: "images/architecture-slide-8.png", description: "and run <code>\"$ minikube service n8n-service\"</code>. This will make minikube assign an available port on our host machine to our n8n Service, so we can access it on a browser."},
 ]
 .forEach((slide) => {
-    const div = document.createElement("div");
-    const img = document.createElement("img");
-    img.src = slide.url;
-    const p = document.createElement("p");
-    p.innerHTML = slide.description || "";
-    div.appendChild(img);
-    div.appendChild(p)
-    document.getElementById("architecture").appendChild(div);
-})
+      const div = document.createElement("div");
+      const img = document.createElement("img");
+      img.src = slide.url;
+      const p = document.createElement("p");
+      p.innerHTML = slide.description || "";
+      div.appendChild(img);
+      div.appendChild(p)
+      document.getElementById("architecture").appendChild(div);
+  })
 
-$('#architecture').slick({
-    dots: false,
-    infinite: false,
-    speed: 0,
-    fade: true,
-    draggable: false,
-    cssEase: 'linear',
-    prevArrow: '<button id="left-arrow-example" class="btn btn-primary">◄ Previous</button>',
-    nextArrow: ' <button id="right-arrow-example" class="btn btn-primary">Next ►</button>'
+  $('#architecture').slick({
+      dots: false,
+      infinite: false,
+      speed: 0,
+      fade: true,
+      draggable: false,
+      cssEase: 'linear',
+      prevArrow: '<button id="left-arrow-example" class="btn btn-primary">◄ Previous</button>',
+      nextArrow: ' <button id="right-arrow-example" class="btn btn-primary">Next ►</button>'
+  });
 });
 </script>
 

@@ -156,7 +156,7 @@ Looking at the logs you can get a sense of whats happening:
       <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/blog/personal-finance/</guid>
       <description>Well, after reading a couple of books on the topic, they all talk about the same thing: you should diversify your portfolio.
-Code could not finish, this are some reasons why this happen. - Plot name not defined. The first parameter of the shortcode is the name. - There is a syntax error. check browser console.   function draw(){ test = document.getElementById(&#34;piechart&#34;); if (test == null){ console.log(&#34;The plot name is not defined&#34;</description>
+Code could not finish, this are some reasons why this happen. - Plot name not defined. The first parameter of the shortcode is the name. - There is a syntax error. check browser console.   window.addEventListener(&#39;DOMContentLoaded&#39;, () = { test = document.getElementById(&#34;piechart&#34;); if (test == null){ console.log(&#34;The plot name is not defined&#34;</description>
     </item>
     
     <item>

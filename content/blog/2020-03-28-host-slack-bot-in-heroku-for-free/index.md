@@ -69,7 +69,7 @@ This part of the app was built for two simple reasons:
 
 It just interacts with the `"GET /api/bot?"` endpoint with the text we input on the form:
 
-![](https://i.imgur.com/UJPRbU0.png)
+![https://i.imgur.com/UJPRbU0.png](https://i.imgur.com/UJPRbU0.png)
 
 ## Bot
 
@@ -85,7 +85,7 @@ sequenceDiagram
     Backend->>Bot: HTTP 200 "Mind is called mind..."
     Bot-->>Slack Instance: santosbot: "Mind is called mind..."
 {{</mermaid>}}
-![](https://i.imgur.com/56XcpeI.png)
+![https://i.imgur.com/56XcpeI.png](https://i.imgur.com/56XcpeI.png)
 
 
 # Deployment

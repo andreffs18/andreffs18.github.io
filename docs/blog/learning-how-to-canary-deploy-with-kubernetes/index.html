@@ -86,7 +86,7 @@
     </div>
 </header>
             
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script type="text/javascript" defer src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 <main class="row blog">
     <section>
@@ -893,7 +893,8 @@ server-55c7c6d78f-nx2zp   1/1     Running             <span style="color:#ae81ff
 </div>
 
 <script type="text/javascript">
-
+window.addEventListener('DOMContentLoaded', () => {
+  
 [
   {url: "minikube-apply-canary-slide1.png", description: "Initial state of our Minikube cluster."},
   {url: "minikube-apply-canary-slide2.png", description: "We apply our Canary configuration with one replica. One pod will spin up on <strong>\"track: canary\"</strong>.<br>We'll let our new track receive traffic and monitor its behavior"},
@@ -903,25 +904,26 @@ server-55c7c6d78f-nx2zp   1/1     Running             <span style="color:#ae81ff
   {url: "minikube-apply-canary-slide6.png", description: "Deployed version 2.0.0 with success ✅"},
 ]
 .forEach((slide) => {
-    const div = document.createElement("div");
-    const img = document.createElement("img");
-    img.src = slide.url;
-    const p = document.createElement("p");
-    p.innerHTML = slide.description || "";
-    div.appendChild(img);
-    div.appendChild(p)
-    document.getElementById("name").appendChild(div);
-})
+      const div = document.createElement("div");
+      const img = document.createElement("img");
+      img.src = slide.url;
+      const p = document.createElement("p");
+      p.innerHTML = slide.description || "";
+      div.appendChild(img);
+      div.appendChild(p)
+      document.getElementById("name").appendChild(div);
+  })
 
-$('#name').slick({
-    dots: false,
-    infinite: false,
-    speed: 0,
-    fade: true,
-    draggable: false,
-    cssEase: 'linear',
-    prevArrow: '<button id="left-arrow-example" class="btn btn-primary">◄ Previous</button>',
-    nextArrow: ' <button id="right-arrow-example" class="btn btn-primary">Next ►</button>'
+  $('#name').slick({
+      dots: false,
+      infinite: false,
+      speed: 0,
+      fade: true,
+      draggable: false,
+      cssEase: 'linear',
+      prevArrow: '<button id="left-arrow-example" class="btn btn-primary">◄ Previous</button>',
+      nextArrow: ' <button id="right-arrow-example" class="btn btn-primary">Next ►</button>'
+  });
 });
 </script>
 
