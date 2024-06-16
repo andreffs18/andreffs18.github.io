@@ -9,6 +9,17 @@
     <managingEditor>andreffs18@gmail.com (André Silva)</managingEditor>
     <webMaster>andreffs18@gmail.com (André Silva)</webMaster><atom:link href="https://www.andreffs.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>GoTo Conferences!!!1!</title>
+      <link>https://www.andreffs.com/blog/goto-conferences/</link>
+      <pubDate>Thu, 13 Jun 2024 17:29:18 +0100</pubDate>
+      <author>andreffs18@gmail.com (André Silva)</author>
+      <guid>https://www.andreffs.com/blog/goto-conferences/</guid>
+      <description>I really enjoy conferences. I think it&amp;rsquo;s one of the best things the tech industry has!
+Covid stopped us from going to &amp;ldquo;in-person&amp;rdquo; conferences, and we all had to shift to a more &amp;ldquo;remote&amp;rdquo; or &amp;ldquo;online&amp;rdquo; version of it. You still got to see some great talks, but there&amp;rsquo;s a world of difference between how you experience and learn from them.
+This year I&amp;rsquo;ve finally got back to an &amp;ldquo;in-person&amp;rdquo; conference, and being so excited about attending one again I started making a list of what I should do to make the most out of it.</description>
+    </item>
+    
+    <item>
       <title>Tools vs Data Structures</title>
       <link>https://www.andreffs.com/blog/tools-vs-data-structures/</link>
       <pubDate>Thu, 16 Feb 2023 07:27:00 +0000</pubDate>
@@ -198,7 +209,7 @@ The intent of this blog is just to keep track of my achievements, projects and a
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/about/</guid>
-      <description>👋 My name is André Silva and I&amp;rsquo;m a 30 y/old Portuguese Software Engineer from Lisbon, Portugal.
+      <description>👋 My name is André Silva and I&amp;rsquo;m a 31 y/old Portuguese Software Engineer that lives in Edinburgh, Scotland.
 # A bit about me I wasn&amp;rsquo;t always focused on the development world.
 During high school I got the chance to intern at a consulting firm in my hometown, mainly working with setting up data centers and configuring network systems.
 After high school, I went to college to take a Computer Science Bachelor&amp;rsquo;s degree.</description>
@@ -211,18 +222,6 @@ After high school, I went to college to take a Computer Science Bachelor&amp;rsq
       <author>andreffs18@gmail.com (André Silva)</author>
       <guid>https://www.andreffs.com/cv/</guid>
       <description></description>
-    </item>
-    
-    <item>
-      <title>Projects</title>
-      <link>https://www.andreffs.com/projects/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/projects/</guid>
-      <description>Some of my side projects:    Flask Template Bootstrap Flask project to use in Hackathons.
- python       Santosbot Motivational Slack bot that mimic cliché sentences from Portuguese guru, Gustavo Santos.
- python3 async heroku vuejs      andreffs.com This website, build with Hugo.
- hugo go jupyter notebooks static hosting      Sheetsu Python SDK I had the luck of being feature for building Sheetsu&amp;#39;s Python SDK.</description>
     </item>
     
   </channel>

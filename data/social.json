@@ -30,6 +30,18 @@
         "class": "fa fa-linkedin"
     },
     {
+        "identifier": "tvtime",
+        "title": "TVTime",
+        "url": "https://www.tvtime.com/en/user/3306759/profile",
+        "class": "fa fa-tv"
+    },
+    {
+        "identifier": "goodreads",
+        "title": "Goodreads",
+        "url": "https://www.goodreads.com/user/show/47011213-andre-silva",
+        "class": "fa fa-book"
+    },
+    {
         "identifier": "rss",
         "title": "RSS",
         "url": "https://www.andreffs.com/blog/index.xml",

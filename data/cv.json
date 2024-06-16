@@ -8,7 +8,7 @@
     "timeframe": "January 2014 - Present",
     "location": "@Lisboa, Portugal",
     "description": [
-     "Full-Stack become Tech Lead Engineer.",
+     "Full-Stack Intern to Staff Engineer.",
      "Currently working on supporting internal operations team, developing processes and tools to help improving quality of translations and reduce cost.",
      "Previously part of team that architected and implemented the new portal for Unbabel Customers.",
      "Also worked as Service Engineer, onboarding new customers into Unbabel ecosystem, developing custom software and processes to accomodate their needs"
@@ -44,7 +44,7 @@
    {
     "name": "Instituto Superior Tecnico",
     "url": "http://tecnico.ulisboa.pt/",
-    "timeframe": "September 2012 - Present",
+    "timeframe": "September 2012 - May 2017",
     "location": "@Lisboa, Portugal",
     "description": [
      "Bachelor's Degree in [Information Systems and Computer Science Engineering](https://fenix.tecnico.ulisboa.pt/cursos/leic-a)",
@@ -89,7 +89,7 @@
     "timeframe": "Programming Languages",
     "location": "",
     "description": [
-     "Bash, Python, Ruby, Elixir, CSS, HTML, Javascript"
+     "[Bash](/tags/bash/), [Python](/tags/python), Go, CSS, HTML, Javascript"
     ]
    },
    {
@@ -98,7 +98,7 @@
     "timeframe": "Libraries & Frameworks",
     "location": "",
     "description": [
-     "Django, Flask, Ruby on Rails, Phoenix, jQuery, Vue.js, Hugo, Jekyll"
+     "FastAPI, Flask, Django, Ruby on Rails, Phoenix, jQuery, Vue.js, Hugo, Jekyll"
     ]
    },
    {

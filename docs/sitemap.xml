@@ -3,13 +3,33 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://www.andreffs.com/tags/benchmarking/</loc>
-    <lastmod>2023-03-22T09:07:48+00:00</lastmod>
+    <loc>https://www.andreffs.com/blog/</loc>
+    <lastmod>2024-06-16T21:31:59+01:00</lastmod>
   </url>
   
   <url>
-    <loc>https://www.andreffs.com/blog/</loc>
-    <lastmod>2023-03-23T18:17:28+00:00</lastmod>
+    <loc>https://www.andreffs.com/tags/conferences/</loc>
+    <lastmod>2024-06-16T21:31:59+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andreffs.com/blog/goto-conferences/</loc>
+    <lastmod>2024-06-16T21:31:59+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andreffs.com/tags/guides/</loc>
+    <lastmod>2024-06-16T21:31:59+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andreffs.com/tags/</loc>
+    <lastmod>2024-06-16T21:31:59+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andreffs.com/tags/benchmarking/</loc>
+    <lastmod>2023-03-22T09:07:48+00:00</lastmod>
   </url>
   
   <url>
@@ -60,11 +80,6 @@
   <url>
     <loc>https://www.andreffs.com/tags/starlette/</loc>
     <lastmod>2023-03-22T09:07:48+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andreffs.com/tags/</loc>
-    <lastmod>2023-03-23T18:17:28+00:00</lastmod>
   </url>
   
   <url>
@@ -344,12 +359,12 @@
   
   <url>
     <loc>https://www.andreffs.com/about/</loc>
-    <lastmod>2022-09-15T08:24:38+01:00</lastmod>
+    <lastmod>2024-06-16T21:39:16+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andreffs.com/</loc>
-    <lastmod>2022-09-15T08:24:38+01:00</lastmod>
+    <lastmod>2024-06-16T21:39:16+01:00</lastmod>
   </url>
   
   <url>
