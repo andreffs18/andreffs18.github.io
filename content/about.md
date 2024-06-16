@@ -6,7 +6,8 @@ image: /images/about.jpeg
 
 ### 👋
 
-My name is André Silva and I'm a {{< my_age >}} y/old Portuguese Software Engineer from Lisbon, Portugal.
+My name is André Silva and I'm a {{< my_age >}} y/old Portuguese Software Engineer that lives in Edinburgh, Scotland.
+
 
 ### # A bit about me
 

@@ -10,7 +10,7 @@ enableRobotsTXT = true
 rssLimit = 20
 
 ignorefiles = [
-  "content/blog/_draft/.*"
+  # ie: "content/blog/_draft/.*"
 ]
 theme = ["hugo-debugprint"]
 
@@ -37,7 +37,7 @@ theme = ["hugo-debugprint"]
 
 [params]
     # Site HEAD's configs
-    description = "Hey, I'm André Silva, a Software Engineer from Lisbon, Portugal and this is my personal website."
+    description = "Hey, I'm André Silva, a Software Engineer from Edinburgh, Scotland and this is my personal website."
     socialHandler = "andreffs18"
 
     # Tag cloud params

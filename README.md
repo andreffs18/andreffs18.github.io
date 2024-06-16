@@ -1,6 +1,6 @@
 ## 👋
 
-My name is André Silva and I'm a Software Engineer from Lisbon, Portugal.
+My name is André Silva and I'm a Portuguese Software Engineer that lives in Edinburgh, Scotland.
 
 ### # A bit about me
 
