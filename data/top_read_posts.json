@@ -1,0 +1,30 @@
+[
+    {
+        "rel_permalink": "/blog/n8n-customizations-for-production/",
+        "page_views": 51
+    },
+    {
+        "rel_permalink": "/blog/setup-n8n-on-kubernetes/",
+        "page_views": 39
+    },
+    {
+        "rel_permalink": "/blog/i-really-like-emojis/",
+        "page_views": 23
+    },
+    {
+        "rel_permalink": "/blog/observability-on-n8n/",
+        "page_views": 5
+    },
+    {
+        "rel_permalink": "/blog/just-keep-on-save-for-later/",
+        "page_views": 3
+    },
+    {
+        "rel_permalink": "/blog/debug-in-hugo/",
+        "page_views": 1
+    },
+    {
+        "rel_permalink": "/blog/get-paid-for-pooping/",
+        "page_views": 1
+    }
+]

@@ -2,6 +2,47 @@
 {{ $dateFormat := default "Jan 2" }}
 {{ $.Scratch.Set "lastYear" ""}}
 <div class="container">
+    <!-- begin "Recomended Section -->
+    <div class="row mt-2">
+        <div class="d-none d-sm-block col-sm-2 mt-auto offset-sm-2 text-right">
+            <p class="text-muted mt-5">Top 3 most read:</p>
+        </div>
+        <div class="col">
+            <p class="text-muted mt-5">&nbsp;</p>
+        </div>
+    </div>
+
+    {{ $mostReadArticles := slice }}
+    {{ range $post := sort .Site.Data.top_read_posts "page_views" "desc" }}
+        {{ range where $.Site.Pages ".RelPermalink" "eq" $post.rel_permalink }}
+            {{ $mostReadArticles = $mostReadArticles | append . }}
+        {{ end }}
+    {{ end }}
+
+
+    {{ range (first 3 $mostReadArticles) }}
+    <div class="row mt-2">
+        <div class="d-none d-sm-block col-sm-2 mt-auto offset-sm-2 text-right">
+            <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">
+                {{ .Date.Format "Jan 2, 2006" }}
+                <br><small>
+                    {{ with (where .Site.Data.top_read_posts "rel_permalink" .RelPermalink) }}
+                        🔝{{ (index . 0).page_views }} views
+                    {{ end }}
+                </small>
+            </time>
+        </div>
+        <div class="col">
+            <a class="text-body" href="{{ .URL | absURL }}">
+                {{ if .Draft }}📝 <span style="color: salmon">DRAFT:</span>{{ end }}
+                {{ .Title | markdownify }}
+            </a>
+        </div>
+    </div>
+    {{ end }}
+    <!-- end "Recomemend Section" -->
+
+    <!-- begin "Blog list Section" -->
     {{ range .Pages }}
     {{ $year := .Date.Year }}
     {{ $lastYear := $.Scratch.Get "lastYear"}}
@@ -12,6 +53,11 @@
             {{ $.Scratch.Set "lastYear" $year }}
             {{ end }}
             <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">
+                {{ with (where (first 3 .Site.Data.top_read_posts) "rel_permalink" .RelPermalink) }}
+                    ⭐
+                {{ end }}
+
+
                 {{ .Date.Format "Jan 2" }}
             </time>
         </div>
@@ -26,5 +72,6 @@
         </div>
     </div>
     {{ end }}
+    <!-- end "Blog list Section" -->
 </div>
 {{ end }}
