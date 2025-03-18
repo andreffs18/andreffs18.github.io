@@ -36,8 +36,8 @@ changelog:
 	LAST_TAG="$$(git --no-pager tag --sort=-v:refname --list | head -n1)" && \
 	FIRST_COMMIT="$$(git rev-list --max-parents=0 HEAD)" && \
 	TAG=$${LAST_TAG:-$$FIRST_COMMIT} && \
-	LOGS=$$(git --no-pager log $$TAG..HEAD --pretty=format:"%h %B") && \
-	echo "👉 Pulling logs from \"$$TAG\" to \"$$(git --no-pager log --pretty=format:'%h' -n 1)\"..." && \
+	LOGS=$$(git --no-pager log $$TAG..HEAD --no-merges --pretty=format:"%h %s") && \
+	echo "👉 Pulling logs from \"$$TAG\" to \"$$(git --no-pager log --no-merges --pretty=format:'%h %s' -n 1)\"..." && \
 	printf "$$LOGS" | python3 .gitlab/scripts/generate-changelog.py && \
 	rm CHANGELOG.md
 
