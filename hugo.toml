@@ -1,18 +1,26 @@
 title = "ANDREFFS"
 baseURL = "https://andreffs.com"
-languageCode = "en-us"
+locale = "en-us"
 publishDir = "docs"
-tags = ["tags"]
-disqusShortname = "andreffs"
-googleAnalytics = "364443031"
+
 enableGitInfo = true
 enableRobotsTXT = true
-rssLimit = 20
+
+# Match the old (pre-0.67) lenient behaviour: a ref to a draft/missing page
+# renders an empty link instead of failing the build.
+refLinksErrorLevel = "warning"
 
 ignorefiles = [
   # ie: "content/blog/_draft/.*"
 ]
-theme = ["hugo-debugprint"]
+
+[services]
+  [services.googleAnalytics]
+    ID = "G-KB0NHDJ4BY"
+  [services.disqus]
+    shortname = "andreffs"
+  [services.rss]
+    limit = 20
 
 [markup]
   [markup.tableOfContents]
@@ -31,10 +39,6 @@ theme = ["hugo-debugprint"]
     style = "monokai"
     tabWidth = 4
 
-[author]
-  name = "André Silva"
-  email = "andreffs18@gmail.com"
-
 [params]
     # Site HEAD's configs
     description = "Hey, I'm André Silva, a Software Engineer from Edinburgh, Scotland and this is my personal website."
@@ -45,3 +49,9 @@ theme = ["hugo-debugprint"]
     fontUnit = "em"
     largestFontSize = 2.5
     smallestFontSize = 1
+
+    # Keep [params.author] last: in TOML every key after a sub-table header
+    # belongs to that sub-table, so any scalar params must come before this.
+    [params.author]
+      name = "André Silva"
+      email = "andreffs18@gmail.com"

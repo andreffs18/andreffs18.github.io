@@ -3,7 +3,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="canonical" href="{{ .Permalink }}">
     <title>{{ partial "get_meta_title" . }}</title>
-    <meta name="author" content="{{ .Site.Author.name }}">
+    <meta name="author" content="{{ site.Params.author.name }}">
     <meta name="description" content='{{ partial "get_meta_description" . }}'/>
     {{ with .Params.tags }}
         <meta name="keywords" content='{{ partial "get_meta_keywords" . }}'/>
@@ -17,13 +17,13 @@
     <link rel="manifest" href="{{ (resources.Get "/site.webmanifest" | fingerprint).RelPermalink }}">
     <link rel="mask-icon" href="{{ (resources.Get "/safari-pinned-tab.svg" | fingerprint).RelPermalink }}" color="#fcca2e">
     <meta name="msapplication-TileColor" content="#fcca2e">
-    <meta name="theme-color" content="#ff0000">
+    <meta name="theme-color" content="#fcca2e">
 
     <!-- SEO Meta tags for social -->
     <!-- https://gitlab.com/kaushalmodi/hugo-theme-refined/blob/master/layouts/partials -->
     <meta property="og:url" content="{{ .Permalink }}"/>
     <meta property="og:title" content='{{ partial "get_meta_title" . }}'/>
-    <meta property="og:author" content='{{ .Site.Author.name }}'/>
+    <meta property="og:author" content='{{ site.Params.author.name }}'/>
     <meta property="og:description" content='{{ partial "get_meta_description" . }}'/>
     <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}"/>
     <meta property="og:image" content='{{ partial "get_meta_image" . }}'/>
@@ -41,12 +41,10 @@
     {{ end }}
 
     <meta name="twitter:title" content='{{ partial "get_meta_title" . }}'/>
-    <meta name="twitter:card" content='{{ partial "get_meta_description" . }}'/>
+    <meta name="twitter:description" content='{{ partial "get_meta_description" . }}'/>
     <meta name="twitter:site" content="@{{ .Site.Params.socialHandler }}"/>
     <meta name="twitter:creator" content="@{{ .Site.Params.socialHandler }}"/>
     <meta name="twitter:card" content="summary_large_image"/>
-    <meta name="twitter:image" content='{{ partial "get_meta_image" . }}'/>
-    <meta name="twitter:card" content="summary"/>
     <meta name="twitter:image" content='{{ partial "get_meta_image" . }}'/>
 
     <!-- Latest compiled and minified CSS -->
@@ -61,7 +59,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <!-- Customizations to styles -->
-    {{ $style := resources.Get "/css/main.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
+    {{ $style := resources.Get "/css/main.scss" | css.Sass | resources.Minify | resources.Fingerprint }}
     <link rel="stylesheet" type="text/css" href="{{ $style.Permalink }}">
 
     <!-- RSS Feed -->
