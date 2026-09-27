@@ -1,5 +1,5 @@
 {{ $output := "" }}
-{{ if .Page.Title }}
+{{ if and .Page.Title (ne .Title .Site.Title) }}
     {{ $output = printf "%s | " .Title }}
 {{ end }}
 

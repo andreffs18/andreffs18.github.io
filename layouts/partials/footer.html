@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-6">
                 <ul class="navbar menu pull-left">
-                  {{ range .Site.Data.navbar }}
+                  {{ range hugo.Data.navbar }}
                       <li class="nav-item {{ if eq $currentPage.RelPermalink .url }}active{{ end }}">
                           <a class="nav-link" href="{{ .url | absURL }}" title="{{ .title }}">{{ .name }}</a>
                       </li>
@@ -13,7 +13,7 @@
             </div>
             <div class="col-md-6">
                 <ul class="navbar social pull-right">
-                    {{ range .Site.Data.social }}
+                    {{ range hugo.Data.social }}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ .url }}" target="_blank" data-toggle="tooltip" data-placement="top" title="{{ .title }}"><i class="{{ .class }}"></i></a>
                         </li>
