@@ -8,7 +8,13 @@
     <meta name="author" content="André Silva">
     <meta name="description" content='While building this website I needed to understand a bit more about the internals and its variables. Even though Hugo&rsquo;s documentation about debugging is pretty &ldquo;okay&rdquo;, there are a lot of attributes that are really hard to figure out, specially if you can&rsquo;t see them on the documentation.
 So I started to look online for something to help me out debugging Hugo templates and the usual 3 options were:
- 🖨 printing the dot on Hugo&rsquo;s templates 📝 console.'/>
+
+🖨 printing the dot on Hugo&rsquo;s templates
+📝 console.log the whole dot variable
+✅ using Hugo debug themes
+
+Printing &ldquo;the dot&rdquo;
+In any hugo template, if you do this:'/>
     
         <meta name="keywords" content='hugo, debugging'/>
     
@@ -21,7 +27,7 @@ So I started to look online for something to help me out debugging Hugo template
     <link rel="manifest" href="/site.4c996c5865b442c41bfac76f2c38845e0eba779436c1411f03a4d02d92598ed6.webmanifest">
     <link rel="mask-icon" href="/safari-pinned-tab.44a396c2b7e7cea3fe3ff9e275ec6cd6116459c64ebe691042e013659ddb8077.svg" color="#fcca2e">
     <meta name="msapplication-TileColor" content="#fcca2e">
-    <meta name="theme-color" content="#ff0000">
+    <meta name="theme-color" content="#fcca2e">
 
     
     
@@ -30,7 +36,13 @@ So I started to look online for something to help me out debugging Hugo template
     <meta property="og:author" content='André Silva'/>
     <meta property="og:description" content='While building this website I needed to understand a bit more about the internals and its variables. Even though Hugo&rsquo;s documentation about debugging is pretty &ldquo;okay&rdquo;, there are a lot of attributes that are really hard to figure out, specially if you can&rsquo;t see them on the documentation.
 So I started to look online for something to help me out debugging Hugo templates and the usual 3 options were:
- 🖨 printing the dot on Hugo&rsquo;s templates 📝 console.'/>
+
+🖨 printing the dot on Hugo&rsquo;s templates
+📝 console.log the whole dot variable
+✅ using Hugo debug themes
+
+Printing &ldquo;the dot&rdquo;
+In any hugo template, if you do this:'/>
     <meta property="og:type" content="article"/>
     <meta property="og:image" content='https://www.andreffs.com/blog/debug-in-hugo/console_log.png'/>
     
@@ -43,14 +55,18 @@ So I started to look online for something to help me out debugging Hugo template
     
 
     <meta name="twitter:title" content='Debug in Hugo | ANDREFFS'/>
-    <meta name="twitter:card" content='While building this website I needed to understand a bit more about the internals and its variables. Even though Hugo&rsquo;s documentation about debugging is pretty &ldquo;okay&rdquo;, there are a lot of attributes that are really hard to figure out, specially if you can&rsquo;t see them on the documentation.
+    <meta name="twitter:description" content='While building this website I needed to understand a bit more about the internals and its variables. Even though Hugo&rsquo;s documentation about debugging is pretty &ldquo;okay&rdquo;, there are a lot of attributes that are really hard to figure out, specially if you can&rsquo;t see them on the documentation.
 So I started to look online for something to help me out debugging Hugo templates and the usual 3 options were:
- 🖨 printing the dot on Hugo&rsquo;s templates 📝 console.'/>
+
+🖨 printing the dot on Hugo&rsquo;s templates
+📝 console.log the whole dot variable
+✅ using Hugo debug themes
+
+Printing &ldquo;the dot&rdquo;
+In any hugo template, if you do this:'/>
     <meta name="twitter:site" content="@andreffs18"/>
     <meta name="twitter:creator" content="@andreffs18"/>
     <meta name="twitter:card" content="summary_large_image"/>
-    <meta name="twitter:image" content='https://www.andreffs.com/blog/debug-in-hugo/console_log.png'/>
-    <meta name="twitter:card" content="summary"/>
     <meta name="twitter:image" content='https://www.andreffs.com/blog/debug-in-hugo/console_log.png'/>
 
     
@@ -66,7 +82,7 @@ So I started to look online for something to help me out debugging Hugo template
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     
     
-    <link rel="stylesheet" type="text/css" href="https://www.andreffs.com/css/main.min.2eb3a89d39218ca6f33775627f3850506f874ab5a5eff5586fcd54576f7f0c4b.css">
+    <link rel="stylesheet" type="text/css" href="https://www.andreffs.com/css/main.min.e0ab7e2fbbd40db87e640fab9a0fc155c2451bd11e7ec1f9e5118d96fb4bf98a.css">
 
     
     
@@ -74,9 +90,9 @@ So I started to look online for something to help me out debugging Hugo template
     
     
     
-    <meta name="hugo-build-date" content=""/>
+    <meta name="hugo-build-date" content="2026-09-09T14:45:02Z"/>
     <meta name="hugo-commit-hash" content=""/>
-    <meta name="generator" content="Hugo 0.67.1" />
+    <meta name="generator" content="Hugo 0.166.0">
 </head>
 
     <body>
@@ -84,10 +100,10 @@ So I started to look online for something to help me out debugging Hugo template
             <header>
     <div class="page-header pb-4 mt-5 mb-4">
         
-            <a href="https://www.andreffs.com" class="text-decoration-none">
+            <a href="https://www.andreffs.com/" class="text-decoration-none">
                 <h1 class="text3d text-right text-uppercase"><span id="">André Silva</span><br/></h1>
             </a>
-            <small class="letterpress text-right text-uppercase">32 y/old workaholic from Edinburgh.</small>
+            <small class="letterpress text-right text-uppercase">33 y/old workaholic from Edinburgh.</small>
         
     </div>
 </header>
@@ -124,153 +140,153 @@ So I started to look online for something to help me out debugging Hugo template
 <li>📝 <code>console.log</code> the whole <em>dot</em> variable</li>
 <li>✅ using <a href="https://github.com/kaushalmodi/hugo-debugprint">Hugo debug themes</a></li>
 </ul>
-<h1 id="printing-_the-dot_">Printing <em>&ldquo;the dot&rdquo;</em></h1>
+<h1 id="printing-">Printing <em>&ldquo;the dot&rdquo;</em></h1>
 <p>In any hugo template, if you do this:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">{{ printf &#34;%#v&#34; . }}
-</code></pre></td></tr></table>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{{ printf &#34;%#v&#34; . }}
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>You&rsquo;ll get something like this:</p>
 <p><img src="printf_v.png" alt="Opt1: printf dot var"></p>
 <p>Which to be honest is not the best dev friendly output to figure out what can you use. Also, it hides a lot of variables that you have access to, for example, printing the <code>site</code> variable only shows this:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// {{ printf &#34;%#v&#34; site }}
-</span><span style="color:#75715e"></span><span style="color:#f92672">&amp;</span><span style="color:#a6e22e">hugolib</span>.<span style="color:#a6e22e">SiteInfo</span>{
-	<span style="color:#a6e22e">Authors</span>:<span style="color:#a6e22e">page</span>.<span style="color:#a6e22e">AuthorList</span>(<span style="color:#66d9ef">nil</span>),
-	<span style="color:#a6e22e">Social</span>:<span style="color:#a6e22e">hugolib</span>.<span style="color:#a6e22e">SiteSocial</span>{},
-	<span style="color:#a6e22e">hugoInfo</span>:<span style="color:#a6e22e">hugo</span>.<span style="color:#a6e22e">Info</span>{
-		<span style="color:#a6e22e">CommitHash</span>:<span style="color:#e6db74">&#34;&#34;</span>,
-		<span style="color:#a6e22e">BuildDate</span>:<span style="color:#e6db74">&#34;&#34;</span>,
-		<span style="color:#a6e22e">Environment</span>:<span style="color:#e6db74">&#34;development&#34;</span>
-	},
-	<span style="color:#a6e22e">title</span>:<span style="color:#e6db74">&#34;ANDREFFS&#34;</span>,
-	<span style="color:#a6e22e">RSSLink</span>:<span style="color:#e6db74">&#34;http://localhost:1313/index.xml&#34;</span>,
-	<span style="color:#a6e22e">Author</span>:<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">interface</span> {}{},
-	<span style="color:#a6e22e">LanguageCode</span>:<span style="color:#e6db74">&#34;en-us&#34;</span>,
-	<span style="color:#a6e22e">Copyright</span>:<span style="color:#e6db74">&#34;&#34;</span>,
-	<span style="color:#a6e22e">permalinks</span>:<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">string</span>{},
-	<span style="color:#a6e22e">LanguagePrefix</span>:<span style="color:#e6db74">&#34;&#34;</span>,
-	<span style="color:#a6e22e">Languages</span>:<span style="color:#a6e22e">langs</span>.<span style="color:#a6e22e">Languages</span>{(<span style="color:#f92672">*</span><span style="color:#a6e22e">langs</span>.<span style="color:#a6e22e">Language</span>)(<span style="color:#ae81ff">0xc0000b95f0</span>)},
-	<span style="color:#a6e22e">BuildDrafts</span>:<span style="color:#66d9ef">true</span>,
-	<span style="color:#a6e22e">canonifyURLs</span>:<span style="color:#66d9ef">false</span>,
-	<span style="color:#a6e22e">relativeURLs</span>:<span style="color:#66d9ef">false</span>,
-	<span style="color:#a6e22e">uglyURLs</span>:(<span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">page</span>.<span style="color:#a6e22e">Page</span>) <span style="color:#66d9ef">bool</span>)(<span style="color:#ae81ff">0x4b36650</span>),
-	<span style="color:#a6e22e">owner</span>:(<span style="color:#f92672">*</span><span style="color:#a6e22e">hugolib</span>.<span style="color:#a6e22e">HugoSites</span>)(<span style="color:#ae81ff">0xc00084c280</span>),
-	<span style="color:#a6e22e">s</span>:(<span style="color:#f92672">*</span><span style="color:#a6e22e">hugolib</span>.<span style="color:#a6e22e">Site</span>)(<span style="color:#ae81ff">0xc000854900</span>),
-	<span style="color:#a6e22e">language</span>:(<span style="color:#f92672">*</span><span style="color:#a6e22e">langs</span>.<span style="color:#a6e22e">Language</span>)(<span style="color:#ae81ff">0xc0000b95f0</span>),
-	<span style="color:#a6e22e">defaultContentLanguageInSubdir</span>:<span style="color:#66d9ef">false</span>,
-	<span style="color:#a6e22e">sectionPagesMenu</span>:<span style="color:#e6db74">&#34;&#34;</span>
-}
-</code></pre></td></tr></table>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// {{ printf &#34;%#v&#34; site }}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&amp;</span><span style="color:#a6e22e">hugolib</span>.<span style="color:#a6e22e">SiteInfo</span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">Authors</span>:<span style="color:#a6e22e">page</span>.<span style="color:#a6e22e">AuthorList</span>(<span style="color:#66d9ef">nil</span>),
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">Social</span>:<span style="color:#a6e22e">hugolib</span>.<span style="color:#a6e22e">SiteSocial</span>{},
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">hugoInfo</span>:<span style="color:#a6e22e">hugo</span>.<span style="color:#a6e22e">Info</span>{
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">CommitHash</span>:<span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">BuildDate</span>:<span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Environment</span>:<span style="color:#e6db74">&#34;development&#34;</span>
+</span></span><span style="display:flex;"><span>	},
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">title</span>:<span style="color:#e6db74">&#34;ANDREFFS&#34;</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">RSSLink</span>:<span style="color:#e6db74">&#34;http://localhost:1313/index.xml&#34;</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">Author</span>:<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">interface</span> {}{},
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">LanguageCode</span>:<span style="color:#e6db74">&#34;en-us&#34;</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">Copyright</span>:<span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">permalinks</span>:<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">string</span>{},
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">LanguagePrefix</span>:<span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">Languages</span>:<span style="color:#a6e22e">langs</span>.<span style="color:#a6e22e">Languages</span>{(<span style="color:#f92672">*</span><span style="color:#a6e22e">langs</span>.<span style="color:#a6e22e">Language</span>)(<span style="color:#ae81ff">0xc0000b95f0</span>)},
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">BuildDrafts</span>:<span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">canonifyURLs</span>:<span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">relativeURLs</span>:<span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">uglyURLs</span>:(<span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">page</span>.<span style="color:#a6e22e">Page</span>) <span style="color:#66d9ef">bool</span>)(<span style="color:#ae81ff">0x4b36650</span>),
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">owner</span>:(<span style="color:#f92672">*</span><span style="color:#a6e22e">hugolib</span>.<span style="color:#a6e22e">HugoSites</span>)(<span style="color:#ae81ff">0xc00084c280</span>),
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">s</span>:(<span style="color:#f92672">*</span><span style="color:#a6e22e">hugolib</span>.<span style="color:#a6e22e">Site</span>)(<span style="color:#ae81ff">0xc000854900</span>),
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">language</span>:(<span style="color:#f92672">*</span><span style="color:#a6e22e">langs</span>.<span style="color:#a6e22e">Language</span>)(<span style="color:#ae81ff">0xc0000b95f0</span>),
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">defaultContentLanguageInSubdir</span>:<span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">sectionPagesMenu</span>:<span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>When you also have access to <code>site.Params</code>, which is not showing on the above output:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// {{ printf &#34;%#v&#34; site.Params }}
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">maps</span>.<span style="color:#a6e22e">Params</span>{
-  <span style="color:#e6db74">&#34;enabletagcloud&#34;</span>:<span style="color:#66d9ef">true</span>,
-  <span style="color:#e6db74">&#34;fontunit&#34;</span>:<span style="color:#e6db74">&#34;em&#34;</span>,
-  <span style="color:#e6db74">&#34;largestfontsize&#34;</span>:<span style="color:#ae81ff">2.5</span>,
-  <span style="color:#e6db74">&#34;mainSections&#34;</span>:[]<span style="color:#66d9ef">string</span>{<span style="color:#e6db74">&#34;blog&#34;</span>},
-  <span style="color:#e6db74">&#34;mainsections&#34;</span>:[]<span style="color:#66d9ef">string</span>{<span style="color:#e6db74">&#34;blog&#34;</span>},
-  <span style="color:#e6db74">&#34;smallestfontsize&#34;</span>:<span style="color:#ae81ff">1</span>
-}
-</code></pre></td></tr></table>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// {{ printf &#34;%#v&#34; site.Params }}</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">maps</span>.<span style="color:#a6e22e">Params</span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;enabletagcloud&#34;</span>:<span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;fontunit&#34;</span>:<span style="color:#e6db74">&#34;em&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;largestfontsize&#34;</span>:<span style="color:#ae81ff">2.5</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;mainSections&#34;</span>:[]<span style="color:#66d9ef">string</span>{<span style="color:#e6db74">&#34;blog&#34;</span>},
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;mainsections&#34;</span>:[]<span style="color:#66d9ef">string</span>{<span style="color:#e6db74">&#34;blog&#34;</span>},
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;smallestfontsize&#34;</span>:<span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="consolelog-everything">Console.log everything</h1>
 <p>In your html files, put a snippet like the following:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">script</span>&gt;
-  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">hugoLog</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>({{ <span style="color:#a6e22e">jsonify</span> . }});
-  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Hugo Debug: &#39;</span>, <span style="color:#a6e22e">hugoLog</span>);
-&lt;/<span style="color:#f92672">script</span>&gt;
-</code></pre></td></tr></table>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">hugoLog</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>({{ <span style="color:#a6e22e">jsonify</span> . }});
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Hugo Debug: &#39;</span>, <span style="color:#a6e22e">hugoLog</span>);
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><img src="console_log.png" alt="Opt2: console.log dot var"></p>
 <p>This will log the same object that we had with the previous approach, but you can manipulate it on the browser&rsquo;s console tab. You can always move that snippet into a <a href="https://gohugo.io/content-management/shortcodes/">shortcode</a> and use it like this whenever you need to debug something. 🤔</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">// layouts/partials/console_log.html
-&lt;<span style="color:#f92672">script</span>&gt;
-  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">hugoLog</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>({{ <span style="color:#a6e22e">jsonify</span> . }});
-  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Hugo Debug: &#39;</span>, <span style="color:#a6e22e">hugoLog</span>);
-&lt;/<span style="color:#f92672">script</span>&gt;
-
-// layouts/_default/single.html
-{{ define &#34;main&#34; }}
-&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;container&#34;</span>&gt;
-  {{ partial &#34;console-log&#34; $someVariable }}
-  {{ .Content }}
-&lt;/<span style="color:#f92672">div</span>&gt;
-{{ end }}
-</code></pre></td></tr></table>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>// layouts/partials/console_log.html
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">hugoLog</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>({{ <span style="color:#a6e22e">jsonify</span> . }});
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Hugo Debug: &#39;</span>, <span style="color:#a6e22e">hugoLog</span>);
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>// layouts/_default/single.html
+</span></span><span style="display:flex;"><span>{{ define &#34;main&#34; }}
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;container&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  {{ partial &#34;console-log&#34; $someVariable }}
+</span></span><span style="display:flex;"><span>  {{ .Content }}
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>{{ end }}
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Although this way is nicer (I can play around with the object) it still doesn&rsquo;t show me all available variables.</p>
 <blockquote>
@@ -279,21 +295,21 @@ So I started to look online for something to help me out debugging Hugo template
 <h1 id="using-hugo-debug-themes">Using Hugo debug themes</h1>
 <p>Basically, the two options combined 😄.</p>
 <p>We just need to <a href="https://github.com/kaushalmodi/hugo-debugprint#usage">install it</a>, add <code>hugo-debugprint</code> to our <code>themes</code> variable on our <strong>config.toml</strong> and use the shortcode that the template offers:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml"><span style="color:#75715e"># config.toml</span>
-<span style="color:#a6e22e">theme</span> = [<span style="color:#e6db74">&#34;hugo-debugprint&#34;</span>]
-
-<span style="color:#75715e"># /layouts/_default/single.html</span>
-<span style="color:#960050;background-color:#1e0010">{{</span> <span style="color:#a6e22e">partial</span> <span style="color:#e6db74">&#34;debugprint.html&#34;</span> <span style="color:#a6e22e">site</span> <span style="color:#960050;background-color:#1e0010">}}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span><span style="color:#75715e"># config.toml</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">theme</span> = [<span style="color:#e6db74">&#34;hugo-debugprint&#34;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># /layouts/_default/single.html</span>
+</span></span><span style="display:flex;"><span>{{ <span style="color:#a6e22e">partial</span> <span style="color:#e6db74">&#34;debugprint.html&#34;</span> <span style="color:#a6e22e">site</span> }}
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><img src="debugprint.png" alt="Opt3: hugo debugprint theme"></p>
 <h1 id="resources">Resources</h1>
@@ -320,8 +336,8 @@ So I started to look online for something to help me out debugging Hugo template
 <hr>
 
 <div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+<script>
+    window.disqus_config = function () {
     
     
     
@@ -337,8 +353,9 @@ So I started to look online for something to help me out debugging Hugo template
         (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	
 
 <hr>
 
@@ -352,7 +369,7 @@ So I started to look online for something to help me out debugging Hugo template
     <a class="twitter" title="Share this on Twitter" href="https://twitter.com/intent/tweet?text=Debug%20in%20Hugo&url=https%3a%2f%2fwww.andreffs.com%2fblog%2fdebug-in-hugo%2f">
         <i class="fa fa-twitter"></i>
     </a>
-    <a class="linkedin" title="Share this on Linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fwww.andreffs.com%2fblog%2fdebug-in-hugo%2f&title=Debug%20in%20Hugo&summary=While%20building%20this%20website%20I%20needed%20to%20understand%20a%20bit%20more%20about%20the%20internals%20and%20its%20variables.%20Even%20though%20Hugo%26rsquo%3bs%20documentation%20about%20debugging%20is%20pretty%20%26ldquo%3bokay%26rdquo%3b%2c%20there%20are%20a%20lot%20of%20attributes%20that%20are%20really%20hard%20to%20figure%20out%2c%20specially%20if%20you%20can%26rsquo%3bt%20see%20them%20on%20the%20%e2%80%a6&source=">
+    <a class="linkedin" title="Share this on Linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fwww.andreffs.com%2fblog%2fdebug-in-hugo%2f&title=Debug%20in%20Hugo&summary=%3cp%3eWhile%20building%20this%20website%20I%20needed%20to%20understand%20a%20bit%20more%20about%20the%20internals%20and%20its%20variables.%20Even%20though%20Hugo%26rsquo%3bs%20%3ca%20href%3d%22https%3a%2f%2fgohugo.io%2ftemplates%2ftemplate-debugging%2f%22%3edocumentation%20about%20debugging%3c%2fa%3e%20is%20pretty%20%3cem%3e%26ldquo%3bokay%26rdquo%3b%3c%2fem%3e%2c%20there%20are%20a%20lot%20of%20attributes%20that%20are%20really%20hard%20to%20figure%20out%2c%20specially%20if%20you%20can%26rsquo%3bt%20see%20them%20on%20the%20%e2%80%a6%3c%2fp%3e&source=">
         <i class="fa fa-linkedin"></i>
     </a>
     <a class="mail" title="Share this through Email" href="mailto:?subject=Debug%20in%20Hugo&body=https%3a%2f%2fwww.andreffs.com%2fblog%2fdebug-in-hugo%2f">
@@ -554,19 +571,20 @@ window.addEventListener('DOMContentLoaded', () => {
 
     
         
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', '364443031', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-KB0NHDJ4BY"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-KB0NHDJ4BY');
+        }
+      </script>
     
 
     <script type="text/javascript" src="https://www.andreffs.com/js/main.js"></script>

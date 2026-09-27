@@ -19,7 +19,7 @@
     <link rel="manifest" href="/site.4c996c5865b442c41bfac76f2c38845e0eba779436c1411f03a4d02d92598ed6.webmanifest">
     <link rel="mask-icon" href="/safari-pinned-tab.44a396c2b7e7cea3fe3ff9e275ec6cd6116459c64ebe691042e013659ddb8077.svg" color="#fcca2e">
     <meta name="msapplication-TileColor" content="#fcca2e">
-    <meta name="theme-color" content="#ff0000">
+    <meta name="theme-color" content="#fcca2e">
 
     
     
@@ -39,12 +39,10 @@
     
 
     <meta name="twitter:title" content='Docker &#43; PostgreSQL | ANDREFFS'/>
-    <meta name="twitter:card" content='Taking advantage of Docker to manage your Postgres database'/>
+    <meta name="twitter:description" content='Taking advantage of Docker to manage your Postgres database'/>
     <meta name="twitter:site" content="@andreffs18"/>
     <meta name="twitter:creator" content="@andreffs18"/>
     <meta name="twitter:card" content="summary_large_image"/>
-    <meta name="twitter:image" content='https://www.andreffs.com/blog/docker-postgresql/docker&#43;postgres.png'/>
-    <meta name="twitter:card" content="summary"/>
     <meta name="twitter:image" content='https://www.andreffs.com/blog/docker-postgresql/docker&#43;postgres.png'/>
 
     
@@ -60,7 +58,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     
     
-    <link rel="stylesheet" type="text/css" href="https://www.andreffs.com/css/main.min.2eb3a89d39218ca6f33775627f3850506f874ab5a5eff5586fcd54576f7f0c4b.css">
+    <link rel="stylesheet" type="text/css" href="https://www.andreffs.com/css/main.min.e0ab7e2fbbd40db87e640fab9a0fc155c2451bd11e7ec1f9e5118d96fb4bf98a.css">
 
     
     
@@ -68,9 +66,9 @@
     
     
     
-    <meta name="hugo-build-date" content=""/>
+    <meta name="hugo-build-date" content="2026-09-09T14:45:02Z"/>
     <meta name="hugo-commit-hash" content=""/>
-    <meta name="generator" content="Hugo 0.67.1" />
+    <meta name="generator" content="Hugo 0.166.0">
 </head>
 
     <body>
@@ -78,10 +76,10 @@
             <header>
     <div class="page-header pb-4 mt-5 mb-4">
         
-            <a href="https://www.andreffs.com" class="text-decoration-none">
+            <a href="https://www.andreffs.com/" class="text-decoration-none">
                 <h1 class="text3d text-right text-uppercase"><span id="">André Silva</span><br/></h1>
             </a>
-            <small class="letterpress text-right text-uppercase">32 y/old workaholic from Edinburgh.</small>
+            <small class="letterpress text-right text-uppercase">33 y/old workaholic from Edinburgh.</small>
         
     </div>
 </header>
@@ -127,27 +125,27 @@
 <p>To dump your projects database you need to run the <code>pg_dump</code> command. Depending on the version you can have slight differences so, consult the documentation to know exactly what your version needs.</p>
 </blockquote>
 <p>First things first, you need to open an ssh tunnel to your Postgres instance:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ssh ubuntu@ec2-38-234-54-173.eu-west-1.compute.amazonaws.com -L 127.0.0.1:5432:staging.iisdj13.eu-west-1.rds.amazonaws.com:5432
-</code></pre></td></tr></table>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ssh ubuntu@ec2-38-234-54-173.eu-west-1.compute.amazonaws.com -L 127.0.0.1:5432:staging.iisdj13.eu-west-1.rds.amazonaws.com:5432
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Notice that we are opening the local port <code>5432</code>. This is the port that we will use to run our commands against our remove machine.</p>
 <p>Now, we need to create a folder to save our backup and start a docker container with the specific version:</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ mkdir dump
-$ docker run --rm --net<span style="color:#f92672">=</span>host -it -v <span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span>/dump:/dump postgres:11-alpine /bin/bash
-<span style="color:#f92672">[</span>docker-bash<span style="color:#f92672">]</span> $ pg_dump -Fc -h host.docker.internal -U staging_user --port <span style="color:#ae81ff">5432</span> --dbname staging_db &gt; dump/staging_db_<span style="color:#66d9ef">$(</span>date +%Y-%m-%d<span style="color:#66d9ef">)</span>.dump
-</code></pre></td></tr></table>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ mkdir dump
+</span></span><span style="display:flex;"><span>$ docker run --rm --net<span style="color:#f92672">=</span>host -it -v <span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span>/dump:/dump postgres:11-alpine /bin/bash
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>docker-bash<span style="color:#f92672">]</span> $ pg_dump -Fc -h host.docker.internal -U staging_user --port <span style="color:#ae81ff">5432</span> --dbname staging_db &gt; dump/staging_db_<span style="color:#66d9ef">$(</span>date +%Y-%m-%d<span style="color:#66d9ef">)</span>.dump
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>There are a couple of things going on here, the important being:</p>
 <ul>
@@ -158,15 +156,15 @@ $ docker run --rm --net<span style="color:#f92672">=</span>host -it -v <span sty
 <p><strong>Note</strong> that the important part is making sure you are using the correct port number and correct postgres version. The rest should be pretty straightforward!</p>
 <h1 id="restore">Restore</h1>
 <p>To restore the previously saved database backup (using the point above) in a local instance of the database, we just need to setup docker with the correct postgres version and run the <code>pg_restore</code> command.</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ docker run --rm --net<span style="color:#f92672">=</span>host -it -v <span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span>/dump:/dump postgres:11-alpine /bin/bash
-<span style="color:#f92672">[</span>docker-bash<span style="color:#f92672">]</span> $ pg_restore -C --no-owner --role<span style="color:#f92672">=</span>local_user --host host.docker.internal --port <span style="color:#ae81ff">5432</span> --dbname local_db -U local_user staging_db_2020-02-21.dump
-</code></pre></td></tr></table>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker run --rm --net<span style="color:#f92672">=</span>host -it -v <span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span>/dump:/dump postgres:11-alpine /bin/bash
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>docker-bash<span style="color:#f92672">]</span> $ pg_restore -C --no-owner --role<span style="color:#f92672">=</span>local_user --host host.docker.internal --port <span style="color:#ae81ff">5432</span> --dbname local_db -U local_user staging_db_2020-02-21.dump
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>The <code>--no-owner --role=local_user</code> is necessary in case of having a Production/Staging dump.
@@ -192,8 +190,8 @@ Its possible that the database user on our Production database is different from
 <hr>
 
 <div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
+<script>
+    window.disqus_config = function () {
     
     
     
@@ -209,8 +207,9 @@ Its possible that the database user on our Production database is different from
         (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	
 
 <hr>
 
@@ -224,7 +223,7 @@ Its possible that the database user on our Production database is different from
     <a class="twitter" title="Share this on Twitter" href="https://twitter.com/intent/tweet?text=Docker%20%2b%20PostgreSQL&url=https%3a%2f%2fwww.andreffs.com%2fblog%2fdocker-postgresql%2f">
         <i class="fa fa-twitter"></i>
     </a>
-    <a class="linkedin" title="Share this on Linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fwww.andreffs.com%2fblog%2fdocker-postgresql%2f&title=Docker%20%2b%20PostgreSQL&summary=More%20often%20than%20not%2c%20I%20end%20up%20going%20online%20to%20look%20up%20on%20how%20to%20use%20docker%20as%20the%20middle%20man%20on%20interacting%20with%20Postgres.%0a%20Usually%20for%20me%20its%20Postgres%2c%20but%20this%20%26ldquo%3brecipe%26rdquo%3b%20can%20be%20applied%20to%20any%20piece%20of%20software%20that%20has%20more%20than%20one%20version%20which%20you%20don%26rsquo%3bt%20have%20installed%20on%20your%20%e2%80%a6&source=">
+    <a class="linkedin" title="Share this on Linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fwww.andreffs.com%2fblog%2fdocker-postgresql%2f&title=Docker%20%2b%20PostgreSQL&summary=%3cp%3e%3cimg%20src%3d%22docker%2bpostgres.png%22%20alt%3d%22Docker%20SSH%20Tunnel%20to%20AWS%20EC2%20Instance%22%3e%3c%2fp%3e%0a%3cp%3eMore%20often%20than%20not%2c%20I%20end%20up%20going%20online%20to%20look%20up%20on%20how%20to%20use%20docker%20as%20the%20middle%20man%20on%20interacting%20with%20Postgres.%3c%2fp%3e%0a%3cblockquote%3e%0a%3cp%3eUsually%20for%20me%20its%20Postgres%2c%20but%20this%20%26ldquo%3brecipe%26rdquo%3b%20can%20be%20applied%20to%20any%20piece%20of%20software%20that%20has%20more%20than%20one%20version%20which%20you%20don%26rsquo%3bt%20have%20installed%20on%20your%20%e2%80%a6%3c%2fp%3e%3c%2fblockquote%3e&source=">
         <i class="fa fa-linkedin"></i>
     </a>
     <a class="mail" title="Share this through Email" href="mailto:?subject=Docker%20%2b%20PostgreSQL&body=https%3a%2f%2fwww.andreffs.com%2fblog%2fdocker-postgresql%2f">
@@ -426,19 +425,20 @@ window.addEventListener('DOMContentLoaded', () => {
 
     
         
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', '364443031', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-KB0NHDJ4BY"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-KB0NHDJ4BY');
+        }
+      </script>
     
 
     <script type="text/javascript" src="https://www.andreffs.com/js/main.js"></script>

@@ -1,197 +1,161 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Tags on ANDREFFS</title>
-    <link>https://www.andreffs.com/tags/</link>
-    <description>Recent content in Tags on ANDREFFS</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <managingEditor>andreffs18@gmail.com (André Silva)</managingEditor>
-    <webMaster>andreffs18@gmail.com (André Silva)</webMaster>
-    <lastBuildDate>Thu, 13 Jun 2024 17:29:18 +0100</lastBuildDate>
-    
-	<atom:link href="https://www.andreffs.com/tags/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>conferences</title>
-      <link>https://www.andreffs.com/tags/conferences/</link>
-      <pubDate>Thu, 13 Jun 2024 17:29:18 +0100</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/tags/conferences/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>guides</title>
-      <link>https://www.andreffs.com/tags/guides/</link>
-      <pubDate>Thu, 13 Jun 2024 17:29:18 +0100</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/tags/guides/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>benchmarking</title>
-      <link>https://www.andreffs.com/tags/benchmarking/</link>
-      <pubDate>Thu, 16 Feb 2023 07:27:00 +0000</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/tags/benchmarking/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>data-structures</title>
-      <link>https://www.andreffs.com/tags/data-structures/</link>
-      <pubDate>Thu, 16 Feb 2023 07:27:00 +0000</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/tags/data-structures/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>grafana</title>
-      <link>https://www.andreffs.com/tags/grafana/</link>
-      <pubDate>Thu, 16 Feb 2023 07:27:00 +0000</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/tags/grafana/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>mongo</title>
-      <link>https://www.andreffs.com/tags/mongo/</link>
-      <pubDate>Thu, 16 Feb 2023 07:27:00 +0000</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/tags/mongo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>openapi</title>
-      <link>https://www.andreffs.com/tags/openapi/</link>
-      <pubDate>Thu, 16 Feb 2023 07:27:00 +0000</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/tags/openapi/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>postgres</title>
-      <link>https://www.andreffs.com/tags/postgres/</link>
-      <pubDate>Thu, 16 Feb 2023 07:27:00 +0000</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/tags/postgres/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>postgresql</title>
-      <link>https://www.andreffs.com/tags/postgresql/</link>
-      <pubDate>Thu, 16 Feb 2023 07:27:00 +0000</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/tags/postgresql/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>prism</title>
-      <link>https://www.andreffs.com/tags/prism/</link>
-      <pubDate>Thu, 16 Feb 2023 07:27:00 +0000</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/tags/prism/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>prometheus</title>
-      <link>https://www.andreffs.com/tags/prometheus/</link>
-      <pubDate>Thu, 16 Feb 2023 07:27:00 +0000</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/tags/prometheus/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>redis</title>
-      <link>https://www.andreffs.com/tags/redis/</link>
-      <pubDate>Thu, 16 Feb 2023 07:27:00 +0000</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/tags/redis/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>starlette</title>
-      <link>https://www.andreffs.com/tags/starlette/</link>
-      <pubDate>Thu, 16 Feb 2023 07:27:00 +0000</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/tags/starlette/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>kubernetes</title>
-      <link>https://www.andreffs.com/tags/kubernetes/</link>
-      <pubDate>Mon, 17 May 2021 16:58:27 +0100</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/tags/kubernetes/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>loadtest</title>
-      <link>https://www.andreffs.com/tags/loadtest/</link>
-      <pubDate>Mon, 17 May 2021 16:58:27 +0100</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/tags/loadtest/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>n8n</title>
-      <link>https://www.andreffs.com/tags/n8n/</link>
-      <pubDate>Mon, 17 May 2021 16:58:27 +0100</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/tags/n8n/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>nodejs</title>
-      <link>https://www.andreffs.com/tags/nodejs/</link>
-      <pubDate>Mon, 17 May 2021 16:58:27 +0100</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/tags/nodejs/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>production</title>
-      <link>https://www.andreffs.com/tags/production/</link>
-      <pubDate>Mon, 17 May 2021 16:58:27 +0100</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/tags/production/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>minikube</title>
-      <link>https://www.andreffs.com/tags/minikube/</link>
-      <pubDate>Thu, 29 Apr 2021 23:52:17 +0100</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/tags/minikube/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>debugging</title>
-      <link>https://www.andreffs.com/tags/debugging/</link>
-      <pubDate>Mon, 25 May 2020 06:37:00 +0000</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/tags/debugging/</guid>
-      <description></description>
-    </item>
-    
-  </channel>
+	<channel>
+		<title>Tags on ANDREFFS</title>
+		<link>https://www.andreffs.com/tags/</link>
+		<description>Recent content in Tags on ANDREFFS</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+			<managingEditor>andreffs18@gmail.com (André Silva)</managingEditor>
+		
+		
+			<webMaster>andreffs18@gmail.com (André Silva)</webMaster>
+		
+		
+		
+			<lastBuildDate>Sun, 16 Jun 2024 21:31:59 +0100</lastBuildDate>
+		
+			<atom:link href="https://www.andreffs.com/tags/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Conferences</title>
+				<link>https://www.andreffs.com/tags/conferences/</link>
+				<pubDate>Thu, 13 Jun 2024 17:29:18 +0100</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/tags/conferences/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Guides</title>
+				<link>https://www.andreffs.com/tags/guides/</link>
+				<pubDate>Thu, 13 Jun 2024 17:29:18 +0100</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/tags/guides/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Benchmarking</title>
+				<link>https://www.andreffs.com/tags/benchmarking/</link>
+				<pubDate>Thu, 16 Feb 2023 07:27:00 +0000</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/tags/benchmarking/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Data-Structures</title>
+				<link>https://www.andreffs.com/tags/data-structures/</link>
+				<pubDate>Thu, 16 Feb 2023 07:27:00 +0000</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/tags/data-structures/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Grafana</title>
+				<link>https://www.andreffs.com/tags/grafana/</link>
+				<pubDate>Thu, 16 Feb 2023 07:27:00 +0000</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/tags/grafana/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Mongo</title>
+				<link>https://www.andreffs.com/tags/mongo/</link>
+				<pubDate>Thu, 16 Feb 2023 07:27:00 +0000</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/tags/mongo/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Openapi</title>
+				<link>https://www.andreffs.com/tags/openapi/</link>
+				<pubDate>Thu, 16 Feb 2023 07:27:00 +0000</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/tags/openapi/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Postgresql</title>
+				<link>https://www.andreffs.com/tags/postgresql/</link>
+				<pubDate>Thu, 16 Feb 2023 07:27:00 +0000</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/tags/postgresql/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Prism</title>
+				<link>https://www.andreffs.com/tags/prism/</link>
+				<pubDate>Thu, 16 Feb 2023 07:27:00 +0000</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/tags/prism/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Prometheus</title>
+				<link>https://www.andreffs.com/tags/prometheus/</link>
+				<pubDate>Thu, 16 Feb 2023 07:27:00 +0000</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/tags/prometheus/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Redis</title>
+				<link>https://www.andreffs.com/tags/redis/</link>
+				<pubDate>Thu, 16 Feb 2023 07:27:00 +0000</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/tags/redis/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Starlette</title>
+				<link>https://www.andreffs.com/tags/starlette/</link>
+				<pubDate>Thu, 16 Feb 2023 07:27:00 +0000</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/tags/starlette/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Kubernetes</title>
+				<link>https://www.andreffs.com/tags/kubernetes/</link>
+				<pubDate>Mon, 17 May 2021 16:58:27 +0100</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/tags/kubernetes/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Loadtest</title>
+				<link>https://www.andreffs.com/tags/loadtest/</link>
+				<pubDate>Mon, 17 May 2021 16:58:27 +0100</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/tags/loadtest/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>N8n</title>
+				<link>https://www.andreffs.com/tags/n8n/</link>
+				<pubDate>Mon, 17 May 2021 16:58:27 +0100</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/tags/n8n/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Nodejs</title>
+				<link>https://www.andreffs.com/tags/nodejs/</link>
+				<pubDate>Mon, 17 May 2021 16:58:27 +0100</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/tags/nodejs/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Production</title>
+				<link>https://www.andreffs.com/tags/production/</link>
+				<pubDate>Mon, 17 May 2021 16:58:27 +0100</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/tags/production/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Minikube</title>
+				<link>https://www.andreffs.com/tags/minikube/</link>
+				<pubDate>Thu, 29 Apr 2021 23:52:17 +0100</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/tags/minikube/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Debugging</title>
+				<link>https://www.andreffs.com/tags/debugging/</link>
+				<pubDate>Mon, 25 May 2020 06:37:00 +0000</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/tags/debugging/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Hugo</title>
+				<link>https://www.andreffs.com/tags/hugo/</link>
+				<pubDate>Mon, 25 May 2020 06:37:00 +0000</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/tags/hugo/</guid>
+				<description></description>
+			</item>
+	</channel>
 </rss>

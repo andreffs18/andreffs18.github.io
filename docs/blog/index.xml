@@ -1,212 +1,140 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Blogs on ANDREFFS</title>
-    <link>https://www.andreffs.com/blog/</link>
-    <description>Recent content in Blogs on ANDREFFS</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <managingEditor>andreffs18@gmail.com (André Silva)</managingEditor>
-    <webMaster>andreffs18@gmail.com (André Silva)</webMaster>
-    <lastBuildDate>Thu, 13 Jun 2024 17:29:18 +0100</lastBuildDate>
-    
-	<atom:link href="https://www.andreffs.com/blog/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>GoTo Conferences!!!1!</title>
-      <link>https://www.andreffs.com/blog/goto-conferences/</link>
-      <pubDate>Thu, 13 Jun 2024 17:29:18 +0100</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/blog/goto-conferences/</guid>
-      <description>I really enjoy conferences. I think it&amp;rsquo;s one of the best things the tech industry has!
-Covid stopped us from going to &amp;ldquo;in-person&amp;rdquo; conferences, and we all had to shift to a more &amp;ldquo;remote&amp;rdquo; or &amp;ldquo;online&amp;rdquo; version of it. You still got to see some great talks, but there&amp;rsquo;s a world of difference between how you experience and learn from them.
-This year I&amp;rsquo;ve finally got back to an &amp;ldquo;in-person&amp;rdquo; conference, and being so excited about attending one again I started making a list of what I should do to make the most out of it.</description>
-    </item>
-    
-    <item>
-      <title>Tools vs Data Structures</title>
-      <link>https://www.andreffs.com/blog/tools-vs-data-structures/</link>
-      <pubDate>Thu, 16 Feb 2023 07:27:00 +0000</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/blog/tools-vs-data-structures/</guid>
-      <description>Usually, when interviewing for an engineering or software position, you end up doing some sort of &amp;ldquo;coding challenge&amp;rdquo;. A friend of mine has recently left the company and is doing one at the moment. He asked me for help on solving a particular challenge, which I felt was a good exercise for me.
-This blog post talks a bit about the challenge and my approach to solving it. Also, this post works as a personal reminder that sometimes it is not about picking the best tool, but the right data structure.</description>
-    </item>
-    
-    <item>
-      <title>n8n customizations for Production</title>
-      <link>https://www.andreffs.com/blog/n8n-customizations-for-production/</link>
-      <pubDate>Mon, 17 May 2021 16:58:27 +0100</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/blog/n8n-customizations-for-production/</guid>
-      <description>This post is a continuation on &amp;ldquo;Setup n8n on Kubernetes&amp;rdquo;, so most of the things we talk here assume that you&amp;rsquo;ve followed/read this one as well.
- After running n8n during a couple of months in production, me and my team realized that the default configuration do not work very well for us.
-So here in this post I go over the changes we did to allow n8n to scale and work without problems.</description>
-    </item>
-    
-    <item>
-      <title>Observability on n8n</title>
-      <link>https://www.andreffs.com/blog/observability-on-n8n/</link>
-      <pubDate>Thu, 29 Apr 2021 23:52:17 +0100</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/blog/observability-on-n8n/</guid>
-      <description>This post is a continuation on &amp;ldquo;Setup n8n on Kubernetes&amp;rdquo;, so most of the things we talk here assume that you&amp;rsquo;ve followed/read this one as well.
- You have your own n8n instance running in Kubernetes, taking advantage of all amazing functionality and capabilities of it, but you are still going in blind right now. I mean, how can you check if your service is healthy? Is it running? How much memory is it using?</description>
-    </item>
-    
-    <item>
-      <title>Setup n8n on Kubernetes</title>
-      <link>https://www.andreffs.com/blog/setup-n8n-on-kubernetes/</link>
-      <pubDate>Mon, 05 Apr 2021 21:16:27 +0100</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/blog/setup-n8n-on-kubernetes/</guid>
-      <description>Update 2021-05-23: Decided to split this post into 3 different ones to be more easily read. You can find the other two here: &amp;ldquo;Observability on n8n&amp;rdquo; and &amp;ldquo;n8n customizations for Production&amp;rdquo;.
- So at my company we started using n8n to setup some MVP&amp;rsquo;s, build workflows and glue together some of our internal tools in order to automate some of our processes.
-In this post I&amp;rsquo;m going to go over how we&amp;rsquo;ve deployed n8n on our Kubernetes Cluster.</description>
-    </item>
-    
-    <item>
-      <title>Debug in Hugo</title>
-      <link>https://www.andreffs.com/blog/debug-in-hugo/</link>
-      <pubDate>Mon, 25 May 2020 06:37:00 +0000</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/blog/debug-in-hugo/</guid>
-      <description>While building this website I needed to understand a bit more about the internals and its variables. Even though Hugo&amp;rsquo;s documentation about debugging is pretty &amp;ldquo;okay&amp;rdquo;, there are a lot of attributes that are really hard to figure out, specially if you can&amp;rsquo;t see them on the documentation.
-So I started to look online for something to help me out debugging Hugo templates and the usual 3 options were:
- 🖨 printing the dot on Hugo&amp;rsquo;s templates 📝 console.</description>
-    </item>
-    
-    <item>
-      <title>How I&#39;ve Scanned 5K MTG Cards</title>
-      <link>https://www.andreffs.com/blog/how-i-ve-scanned-5k-mtg-cards/</link>
-      <pubDate>Thu, 14 May 2020 23:12:18 +0000</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/blog/how-i-ve-scanned-5k-mtg-cards/</guid>
-      <description>Update 2022-08-16: Same thing as last year. Also, I finally managed to sell the whole collection. Need to pay for that dinner now :)
-Update 2021-05-24: Went back to this to refresh with 2021 prices and check if those change that much after a year. Well, it seems it does 😂
- A good friend of mine gave me an old box of magic cards, like a really big old box, and during the first couple of weeks of COVID, I decided to sort them out to see how much money I had in there.</description>
-    </item>
-    
-    <item>
-      <title>Just keep on &#34;Save for later&#34;</title>
-      <link>https://www.andreffs.com/blog/just-keep-on-save-for-later/</link>
-      <pubDate>Mon, 30 Mar 2020 10:50:00 +0000</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/blog/just-keep-on-save-for-later/</guid>
-      <description>Since this #remotelife began, sadly not for the best reasons, I&amp;rsquo;ve been able to finally clean my backlog of, guess what, TV Shows, Games, Podcasts, Books&amp;hellip; Well, everything that a person is suppose to do!
-Very happy was I until I remembered that, maybe I should start looking into the &amp;ldquo;To Read&amp;rdquo; bookmarks, &amp;ldquo;Saved&amp;rdquo; on Reddit and, the holy grail, &amp;ldquo;Read Later&amp;rdquo; of Feedly.
-While the &amp;ldquo;Saved&amp;rdquo; section on Reddit was mostly threads from /r/cscarrearquestions (and some memes from /r/wsb 😂) the other two places were actual interesting articles that I have planned on reading.</description>
-    </item>
-    
-    <item>
-      <title>Host a Slack Bot in Heroku for Free</title>
-      <link>https://www.andreffs.com/blog/host-slack-bot-in-heroku-for-free/</link>
-      <pubDate>Sat, 28 Mar 2020 11:33:00 +0000</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/blog/host-slack-bot-in-heroku-for-free/</guid>
-      <description>Update 2022-09-25: Well damn&amp;hellip; I guess I need to think of another way to do this.   There is a Portuguese &amp;ldquo;motivational guru&amp;rdquo; called Gustavo Santos that has been in the news for some dumb reason. He&amp;rsquo;s the type of character that will say something like &amp;ldquo;A mente chama-se mente porque te mente&amp;quot;, and come off as super profound.
- &amp;ldquo;Mind is called mind because it lies&amp;quot;&amp;hellip; in Portuguese sounds &amp;ldquo;better&amp;rdquo; 😅</description>
-    </item>
-    
-    <item>
-      <title>Docker &#43; PostgreSQL</title>
-      <link>https://www.andreffs.com/blog/docker-postgresql/</link>
-      <pubDate>Tue, 18 Feb 2020 17:14:00 +0000</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/blog/docker-postgresql/</guid>
-      <description>More often than not, I end up going online to look up on how to use docker as the middle man on interacting with Postgres.
- Usually for me its Postgres, but this &amp;ldquo;recipe&amp;rdquo; can be applied to any piece of software that has more than one version which you don&amp;rsquo;t have installed on your laptop.
- Because of this whole back and forth I compiled a small list of &amp;ldquo;how-tos&amp;rdquo; to help me remember.</description>
-    </item>
-    
-    <item>
-      <title>Learning How to Canary Deploy with Kubernetes</title>
-      <link>https://www.andreffs.com/blog/learning-how-to-canary-deploy-with-kubernetes/</link>
-      <pubDate>Fri, 14 Feb 2020 09:05:00 +0000</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/blog/learning-how-to-canary-deploy-with-kubernetes/</guid>
-      <description>Its true, that if the time from developing a feature to deploying it to your customers only takes minutes to hours instead of days to months, that you probably have a pretty amazing development workflow.
-Im also willing to bet that a key feature of that workflow is an impeccable CI/CD pipeline, that not only allows your development team to automate a lot of time consuming and manual tasks (like building, testing, deploying, etc) but also, shortens the feedback cycle between developing-&amp;gt;testing and testing-&amp;gt;production.</description>
-    </item>
-    
-    <item>
-      <title>I Really Like Emoji&#39;s</title>
-      <link>https://www.andreffs.com/blog/i-really-like-emojis/</link>
-      <pubDate>Fri, 15 Mar 2019 19:08:22 +0000</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/blog/i-really-like-emojis/</guid>
-      <description>I came across a blogpost that explained how to add emoji&amp;rsquo;s to your terminal prompt, something like this:
-The post is pretty good!
-Not only explains how to add emoji&amp;rsquo;s to you prompt, but also goes a bit further on how to $RANDOM an emoji from a list of them, and bash formatting (customize the text in your terminal with colors and such).
-Although I&amp;rsquo;m pretty happy with my terminal setup (shameless plug to 👉 my dotfiles👈 ), I kept coming back to this idea.</description>
-    </item>
-    
-    <item>
-      <title>SSH ForwardAgent Gotchas</title>
-      <link>https://www.andreffs.com/blog/ssh-forwardagent-gotchas/</link>
-      <pubDate>Tue, 05 Feb 2019 20:07:00 +0000</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/blog/ssh-forwardagent-gotchas/</guid>
-      <description>So, you’re trying to create an SSH Tunnel to your remote machine to make some gitlab/github clones.
-That’s all fine and well until you don’t want to post your password on to the terminal.
-First, look at you ~/.ssh/config file and add the “ForwardAgent yes” to that machines ip.
-1 2 3  Host 35.241.133.24 IdentityFile ~/.ssh/id_rsa ForwardAgent yes   That says to use your local private key as identification when accessing gitlab on your remote’s machine.</description>
-    </item>
-    
-    <item>
-      <title>Postgres Is Now Running</title>
-      <link>https://www.andreffs.com/blog/postgres-is-now-running/</link>
-      <pubDate>Wed, 20 Sep 2017 10:53:00 +0000</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/blog/postgres-is-now-running/</guid>
-      <description>My Macbook has OSX Mavericks installed and sometimes it crashes for no reason, breaking my local postgres server. After restarting and running again &amp;quot;$ brew services postgres&amp;quot;, Postgres becomes yellow and I end up spending sometime looking confused and frustrated.
-Looking at the logs you can get a sense of whats happening:
-1 2  $ tail -f /usr/local/var/postgres/server.log FATAL: lock file &amp;#34;postmaster.pid&amp;#34; already exists   Simply removing the lock file that Postgres generates solves this issue:</description>
-    </item>
-    
-    <item>
-      <title>💰 Personal Finance</title>
-      <link>https://www.andreffs.com/blog/personal-finance/</link>
-      <pubDate>Mon, 03 Jul 2017 17:44:00 +0000</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/blog/personal-finance/</guid>
-      <description>Well, after reading a couple of books on the topic, they all talk about the same thing: you should diversify your portfolio.
-Code could not finish, this are some reasons why this happen. - Plot name not defined. The first parameter of the shortcode is the name. - There is a syntax error. check browser console.   window.addEventListener(&#39;DOMContentLoaded&#39;, () = { test = document.getElementById(&#34;piechart&#34;); if (test == null){ console.log(&#34;The plot name is not defined&#34;</description>
-    </item>
-    
-    <item>
-      <title>SEO Tips</title>
-      <link>https://www.andreffs.com/blog/seo-tips/</link>
-      <pubDate>Fri, 17 Feb 2017 00:45:32 +0000</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/blog/seo-tips/</guid>
-      <description>My key takeaways from making this website &amp;ldquo;SEO friendly&amp;rdquo;:
- Use link &amp;ldquo;tree structure&amp;rdquo; from homepage. This way, bots and crawlers can find every page on the website Good titles, under 65 characters Meta tags with good keywords under 100 characters Use canonical urls on every page  1 2 3  &amp;lt;link rel=&amp;#34;canonical&amp;#34; href=&amp;#34;http://localhost:1313/blog/seo-tips/&amp;#34;&amp;gt; &amp;lt;!-- instead of --&amp;gt; &amp;lt;link rel=&amp;#34;canonical&amp;#34; href=&amp;#34;/blog/seo-tips&amp;#34;&amp;gt;   Add &amp;ldquo;alt&amp;rdquo; tag to images  1  &amp;lt;img alt=&amp;#34;About me picture&amp;#34; src=&amp;#34;/images/about.</description>
-    </item>
-    
-    <item>
-      <title>Get Paid For Pooping</title>
-      <link>https://www.andreffs.com/blog/get-paid-for-pooping/</link>
-      <pubDate>Thu, 10 Dec 2015 13:38:09 +0000</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/blog/get-paid-for-pooping/</guid>
-      <description>Yes I know it sounds dumb but, if during your working hours you go to the toilet, technically, you are getting paid for it. 💩
-Use case Alright, lets say you you earn $10 an hour and during those 8 hours of daily work, you go twice to the bathroom, for around 10 minutes each time.
-Then a simple multiplication shows that your &amp;ldquo;poop time&amp;rdquo; is worth around $3.34 per day!</description>
-    </item>
-    
-    <item>
-      <title>Hello World</title>
-      <link>https://www.andreffs.com/blog/hello-world/</link>
-      <pubDate>Wed, 09 Dec 2015 00:24:09 +0000</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/blog/hello-world/</guid>
-      <description>Hello 😃
-So this is the mandatory &amp;ldquo;Hello World&amp;rdquo; blog post.
-The intent of this blog is just to keep track of my achievements, projects and also:
- Technical how-to/tutorials Bugs or gotchas that might be useful in the future Setup &amp;amp; configuration Stuff that I keep forgetting and keep googling.  👋</description>
-    </item>
-    
-  </channel>
+	<channel>
+		<title>Blogs on ANDREFFS</title>
+		<link>https://www.andreffs.com/blog/</link>
+		<description>Recent content in Blogs on ANDREFFS</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+			<managingEditor>andreffs18@gmail.com (André Silva)</managingEditor>
+		
+		
+			<webMaster>andreffs18@gmail.com (André Silva)</webMaster>
+		
+		
+		
+			<lastBuildDate>Sun, 27 Sep 2026 22:35:33 +0100</lastBuildDate>
+		
+			<atom:link href="https://www.andreffs.com/blog/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>GoTo Conferences!!!1!</title>
+				<link>https://www.andreffs.com/blog/goto-conferences/</link>
+				<pubDate>Thu, 13 Jun 2024 17:29:18 +0100</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/blog/goto-conferences/</guid>
+				<description>&lt;p&gt;I really enjoy conferences. I think it&amp;rsquo;s one of the best things the tech industry has!&lt;/p&gt;&#xA;&lt;p&gt;Covid stopped us from going to &amp;ldquo;in-person&amp;rdquo; conferences, and we all had to shift to a more &amp;ldquo;remote&amp;rdquo; or &amp;ldquo;online&amp;rdquo; version of it. You still got to see some great talks, but there&amp;rsquo;s a world of difference between how you experience and learn from them.&lt;/p&gt;&#xA;&lt;p&gt;This year I&amp;rsquo;ve finally got back to an &amp;ldquo;in-person&amp;rdquo; conference, and being so excited about attending one again I started making a list of what I should do to make the most out of it.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Tools vs Data Structures</title>
+				<link>https://www.andreffs.com/blog/tools-vs-data-structures/</link>
+				<pubDate>Thu, 16 Feb 2023 07:27:00 +0000</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/blog/tools-vs-data-structures/</guid>
+				<description>&lt;p&gt;Usually, when interviewing for an engineering or software position, you end up doing some sort of &amp;ldquo;coding challenge&amp;rdquo;. A friend of mine has recently left the company and is doing one at the moment. He asked me for help on solving a particular challenge, which I felt was a good exercise for me.&lt;/p&gt;&#xA;&lt;p&gt;This blog post talks a bit about the challenge and my approach to solving it. Also, this post works as a personal reminder that sometimes it is not about picking the best tool, but the right data structure.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>n8n customizations for Production</title>
+				<link>https://www.andreffs.com/blog/n8n-customizations-for-production/</link>
+				<pubDate>Mon, 17 May 2021 16:58:27 +0100</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/blog/n8n-customizations-for-production/</guid>
+				<description>&lt;p&gt;&lt;em&gt;This post is a continuation on &lt;a href=&#34;https://www.andreffs.com/blog/setup-n8n-on-kubernetes&#34;&gt;&amp;ldquo;Setup n8n on Kubernetes&amp;rdquo;&lt;/a&gt;, so most of the things we talk here assume that you&amp;rsquo;ve followed/read this one as well.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;After running n8n during a couple of months in production, me and my team realized that the default configuration do not work very well for us.&lt;/p&gt;&#xA;&lt;p&gt;So here in this post I go over the changes we did to allow n8n to scale and work without problems.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Observability on n8n</title>
+				<link>https://www.andreffs.com/blog/observability-on-n8n/</link>
+				<pubDate>Thu, 29 Apr 2021 23:52:17 +0100</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/blog/observability-on-n8n/</guid>
+				<description>&lt;p&gt;&lt;em&gt;This post is a continuation on &lt;a href=&#34;https://www.andreffs.com/blog/setup-n8n-on-kubernetes&#34;&gt;&amp;ldquo;Setup n8n on Kubernetes&amp;rdquo;&lt;/a&gt;, so most of the things we talk here assume that you&amp;rsquo;ve followed/read this one as well.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;You have your own n8n instance running in Kubernetes, taking advantage of all amazing functionality and capabilities of it, but you are still going in blind right now. I mean, how can you check if your service is healthy? Is it running? How much memory is it using? 🤔&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Setup n8n on Kubernetes</title>
+				<link>https://www.andreffs.com/blog/setup-n8n-on-kubernetes/</link>
+				<pubDate>Mon, 05 Apr 2021 21:16:27 +0100</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/blog/setup-n8n-on-kubernetes/</guid>
+				<description>&lt;p&gt;&lt;em&gt;Update 2021-05-23: Decided to split this post into 3 different ones to be more easily read. You can find the other two here: &lt;a href=&#34;https://www.andreffs.com/blog/observability-on-n8n/&#34;&gt;&amp;ldquo;Observability on n8n&amp;rdquo;&lt;/a&gt; and &lt;a href=&#34;https://www.andreffs.com/blog/n8n-customizations-for-production/&#34;&gt;&amp;ldquo;n8n customizations for Production&amp;rdquo;&lt;/a&gt;&lt;/em&gt;.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;So at my company we started using &lt;a href=&#34;https://n8n.io/&#34;&gt;n8n&lt;/a&gt; to setup some MVP&amp;rsquo;s, build workflows and glue together some of our internal tools in order to automate some of our processes.&lt;/p&gt;&#xA;&lt;p&gt;In this post I&amp;rsquo;m going to go over how we&amp;rsquo;ve deployed n8n on our Kubernetes Cluster.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Debug in Hugo</title>
+				<link>https://www.andreffs.com/blog/debug-in-hugo/</link>
+				<pubDate>Mon, 25 May 2020 06:37:00 +0000</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/blog/debug-in-hugo/</guid>
+				<description>&lt;p&gt;While building this website I needed to understand a bit more about the internals and its variables. Even though Hugo&amp;rsquo;s &lt;a href=&#34;https://gohugo.io/templates/template-debugging/&#34;&gt;documentation about debugging&lt;/a&gt; is pretty &lt;em&gt;&amp;ldquo;okay&amp;rdquo;&lt;/em&gt;, there are a lot of attributes that are really hard to figure out, specially if you can&amp;rsquo;t see them on the documentation.&lt;/p&gt;&#xA;&lt;p&gt;So I started to look online for something to help me out debugging Hugo templates and the usual 3 options were:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;🖨 printing &lt;em&gt;the dot&lt;/em&gt; on Hugo&amp;rsquo;s templates&lt;/li&gt;&#xA;&lt;li&gt;📝 &lt;code&gt;console.log&lt;/code&gt; the whole &lt;em&gt;dot&lt;/em&gt; variable&lt;/li&gt;&#xA;&lt;li&gt;✅ using &lt;a href=&#34;https://github.com/kaushalmodi/hugo-debugprint&#34;&gt;Hugo debug themes&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 id=&#34;printing-&#34;&gt;Printing &lt;em&gt;&amp;ldquo;the dot&amp;rdquo;&lt;/em&gt;&lt;/h1&gt;&#xA;&lt;p&gt;In any hugo template, if you do this:&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>How I&#39;ve Scanned 5K MTG Cards</title>
+				<link>https://www.andreffs.com/blog/how-i-ve-scanned-5k-mtg-cards/</link>
+				<pubDate>Thu, 14 May 2020 23:12:18 +0000</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/blog/how-i-ve-scanned-5k-mtg-cards/</guid>
+				<description>&lt;p&gt;&lt;em&gt;Update 2022-08-16: Same thing as last year. Also, I finally managed to sell the whole collection. Need to pay for that dinner now :)&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;Update 2021-05-24: Went back to this to refresh with 2021 prices and check if those change that much after a year. Well, it seems it does&lt;/em&gt; 😂&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;A good friend of mine gave me an old box of magic cards, like a &lt;em&gt;really&lt;/em&gt; big old box, and during the first couple of weeks of COVID, I decided to sort them out to see how much money I had in there.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Just keep on &#34;Save for later&#34;</title>
+				<link>https://www.andreffs.com/blog/just-keep-on-save-for-later/</link>
+				<pubDate>Mon, 30 Mar 2020 10:50:00 +0000</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/blog/just-keep-on-save-for-later/</guid>
+				<description>&lt;p&gt;Since this &lt;em&gt;#remotelife&lt;/em&gt; began, sadly not for the best reasons, I&amp;rsquo;ve been able to finally clean my backlog of, guess what, TV Shows, Games, Podcasts, Books&amp;hellip; Well, everything that a person is suppose to do!&lt;/p&gt;&#xA;&lt;p&gt;Very happy was I until I remembered that, maybe I should start looking into the &lt;strong&gt;&amp;ldquo;To Read&amp;rdquo;&lt;/strong&gt; bookmarks, &lt;strong&gt;&amp;ldquo;Saved&amp;rdquo;&lt;/strong&gt; on Reddit and, the holy grail, &lt;strong&gt;&amp;ldquo;Read Later&amp;rdquo;&lt;/strong&gt; of Feedly.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;bookmarks.png&#34; alt=&#34;All bookmarks&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;While the &amp;ldquo;Saved&amp;rdquo; section on Reddit was mostly threads from &lt;a href=&#34;https://www.reddit.com/r/cscareerquestions/&#34;&gt;/r/cscarrearquestions&lt;/a&gt; (and some memes from &lt;a href=&#34;https://www.reddit.com/r/wallstreetbets&#34;&gt;/r/wsb&lt;/a&gt; 😂) the other two places were actual interesting articles that I have planned on reading.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Host a Slack Bot in Heroku for Free</title>
+				<link>https://www.andreffs.com/blog/host-slack-bot-in-heroku-for-free/</link>
+				<pubDate>Sat, 28 Mar 2020 11:33:00 +0000</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/blog/host-slack-bot-in-heroku-for-free/</guid>
+				<description>&lt;blockquote&gt;&#xA;&lt;p&gt;Update 2022-09-25: Well damn&amp;hellip; I guess I need to think of another way to do this.&#xA;&lt;img src=&#34;images/well-damn.png&#34; alt=&#34;images/well-damn.png&#34;&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/nM3mJd3.jpg&#34; alt=&#34;https://i.imgur.com/nM3mJd3.jpg&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;There is a Portuguese &amp;ldquo;motivational guru&amp;rdquo; called Gustavo Santos that has been in the news for some dumb reason. He&amp;rsquo;s the type of character that will say something like &amp;ldquo;&lt;em&gt;A mente chama-se mente porque te mente&lt;/em&gt;&amp;rdquo;, and come off as super profound.&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&amp;ldquo;Mind is called mind because it &lt;em&gt;lies&lt;/em&gt;&amp;rdquo;&amp;hellip; in Portuguese sounds &amp;ldquo;better&amp;rdquo; 😅&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Docker &#43; PostgreSQL</title>
+				<link>https://www.andreffs.com/blog/docker-postgresql/</link>
+				<pubDate>Tue, 18 Feb 2020 17:14:00 +0000</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/blog/docker-postgresql/</guid>
+				<description>&lt;p&gt;&lt;img src=&#34;docker+postgres.png&#34; alt=&#34;Docker SSH Tunnel to AWS EC2 Instance&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;More often than not, I end up going online to look up on how to use docker as the middle man on interacting with Postgres.&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Usually for me its Postgres, but this &amp;ldquo;recipe&amp;rdquo; can be applied to any piece of software that has more than one version which you don&amp;rsquo;t have installed on your laptop.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;Because of this whole back and forth I compiled a small list of &amp;ldquo;how-tos&amp;rdquo; to help me remember.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Learning How to Canary Deploy with Kubernetes</title>
+				<link>https://www.andreffs.com/blog/learning-how-to-canary-deploy-with-kubernetes/</link>
+				<pubDate>Fri, 14 Feb 2020 09:05:00 +0000</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/blog/learning-how-to-canary-deploy-with-kubernetes/</guid>
+				<description>&lt;p&gt;&lt;img src=&#34;header.png&#34; alt=&#34;Header Image&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;Its true, that if the time from developing a feature to deploying it to your customers only takes minutes to hours instead of days to months, that you probably have a pretty amazing development workflow.&lt;/p&gt;&#xA;&lt;p&gt;Im also willing to bet that a key feature of that workflow is an impeccable CI/CD pipeline, that not only allows your development team to automate a lot of time consuming and manual tasks (like building, testing, deploying, etc) but also, shortens the feedback cycle between developing-&amp;gt;testing and testing-&amp;gt;production.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>I Really Like Emoji&#39;s</title>
+				<link>https://www.andreffs.com/blog/i-really-like-emojis/</link>
+				<pubDate>Fri, 15 Mar 2019 19:08:22 +0000</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/blog/i-really-like-emojis/</guid>
+				<description>&lt;p&gt;I came across a &lt;a href=&#34;https://loige.co/random-emoji-in-your-prompt-how-and-why/&#34;&gt;blogpost&lt;/a&gt; that explained how to add emoji&amp;rsquo;s to your terminal prompt, something like this:&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;images/loige.co-terminal.webp&#34; alt=&#34;images/loige.co-terminal.webp&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;The post is pretty good!&lt;/p&gt;&#xA;&lt;p&gt;Not only explains how to add emoji&amp;rsquo;s to you prompt, but also goes a bit further on how to &lt;code&gt;$RANDOM&lt;/code&gt; an emoji from a list of them, and bash formatting (customize the text in your terminal with colors and such).&lt;/p&gt;&#xA;&lt;p&gt;Although I&amp;rsquo;m pretty happy with my terminal setup (&lt;strong&gt;shameless plug&lt;/strong&gt; to 👉 &lt;a href=&#34;https://github.com/andreffs18/dotfiles&#34;&gt;my dotfiles&lt;/a&gt;👈 ), I kept coming back to this idea. It would be cool to use this, but instead of showing a random emoji in my prompt, use it as a &amp;ldquo;Welcome message&amp;rdquo; every time I open a new terminal session.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>SSH ForwardAgent Gotchas</title>
+				<link>https://www.andreffs.com/blog/ssh-forwardagent-gotchas/</link>
+				<pubDate>Tue, 05 Feb 2019 20:07:00 +0000</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/blog/ssh-forwardagent-gotchas/</guid>
+				<description>&lt;p&gt;So, you’re trying to create an SSH Tunnel to your remote machine to make some gitlab/github clones.&lt;/p&gt;&#xA;&lt;p&gt;That’s all fine and well until you don’t want to post your password on to the terminal.&lt;/p&gt;&#xA;&lt;p&gt;First, look at you &lt;code&gt;~/.ssh/config&lt;/code&gt; file and add the &lt;strong&gt;“ForwardAgent yes”&lt;/strong&gt; to that machines ip.&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&#xA;&lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;1&#xA;&lt;/span&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;2&#xA;&lt;/span&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;3&#xA;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&#xA;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;;width:100%&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Host 35.241.133.24&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  IdentityFile ~/.ssh/id_rsa&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  ForwardAgent yes&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;&#xA;&lt;p&gt;That says to use your local private key as identification when accessing gitlab on your remote’s machine.&#xA;Then, just try to check your GitHub/Gitlab connectivity, but first, don’t forget to add you private key to your ssh-agent:&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Postgres Is Now Running</title>
+				<link>https://www.andreffs.com/blog/postgres-is-now-running/</link>
+				<pubDate>Wed, 20 Sep 2017 10:53:00 +0000</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/blog/postgres-is-now-running/</guid>
+				<description>&lt;p&gt;My Macbook has OSX Mavericks installed and sometimes it crashes for no reason, breaking my local postgres server.&#xA;After restarting and running again &lt;code&gt;&amp;quot;$ brew services postgres&amp;quot;&lt;/code&gt;, Postgres becomes &lt;em&gt;yellow&lt;/em&gt; and I end up spending sometime looking confused and frustrated.&lt;/p&gt;&#xA;&lt;p&gt;Looking at the logs you can get a sense of whats happening:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&#xA;&lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;1&#xA;&lt;/span&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;2&#xA;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&#xA;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;;width:100%&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ tail -f /usr/local/var/postgres/server.log&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;FATAL:  lock file &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;postmaster.pid&amp;#34;&lt;/span&gt; already exists&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;&#xA;&lt;p&gt;Simply removing the lock file that Postgres generates solves this issue:&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>💰 Personal Finance</title>
+				<link>https://www.andreffs.com/blog/personal-finance/</link>
+				<pubDate>Mon, 03 Jul 2017 17:44:00 +0000</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/blog/personal-finance/</guid>
+				<description>&lt;p&gt;Well, after reading &lt;em&gt;&lt;a href=&#34;https://www.goodreads.com/book/show/161899.The_Smartest_Investment_Book_You_ll_Ever_Read&#34;&gt;a&lt;/a&gt;&lt;/em&gt; &lt;em&gt;&lt;a href=&#34;https://www.goodreads.com/book/show/69571.Rich_Dad_Poor_Dad&#34;&gt;couple&lt;/a&gt;&lt;/em&gt; &lt;em&gt;&lt;a href=&#34;https://www.goodreads.com/book/show/1052.The_Richest_Man_in_Babylon&#34;&gt;of&lt;/a&gt;&lt;/em&gt; &lt;em&gt;&lt;a href=&#34;https://www.goodreads.com/book/show/106835.The_Intelligent_Investor&#34;&gt;books&lt;/a&gt;&lt;/em&gt; on the topic, they all talk about the same thing: you should &lt;strong&gt;diversify your portfolio&lt;/strong&gt;.&lt;/p&gt;&#xA;&#xA;&lt;div class=&#34;figure&#34;&gt;&#xA;&lt;div class=&#34;figure-plot alert-danger&#34; id=&#34;piechart&#34;&gt;&#xA;  Code could not finish, this are some reasons why this happen.&#xA;  - Plot name not defined. The first parameter of the shortcode is the name.&#xA;  - There is a syntax error. check browser console.&#xA;&lt;/div&gt;&#xA;&lt;script&gt;&#xA;window.addEventListener(&#39;DOMContentLoaded&#39;, () =&gt; {&#xA;  test = document.getElementById(&#34;piechart&#34;);&#xA;  if (test == null){&#xA;    console.log(&#34;The plot name is not defined&#34;)&#xA;    return&#xA;  }&#xA;&#xA;  fig = &#xA;{&#34;data&#34;:[{&#34;hoverinfo&#34;:&#34;none&#34;,&#34;labels&#34;:[&#34;\ud83d\udcb5Cash&#34;,&#34;\ud83e\udd47Precious Metals&#34;,&#34;\ud83c\udfe1Real Estate&#34;,&#34;\ud83d\udda5Stock&#34;,&#34;\ud83d\udd16Bonds&#34;,&#34;\u2318 Cryptocurrencies&#34;],&#34;pull&#34;:[0.1,0.1,0.1,0.1,0.1,0.1],&#34;textinfo&#34;:&#34;label+percent&#34;,&#34;type&#34;:&#34;pie&#34;,&#34;values&#34;:[15,15,45,15,7.5,2.5]}],&#34;layout&#34;:{&#34;margin&#34;:{&#34;b&#34;:80,&#34;l&#34;:80,&#34;pad&#34;:2,&#34;r&#34;:80,&#34;t&#34;:100},&#34;plot_bgcolor&#34;:&#34;rgba(236, 236, 236, 0.3)&#34;,&#34;template&#34;:{&#34;data&#34;:{&#34;bar&#34;:[{&#34;error_x&#34;:{&#34;color&#34;:&#34;#2a3f5f&#34;},&#34;error_y&#34;:{&#34;color&#34;:&#34;#2a3f5f&#34;},&#34;marker&#34;:{&#34;line&#34;:{&#34;color&#34;:&#34;#E5ECF6&#34;,&#34;width&#34;:0.5}},&#34;type&#34;:&#34;bar&#34;}],&#34;barpolar&#34;:[{&#34;marker&#34;:{&#34;line&#34;:{&#34;color&#34;:&#34;#E5ECF6&#34;,&#34;width&#34;:0.5}},&#34;type&#34;:&#34;barpolar&#34;}],&#34;carpet&#34;:[{&#34;aaxis&#34;:{&#34;endlinecolor&#34;:&#34;#2a3f5f&#34;,&#34;gridcolor&#34;:&#34;white&#34;,&#34;linecolor&#34;:&#34;white&#34;,&#34;minorgridcolor&#34;:&#34;white&#34;,&#34;startlinecolor&#34;:&#34;#2a3f5f&#34;},&#34;baxis&#34;:{&#34;endlinecolor&#34;:&#34;#2a3f5f&#34;,&#34;gridcolor&#34;:&#34;white&#34;,&#34;linecolor&#34;:&#34;white&#34;,&#34;minorgridcolor&#34;:&#34;white&#34;,&#34;startlinecolor&#34;:&#34;#2a3f5f&#34;},&#34;type&#34;:&#34;carpet&#34;}],&#34;choropleth&#34;:[{&#34;colorbar&#34;:{&#34;outlinewidth&#34;:0,&#34;ticks&#34;:&#34;&#34;},&#34;type&#34;:&#34;choropleth&#34;}],&#34;contour&#34;:[{&#34;colorbar&#34;:{&#34;outlinewidth&#34;:0,&#34;ticks&#34;:&#34;&#34;},&#34;colorscale&#34;:[[0.0,&#34;#0d0887&#34;],[0.1111111111111111,&#34;#46039f&#34;],[0.2222222222222222,&#34;#7201a8&#34;],[0.3333333333333333,&#34;#9c179e&#34;],[0.4444444444444444,&#34;#bd3786&#34;],[0.5555555555555556,&#34;#d8576b&#34;],[0.6666666666666666,&#34;#ed7953&#34;],[0.7777777777777778,&#34;#fb9f3a&#34;],[0.8888888888888888,&#34;#fdca26&#34;],[1.0,&#34;#f0f921&#34;]],&#34;type&#34;:&#34;contour&#34;}],&#34;contourcarpet&#34;:[{&#34;colorbar&#34;:{&#34;outlinewidth&#34;:0,&#34;ticks&#34;:&#34;&#34;},&#34;type&#34;:&#34;contourcarpet&#34;}],&#34;heatmap&#34;:[{&#34;colorbar&#34;:{&#34;outlinewidth&#34;:0,&#34;ticks&#34;:&#34;&#34;},&#34;colorscale&#34;:[[0.0,&#34;#0d0887&#34;],[0.1111111111111111,&#34;#46039f&#34;],[0.2222222222222222,&#34;#7201a8&#34;],[0.3333333333333333,&#34;#9c179e&#34;],[0.4444444444444444,&#34;#bd3786&#34;],[0.5555555555555556,&#34;#d8576b&#34;],[0.6666666666666666,&#34;#ed7953&#34;],[0.7777777777777778,&#34;#fb9f3a&#34;],[0.8888888888888888,&#34;#fdca26&#34;],[1.0,&#34;#f0f921&#34;]],&#34;type&#34;:&#34;heatmap&#34;}],&#34;heatmapgl&#34;:[{&#34;colorbar&#34;:{&#34;outlinewidth&#34;:0,&#34;ticks&#34;:&#34;&#34;},&#34;colorscale&#34;:[[0.0,&#34;#0d0887&#34;],[0.1111111111111111,&#34;#46039f&#34;],[0.2222222222222222,&#34;#7201a8&#34;],[0.3333333333333333,&#34;#9c179e&#34;],[0.4444444444444444,&#34;#bd3786&#34;],[0.5555555555555556,&#34;#d8576b&#34;],[0.6666666666666666,&#34;#ed7953&#34;],[0.7777777777777778,&#34;#fb9f3a&#34;],[0.8888888888888888,&#34;#fdca26&#34;],[1.0,&#34;#f0f921&#34;]],&#34;type&#34;:&#34;heatmapgl&#34;}],&#34;histogram&#34;:[{&#34;marker&#34;:{&#34;colorbar&#34;:{&#34;outlinewidth&#34;:0,&#34;ticks&#34;:&#34;&#34;}},&#34;type&#34;:&#34;histogram&#34;}],&#34;histogram2d&#34;:[{&#34;colorbar&#34;:{&#34;outlinewidth&#34;:0,&#34;ticks&#34;:&#34;&#34;},&#34;colorscale&#34;:[[0.0,&#34;#0d0887&#34;],[0.1111111111111111,&#34;#46039f&#34;],[0.2222222222222222,&#34;#7201a8&#34;],[0.3333333333333333,&#34;#9c179e&#34;],[0.4444444444444444,&#34;#bd3786&#34;],[0.5555555555555556,&#34;#d8576b&#34;],[0.6666666666666666,&#34;#ed7953&#34;],[0.7777777777777778,&#34;#fb9f3a&#34;],[0.8888888888888888,&#34;#fdca26&#34;],[1.0,&#34;#f0f921&#34;]],&#34;type&#34;:&#34;histogram2d&#34;}],&#34;histogram2dcontour&#34;:[{&#34;colorbar&#34;:{&#34;outlinewidth&#34;:0,&#34;ticks&#34;:&#34;&#34;},&#34;colorscale&#34;:[[0.0,&#34;#0d0887&#34;],[0.1111111111111111,&#34;#46039f&#34;],[0.2222222222222222,&#34;#7201a8&#34;],[0.3333333333333333,&#34;#9c179e&#34;],[0.4444444444444444,&#34;#bd3786&#34;],[0.5555555555555556,&#34;#d8576b&#34;],[0.6666666666666666,&#34;#ed7953&#34;],[0.7777777777777778,&#34;#fb9f3a&#34;],[0.8888888888888888,&#34;#fdca26&#34;],[1.0,&#34;#f0f921&#34;]],&#34;type&#34;:&#34;histogram2dcontour&#34;}],&#34;mesh3d&#34;:[{&#34;colorbar&#34;:{&#34;outlinewidth&#34;:0,&#34;ticks&#34;:&#34;&#34;},&#34;type&#34;:&#34;mesh3d&#34;}],&#34;parcoords&#34;:[{&#34;line&#34;:{&#34;colorbar&#34;:{&#34;outlinewidth&#34;:0,&#34;ticks&#34;:&#34;&#34;}},&#34;type&#34;:&#34;parcoords&#34;}],&#34;pie&#34;:[{&#34;automargin&#34;:true,&#34;type&#34;:&#34;pie&#34;}],&#34;scatter&#34;:[{&#34;marker&#34;:{&#34;colorbar&#34;:{&#34;outlinewidth&#34;:0,&#34;ticks&#34;:&#34;&#34;}},&#34;type&#34;:&#34;scatter&#34;}],&#34;scatter3d&#34;:[{&#34;line&#34;:{&#34;colorbar&#34;:{&#34;outlinewidth&#34;:0,&#34;ticks&#34;:&#34;&#34;}},&#34;marker&#34;:{&#34;colorbar&#34;:{&#34;outlinewidth&#34;:0,&#34;ticks&#34;:&#34;&#34;}},&#34;type&#34;:&#34;scatter3d&#34;}],&#34;scattercarpet&#34;:[{&#34;marker&#34;:{&#34;colorbar&#34;:{&#34;outlinewidth&#34;:0,&#34;ticks&#34;:&#34;&#34;}},&#34;type&#34;:&#34;scattercarpet&#34;}],&#34;scattergeo&#34;:[{&#34;marker&#34;:{&#34;colorbar&#34;:{&#34;outlinewidth&#34;:0,&#34;ticks&#34;:&#34;&#34;}},&#34;type&#34;:&#34;scattergeo&#34;}],&#34;scattergl&#34;:[{&#34;marker&#34;:{&#34;colorbar&#34;:{&#34;outlinewidth&#34;:0,&#34;ticks&#34;:&#34;&#34;}},&#34;type&#34;:&#34;scattergl&#34;}],&#34;scattermapbox&#34;:[{&#34;marker&#34;:{&#34;colorbar&#34;:{&#34;outlinewidth&#34;:0,&#34;ticks&#34;:&#34;&#34;}},&#34;type&#34;:&#34;scattermapbox&#34;}],&#34;scatterpolar&#34;:[{&#34;marker&#34;:{&#34;colorbar&#34;:{&#34;outlinewidth&#34;:0,&#34;ticks&#34;:&#34;&#34;}},&#34;type&#34;:&#34;scatterpolar&#34;}],&#34;scatterpolargl&#34;:[{&#34;marker&#34;:{&#34;colorbar&#34;:{&#34;outlinewidth&#34;:0,&#34;ticks&#34;:&#34;&#34;}},&#34;type&#34;:&#34;scatterpolargl&#34;}],&#34;scatterternary&#34;:[{&#34;marker&#34;:{&#34;colorbar&#34;:{&#34;outlinewidth&#34;:0,&#34;ticks&#34;:&#34;&#34;}},&#34;type&#34;:&#34;scatterternary&#34;}],&#34;surface&#34;:[{&#34;colorbar&#34;:{&#34;outlinewidth&#34;:0,&#34;ticks&#34;:&#34;&#34;},&#34;colorscale&#34;:[[0.0,&#34;#0d0887&#34;],[0.1111111111111111,&#34;#46039f&#34;],[0.2222222222222222,&#34;#7201a8&#34;],[0.3333333333333333,&#34;#9c179e&#34;],[0.4444444444444444,&#34;#bd3786&#34;],[0.5555555555555556,&#34;#d8576b&#34;],[0.6666666666666666,&#34;#ed7953&#34;],[0.7777777777777778,&#34;#fb9f3a&#34;],[0.8888888888888888,&#34;#fdca26&#34;],[1.0,&#34;#f0f921&#34;]],&#34;type&#34;:&#34;surface&#34;}],&#34;table&#34;:[{&#34;cells&#34;:{&#34;fill&#34;:{&#34;color&#34;:&#34;#EBF0F8&#34;},&#34;line&#34;:{&#34;color&#34;:&#34;white&#34;}},&#34;header&#34;:{&#34;fill&#34;:{&#34;color&#34;:&#34;#C8D4E3&#34;},&#34;line&#34;:{&#34;color&#34;:&#34;white&#34;}},&#34;type&#34;:&#34;table&#34;}]},&#34;layout&#34;:{&#34;annotationdefaults&#34;:{&#34;arrowcolor&#34;:&#34;#2a3f5f&#34;,&#34;arrowhead&#34;:0,&#34;arrowwidth&#34;:1},&#34;coloraxis&#34;:{&#34;colorbar&#34;:{&#34;outlinewidth&#34;:0,&#34;ticks&#34;:&#34;&#34;}},&#34;colorscale&#34;:{&#34;diverging&#34;:[[0,&#34;#8e0152&#34;],[0.1,&#34;#c51b7d&#34;],[0.2,&#34;#de77ae&#34;],[0.3,&#34;#f1b6da&#34;],[0.4,&#34;#fde0ef&#34;],[0.5,&#34;#f7f7f7&#34;],[0.6,&#34;#e6f5d0&#34;],[0.7,&#34;#b8e186&#34;],[0.8,&#34;#7fbc41&#34;],[0.9,&#34;#4d9221&#34;],[1,&#34;#276419&#34;]],&#34;sequential&#34;:[[0.0,&#34;#0d0887&#34;],[0.1111111111111111,&#34;#46039f&#34;],[0.2222222222222222,&#34;#7201a8&#34;],[0.3333333333333333,&#34;#9c179e&#34;],[0.4444444444444444,&#34;#bd3786&#34;],[0.5555555555555556,&#34;#d8576b&#34;],[0.6666666666666666,&#34;#ed7953&#34;],[0.7777777777777778,&#34;#fb9f3a&#34;],[0.8888888888888888,&#34;#fdca26&#34;],[1.0,&#34;#f0f921&#34;]],&#34;sequentialminus&#34;:[[0.0,&#34;#0d0887&#34;],[0.1111111111111111,&#34;#46039f&#34;],[0.2222222222222222,&#34;#7201a8&#34;],[0.3333333333333333,&#34;#9c179e&#34;],[0.4444444444444444,&#34;#bd3786&#34;],[0.5555555555555556,&#34;#d8576b&#34;],[0.6666666666666666,&#34;#ed7953&#34;],[0.7777777777777778,&#34;#fb9f3a&#34;],[0.8888888888888888,&#34;#fdca26&#34;],[1.0,&#34;#f0f921&#34;]]},&#34;colorway&#34;:[&#34;#636efa&#34;,&#34;#EF553B&#34;,&#34;#00cc96&#34;,&#34;#ab63fa&#34;,&#34;#FFA15A&#34;,&#34;#19d3f3&#34;,&#34;#FF6692&#34;,&#34;#B6E880&#34;,&#34;#FF97FF&#34;,&#34;#FECB52&#34;],&#34;font&#34;:{&#34;color&#34;:&#34;#2a3f5f&#34;},&#34;geo&#34;:{&#34;bgcolor&#34;:&#34;white&#34;,&#34;lakecolor&#34;:&#34;white&#34;,&#34;landcolor&#34;:&#34;#E5ECF6&#34;,&#34;showlakes&#34;:true,&#34;showland&#34;:true,&#34;subunitcolor&#34;:&#34;white&#34;},&#34;hoverlabel&#34;:{&#34;align&#34;:&#34;left&#34;},&#34;hovermode&#34;:&#34;closest&#34;,&#34;mapbox&#34;:{&#34;style&#34;:&#34;light&#34;},&#34;paper_bgcolor&#34;:&#34;white&#34;,&#34;plot_bgcolor&#34;:&#34;#E5ECF6&#34;,&#34;polar&#34;:{&#34;angularaxis&#34;:{&#34;gridcolor&#34;:&#34;white&#34;,&#34;linecolor&#34;:&#34;white&#34;,&#34;ticks&#34;:&#34;&#34;},&#34;bgcolor&#34;:&#34;#E5ECF6&#34;,&#34;radialaxis&#34;:{&#34;gridcolor&#34;:&#34;white&#34;,&#34;linecolor&#34;:&#34;white&#34;,&#34;ticks&#34;:&#34;&#34;}},&#34;scene&#34;:{&#34;xaxis&#34;:{&#34;backgroundcolor&#34;:&#34;#E5ECF6&#34;,&#34;gridcolor&#34;:&#34;white&#34;,&#34;gridwidth&#34;:2,&#34;linecolor&#34;:&#34;white&#34;,&#34;showbackground&#34;:true,&#34;ticks&#34;:&#34;&#34;,&#34;zerolinecolor&#34;:&#34;white&#34;},&#34;yaxis&#34;:{&#34;backgroundcolor&#34;:&#34;#E5ECF6&#34;,&#34;gridcolor&#34;:&#34;white&#34;,&#34;gridwidth&#34;:2,&#34;linecolor&#34;:&#34;white&#34;,&#34;showbackground&#34;:true,&#34;ticks&#34;:&#34;&#34;,&#34;zerolinecolor&#34;:&#34;white&#34;},&#34;zaxis&#34;:{&#34;backgroundcolor&#34;:&#34;#E5ECF6&#34;,&#34;gridcolor&#34;:&#34;white&#34;,&#34;gridwidth&#34;:2,&#34;linecolor&#34;:&#34;white&#34;,&#34;showbackground&#34;:true,&#34;ticks&#34;:&#34;&#34;,&#34;zerolinecolor&#34;:&#34;white&#34;}},&#34;shapedefaults&#34;:{&#34;line&#34;:{&#34;color&#34;:&#34;#2a3f5f&#34;}},&#34;ternary&#34;:{&#34;aaxis&#34;:{&#34;gridcolor&#34;:&#34;white&#34;,&#34;linecolor&#34;:&#34;white&#34;,&#34;ticks&#34;:&#34;&#34;},&#34;baxis&#34;:{&#34;gridcolor&#34;:&#34;white&#34;,&#34;linecolor&#34;:&#34;white&#34;,&#34;ticks&#34;:&#34;&#34;},&#34;bgcolor&#34;:&#34;#E5ECF6&#34;,&#34;caxis&#34;:{&#34;gridcolor&#34;:&#34;white&#34;,&#34;linecolor&#34;:&#34;white&#34;,&#34;ticks&#34;:&#34;&#34;}},&#34;title&#34;:{&#34;x&#34;:0.05},&#34;xaxis&#34;:{&#34;automargin&#34;:true,&#34;gridcolor&#34;:&#34;white&#34;,&#34;linecolor&#34;:&#34;white&#34;,&#34;ticks&#34;:&#34;&#34;,&#34;title&#34;:{&#34;standoff&#34;:15},&#34;zerolinecolor&#34;:&#34;white&#34;,&#34;zerolinewidth&#34;:2},&#34;yaxis&#34;:{&#34;automargin&#34;:true,&#34;gridcolor&#34;:&#34;white&#34;,&#34;linecolor&#34;:&#34;white&#34;,&#34;ticks&#34;:&#34;&#34;,&#34;title&#34;:{&#34;standoff&#34;:15},&#34;zerolinecolor&#34;:&#34;white&#34;,&#34;zerolinewidth&#34;:2}}},&#34;title&#34;:{&#34;font&#34;:{&#34;size&#34;:30},&#34;text&#34;:&#34;Financial Diversity&#34;},&#34;width&#34;:825,&#34;xaxis&#34;:{&#34;linecolor&#34;:&#34;#000&#34;,&#34;linewidth&#34;:1,&#34;title&#34;:{&#34;text&#34;:&#34;&#34;}},&#34;yaxis&#34;:{&#34;title&#34;:{&#34;text&#34;:&#34;Count&#34;}}}}&#xA;;&#xA;&#xA;  if (!fig) {&#xA;    test.innerText = &#34;ERROR: fig variable is not defined&#34;&#xA;    return&#xA;  }&#xA;  test.innerText = null&#xA;  Plotly.plot(test ,fig);&#xA;});&#xA;&lt;/script&gt;&#xA;&lt;/div&gt;&#xA;&#xA;&lt;p&gt;The major misconception is that having different tech stocks is the same as having a diverse portfolio.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>SEO Tips</title>
+				<link>https://www.andreffs.com/blog/seo-tips/</link>
+				<pubDate>Fri, 17 Feb 2017 00:45:32 +0000</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/blog/seo-tips/</guid>
+				<description>&lt;p&gt;My key takeaways from making this website &amp;ldquo;SEO friendly&amp;rdquo;:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Use link &amp;ldquo;tree structure&amp;rdquo; from homepage. This way, bots and crawlers can find every page on the website&lt;/li&gt;&#xA;&lt;li&gt;Good &lt;strong&gt;titles&lt;/strong&gt;, under 65 characters&lt;/li&gt;&#xA;&lt;li&gt;Meta tags with good keywords under 100 characters&lt;/li&gt;&#xA;&lt;li&gt;Use canonical urls on every page&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&#xA;&lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;1&#xA;&lt;/span&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;2&#xA;&lt;/span&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;3&#xA;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&#xA;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;;width:100%&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;link&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;rel&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;canonical&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;href&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;http://localhost:1313/blog/seo-tips/&amp;#34;&lt;/span&gt;&amp;gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!-- instead of --&amp;gt;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;link&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;rel&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;canonical&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;href&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/blog/seo-tips&amp;#34;&lt;/span&gt;&amp;gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;&lt;ol start=&#34;5&#34;&gt;&#xA;&lt;li&gt;Add &amp;ldquo;alt&amp;rdquo; tag to images&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&#xA;&lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;1&#xA;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&#xA;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;;width:100%&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;img&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;alt&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;About me picture&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/images/about.jpeg&amp;#34;&lt;/span&gt;&amp;gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;&lt;h2 id=&#34;pre-commit-hooks&#34;&gt;Pre-commit hooks&lt;/h2&gt;&#xA;&lt;p&gt;Having this checklist is nice but it would be better if I didn&amp;rsquo;t have to check this by myself every time I do a side project.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Hello World</title>
+				<link>https://www.andreffs.com/blog/hello-world/</link>
+				<pubDate>Wed, 09 Dec 2015 00:24:09 +0000</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/blog/hello-world/</guid>
+				<description>&lt;p&gt;Hello 😃&lt;/p&gt;&#xA;&lt;p&gt;So this is the mandatory &lt;em&gt;&amp;ldquo;Hello World&amp;rdquo;&lt;/em&gt; blog post.&lt;/p&gt;&#xA;&lt;p&gt;The intent of this blog is just to keep track of my achievements, projects and also:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Technical how-to/tutorials&lt;/li&gt;&#xA;&lt;li&gt;Bugs or gotchas that might be useful in the future&lt;/li&gt;&#xA;&lt;li&gt;Setup &amp;amp; configuration&lt;/li&gt;&#xA;&lt;li&gt;Stuff that I keep forgetting and keep googling.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;👋&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

@@ -21,7 +21,7 @@ deploy:
 		exit; \
 	else \
 		echo "⏳ Deploying"; \
-		hugo --baseUrl https://www.andreffs.com; \
+		hugo --baseURL https://www.andreffs.com; \
 		touch docs/.nojekyll; \
 		git add docs/; \
 		git commit --amend --no-edit; \

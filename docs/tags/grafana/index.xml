@@ -1,48 +1,42 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>grafana on ANDREFFS</title>
-    <link>https://www.andreffs.com/tags/grafana/</link>
-    <description>Recent content in grafana on ANDREFFS</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <managingEditor>andreffs18@gmail.com (André Silva)</managingEditor>
-    <webMaster>andreffs18@gmail.com (André Silva)</webMaster>
-    <lastBuildDate>Thu, 16 Feb 2023 07:27:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://www.andreffs.com/tags/grafana/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Tools vs Data Structures</title>
-      <link>https://www.andreffs.com/blog/tools-vs-data-structures/</link>
-      <pubDate>Thu, 16 Feb 2023 07:27:00 +0000</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/blog/tools-vs-data-structures/</guid>
-      <description>Usually, when interviewing for an engineering or software position, you end up doing some sort of &amp;ldquo;coding challenge&amp;rdquo;. A friend of mine has recently left the company and is doing one at the moment. He asked me for help on solving a particular challenge, which I felt was a good exercise for me.
-This blog post talks a bit about the challenge and my approach to solving it. Also, this post works as a personal reminder that sometimes it is not about picking the best tool, but the right data structure.</description>
-    </item>
-    
-    <item>
-      <title>n8n customizations for Production</title>
-      <link>https://www.andreffs.com/blog/n8n-customizations-for-production/</link>
-      <pubDate>Mon, 17 May 2021 16:58:27 +0100</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/blog/n8n-customizations-for-production/</guid>
-      <description>This post is a continuation on &amp;ldquo;Setup n8n on Kubernetes&amp;rdquo;, so most of the things we talk here assume that you&amp;rsquo;ve followed/read this one as well.
- After running n8n during a couple of months in production, me and my team realized that the default configuration do not work very well for us.
-So here in this post I go over the changes we did to allow n8n to scale and work without problems.</description>
-    </item>
-    
-    <item>
-      <title>Observability on n8n</title>
-      <link>https://www.andreffs.com/blog/observability-on-n8n/</link>
-      <pubDate>Thu, 29 Apr 2021 23:52:17 +0100</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/blog/observability-on-n8n/</guid>
-      <description>This post is a continuation on &amp;ldquo;Setup n8n on Kubernetes&amp;rdquo;, so most of the things we talk here assume that you&amp;rsquo;ve followed/read this one as well.
- You have your own n8n instance running in Kubernetes, taking advantage of all amazing functionality and capabilities of it, but you are still going in blind right now. I mean, how can you check if your service is healthy? Is it running? How much memory is it using?</description>
-    </item>
-    
-  </channel>
+	<channel>
+		<title>Grafana on ANDREFFS</title>
+		<link>https://www.andreffs.com/tags/grafana/</link>
+		<description>Recent content in Grafana on ANDREFFS</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+			<managingEditor>andreffs18@gmail.com (André Silva)</managingEditor>
+		
+		
+			<webMaster>andreffs18@gmail.com (André Silva)</webMaster>
+		
+		
+		
+			<lastBuildDate>Wed, 22 Mar 2023 09:07:48 +0000</lastBuildDate>
+		
+			<atom:link href="https://www.andreffs.com/tags/grafana/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Tools vs Data Structures</title>
+				<link>https://www.andreffs.com/blog/tools-vs-data-structures/</link>
+				<pubDate>Thu, 16 Feb 2023 07:27:00 +0000</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/blog/tools-vs-data-structures/</guid>
+				<description>&lt;p&gt;Usually, when interviewing for an engineering or software position, you end up doing some sort of &amp;ldquo;coding challenge&amp;rdquo;. A friend of mine has recently left the company and is doing one at the moment. He asked me for help on solving a particular challenge, which I felt was a good exercise for me.&lt;/p&gt;&#xA;&lt;p&gt;This blog post talks a bit about the challenge and my approach to solving it. Also, this post works as a personal reminder that sometimes it is not about picking the best tool, but the right data structure.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>n8n customizations for Production</title>
+				<link>https://www.andreffs.com/blog/n8n-customizations-for-production/</link>
+				<pubDate>Mon, 17 May 2021 16:58:27 +0100</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/blog/n8n-customizations-for-production/</guid>
+				<description>&lt;p&gt;&lt;em&gt;This post is a continuation on &lt;a href=&#34;https://www.andreffs.com/blog/setup-n8n-on-kubernetes&#34;&gt;&amp;ldquo;Setup n8n on Kubernetes&amp;rdquo;&lt;/a&gt;, so most of the things we talk here assume that you&amp;rsquo;ve followed/read this one as well.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;After running n8n during a couple of months in production, me and my team realized that the default configuration do not work very well for us.&lt;/p&gt;&#xA;&lt;p&gt;So here in this post I go over the changes we did to allow n8n to scale and work without problems.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Observability on n8n</title>
+				<link>https://www.andreffs.com/blog/observability-on-n8n/</link>
+				<pubDate>Thu, 29 Apr 2021 23:52:17 +0100</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/blog/observability-on-n8n/</guid>
+				<description>&lt;p&gt;&lt;em&gt;This post is a continuation on &lt;a href=&#34;https://www.andreffs.com/blog/setup-n8n-on-kubernetes&#34;&gt;&amp;ldquo;Setup n8n on Kubernetes&amp;rdquo;&lt;/a&gt;, so most of the things we talk here assume that you&amp;rsquo;ve followed/read this one as well.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;You have your own n8n instance running in Kubernetes, taking advantage of all amazing functionality and capabilities of it, but you are still going in blind right now. I mean, how can you check if your service is healthy? Is it running? How much memory is it using? 🤔&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

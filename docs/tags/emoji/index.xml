@@ -1,29 +1,28 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>emoji on ANDREFFS</title>
-    <link>https://www.andreffs.com/tags/emoji/</link>
-    <description>Recent content in emoji on ANDREFFS</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <managingEditor>andreffs18@gmail.com (André Silva)</managingEditor>
-    <webMaster>andreffs18@gmail.com (André Silva)</webMaster>
-    <lastBuildDate>Fri, 15 Mar 2019 19:08:22 +0000</lastBuildDate>
-    
-	<atom:link href="https://www.andreffs.com/tags/emoji/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>I Really Like Emoji&#39;s</title>
-      <link>https://www.andreffs.com/blog/i-really-like-emojis/</link>
-      <pubDate>Fri, 15 Mar 2019 19:08:22 +0000</pubDate>
-      <author>andreffs18@gmail.com (André Silva)</author>
-      <guid>https://www.andreffs.com/blog/i-really-like-emojis/</guid>
-      <description>I came across a blogpost that explained how to add emoji&amp;rsquo;s to your terminal prompt, something like this:
-The post is pretty good!
-Not only explains how to add emoji&amp;rsquo;s to you prompt, but also goes a bit further on how to $RANDOM an emoji from a list of them, and bash formatting (customize the text in your terminal with colors and such).
-Although I&amp;rsquo;m pretty happy with my terminal setup (shameless plug to 👉 my dotfiles👈 ), I kept coming back to this idea.</description>
-    </item>
-    
-  </channel>
+	<channel>
+		<title>Emoji on ANDREFFS</title>
+		<link>https://www.andreffs.com/tags/emoji/</link>
+		<description>Recent content in Emoji on ANDREFFS</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+			<managingEditor>andreffs18@gmail.com (André Silva)</managingEditor>
+		
+		
+			<webMaster>andreffs18@gmail.com (André Silva)</webMaster>
+		
+		
+		
+			<lastBuildDate>Sun, 27 Sep 2026 22:35:33 +0100</lastBuildDate>
+		
+			<atom:link href="https://www.andreffs.com/tags/emoji/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>I Really Like Emoji&#39;s</title>
+				<link>https://www.andreffs.com/blog/i-really-like-emojis/</link>
+				<pubDate>Fri, 15 Mar 2019 19:08:22 +0000</pubDate><author>andreffs18@gmail.com (André Silva)</author>
+				<guid>https://www.andreffs.com/blog/i-really-like-emojis/</guid>
+				<description>&lt;p&gt;I came across a &lt;a href=&#34;https://loige.co/random-emoji-in-your-prompt-how-and-why/&#34;&gt;blogpost&lt;/a&gt; that explained how to add emoji&amp;rsquo;s to your terminal prompt, something like this:&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;images/loige.co-terminal.webp&#34; alt=&#34;images/loige.co-terminal.webp&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;The post is pretty good!&lt;/p&gt;&#xA;&lt;p&gt;Not only explains how to add emoji&amp;rsquo;s to you prompt, but also goes a bit further on how to &lt;code&gt;$RANDOM&lt;/code&gt; an emoji from a list of them, and bash formatting (customize the text in your terminal with colors and such).&lt;/p&gt;&#xA;&lt;p&gt;Although I&amp;rsquo;m pretty happy with my terminal setup (&lt;strong&gt;shameless plug&lt;/strong&gt; to 👉 &lt;a href=&#34;https://github.com/andreffs18/dotfiles&#34;&gt;my dotfiles&lt;/a&gt;👈 ), I kept coming back to this idea. It would be cool to use this, but instead of showing a random emoji in my prompt, use it as a &amp;ldquo;Welcome message&amp;rdquo; every time I open a new terminal session.&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>
