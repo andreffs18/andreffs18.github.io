@@ -23,7 +23,7 @@ So, I started reading a couple of those a day and soon realized that:
 
 I realized that for me to have +300 articles on Feedly to "Read Later", my process would consist of something like:
 
-* Every time I'm waiting for someone (or [most likely in the bathroom]({{< ref "/blog/2015-12-10-get-paid-for-pooping/index" >}})), I would scroll on Feedly for a bit and **not read anything**, only mark the article as to "Read Later".
+* Every time I'm waiting for someone <!--(or [most likely in the bathroom]({{< ref "/blog/2015-12-10-get-paid-for-pooping" >}})),--> I would scroll on Feedly for a bit and **not read anything**, only mark the article as to "Read Later".
 
 The same thing with links that some of my friends shared with me:
 * Open them, realized they are too long -> "Read Later" on Feedly.

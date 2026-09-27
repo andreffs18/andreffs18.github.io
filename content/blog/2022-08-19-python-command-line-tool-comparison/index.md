@@ -4,7 +4,7 @@ slug: python-comand-line-tool-comparison
 subtitle: ""
 date: 2022-08-19T16:13:17Z
 tags: []
-draft: false
+draft: true
 toc: false
 plotly: false
 slideshow: false

@@ -1,5 +1,5 @@
 ---
-title: "I Really Like Emoji\'s"
+title: "I Really Like Emoji's"
 slug: i-really-like-emojis
 subtitle: ""
 date: 2019-03-15T19:08:22Z
