@@ -6,5 +6,6 @@
 
 .hugo_build.lock
 
+/docs
 /resources
 /themes
