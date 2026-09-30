@@ -1,4 +1,4 @@
-.PHONY: build plotly deploy post
+.PHONY: build plotly post
 SHELL := /bin/bash
 
 build:
@@ -12,22 +12,6 @@ plotly: build
 	URL=$$(docker logs myplotly 2>&1 | grep "http://127.0.0.1:8888/lab?token=" | egrep -o 'https?://[^ ]+') && \
 	open $$URL && \
 	docker logs -t myplotly
-
-# Deploy codebase by ammending and force pushing the freshly generated /docs folder
-# Validates first if we are in "master" to generate the new version
-deploy:
-	if [[ "$$(git rev-parse --abbrev-ref HEAD)" != "master" ]]; then \
-		echo "❌ Not master branch."; \
-		exit; \
-	else \
-		echo "⏳ Deploying"; \
-		hugo --baseURL https://www.andreffs.com; \
-		touch docs/.nojekyll; \
-		git add docs/; \
-		git commit --amend --no-edit; \
-		git push -f origin master; \
-		echo "✅ Deployed"; \
-	fi; \
 
 # Get last tagged version that was pushed to repository or if non existent, use first commit of tree
 # Then get logs from $TAG until now and run then through our generate-changelog.py script
