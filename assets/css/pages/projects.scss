@@ -1,65 +1,226 @@
 /*	Projects Page style
 -------------------------------------------------- */
 
-.projects{
-	margin-top: 40px;
-	display: grid;
-	gap: 20px;
-	justify-content: center;
-	
-	.card {
-		transition: transform .3s; 
-		&:hover {
-			-webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.25);
-			-moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.25);
-			box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.25);
-			transform: scale(1.01);
+// ── Page header ──────────────────────────────────────────────────────────────
+.projects-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 12px;
+
+	h1 {
+		margin: 0;
+	}
+
+	.btn-group {
+		.btn {
+			background: transparent;
+			border: 1px solid $grayLight;
+			color: $grayDark;
+			transition: background .15s, color .15s, border-color .15s;
+
+			&:hover, &.active {
+				background: $yellow;
+				border-color: $yellow;
+				color: $black;
+			}
 		}
 	}
-	
+}
+
+// ── Shared icon sizing ────────────────────────────────────────────────────────
+.project-view {
+	i {
+		font-size: 20px;
+	}
+}
+
+// ── List view ─────────────────────────────────────────────────────────────────
+.project-list-view {
+	.table {
+		border-collapse: separate;
+		border-spacing: 0;
+
+		thead th {
+			border-top: none;
+			border-bottom: 2px solid $grayLight;
+			color: $grayDarker;
+			font-size: 12px;
+			text-transform: uppercase;
+			letter-spacing: .06em;
+			font-weight: 600;
+		}
+
+		tbody tr {
+			transition: background .15s;
+
+			&:hover td {
+				background: $grayLighter;
+			}
+
+			td {
+				border-top: 1px solid $grayLight;
+				vertical-align: middle;
+			}
+		}
+	}
+
+	.td-img-placeholder {
+		width: 100px;
+		height: 60px;
+		background: $grayLighter;
+		border-radius: 4px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: $gray;
+		font-size: 22px;
+	}
+
+	.td-image > img {
+		max-width: 100px;
+		height: 60px;
+		object-fit: contain;
+		background: $grayLighter;
+		padding: 4px;
+		border-radius: 4px;
+	}
+
+	.td-actions > div {
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		flex-wrap: nowrap;
+		column-gap: 10px;
+
+		a {
+			color: $grayDark;
+			transition: color .15s;
+
+			&:hover {
+				color: $yellow;
+			}
+		}
+	}
+}
+
+// ── Compact card view ─────────────────────────────────────────────────────────
+.project-compact-view {
+	margin-top: 24px;
+	display: grid;
+	gap: 24px;
+	justify-content: space-evenly;
+
+	.card {
+		border: none;
+		border-radius: 8px;
+		box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+		transition: box-shadow .2s, transform .2s;
+		overflow: hidden;
+
+		&:hover {
+			box-shadow: 0 6px 18px rgba(0,0,0,0.13);
+			transform: translateY(-2px);
+		}
+	}
+
 	.card-img-top {
 		display: block;
 		width: 100%;
-		height: 200px;
+		height: 140px;
 		object-fit: contain;
+		background-color: $grayLighter;
+		padding: 16px;
 	}
-	
+
+	.card-img-placeholder {
+		width: 100%;
+		height: 140px;
+		background-color: $grayLighter;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: $gray;
+		font-size: 40px;
+	}
+
 	.card-social {
 		width: 100%;
 		justify-content: center;
 		align-items: center;
-		list-style: none;
-		margin: 0px;
-		padding: 0px;
-		li {
-			display: flex;
-			a {
-				font-size: 24px;
-				padding: 0px 10px;
+		column-gap: 12px;
+		padding: 10px 0 4px;
+
+		a {
+			color: $grayDark;
+			transition: color .15s;
+
+			&:hover {
+				color: $yellow;
 			}
 		}
 	}
-	
+
 	.card-skills {
 		width: 100%;
-		justify-content: space-evenly;
+		justify-content: center;
 		align-items: center;
-		list-style: none;
+		flex-wrap: wrap;
+		column-gap: 4px;
+		row-gap: 4px;
+		padding: 0 12px 8px;
+
+		.badge {
+			background-color: $grayLight;
+			color: $grayDarker;
+			font-weight: 500;
+			font-size: 11px;
+			padding: 3px 7px;
+			border-radius: 4px;
+			letter-spacing: .03em;
+		}
+	}
+
+	.card-block {
+		padding: 8px 16px 16px;
+
+		.card-title {
+			font-size: 15px;
+			font-weight: 700;
+			margin-bottom: 2px;
+			color: $black;
+		}
+
+		.card-year {
+			display: block;
+			font-size: 11px;
+			color: $grayDark;
+			margin-bottom: 6px;
+			letter-spacing: .03em;
+		}
+
+		.card-text {
+			font-size: 13px;
+			color: $grayDarker;
+			margin: 0;
+			line-height: 1.5;
+		}
 	}
 }
 
+// ── Responsive grid ───────────────────────────────────────────────────────────
 @media (min-width: 768px) {
-	.projects{
+	.project-compact-view {
 		grid-template-columns: repeat(auto-fit, 100%);
 	}
 }
 @media (min-width: 992px) {
-	.projects{
-		grid-template-columns: repeat(auto-fit, 380px);
+	.project-compact-view {
+		grid-template-columns: repeat(auto-fit, 340px);
 	}
 }
 @media (min-width: 1200px) {
-	.projects{
-		grid-template-columns: repeat(auto-fit, 320px);
+	.project-compact-view {
+		grid-template-columns: repeat(auto-fit, 300px);
 	}
 }
