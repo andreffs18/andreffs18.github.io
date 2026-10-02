@@ -13,32 +13,6 @@ plotly: build
 	open $$URL && \
 	docker logs -t myplotly
 
-# Get last tagged version that was pushed to repository or if non existent, use first commit of tree
-# Then get logs from $TAG until now and run then through our generate-changelog.py script
-changelog:
-	touch CHANGELOG.md && \
-	LAST_TAG="$$(git --no-pager tag --sort=-v:refname --list | head -n1)" && \
-	FIRST_COMMIT="$$(git rev-list --max-parents=0 HEAD)" && \
-	TAG=$${LAST_TAG:-$$FIRST_COMMIT} && \
-	LOGS=$$(git --no-pager log $$TAG..HEAD --pretty=format:"%h %B") && \
-	echo "👉 Pulling logs from \"$$TAG\" to \"$$(git --no-pager log --pretty=format:'%h' -n 1)\"..." && \
-	printf "$$LOGS" | python3 .gitlab/scripts/generate-changelog.py && \
-	rm CHANGELOG.md
-
-# Bump project version to give $VERSION argument. With new version, create new tag and start deployment process
-# by tagging and pushing this commit with new label.
-check-tag:
-ifndef VERSION
-	$(error VERSION is undefined)
-endif
-
-tag: check-tag
-	TAG_MESSAGE="$$VERSION - $$(date '+%Y-%m-%d')" && \
-	git tag -a "$$VERSION" -m "$$TAG_MESSAGE" && \
-	git push origin --tags && \
-	echo "✅ Updated project to version \"$$VERSION\""
-
-
 post:
 	DATE="$$(date +'%Y-%m-%d')" && \
 	SLUG="$$(echo "$$title" | iconv -c -t ascii//TRANSLIT | sed -E 's/[~^]+//g' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+|-+$$//g' | tr A-Z a-z)" && \
