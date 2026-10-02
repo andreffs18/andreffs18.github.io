@@ -11,6 +11,7 @@
 
     {{ if not hugo.IsServer }}
         {{ template "_internal/google_analytics.html" . }}
+        {{ partial "goatcounter.html" . }}
     {{ end }}
 
     <script type="text/javascript" src="{{ "js/main.js" | absURL }}"></script>
