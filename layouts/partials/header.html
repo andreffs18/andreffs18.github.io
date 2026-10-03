@@ -1,10 +1,18 @@
-<header>
-    <div class="page-header pb-4 mt-5 mb-4">
-        <!--div class="col-md-12 text-rigth"-->
-            <a href="{{ .Site.BaseURL }}" class="text-decoration-none">
-                <h1 class="text3d text-right text-uppercase"><span id="">André Silva</span><br/></h1>
-            </a>
-            <small class="letterpress text-right text-uppercase">{{ sub now.Year 1993 }} y/old workaholic from Edinburgh.</small>
-        <!--/div-->
+{{ $currentPage := . }}
+<nav class="navbar navbar-expand-md navbar-light site-nav">
+    <div class="container">
+        <a href="{{ .Site.BaseURL }}" class="navbar-brand site-brand">André Silva</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#siteNavLinks" aria-controls="siteNavLinks" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="siteNavLinks">
+            <ul class="navbar-nav ml-auto">
+                {{ range hugo.Data.navbar }}
+                <li class="nav-item {{ if eq $currentPage.RelPermalink .url }}active{{ end }}">
+                    <a class="nav-link" href="{{ .url | absURL }}">{{ .name }}</a>
+                </li>
+                {{ end }}
+            </ul>
+        </div>
     </div>
-</header>
+</nav>

@@ -1,0 +1,29 @@
+<div class="container cv">
+   {{ range hugo.Data.cv }}
+    <div class="row section">
+        <div class="col-md-auto">
+            <h3 class="text-uppercase">{{.name}}</h3>
+        </div>
+        <div class="col-md">
+            {{ range .sections }}
+            <div class="row">
+                <div class="col-md-6">
+                    <h4 class="text-left text-md-right"><a href="{{ .url }}" target="_blank">{{ .name }}</a> {{ .location }}</h4>
+                    <h5 class="text-left text-md-right">{{ .timeframe }}</h5>
+                </div>
+                <div class="col-md-6 text-left description">
+                    {{ range .description }}
+                        <p>{{ . | markdownify }}</p>
+                    {{ end }}
+                </div>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+    {{ end }}
+   {{/* <div class="row mt-4">
+       <div class="col-12 text-center">
+           <a href="/cv.pdf" download data-goatcounter-click="download-cv" class="cv-download"><i class="fa fa-file-pdf-o"></i> Download CV</a>
+       </div>
+   </div> */}}
+</div>
