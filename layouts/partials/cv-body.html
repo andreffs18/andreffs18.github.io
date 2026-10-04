@@ -8,11 +8,11 @@
                {{ if eq $i 0 }}<h3 class="text-uppercase">{{ $sectionName }}</h3>{{ end }}
            </div>
            <div class="col-md-4">
-               <h4 class="text-left text-md-right"><a href="{{ $s.url }}" target="_blank">{{ $s.name }}</a></h4>
-               <p class="cv-location text-left text-md-right">{{ $s.location }}</p>
-               <h5 class="text-left text-md-right">{{ $s.timeframe }}</h5>
+               <h4 class="text-start text-md-end"><a href="{{ $s.url }}" target="_blank">{{ $s.name }}</a></h4>
+               <p class="cv-location text-start text-md-end">{{ $s.location }}</p>
+               <h5 class="text-start text-md-end">{{ $s.timeframe }}</h5>
            </div>
-           <div class="col-md-6 text-left description">
+           <div class="col-md-6 text-start description">
                {{ range $s.description }}
                    <p>{{ . | markdownify }}</p>
                {{ end }}

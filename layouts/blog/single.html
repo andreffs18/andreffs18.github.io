@@ -1,11 +1,12 @@
 {{ define "main" }}
 
 {{- if .Params.Plotly }}
-<script type="text/javascript" defer src="https://cdn.plot.ly/plotly-1.50.0.min.js"></script>
+<script type="text/javascript" defer src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
 {{- end }}
 
 {{- if .Params.Slideshow }}
-<script type="text/javascript" defer src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+<script type="text/javascript" defer src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
 {{- end }}
 
 <main class="row blog">
@@ -14,7 +15,7 @@
             <h1 class="">{{ .Title | markdownify }}</h1>
 
             {{ if .Params.Subtitle }}
-            <h2 class="font-weight-light font-italic mb-3">{{ .Params.Subtitle | markdownify }}</h2>
+            <h2 class="fw-light fst-italic mb-3">{{ .Params.Subtitle | markdownify }}</h2>
             {{ end }}
 
             <a class="text-muted mt-3">
@@ -81,12 +82,12 @@
 <div class="pt-4">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 text-left">
+            <div class="col-md-6 text-start">
                 {{ if (eq .Prev.Type "blog") }}
                 Previous Post: ◀ <a href="{{ .Prev.Permalink }}">{{ .Prev.Title | markdownify }}</a>
                 {{ end }}
             </div>
-            <div class="col-md-6 text-right">
+            <div class="col-md-6 text-end">
                 {{ if .Next  }}
                 Next Post: ▶ <a href="{{ .Next.Permalink }}">{{ .Next.Title | markdownify }}</a>
                 {{ end }}

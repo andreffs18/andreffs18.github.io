@@ -1,4 +1,6 @@
-// Configure tooltip on all elements with "data-toggle" attribute
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
+document.addEventListener('DOMContentLoaded', () => {
+    if (typeof bootstrap === 'undefined') return;
+    document.querySelectorAll('[data-toggle="tooltip"]').forEach(el => {
+        new bootstrap.Tooltip(el, { placement: el.dataset.placement || 'top' });
+    });
+});

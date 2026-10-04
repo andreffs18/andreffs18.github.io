@@ -6,7 +6,7 @@
                 {{ range resources.Match "images/about/*" }}
                 {{ $img := .Resize "800x webp q100" }}
                 <figure class="profile-pic">
-                    <img src="{{ $img.RelPermalink }}" draggable="false">
+                    <img src="{{ $img.RelPermalink }}" alt="{{ .Title }}" draggable="false">
                 </figure>
                 {{ end }}
             </div>
@@ -21,25 +21,19 @@
     var el = document.querySelector('.profile-pics');
     if (!el) return;
 
-    // Clone all items to enable infinite loop
-    Array.from(el.querySelectorAll('.profile-pic')).forEach(function (item) {
-        el.appendChild(item.cloneNode(true));
-    });
+    function updateMask() {
+        var atTop    = el.scrollTop <= 0;
+        var atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 1;
+        var top    = atTop    ? 'black 0%'   : 'transparent 0%, black 8%';
+        var bottom = atBottom ? 'black 100%' : 'black 88%, transparent 100%';
+        var mask = 'linear-gradient(to bottom, ' + top + ', ' + bottom + ')';
+        el.style.maskImage = mask;
+        el.style.webkitMaskImage = mask;
+    }
 
-    // Start at the midpoint so scrolling up also loops
-    var half = el.scrollHeight / 2;
-    el.scrollTop = half / 2;
+    el.addEventListener('scroll', updateMask);
+    updateMask();
 
-    // Loop seamlessly when crossing the halfway mark
-    el.addEventListener('scroll', function () {
-        if (el.scrollTop <= 0) {
-            el.scrollTop += half;
-        } else if (el.scrollTop + el.clientHeight >= el.scrollHeight) {
-            el.scrollTop -= half;
-        }
-    });
-
-    // Drag to scroll
     var isDown = false, startY, scrollTop;
     el.addEventListener('mousedown', function (e) {
         isDown = true;
@@ -54,8 +48,7 @@
     });
     el.addEventListener('mousemove', function (e) {
         if (!isDown) return;
-        var y = e.pageY - el.getBoundingClientRect().top;
-        el.scrollTop = scrollTop - (y - startY);
+        el.scrollTop = scrollTop - (e.pageY - el.getBoundingClientRect().top - startY);
     });
 })();
 </script>
