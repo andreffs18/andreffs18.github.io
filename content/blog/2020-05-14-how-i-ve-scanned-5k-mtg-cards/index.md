@@ -3,7 +3,7 @@ title: "How I've Scanned 5K MTG Cards"
 slug: how-i-ve-scanned-5k-mtg-cards
 subtitle: How I over-engineered a way to find out how much money my magic the gathering card collection was worth by "exploring" my phone.
 date: 2020-05-14T23:12:18+00:00
-tags: ["magic-the-gathering", "android", "dbeaver", "databases", "sqlite"]
+tags: ["magic-the-gathering", "android", "dbeaver", "sqlite"]
 toc: true
 draft: false
 ---

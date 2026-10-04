@@ -3,7 +3,7 @@ title: 'Just keep on "Save for later"'
 slug: just-keep-on-save-for-later
 subtitle: ""
 date: 2020-03-30T10:50:00+00:00
-tags: ["rss", "feedly", "dotfiles", "python", "bash", "automation", "self-improving"]
+tags: ["rss", "feedly", "dotfiles", "python", "bash", "automation"]
 ---
 
 Since this _#remotelife_ began, sadly not for the best reasons, I've been able to finally clean my backlog of, guess what, TV Shows, Games, Podcasts, Books... Well, everything that a person is suppose to do!
