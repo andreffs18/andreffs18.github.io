@@ -17,3 +17,8 @@
   name: Projects
   url: /projects/
   weight: 4
+
+- identifier: tags
+  name: Tags
+  url: /tags/
+  weight: 5

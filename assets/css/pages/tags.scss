@@ -1,19 +1,74 @@
-/*	Tags Page style
+/* Tags Page
 -------------------------------------------------- */
 
-.cloud {
-	display: inline-block;
-	list-style-type: none;
-	width: 400px;
+.tags-page {
+  padding: 24px 0 8px;
 }
 
-.cloud li {
-	list-style: none;
-	display: inline;
+.tags-intro {
+  margin: 0 0 24px;
+  color: var(--textMuted);
 }
 
-.quote {
-	font-family: Georgia, "Times New Roman", Times, serif;
-	font-size: 40px;
-	position: relative;
+.tags-controls {
+  margin-bottom: 14px;
+
+  input[type="search"] {
+    width: 100%;
+    padding: 8px 13px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    outline: none;
+    background: var(--white);
+    color: var(--text);
+    font: inherit;
+
+    &:focus { border-color: var(--accent); }
+  }
+}
+
+.tags-status {
+  min-height: 22px;
+  margin: 8px 0 12px;
+  color: var(--textMuted);
+  font-size: 14px;
+}
+
+.tags-cloud {
+  position: relative;
+  width: 100%;
+  min-height: 520px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: #f8fafc;
+  user-select: none;
+}
+
+.cloud-tag {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  white-space: nowrap;
+  padding: 3px 5px;
+  border-radius: 6px;
+  color: var(--text);
+  text-decoration: none;
+  line-height: 1.1;
+  cursor: pointer;
+  transition: color .15s ease, background .15s ease, opacity .15s ease;
+
+  &:hover {
+    color: var(--accent);
+    background: rgba(37, 99, 235, .07);
+    z-index: 10;
+  }
+
+  &.dimmed { opacity: .12; }
+  &.match  { color: var(--accent); }
+}
+
+@media (max-width: 600px) {
+  .tags-cloud { min-height: 580px; }
 }

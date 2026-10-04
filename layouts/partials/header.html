@@ -8,7 +8,7 @@
         <div class="collapse navbar-collapse" id="siteNavLinks">
             <ul class="navbar-nav ms-auto">
                 {{ range hugo.Data.navbar }}
-                <li class="nav-item {{ if eq $currentPage.RelPermalink .url }}active{{ end }}">
+                <li class="nav-item {{ if hasPrefix $currentPage.RelPermalink .url }}active{{ end }}">
                     <a class="nav-link" href="{{ .url | absURL }}">{{ .name }}</a>
                 </li>
                 {{ end }}
