@@ -128,6 +128,19 @@ html {
 	}
 }
 
+.blog-list {
+    &-year { width: 4rem; }
+
+    &-date {
+        width: 4rem;
+        font-size: 0.85em;
+    }
+
+    &-star { font-size: 0.85em; }
+
+    &-draft { color: salmon; }
+}
+
 /*  Source for "share article" section:
 * https://code.luasoftware.com/tutorials/flask/flask-logging-appear-twice/
 * https://wordpress.org/plugins/buymeacoffee/
