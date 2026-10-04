@@ -4,7 +4,7 @@ slug: seo-tips
 subtitle: ""
 date: 2017-02-17T00:45:32+00:00
 draft: false
-tags: ["seo", "automation", "git-hooks"]
+tags: ["seo", "automation", "git"]
 toc: false
 plotly: false
 ---

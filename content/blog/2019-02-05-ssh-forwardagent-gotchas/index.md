@@ -4,7 +4,7 @@ slug: ssh-forwardagent-gotchas
 subtitle: ""
 date: 2019-02-05T20:07:00+00:00
 draft: false
-tags: ["ssh", "tips", "gotchas"]
+tags: ["ssh"]
 ---
 
 So, you’re trying to create an SSH Tunnel to your remote machine to make some gitlab/github clones.

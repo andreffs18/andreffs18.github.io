@@ -3,7 +3,7 @@ title: "GoTo Conferences!!!1!"
 slug: goto-conferences
 subtitle: "A small list of how I make the most of them."
 date: 2024-06-13T17:29:18+01:00
-tags: ["conferences", "guides"]
+tags: ["conferences"]
 draft: false
 toc: true
 plotly: false

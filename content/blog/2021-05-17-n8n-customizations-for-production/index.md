@@ -3,7 +3,7 @@ title: "n8n customizations for Production"
 slug: n8n-customizations-for-production
 subtitle: ""
 date: 2021-05-17T16:58:27+01:00
-tags: ["n8n", "nodejs", "production", "grafana", "kubernetes", "loadtest"]
+tags: ["n8n", "nodejs", "grafana", "kubernetes", "loadtest"]
 draft: false
 toc: true
 plotly: false

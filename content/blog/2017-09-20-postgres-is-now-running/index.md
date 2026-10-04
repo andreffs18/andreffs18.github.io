@@ -4,7 +4,7 @@ slug: postgres-is-now-running
 subtitle: ""
 date: 2017-09-20T10:53:00+00:00
 draft: false
-tags: ["postgres"]
+tags: ["postgresql"]
 toc: false
 plotly: false
 ---
