@@ -1,0 +1,163 @@
+{{ define "main" }}
+<div class="tags-page">
+  <div class="tags-controls">
+    <input id="tags-search" type="search" placeholder="Search..." aria-label="Search tags">
+  </div>
+  <div id="tags-status" class="tags-status">Hover over a tag to preview it.</div>
+  <section id="tags-cloud" class="tags-cloud" aria-label="Interactive tag cloud"></section>
+</div>
+
+<script>
+(() => {
+  {{ $tagData := slice }}
+  {{ range $name, $taxonomy := $.Site.Taxonomies.tags }}
+    {{ $page := $.Site.GetPage (printf "/tags/%s" $name) }}
+    {{ $url  := printf "/tags/%s/" $name }}
+    {{ with $page }}{{ $url = .Permalink }}{{ end }}
+    {{ $tagData = $tagData | append (dict "name" $name "count" (len $taxonomy.Pages) "url" $url) }}
+  {{ end }}
+  const tags = {{ $tagData | jsonify | safeJS }};
+
+  const cloud  = document.getElementById("tags-cloud");
+  const search = document.getElementById("tags-search");
+  const status = document.getElementById("tags-status");
+
+  const counts   = tags.map(t => t.count);
+  const minCount = Math.min(...counts);
+  const maxCount = Math.max(...counts);
+
+  function tagFontSize(count) {
+    if (maxCount === minCount) return 26;
+    const ratio = (Math.log(count + 1) - Math.log(minCount + 1)) /
+                  (Math.log(maxCount + 1) - Math.log(minCount + 1));
+    return 13 + ratio * 27; // 13px – 40px
+  }
+
+  function rectsOverlap(a, b, padding = 5) {
+    return !(a.right + padding < b.left || a.left - padding > b.right ||
+             a.bottom + padding < b.top  || a.top  - padding > b.bottom);
+  }
+
+  function findSpiralPosition(width, height, placed, cloudWidth, cloudHeight) {
+    for (let radius = 0; radius <= Math.max(cloudWidth, cloudHeight); radius += 2.8) {
+      const steps = Math.max(8, Math.ceil((2 * Math.PI * Math.max(radius, 1)) / 7));
+
+      for (let step = 0; step < steps; step++) {
+        const angle = (step / steps) * 2 * Math.PI + radius * 0.33;
+        const x = cloudWidth  / 2 + Math.cos(angle) * radius - width  / 2;
+        const y = cloudHeight / 2 + Math.sin(angle) * radius - height / 2;
+
+        if (x < 0 || y < 0 || x + width > cloudWidth || y + height > cloudHeight) continue;
+
+        const candidate = { left: x, top: y, right: x + width, bottom: y + height };
+        if (!placed.some(rect => rectsOverlap(candidate, rect))) return { x, y };
+      }
+    }
+    return null;
+  }
+
+  function buildTagElements(query) {
+    const sorted = [...tags].sort((a, b) =>
+      b.count !== a.count ? b.count - a.count : a.name.localeCompare(b.name)
+    );
+
+    return sorted.map(tag => {
+      const size = tagFontSize(tag.count);
+      const el   = document.createElement("a");
+
+      el.className   = "cloud-tag";
+      el.href        = tag.url;
+      el.textContent = tag.name;
+      el.style.fontSize = `${size}px`;
+
+      if (query) {
+        el.classList.add(tag.name.toLowerCase().includes(query) ? "match" : "dimmed");
+      }
+
+      el.addEventListener("mouseenter", () => {
+        status.textContent = `${tag.name} (${tag.count} post${tag.count === 1 ? "" : "s"})`;
+      });
+      el.addEventListener("mouseleave", updateStatus);
+
+      cloud.appendChild(el);
+      return { el, size };
+    });
+  }
+
+  function trySpiral(items, scale, cloudWidth, cloudHeight) {
+    for (const { el, size } of items) {
+      el.style.cssText += `position:absolute;display:block;margin:0;font-size:${size * scale}px`;
+    }
+    for (const { el } of items) void el.offsetWidth; // force layout
+
+    const placed = [];
+    for (const { el } of items) {
+      const position = findSpiralPosition(
+        el.offsetWidth, el.offsetHeight, placed, cloudWidth, cloudHeight
+      );
+      if (!position) return false;
+
+      el.style.left = `${position.x}px`;
+      el.style.top  = `${position.y}px`;
+      placed.push({ left: position.x, top: position.y,
+                    right: position.x + el.offsetWidth, bottom: position.y + el.offsetHeight });
+    }
+    return true;
+  }
+
+  function applyFlowLayout(items, cloudWidth) {
+    let x = 14, y = 14, rowHeight = 0;
+
+    for (const { el, size } of items) {
+      el.style.fontSize = `${size}px`;
+      el.style.position = "static";
+      el.style.display  = "inline-block";
+      el.style.margin   = "4px 6px";
+
+      if (x + el.offsetWidth > cloudWidth - 14) { x = 14; y += rowHeight + 8; rowHeight = 0; }
+      x += el.offsetWidth + 8;
+      rowHeight = Math.max(rowHeight, el.offsetHeight);
+    }
+
+    cloud.style.height = `${Math.max(520, y + rowHeight + 20)}px`;
+  }
+
+  function render() {
+    cloud.innerHTML = "";
+    const cloudWidth = cloud.clientWidth;
+    if (!cloudWidth) return;
+
+    cloud.style.height = `${window.innerWidth <= 600 ? 580 : 520}px`;
+
+    const query = search.value.trim().toLowerCase();
+    const items = buildTagElements(query);
+
+    for (const { el } of items) void el.offsetWidth; // force initial layout
+
+    const scales = [1, .94, .88, .82, .76, .70];
+    const spiralSucceeded = scales.some(
+      scale => trySpiral(items, scale, cloudWidth, cloud.clientHeight)
+    );
+
+    if (!spiralSucceeded) applyFlowLayout(items, cloudWidth);
+
+    updateStatus();
+  }
+
+  function updateStatus() {
+    const query = search.value.trim();
+    if (!query) { status.textContent = "Hover over a tag to preview it."; return; }
+
+    const matches = tags.filter(t => t.name.toLowerCase().includes(query.toLowerCase())).length;
+    status.textContent = `${matches} tag${matches === 1 ? "" : "s"} matching "${query}"`;
+  }
+
+  search.addEventListener("input", render);
+
+  if ("ResizeObserver" in window) new ResizeObserver(render).observe(cloud);
+  else window.addEventListener("resize", render);
+
+  render();
+})();
+</script>
+{{ end }}
