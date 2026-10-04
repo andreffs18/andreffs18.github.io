@@ -35,10 +35,10 @@
                     </div>
                     {{ end }}
                 </div>
-                <div class="projects-links flex-shrink-0 ml-3">
-                    {{ if .Params.github_url }}<a href="{{ .Params.github_url }}" target="_blank" data-toggle="tooltip" data-placement="top" title="GitHub"><i class="fa fa-github"></i></a>{{ end }}
-                    {{ if .Params.blog_url }}<a href="{{ .Params.blog_url }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Blog post"><i class="fa fa-book"></i></a>{{ end }}
-                    {{ if .Params.website_url }}<a href="{{ .Params.website_url }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Website"><i class="fa fa-external-link"></i></a>{{ end }}
+                <div class="projects-links flex-shrink-0 ms-3">
+                    {{ if .Params.github_url }}<a href="{{ .Params.github_url }}" target="_blank" data-toggle="tooltip" data-placement="top" title="GitHub"><i class="fa-brands fa-github"></i></a>{{ end }}
+                    {{ if .Params.blog_url }}<a href="{{ .Params.blog_url }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Blog post"><i class="fa-solid fa-book"></i></a>{{ end }}
+                    {{ if .Params.website_url }}<a href="{{ .Params.website_url }}" target="_blank" data-toggle="tooltip" data-placement="top" title="Website"><i class="fa-solid fa-up-right-from-square"></i></a>{{ end }}
                 </div>
             </div>
             {{ end }}
@@ -47,8 +47,8 @@
         <div class="col-lg-5 d-none d-lg-block">
             <div class="projects-preview sticky-top">
                 <div class="projects-preview-box">
-                    <img id="projects-preview-img" src="" alt="">
-                    <div id="projects-preview-placeholder"><i class="fa fa-hourglass-half"></i></div>
+                    <img id="projects-preview-img" src="" alt="Project preview">
+                    <div id="projects-preview-placeholder"><i class="fa-solid fa-hourglass-half"></i></div>
                 </div>
                 <p id="projects-preview-title" class="text-center text-muted mt-2 mb-0"></p>
             </div>

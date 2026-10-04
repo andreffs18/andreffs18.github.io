@@ -21,18 +21,15 @@
 	.profile-pics {
 		position: absolute;
 		top: 0; left: 0; right: 0; bottom: 0;
-		overflow-y: scroll;
-		overflow-x: hidden;
+		overflow-y: scroll; overflow-x: hidden;
 		display: flex;
 		flex-direction: column;
 		gap: 1.25rem;
 		padding: 0.5rem 1.5rem;
 		scrollbar-width: none;
 		cursor: grab;
-		mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 88%, transparent 100%);
-		-webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 88%, transparent 100%);
-		&::-webkit-scrollbar { display: none; }
-		&.is-dragging { cursor: grabbing; }
+    &.is-dragging { cursor: grabbing; }
+    &::-webkit-scrollbar { display: none; }
 	}
 	.profile-pic {
 		flex-shrink: 0;

@@ -1,12 +1,12 @@
 {{ $currentPage := . }}
 <nav class="navbar navbar-expand-md navbar-light site-nav">
     <div class="container">
-        <a href="{{ .Site.BaseURL }}" class="navbar-brand site-brand">André Silva</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#siteNavLinks" aria-controls="siteNavLinks" aria-expanded="false" aria-label="Toggle navigation">
+        <a href="{{ .Site.BaseURL }}" class="navbar-brand site-brand">@andreffs</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#siteNavLinks" aria-controls="siteNavLinks" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="siteNavLinks">
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ms-auto">
                 {{ range hugo.Data.navbar }}
                 <li class="nav-item {{ if eq $currentPage.RelPermalink .url }}active{{ end }}">
                     <a class="nav-link" href="{{ .url | absURL }}">{{ .name }}</a>

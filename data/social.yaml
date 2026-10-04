@@ -1,44 +1,45 @@
 - identifier: github
   title: Github
   url: https://github.com/andreffs18
-  class: fa fa-github
+  class: fa-brands fa-github
 
-- identifier: twitter
-  title: Twitter
-  url: https://twitter.com/andreffs18
-  class: fa fa-twitter
+- identifier: x-twitter
+  title: X
+  url: https://x.com/andreffs18
+  class: fa-brands fa-x-twitter
 
 - identifier: instagram
   title: Instagram
   url: http://instagram.com/andreffs18
-  class: fa fa-instagram
+  class: fa-brands fa-instagram
 
 - identifier: facebook
   title: Facebook
   url: https://www.facebook.com/andreffs18
-  class: fa fa-facebook
+  class: fa-brands fa-facebook
 
 - identifier: linkedin
   title: Linkedin
   url: https://pt.linkedin.com/in/andreffs18
-  class: fa fa-linkedin
+  class: fa-brands fa-linkedin
 
 - identifier: movieparadise
   title: Movie Paradise
   url: https://movieparadise.app/@andreffs18
-  class: fa fa-tv
+  # class: fa-solid fa-tv
+  class: fa-solid fa-clapperboard
 
 - identifier: goodreads
   title: Goodreads
   url: https://www.goodreads.com/user/show/47011213-andre-silva
-  class: fa fa-book
+  class: fa-brands fa-goodreads
 
 - identifier: rss
   title: RSS
   url: https://www.andreffs.com/blog/index.xml
-  class: fa fa-rss
+  class: fa-solid fa-rss
 
 - identifier: e-mail
   title: E-mail
   url: mailto:andreffs18@gmail.com
-  class: fa fa-envelope
+  class: fa-solid fa-envelope
