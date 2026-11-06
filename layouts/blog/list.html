@@ -1,13 +1,15 @@
 {{ define "main" }}
 {{ $.Scratch.Set "lastYear" ""}}
 
-{{/* Build top-3 slugs from view counts dict */}}
-{{ $sortable := slice }}
-{{ range $path, $count := hugo.Data.goatcounter_page_hits }}
-  {{ $sortable = $sortable | append (dict "path" $path "count" $count) }}
+{{/* Top-3 posts by views; GoatCounter records some posts both with and without a trailing slash */}}
+{{ $hits := hugo.Data.goatcounter_page_hits }}
+{{ $ranked := slice }}
+{{ range .Pages }}
+  {{ $views := add (int (index $hits .RelPermalink)) (int (index $hits (strings.TrimSuffix "/" .RelPermalink))) }}
+  {{ $ranked = $ranked | append (dict "path" .RelPermalink "views" $views) }}
 {{ end }}
 {{ $top3 := slice }}
-{{ range first 3 (sort $sortable "count" "desc") }}
+{{ range first 3 (sort $ranked "views" "desc") }}
   {{ $top3 = $top3 | append .path }}
 {{ end }}
 
