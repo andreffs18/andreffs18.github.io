@@ -19,14 +19,32 @@ jobs:
           GOATCOUNTER_TOKEN: ${{ secrets.GOATCOUNTER_TOKEN }}
         run: python3 .github/scripts/goatcounter_page_hits.py
 
-      - name: Commit and push if changed
+      - name: Commit and push if the top 3 posts changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/goatcounter_page_hits.json
-          if git diff --staged --quiet; then
-            echo "No changes to commit"
+
+          # Mirrors layouts/blog/list.html: sum counts with/without trailing slash, posts only, top 3 by views.
+          top3() {
+            jq -c '
+              to_entries
+              | map(select(.key | startswith("/blog/")) | .key |= rtrimstr("/"))
+              | group_by(.key)
+              | map({path: .[0].key, views: (map(.value) | add)})
+              | sort_by([-.views, .path])
+              | .[:3] | map(.path) | sort
+            '
+          }
+
+          before=$(git show HEAD:data/goatcounter_page_hits.json 2>/dev/null | top3 || echo '[]')
+          after=$(top3 < data/goatcounter_page_hits.json)
+          echo "Top 3 before: $before"
+          echo "Top 3 after:  $after"
+
+          if [ "$before" = "$after" ]; then
+            echo "Top 3 posts unchanged, skipping commit"
           else
+            git add data/goatcounter_page_hits.json
             git commit -m "📊 Update blogpost view stats"
             git push
           fi
