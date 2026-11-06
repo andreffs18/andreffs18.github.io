@@ -27,6 +27,9 @@ jobs:
           hugo-version: "0.166.0"
           extended: true
 
+      - name: Setup Dart Sass
+        run: npm install -g sass-embedded@1.107.1
+
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v6

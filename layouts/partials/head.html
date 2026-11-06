@@ -59,7 +59,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
     {{ end }}
     <!-- Customizations to styles -->
-    {{ $style := resources.Get "/css/main.scss" | css.Sass | resources.Minify | resources.Fingerprint }}
+    {{/* @import is deprecated in Dart Sass; the partials share variables through it. Remove this once they move to @use. */}}
+    {{ $sassOptions := dict "transpiler" "dartsass" "silenceDeprecations" (slice "import") }}
+    {{ $style := resources.Get "/css/main.scss" | css.Sass $sassOptions | resources.Minify | resources.Fingerprint }}
     <link rel="stylesheet" type="text/css" href="{{ $style.Permalink }}">
 
     <!-- RSS Feed -->
