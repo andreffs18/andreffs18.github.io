@@ -1,26 +1,50 @@
 <div class="container cv">
    {{ range hugo.Data.cv }}
    {{ $sectionName := .name }}
+   {{/* Optional `layout: compact` on a group (see data/cv.yaml): date on the left, title + location above the description */}}
+   {{ $compact := eq (.layout | default "") "compact" }}
    <div class="section">
        {{ range $i, $s := .sections }}
-       <div class="row">
+       <div class="row{{ if $compact }} cv-compact align-items-baseline{{ end }}"{{ with $s.name }} id="{{ partial "cv-slug.html" . }}"{{ end }}>
            <div class="col-md-2">
                {{ if eq $i 0 }}<h3 class="text-uppercase">{{ $sectionName }}</h3>{{ end }}
            </div>
+           {{ $image := and $s.image (resources.Get (printf "images/certificates/%s" $s.image)) }}
+           {{ $href := $s.url }}
+           {{ with $image }}{{ if not $href }}{{ $href = .RelPermalink }}{{ end }}{{ end }}
+           {{ if $compact }}
            <div class="col-md-4">
-               <h4 class="text-start text-md-end"><a href="{{ $s.url }}" target="_blank">{{ $s.name }}</a></h4>
+               <h5 class="text-start text-md-end">{{ $s.timeframe | safeHTML }}</h5>
+           </div>
+           <div class="col-md-6 text-start description">
+               <h4 class="cv-title">{{ if $href }}<a href="{{ $href }}" target="_blank" rel="noopener">{{ $s.name }}</a>{{ else }}{{ $s.name }}{{ end }}</h4>
+               {{ with $s.location }}<p class="cv-location">{{ . }}</p>{{ end }}
+               {{ range $s.description }}
+                   <p>{{ . | markdownify }}</p>
+               {{ end }}
+           </div>
+           {{ else }}
+           <div class="col-md-4">
+               <h4 class="text-start text-md-end">{{ if $href }}<a href="{{ $href }}" target="_blank" rel="noopener">{{ $s.name }}</a>{{ else }}{{ $s.name }}{{ end }}</h4>
                <p class="cv-location text-start text-md-end">{{ $s.location }}</p>
-               <h5 class="text-start text-md-end">{{ $s.timeframe }}</h5>
+               <h5 class="text-start text-md-end">{{ $s.timeframe | safeHTML }}</h5>
            </div>
            <div class="col-md-6 text-start description">
                {{ range $s.description }}
                    <p>{{ . | markdownify }}</p>
                {{ end }}
+               {{ with $image }}
+                   <a href="{{ .RelPermalink }}" target="_blank" rel="noopener">
+                       <img class="cv-certificate" src="{{ (.Resize "480x").RelPermalink }}" alt="{{ $s.name }} certificate" loading="lazy">
+                   </a>
+               {{ end }}
            </div>
+           {{ end }}
        </div>
        {{ end }}
    </div>
    {{ end }}
+   {{/* partial "cv-timeline.html" . */}}
    {{/* <div class="row mt-4">
        <div class="col-12 text-center">
            <a href="/cv.pdf" download data-goatcounter-click="download-cv" class="cv-download"><i class="fa fa-file-pdf-o"></i> Download CV</a>

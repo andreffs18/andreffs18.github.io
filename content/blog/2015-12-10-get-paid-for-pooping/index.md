@@ -6,7 +6,6 @@ date: 2015-12-10T13:38:09+00:00
 draft: true
 tags: ["nfc", "zapier", "plotly"]
 toc: true
-plotly: true
 ---
 
 Yes I know it sounds dumb but, if during your working hours you go to the toilet,

@@ -6,7 +6,6 @@ date: 2017-02-17T00:45:32+00:00
 draft: false
 tags: ["seo", "automation", "git"]
 toc: false
-plotly: false
 ---
 
 My key takeaways from making this website "SEO friendly":

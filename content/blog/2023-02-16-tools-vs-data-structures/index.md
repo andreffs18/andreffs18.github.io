@@ -6,8 +6,6 @@ date: 2023-02-16T07:27:00+00:00
 tags: [redis, postgresql, mongo, grafana, prometheus, benchmarking, data-structures, starlette, prism, openapi]
 draft: false
 toc: true
-plotly: true
-slideshow: true
 image:
 ---
 

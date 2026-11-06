@@ -1,26 +1,19 @@
 <!-- source: https://metalblueberry.github.io/post/howto/2019-11-23_add_plots_with_hugo_shortcodes/ -->
+{{ .Page.Store.Set "plotly" true }}
+{{ if not (.Get 0) }}{{ errorf "plotly shortcode: missing plot name (first parameter) at %s" .Position }}{{ end }}
+{{/* Keep the container empty: any text here would leak into .Summary, meta descriptions and the RSS feed. */}}
 <div class="figure">
-<div class="figure-plot alert-danger" id="{{ .Get 0 }}">
-  Code could not finish, this are some reasons why this happen.
-  - Plot name not defined. The first parameter of the shortcode is the name.
-  - There is a syntax error. check browser console.
-</div>
+<div class="figure-plot" id="{{ .Get 0 }}"></div>
 <script>
 window.addEventListener('DOMContentLoaded', () => {
-  test = document.getElementById("{{ .Get 0 }}");
-  if (test == null){
-    console.log("The plot name is not defined")
-    return
-  }
+  const plot = document.getElementById("{{ .Get 0 }}");
+  const figure = {{ .Inner | safeJS }};
 
-  fig = {{ .Inner | safeJS }};
-
-  if (!fig) {
-    test.innerText = "ERROR: fig variable is not defined"
-    return
+  if (!figure) {
+    plot.innerText = "ERROR: figure is not defined";
+    return;
   }
-  test.innerText = null
-  Plotly.plot(test ,fig);
+  Plotly.newPlot(plot, figure);
 });
 </script>
 </div>

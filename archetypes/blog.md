@@ -6,7 +6,5 @@ date: {{ .Date }}
 tags: []
 draft: true
 toc: false
-plotly: false
-slideshow: false
 image:
 ---

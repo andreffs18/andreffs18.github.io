@@ -46,16 +46,87 @@
         - "Where first learn how to code. Mostly C, C++ and C# projects."
         - "First web projects written in PHP."
 
-- name: "experience"
+- name: "certificates"
+  # layout: "compact"
   sections:
-    - name: ""
-      url: ""
-      timeframe: ""
-      location: ""
+    - name: "Self Awareness and the Effective Leader"
+      url: "https://coursera.org/share/2773a14915520dee688873383cfca0fa"
+      timeframe: "October 2022"
+      location: "@Rice University, via Coursera"
       description:
-        - "Have been going to [Pixel's Camp Competition](https://pixels.camp/) @LX Factory, Lisbon since 2016."
-        - "Participated in the last two years of [Codebits](https://codebits.eu/?lang=pt) @ Lisbon, Portugal."
-        - "Organized [Unbabel Hackathon 2015](https://blog.unbabel.com/2015/03/04/the-results-are-in-unbabels-first-hackathon-winners/) @ [SINFO XXII](http://sinfo.org/) [Startup Rush Hackathon](https://blog.unbabel.com/2015/02/26/unbabel-sponsors-sinfos-startup-rush-hackathon/)."
+        - "26-hour course on leadership, self-awareness, stress and time management."
+        - "[Certificate PDF](/certificates/2022-10-self-awareness-and-the-effective-leader-coursera.pdf)"
+
+    - name: "Continuous Delivery & DevOps"
+      url: "https://coursera.org/share/ce10e2d1f608ac4c9aeb6af5ee9d629b"
+      timeframe: "November 2019"
+      location: "@University of Virginia, via Coursera"
+      description:
+        - "8-hour course on continuous delivery, CI/CD, test automation and DevOps tooling."
+        - "[Certificate PDF](/certificates/2019-11-continuous-delivery-and-devops-coursera.pdf)"
+
+    - name: "Getting Started with Google Kubernetes Engine"
+      url: "https://coursera.org/share/66723032fee599b686918f70a43cf19a"
+      timeframe: "May 2019"
+      location: "@Google Cloud, via Coursera"
+      description:
+        - "6-hour course on deploying and managing containerized applications on Kubernetes Engine."
+        - "[Certificate PDF](/certificates/2019-05-getting-started-with-google-kubernetes-engine-coursera.pdf)"
+
+- name: "experience"
+  layout: "compact"
+  sections:
+    - name: "GOTO Amsterdam"
+      url: "https://gotoams.nl/"
+      timeframe: "June 2024"
+      location: "@Beurs van Berlage, Amsterdam, Netherlands"
+      description:
+        - "Attended the GOTO Amsterdam conference."
+        - Took the "C4 model" Masterclass with Simon Brown, creator of the [C4 model](https://c4model.com/).
+
+    - name: "Build Stuff"
+      url: "https://buildstuff.events/"
+      timeframe: "November 2019"
+      location: "@Vilnius, Lithuania"
+      description:
+        - "Attended the Build Stuff conference."
+
+    - name: "WeAreDevelopers World Congress"
+      url: "https://www.wearedevelopers.com/"
+      timeframe: "May 2018"
+      location: "@Austria Center Vienna, Vienna, Austria"
+      description:
+        - "Attended the WeAreDevelopers World Congress."
+        - "[Won 1st place](https://github.com/andreffs18/wearedevelopers2018/tree/master/advanced-challenge) in the Boosh hackathon, winning a nintendo switch :)"
+
+    - name: "Pixels Camp"
+      url: "https://pixels.camp/"
+      timeframe: "September 2017<br/>October 2016"
+      location: "@LX Factory, Lisboa, Portugal"
+      description:
+        - "Attended the Pixels Camp competition."
+        - "[9th place](https://www.youtube.com/watch?v=yDHg3st_IEk&t=1638s) in 2016 with the [Friends With Benegits](https://github.com/friendswithbenegits/fwbg) project."
+
+    - name: "Full Stack Fest"
+      url: "https://fullstackfest.com/"
+      timeframe: "September 2016"
+      location: "@Barcelona, Spain"
+      description:
+        - "Attended the Full Stack Fest conference."
+
+    - name: "SINFO XXII"
+      url: "https://sinfo.org/"
+      timeframe: "February 2015"
+      location: "@Instituto Superior Tecnico, Lisboa, Portugal"
+      description:
+        - "Organized the [Unbabel Hackathon 2015](https://blog.unbabel.com/2015/03/04/the-results-are-in-unbabels-first-hackathon-winners/), part of the [Startup Rush Hackathon](https://blog.unbabel.com/2015/02/26/unbabel-sponsors-sinfos-startup-rush-hackathon/)."
+
+    - name: "Codebits"
+      url: "https://en.wikipedia.org/wiki/SAPO_Codebits"
+      timeframe: "April 2014<br/>November 2012"
+      location: "@Lisboa, Portugal"
+      description:
+        - "Participated in the last two editions of Codebits."
 
 - name: "skills"
   sections:
@@ -85,4 +156,4 @@
       timeframe: ""
       location: ""
       description:
-        - "Cooking, TV shows, Reading, Gym, Surfing."
+        - "Cooking, TV shows, Podcasts, Reading, Gym, Surfing."

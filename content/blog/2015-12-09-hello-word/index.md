@@ -5,7 +5,6 @@ date: 2015-12-09T00:24:09+00:00
 draft: false
 tags: []
 toc: false
-plotly: false
 ---
 
 Hello 😃

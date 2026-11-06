@@ -6,7 +6,6 @@ date: 2017-07-03T17:44:00+00:00
 draft: false
 tags: ["finance", "plotly"]
 toc: false
-plotly: true
 ---
 
 Well, after reading _[a](https://www.goodreads.com/book/show/161899.The_Smartest_Investment_Book_You_ll_Ever_Read)_ _[couple](https://www.goodreads.com/book/show/69571.Rich_Dad_Poor_Dad)_ _[of](https://www.goodreads.com/book/show/1052.The_Richest_Man_in_Babylon)_ _[books](https://www.goodreads.com/book/show/106835.The_Intelligent_Investor)_ on the topic, they all talk about the same thing: you should **diversify your portfolio**.

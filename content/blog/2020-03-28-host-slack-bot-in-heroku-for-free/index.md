@@ -6,8 +6,6 @@ date: 2020-03-28T11:33:00+00:00
 tags: ["heroku", "slackbot", "fastapi", "python", "vuejs"]
 draft: false
 toc: true
-plotly: false
-slideshow: false
 image: https://i.imgur.com/nM3mJd3.jpg
 ---
 

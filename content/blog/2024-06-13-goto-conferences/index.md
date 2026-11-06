@@ -6,8 +6,6 @@ date: 2024-06-13T17:29:18+01:00
 tags: ["conferences"]
 draft: false
 toc: true
-plotly: false
-slideshow: false
 image:
 ---
 
