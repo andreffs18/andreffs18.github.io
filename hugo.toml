@@ -6,10 +6,6 @@ publishDir = "docs"
 enableGitInfo = true
 enableRobotsTXT = true
 
-# Match the old (pre-0.67) lenient behaviour: a ref to a draft/missing page
-# renders an empty link instead of failing the build.
-refLinksErrorLevel = "warning"
-
 ignorefiles = [
   # ie: "content/blog/_draft/.*"
 ]
@@ -31,7 +27,6 @@ ignorefiles = [
   [markup.highlight]
     codeFences = true
     guessSyntax = false
-    hl_Lines = ""
     lineNoStart = 1
     lineNos = true
     lineNumbersInTable = true
@@ -41,7 +36,7 @@ ignorefiles = [
 
 [params]
     # Site HEAD's configs
-    description = "Hey, I'm André Silva, a Software Engineer from Edinburgh, Scotland and this is my personal website."
+    description = "Hey, I'm André Silva, a Portuguese Software Engineer living in Edinburgh, and this is my personal website."
     socialHandler = "andreffs18"
 
     # Tag cloud params

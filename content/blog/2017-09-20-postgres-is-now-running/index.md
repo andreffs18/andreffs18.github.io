@@ -6,7 +6,6 @@ date: 2017-09-20T10:53:00+00:00
 draft: false
 tags: ["postgresql"]
 toc: false
-plotly: false
 ---
 
 My Macbook has OSX Mavericks installed and sometimes it crashes for no reason, breaking my local postgres server.

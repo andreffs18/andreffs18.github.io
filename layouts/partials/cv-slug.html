@@ -1,0 +1,2 @@
+{{/* "Escola Secundária de Benavente" -> "escola-secund-ria-de-benavente": ASCII-only, safe as an element id and a Mermaid task id. */}}
+{{- return strings.Trim (replaceRE `[^a-z0-9]+` "-" (lower .)) "-" -}}

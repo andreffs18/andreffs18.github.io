@@ -31,6 +31,35 @@
     margin: 0.1rem 0 0.25rem;
   }
 
+  // Compact layout (experience): title and location share a line above the description,
+  // and the date lines up with the title (rows use align-items-baseline)
+  .cv-compact .description {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+  }
+
+  .cv-title {
+    font-size: 18px;
+    margin: 0 0 0.15rem;
+  }
+
+  .cv-certificate {
+    display: block;
+    max-width: 100%;
+    margin-top: 0.5rem;
+    border: 1px solid $border;
+    border-radius: 4px;
+  }
+
+  .cv-timeline-scroll {
+    overflow-x: auto;
+
+    .mermaid { min-width: 720px; }
+
+    // Mermaid prefixes element ids with a per-render number, hence the suffix match
+    [id$="cv-timeline-padding"],
+    [id$="cv-timeline-padding-text"] { display: none; }
+  }
 
   .cv-download {
     display: inline-block;

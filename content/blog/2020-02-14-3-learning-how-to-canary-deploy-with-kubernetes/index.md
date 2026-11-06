@@ -6,7 +6,6 @@ date: 2020-02-14T09:05:00+00:00
 draft: false
 tags: ["bash", "automation", "canary", "kubernetes", "ci/cd", "gitlab"]
 toc: true
-slideshow: true
 ---
 
 ![Header Image](header.png)

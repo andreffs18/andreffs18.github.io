@@ -6,8 +6,6 @@ date: 2021-04-05T21:16:27+01:00
 tags: ["n8n", "nodejs", "kubernetes", "minikube"]
 draft: false
 toc: true
-plotly: false
-slideshow: true
 ---
 
 _Update 2021-05-23: Decided to split this post into 3 different ones to be more easily read. You can find the other two here: ["Observability on n8n"](/blog/observability-on-n8n/) and ["n8n customizations for Production"](/blog/n8n-customizations-for-production/)_.

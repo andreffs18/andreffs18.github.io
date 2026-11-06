@@ -1,4 +1,4 @@
-.PHONY: help build plotly post project
+.PHONY: help serve build plotly post project
 SHELL := /bin/bash
 
 .DEFAULT_GOAL := help
@@ -8,6 +8,9 @@ help: ## Show this help
 	@echo ""
 	@echo "Targets:"
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  %-12s %s\n", $$1, $$2}'
+
+serve: ## Start the Hugo dev server (with drafts) at http://localhost:1313
+	hugo server -D
 
 build: ## Build the myplotly Docker image
 	docker build -t myplotly -f plotly.Dockerfile . && \
@@ -24,7 +27,7 @@ plotly: build ## Run the myplotly Jupyter container and open it in the browser
 post: ## Create a new blog post: make post title="My Post Title"
 	DATE="$$(date +'%Y-%m-%d')" && \
 	SLUG="$$(echo "$$title" | iconv -c -t ascii//TRANSLIT | sed -E 's/[~^]+//g' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+|-+$$//g' | tr A-Z a-z)" && \
-	hugo new --king blog "blog/$$DATE-$$SLUG/index.md" && \
+	hugo new --kind blog "blog/$$DATE-$$SLUG/index.md" && \
 	open $$(pwd)/content/blog/$$DATE-$$SLUG/ -a Visual\ Studio\ Code
 
 project: ## Create a new project: make project title="My Project Name" [year=YYYY]

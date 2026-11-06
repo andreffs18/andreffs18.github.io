@@ -6,8 +6,6 @@ date: 2021-04-29T23:52:17+01:00
 tags: ["n8n", "nodejs", "kubernetes", "grafana", "minikube"]
 draft: false
 toc: true
-plotly: false
-slideshow: true
 ---
 
 _This post is a continuation on ["Setup n8n on Kubernetes"](/blog/setup-n8n-on-kubernetes), so most of the things we talk here assume that you've followed/read this one as well._
