@@ -3,9 +3,9 @@ https://gitlab.com/kaushalmodi/hugo-theme-refined/-/blob/master/layouts/partials
 -->
 {{ $output := "" }}
 {{ if .Params.Subtitle }}
-    {{ $output = .Params.Subtitle }}
+    {{ $output = .Params.Subtitle | plainify }}
 {{ else if .Summary }}
-    {{ $output = .Summary }}
+    {{ $output = .Summary | plainify | replaceRE `\s+` " " | truncate 300 }}
 {{ else }}
     {{ $output = .Site.Params.Description }}
 {{ end }}

@@ -1,16 +1,17 @@
 {{ define "main" }}
 
-<main class="row blog">
+{{ $showToc := .Params.toc }}
+<main class="blog{{ if $showToc }} has-toc{{ end }}">
     <section>
         <header>
-            <h1 class="">{{ .Title | markdownify }}</h1>
+            <h1>{{ .Title | markdownify }}</h1>
 
             {{ if .Params.Subtitle }}
             <h2 class="fw-light fst-italic mb-3">{{ .Params.Subtitle | markdownify }}</h2>
             {{ end }}
 
-            <a class="text-muted mt-3">
-                <a class="text-muted" href="{{ .Permalink }}">Published {{ .Date.Format "January 2, 2006"  }}</a>
+            <p class="text-muted mt-3">
+                <time datetime="{{ .Date.Format "2006-01-02" }}">Published {{ .Date.Format "January 2, 2006" }}</time>
 
                 {{ with .Params.tags }}
                     <span>|</span>
@@ -19,7 +20,7 @@
                     {{ end }}
                 {{ end }}
                 <span>|</span>
-                <a class="text-muted text-decoration-none">± {{ .ReadingTime }} min{{ if not (eq .ReadingTime 1) }}s{{ end }}</a>
+                <span>± {{ .ReadingTime }} min{{ if not (eq .ReadingTime 1) }}s{{ end }}</span>
             </p>
         </header>
         <article class="markdown-body">
@@ -27,32 +28,21 @@
         </article>
     </section>
 
-    <aside>
-        <div class="d-none d-xl-block">
-            {{ if and (gt (len .TableOfContents) 200) ( .Params.TOC )}}
-                <div class="toc">
-                    <h5>Table of contents</h5>
-                    {{ .TableOfContents }}
-                </div>
-            {{ else }}
-                <!--div class="tags">
-                    <h5>Tags</h5>
-                    <ul class="list-unstyled">
-                        {{ range $.Site.Taxonomies.tags }}
-                        <li><a class="text-secondary" href="{{ .Page.Permalink }}">{{ .Page.Title }}</a></li>
-                        {{ end }}
-                    </ul>
-                </div-->
-            {{ end }}
-        </div>
+    {{ if $showToc }}
+    <aside class="toc d-none d-xl-block">
+        <h5>Table of contents</h5>
+        {{ .TableOfContents }}
     </aside>
+    {{ end }}
 </main>
 
 <hr>
 
+{{ if hugo.IsProduction }}
 {{ template "_internal/disqus.html" . }}
 
 <hr>
+{{ end }}
 
 <div class="container">
   <div class="row justify-content-center align-content-space-around align-items-center flex-column">
@@ -61,7 +51,7 @@
       <small>
         Last update: {{ .Lastmod.Format "January 2, 2006" }}
         {{ with .GitInfo }}
-          <br><a href="https://github.com/andreffs18/website/commit/{{ .Hash }}" target="_blank">See something that needs changing? ({{ .AbbreviatedHash }})</a>
+          <br><a href="https://github.com/andreffs18/website/commit/{{ .Hash }}" target="_blank" rel="noopener">See something that needs changing? ({{ .AbbreviatedHash }})</a>
         {{ end }}
       </small>
     </div>
@@ -69,92 +59,25 @@
 </div>
 
 
-{{ if or .Next .Prev }}
-<div class="pt-4">
+{{ if or .NextInSection .PrevInSection }}
+<nav class="pt-4" aria-label="Previous and next posts">
     <div class="container">
         <div class="row">
             <div class="col-md-6 text-start">
-                {{ if (eq .Prev.Type "blog") }}
-                Previous Post: ◀ <a href="{{ .Prev.Permalink }}">{{ .Prev.Title | markdownify }}</a>
+                {{ with .PrevInSection }}
+                Previous Post: <span aria-hidden="true">◀</span> <a href="{{ .Permalink }}">{{ .Title | markdownify }}</a>
                 {{ end }}
             </div>
             <div class="col-md-6 text-end">
-                {{ if .Next  }}
-                Next Post: ▶ <a href="{{ .Next.Permalink }}">{{ .Next.Title | markdownify }}</a>
+                {{ with .NextInSection }}
+                Next Post: <span aria-hidden="true">▶</span> <a href="{{ .Permalink }}">{{ .Title | markdownify }}</a>
                 {{ end }}
             </div>
         </div>
     </div>
-</div>
+</nav>
 {{ end }}
-
-
-
-<script>
-const BLOG_TITLE_SELECTORS = '.blog article h1, .blog article h2, .blog article h3, .blog article h4, .blog article h5, .blog article h6';
-// Add github like anchor style to all '#' links
-function addAnchor(element) {
-    element.innerHTML = `<a class="anchor" href="#${element.id}" aria-hidden="true"><span class="octicon octicon-link"></span></a>${element.innerText}`
-}
-document.addEventListener('DOMContentLoaded', () => {
-    var headers = document.querySelectorAll(BLOG_TITLE_SELECTORS)
-    if (headers) {
-        headers.forEach(addAnchor)
-    }
-})
-
-// Make TOC highlight current link
-window.addEventListener('DOMContentLoaded', () => {
-	const observer = new IntersectionObserver(entries => {
-    let container = document.querySelector('.toc');
-    let links = [...container.querySelectorAll('a')]
-    let headings = links.map(link => {
-      let id = link.getAttribute('href')
-      return document.querySelector(id)
-    })
-
-    entries.forEach(entry => {
-      let previousSection = undefined;
-      let href = `#${entry.target.getAttribute('id')}`;
-      let link = links.find(l => l.getAttribute('href') === href);
-
-      if (entry.intersectionRatio > 0) {
-        link.classList.add('is-visible');
-        previousSection = entry.target.getAttribute('id');
-      } else {
-        link.classList.remove('is-visible');
-      }
-
-      links.forEach(link => {
-        link.classList.remove('is-active');
-      })
-
-      let firstVisibleLink = container.querySelector('.is-visible');
-      if (firstVisibleLink) {
-        firstVisibleLink.classList.add('is-active');
-      }
-      if (!firstVisibleLink && previousSection) {
-        container.querySelector(`a[href="#${previousSection}"]`).classList.add('is-active');
-      }
-    })
-    // keep last link on if we are by the end of the page
-    if(entries.length === 1){
-      let entry = entries[0];
-      let lastHeadingOfBlogpost = headings[headings.length - 1];
-      if(
-        entry.intersectionRatio === 0 && // entry is not being visible
-        entry.target === lastHeadingOfBlogpost // entry is the last H tag of this blogpost
-      ) {
-        let href = `#${entry.target.getAttribute('id')}`;
-        container.querySelector(`a[href="${href}"]`).classList.add('is-active');
-      }
-    }
-	});
-	// Track all sections that have an `id` applied
-	document.querySelectorAll(BLOG_TITLE_SELECTORS).forEach((title) => {
-		observer.observe(title);
-	});
-});
-
-</script>
+{{ if $showToc }}
+<script defer src="{{ "js/toc.js" | absURL }}"></script>
+{{ end }}
 {{ end }}
