@@ -10,6 +10,40 @@
   --textLabel:     #94a3b8;
   --border:        #e8ecef;
   --white:         #fff;
+  --surface:       #f1f5f9;
+  --surfaceSubtle: #f8fafc;
+
+  color-scheme: light dark;
+}
+
+// Dark palette. Follows the OS/browser setting; github-markdown-css switches on the same media query.
+// Bootstrap's own variables are overridden too, since it only ships a manual data-bs-theme switch.
+@media (prefers-color-scheme: dark) {
+  :root {
+    --accent:        #58a6ff;
+    --accentLight:   #79c0ff;
+    --text:          #e6edf3;
+    --textMuted:     #9198a1;
+    --textLabel:     #6e7681;
+    --border:        #30363d;
+    --white:         #0d1117;
+    --surface:       #161b22;
+    --surfaceSubtle: #11161d;
+
+    --bs-body-bg:                  #0d1117;
+    --bs-body-bg-rgb:              13, 17, 23;
+    --bs-body-color:               #e6edf3;
+    --bs-body-color-rgb:           230, 237, 243;
+    --bs-secondary-color:          #9198a1;
+    --bs-border-color:             #30363d;
+    --bs-link-color-rgb:           88, 166, 255;
+    --bs-link-hover-color-rgb:     121, 192, 255;
+    --bs-heading-color:            inherit;
+  }
+
+  .navbar-toggler-icon {
+    filter: invert(1);
+  }
 }
 
 // SCSS aliases — compile to var() references, so no SCSS color functions can be used on these
