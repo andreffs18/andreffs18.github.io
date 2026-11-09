@@ -1,30 +1,76 @@
 /*  Blog Page style
-
-Source for sticky TOC:
-* https://tj.ie/building-a-table-of-contents-with-the-intersection-observer-api/
-* https://www.bram.us/2020/01/10/smooth-scrolling-sticky-scrollspy-navigation/
-* https://ma.ttias.be/adding-a-sticky-table-of-contents-in-hugo-to-posts/
 -------------------------------------------------- */
-
-html {
-	scroll-behavior: smooth;
-}
 
 .blog {
 	display: grid;
-	grid-template-columns: 1fr 15em;
+	grid-template-columns: 1fr;
 	max-width: 100em;
 	width: 100%;
-	margin: 0 auto;
 
-	article p, article ul, article ol, article blockquote {
-		// max-width: 54em;
+	// header and article share one comfortable reading column
+	section {
+		min-width: 0;
+		max-width: 900px;
+		width: 100%;
+		overflow-wrap: break-word;
 	}
 
-	// tweak highlight shortcut to make it more pleasing to see
+	// table of contents: a sticky column to the right of the article, wide screens only
+	&.has-toc {
+		@media (min-width: 1200px) {
+			grid-template-columns: minmax(0, 900px) 15em;
+			column-gap: 2rem;
+		}
+	}
+
+	.toc {
+		position: sticky;
+		top: 2rem;
+		align-self: start;
+		max-height: calc(100vh - 4rem);
+		overflow-y: auto;
+		font-size: 12px;
+
+		ul {
+			padding-left: 10px;
+			list-style: none;
+		}
+
+		// Hugo emits empty items when a post skips a heading level (e.g. h2 -> h4)
+		li:empty, ul:has(> li:empty:only-child) {
+			display: none;
+		}
+
+		a {
+			display: block;
+			padding: 0.125rem 0;
+			color: $textMuted;
+			text-decoration: none;
+
+			&:hover, &:focus-visible {
+				color: $text;
+			}
+
+			&.is-active {
+				color: $accent;
+				font-weight: 600;
+			}
+		}
+	}
+
+	// code blocks wrap instead of scrolling
 	div.highlight pre {
+		margin-bottom: 1rem;
 		padding: 12px 4px;
 		border-radius: 0px;
+		white-space: pre-wrap;
+		overflow-wrap: anywhere;
+		overflow-x: visible;
+
+		code {
+			white-space: pre-wrap;
+			word-break: normal;
+		}
 	}
 
 	.mermaid {
@@ -35,13 +81,9 @@ html {
 	.markdown-body {
 		box-sizing: border-box;
 		min-width: 200px;
-		max-width: 980px;
-		margin: 0 auto;
-		//font-size: 16px;
 		padding: 0px;
-		table {
-			display: inline-table;
-		}
+		font-size: 15px;
+		line-height: 1.6;
 		h1:before {
 			content: "# ";
 			color: $accent;
@@ -78,51 +120,9 @@ html {
 			margin: 0px auto;
 		}
 	}
-
-	aside {
-		max-width: 190px;
-		position: sticky;
-		top: 2rem;
-		align-self: start;
-		padding: 0px 0px 20px 10px;
-		font-size: 12px;
-
-		.toc {
-			ul {
-				padding-left: 10px;
-				list-style: none;
-			}
-			a {
-				display: block;
-				transition: background ease 0.2s, color ease 0.2s;
-				text-decoration: none;
-				padding: 0.125rem 0;
-				color: $border;
-			}
-			a:hover, a:focus, a.is-active {
-				color: $text;
-			}
-		}
-		.tags {
-			text-align: right;
-		}
-	}
 }
 
 @media (max-width: 767px) {
-	.blog {
-		grid-template-columns: 1fr;
-
-		section {
-			min-width: 0;
-			overflow-wrap: break-word;
-		}
-
-		aside {
-			display: none;
-		}
-	}
-
 	.post-read-time {
 		display: none;
 	}
