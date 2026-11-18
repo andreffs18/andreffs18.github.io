@@ -4,6 +4,7 @@
 import json
 import os
 import random
+import re
 import sys
 import time
 from pathlib import Path
@@ -22,16 +23,27 @@ MAX_ATTEMPTS = 4
 RETRY_STATUSES = {429, 500, 502, 503, 504}
 MAX_BACKOFF_SECONDS = 30
 
+# The first request after a long idle period sometimes gets a 404 (GoatCounter's HTML error page) and works about a
+# minute later, so that one request retries 404s with longer waits than the generic backoff.
+NOT_FOUND_DELAYS = (15, 30, 60)
+
 
 class ApiError(Exception):
     """A GoatCounter request failed for good (not retried, or retries exhausted)."""
 
 
-def request_json(url, token, sleep=time.sleep):
+def summarize_body(body):
+    """Return the <title> of an HTML error page, or the start of the body otherwise."""
+    title = re.search(r"<title>(.*?)</title>", body, re.DOTALL | re.IGNORECASE)
+    return title.group(1).strip() if title else body[:500]
+
+
+def request_json(url, token, sleep=time.sleep, retry_not_found=False):
     """GET `url` and return the decoded JSON, retrying only transient failures.
 
     Retries 429, 5xx and network errors with exponential backoff and jitter,
-    honoring Retry-After. Any other 4xx (including 404) fails immediately.
+    honoring Retry-After. With `retry_not_found`, a 404 is also retried, after
+    the longer NOT_FOUND_DELAYS. Any other 4xx fails immediately.
     The token is never included in error messages.
     """
     for attempt in range(1, MAX_ATTEMPTS + 1):
@@ -42,11 +54,12 @@ def request_json(url, token, sleep=time.sleep):
                 return json.loads(response.read())
         except HTTPError as e:
             reason = f"HTTP {e.code} {e.reason}"
-            body = e.read().decode("utf-8", errors="replace")[:500]
-            if e.code not in RETRY_STATUSES or attempt == MAX_ATTEMPTS:
+            body = summarize_body(e.read().decode("utf-8", errors="replace"))
+            not_found = retry_not_found and e.code == 404
+            if not (e.code in RETRY_STATUSES or not_found) or attempt == MAX_ATTEMPTS:
                 raise ApiError(f"{reason} for {url}\n{body}") from e
             header = e.headers.get("Retry-After", "")
-            retry_after = int(header) if header.isdigit() else None
+            retry_after = NOT_FOUND_DELAYS[attempt - 1] if not_found else int(header) if header.isdigit() else None
         except (URLError, TimeoutError) as e:
             reason = f"network error: {e}"
             if attempt == MAX_ATTEMPTS:
@@ -68,7 +81,8 @@ def fetch_hits(token, sleep=time.sleep):
         params = {"limit": 200, "start": START}
         if seen_ids:
             params["exclude_paths"] = ",".join(str(i) for i in seen_ids)
-        data = request_json(f"{GOATCOUNTER_API}?{urlencode(params)}", token, sleep)
+        # Only the first request can hit the cold-start 404; a 404 on a later page is a real error.
+        data = request_json(f"{GOATCOUNTER_API}?{urlencode(params)}", token, sleep, retry_not_found=not seen_ids)
 
         page = data.get("hits", [])
         hits.extend(page)
