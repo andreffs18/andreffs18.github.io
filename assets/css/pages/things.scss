@@ -1,0 +1,52 @@
+/*	Things I follow Page style
+-------------------------------------------------- */
+
+.things-row {
+	padding: 4px 8px;
+}
+
+.things-topics {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+
+	.badge {
+		background-color: $border;
+		color: $text;
+		font-weight: 500;
+		font-size: 10px;
+		padding: 2px 6px;
+		border-radius: 4px;
+		letter-spacing: 0.03em;
+	}
+}
+
+.things-feed-link {
+	color: $textMuted;
+
+	&:hover {
+		color: $accent;
+	}
+}
+
+.things-kind {
+	cursor: pointer;
+	font-size: 1.25rem;
+	font-weight: 500;
+}
+
+.things-letter {
+	width: 1.5rem;
+	font-size: 0.75rem;
+	font-weight: 600;
+	color: $textLabel;
+}
+
+.things-favicon {
+	width: 16px;
+	height: 16px;
+
+	img {
+		display: block;
+	}
+}

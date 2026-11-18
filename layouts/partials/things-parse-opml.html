@@ -1,0 +1,62 @@
+{{- /*
+  Parses assets/feedly.opml into a flat list of feeds, sorted by name:
+    name, url, feedUrl, kinds, topics
+
+  Feedly folders named "Kind: X" and "Topic: Y" become kinds and topics. A feed
+  that sits in several folders is merged into one entry (matched by feed URL).
+  A feed without a "Kind: " folder gets the kind "Other".
+*/ -}}
+{{- $opml := (resources.Get "feedly.opml").Content | transform.Unmarshal (dict "format" "xml") -}}
+{{- $feedsByUrl := newScratch -}}
+
+{{- /* XML unmarshalling turns a lone child into a map instead of a list */ -}}
+{{- $folders := $opml.body.outline | default slice -}}
+{{- if reflect.IsMap $folders }}{{ $folders = slice $folders }}{{ end -}}
+
+{{- range $folders -}}
+  {{- $label := index . "-text" -}}
+  {{- $kind := "" -}}
+  {{- $topic := "" -}}
+  {{- if hasPrefix $label "Kind: " -}}
+    {{- $kind = strings.TrimPrefix "Kind: " $label -}}
+  {{- else if hasPrefix $label "Topic: " -}}
+    {{- $topic = strings.TrimPrefix "Topic: " $label -}}
+  {{- else -}}
+    {{- warnf "things-i-follow: ignoring Feedly folder %q (expected a 'Kind: ' or 'Topic: ' prefix)" $label -}}
+  {{- end -}}
+
+  {{- $children := .outline | default slice -}}
+  {{- if reflect.IsMap $children }}{{ $children = slice $children }}{{ end -}}
+
+  {{- range $children -}}
+    {{- $feedUrl := index . "-xmlUrl" -}}
+    {{- if $feedUrl -}}
+      {{- $name := or (index . "-title") (index . "-text") -}}
+      {{- $entry := $feedsByUrl.Get $feedUrl | default (dict
+            "name" $name
+            "sortName" (lower $name)
+            "url" (or (index . "-htmlUrl") $feedUrl)
+            "feedUrl" $feedUrl
+            "kinds" slice
+            "topics" slice) -}}
+      {{- $kinds := $entry.kinds -}}
+      {{- $topics := $entry.topics -}}
+      {{- if $kind }}{{ $kinds = $kinds | append $kind | uniq }}{{ end -}}
+      {{- if $topic }}{{ $topics = $topics | append $topic | uniq }}{{ end -}}
+      {{- $feedsByUrl.Set $feedUrl (dict
+            "name" $entry.name
+            "sortName" $entry.sortName
+            "url" $entry.url
+            "feedUrl" $entry.feedUrl
+            "kinds" $kinds
+            "topics" $topics) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $feeds := slice -}}
+{{- range $feedsByUrl.Values -}}
+  {{- $feeds = $feeds | append (merge . (dict "kinds" (cond (len .kinds) .kinds (slice "Other")))) -}}
+{{- end -}}
+
+{{- return (sort $feeds "sortName") -}}

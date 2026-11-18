@@ -18,6 +18,14 @@ ignorefiles = [
   [services.rss]
     limit = 20
 
+# Remote files fetched at build time (the favicons on the "Things I follow" page)
+# are cached and only downloaded again once they are older than this. Favicons
+# almost never change, so refresh them at most once a year. Hugo durations have
+# no "year" unit, hence 8760h (365 days).
+[caches]
+  [caches.getresource]
+    maxAge = "8760h"
+
 [markup]
   [markup.tableOfContents]
     endLevel = 3
