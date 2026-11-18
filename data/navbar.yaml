@@ -18,7 +18,12 @@
   url: /projects/
   weight: 4
 
+- identifier: things
+  name: Things I follow
+  url: /things-i-follow/
+  weight: 5
+
 - identifier: tags
   name: Tags
   url: /tags/
-  weight: 5
+  weight: 6

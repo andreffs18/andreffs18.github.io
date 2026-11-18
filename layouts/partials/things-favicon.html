@@ -1,0 +1,20 @@
+{{- /*
+  Downloads the favicon for a host at build time and publishes it as
+  /favicons/<host>.png. Returns the published path. Sites without a favicon
+  (the download fails with a 404) get Google's default globe instead, kept in
+  assets/images/default-favicon.png. Hugo caches remote resources, see
+  [caches.getresource] in hugo.toml.
+*/ -}}
+{{- $host := . -}}
+{{- $url := printf "https://www.google.com/s2/favicons?domain=%s&sz=32" $host -}}
+{{- $default := resources.Get "images/default-favicon.png" -}}
+{{- $path := ($default | resources.Copy "favicons/default.png").RelPermalink -}}
+{{- with try (resources.GetRemote $url) -}}
+  {{- /* an error here just means the site has no favicon, keep the default */ -}}
+  {{- with .Value -}}
+    {{- if eq .MediaType.MainType "image" -}}
+      {{- $path = (. | resources.Copy (printf "favicons/%s.png" $host)).RelPermalink -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $path -}}

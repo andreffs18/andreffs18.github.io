@@ -1,0 +1,39 @@
+{{ define "main" }}
+{{ $feeds := partial "things-parse-opml.html" . }}
+
+{{ $kinds := slice }}
+{{ range $feeds }}{{ $kinds = $kinds | append .kinds }}{{ end }}
+
+<div class="container things">
+    <h1>{{ .Title | markdownify }}</h1>
+    {{ .Content }}
+
+    <h2 class="mt-4">Feeds <small class="text-muted">{{ len $feeds }}</small></h2>
+
+    {{ range sort ($kinds | uniq) }}
+    {{ $kind := . }}
+    {{ $kindFeeds := where $feeds "kinds" "intersect" (slice $kind) }}
+    <details class="things-section mt-3">
+        <summary class="things-kind">{{ $kind }} <small class="text-muted">{{ len $kindFeeds }}</small></summary>
+        {{ $currentLetter := "" }}
+        {{ range $kindFeeds }}
+        {{ $letter := cond (findRE `^\p{L}` .name) (upper (substr .name 0 1)) "#" }}
+        <div class="d-flex align-items-baseline mt-2 things-row">
+            <span class="things-letter flex-shrink-0">{{ if ne $letter $currentLetter }}{{ $letter }}{{ end }}</span>
+            <span class="things-favicon flex-shrink-0 me-2">{{ with partial "things-favicon.html" (urls.Parse .url).Host }}<img src="{{ . }}" width="16" height="16" alt="" loading="lazy">{{ end }}</span>
+            <div class="flex-grow-1 overflow-hidden">
+                <a class="text-body" href="{{ .url }}" target="_blank" rel="noopener"><strong>{{ .name }}</strong></a>
+                <a class="things-feed-link ms-1" href="{{ .feedUrl }}" target="_blank" rel="noopener" title="Feed"><i class="fa-solid fa-rss"></i></a>
+                {{ with .topics }}
+                <div class="things-topics mt-1">
+                    {{ range . }}<span class="badge">{{ . }}</span>{{ end }}
+                </div>
+                {{ end }}
+            </div>
+        </div>
+        {{ $currentLetter = $letter }}
+        {{ end }}
+    </details>
+    {{ end }}
+</div>
+{{ end }}
