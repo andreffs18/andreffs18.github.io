@@ -1,0 +1,61 @@
+name: Link Check
+
+on:
+  schedule:
+    - cron: "30 7 * * 1"  # weekly, Monday 07:30 UTC, after feedly_opml.yml has refreshed the OPML
+  workflow_dispatch:
+
+jobs:
+  link-check:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Restore lychee cache
+        uses: actions/cache@v5
+        with:
+          path: .lycheecache
+          key: lychee-${{ github.run_id }}
+          restore-keys: lychee-
+
+      - name: Check links
+        id: lychee
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          # lychee exits 2 when it finds broken links; that is reported in the issue, not a job failure.
+          fail: false
+          jobSummary: true
+          output: lychee/out.md
+          # Everything that links out: posts and projects, the CV and social data, and the Feedly feeds.
+          args: --config lychee.toml --no-progress content -vv hugo.toml 'data/*.yaml' assets/feedly.opml
+
+      - name: Fail if lychee itself crashed
+        if: steps.lychee.outputs.exit_code == 1 || steps.lychee.outputs.exit_code == 3
+        run: |
+          echo "::error::lychee exited with ${{ steps.lychee.outputs.exit_code }}"
+          exit 1
+
+      - name: Find the open dead-links issue
+        id: issue
+        run: |
+          number=$(gh issue list --label link-check --state open --json number --jq '.[0].number // empty')
+          echo "number=$number" >> "$GITHUB_OUTPUT"
+
+      - name: Create or update the dead-links issue
+        if: steps.lychee.outputs.exit_code == 2
+        uses: peter-evans/create-issue-from-file@fca9117c27cdc29c6c4db3b86c48e4115a786710 # v6.0.0
+        with:
+          title: Dead links found by weekly check
+          content-filepath: lychee/out.md
+          labels: link-check
+          issue-number: ${{ steps.issue.outputs.number }}
+
+      - name: Close the dead-links issue when the run is clean
+        if: steps.lychee.outputs.exit_code == 0 && steps.issue.outputs.number != ''
+        run: gh issue close "${{ steps.issue.outputs.number }}" --comment "No broken links in the latest weekly check."

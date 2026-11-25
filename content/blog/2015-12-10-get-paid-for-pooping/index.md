@@ -22,7 +22,7 @@ Then a simple multiplication shows that your _"poop time"_ is worth around **$3.
 Right? So if you do this everyday, during an year, (taking in consideration that you work around 22 days a month),
 then you get an astounding **$881.76** dollars a year, just for pooping!!
 
-Your poop is worth the same as an [iPhone 10](https://www.amazon.com/slp/iPhone-10/j8tt3mgq5e3o3ah)!!
+Your poop is worth the same as an [iPhone 10](https://www.amazon.com/s?k=iphone+10)!!
 
 # NFC tags + Zapier to the rescue
 
