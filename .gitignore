@@ -3,9 +3,12 @@
 .ipynb_checkpoints
 *.DS_Store
 *.bak
+__pycache__/
 
 .hugo_build.lock
 
 /docs
 /resources
 /themes
+
+.lycheecache

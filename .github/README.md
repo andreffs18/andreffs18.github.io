@@ -58,3 +58,18 @@ GOATCOUNTER_TOKEN=... python3 .github/scripts/goatcounter_page_hits.py
 ### Known issues
 
 - **The first request after a long idle period can return a transient 404.** GoatCounter answers with its HTML error page (`GoatCounter – Error!`) and the same request works about a minute later. This made the scheduled runs fail on 2026-10-12 to 2026-11-02 and 2026-11-16, while a manual re-run right after passed. The cause on GoatCounter's side is unconfirmed, so the script retries a 404 on the first request only. If a scheduled run still fails with a 404, check whether all retries were used (the log shows `attempt n/4`). See `TASKS/COMPLETED/005-fix-goatcounter-workflow-404.md`.
+
+## `link_check.yml`
+
+Runs weekly (Monday 07:30 UTC, after `feedly_opml.yml`, or on demand with `workflow_dispatch`). It runs [lychee](https://github.com/lycheeverse/lychee) (config in `lychee.toml`) on every file that links out: `content/` (blog posts and projects), `hugo.toml`, `data/*.yaml` (CV, social) and `assets/feedly.opml` (feeds and sites). Only web links are checked (`scheme` in `lychee.toml`); local files and root-relative links like `/blog` are left to the Hugo build.
+
+- **Issue:** if there are broken links, a single issue titled "Dead links found by weekly check" (label `link-check`) is created or updated with lychee's report. When a run is clean, the issue is closed.
+- **403 and 429 are accepted**, since many sites block bots; they are not reported as dead.
+- **Exit codes:** lychee exits 2 when it finds broken links, which is reported, not fatal. Only a crash (1) or a bad config (3) fails the job.
+- **Skipping a link:** add a regex to `exclude` in `lychee.toml`.
+
+### Running it locally
+
+```sh
+make links
+```

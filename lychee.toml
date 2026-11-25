@@ -1,0 +1,45 @@
+# Config for the link check: weekly in .github/workflows/link_check.yml, locally with `make links`.
+
+# HTTP status codes treated as OK. Anything else is reported as dead.
+# 403 and 429 are accepted too because many sites block bots, so they would be false alarms.
+accept = ["200..=399", 403, 429]
+
+# How many times to retry a failed request before reporting it.
+max_retries = 3
+# Seconds to wait between retries.
+retry_wait_time = 5
+# Seconds to wait for a response before the link counts as a timeout.
+timeout = 20
+# Maximum number of requests in flight at once. Lower it if sites start rate limiting.
+max_concurrency = 8
+
+# Only check web links. Local files and root-relative links (/blog) are the Hugo build's job.
+scheme = ["http", "https"]
+# Lychee resolves root-relative links (like /blog) before applying `scheme`, and errors
+# without a root dir. "." (the repo root) only exists to avoid that error; those links are dropped.
+root_dir = "."
+# Skip private, loopback and link-local addresses (192.168.x.x, 10.x.x.x, 127.0.0.1, ...)
+exclude_all_private = true
+# Files and folders to skip entirely (paths, not URLs). Temporary, while the links in them get cleaned up.
+exclude_path = [
+    "content/blog",
+    "content/projects",
+]
+# Regexes matched against the full URL. Add anything that should never be checked here.
+exclude = [
+    '^https?://api\.reddit\.com',
+    '^https?://localhost',
+    '^https?://(?:www\.)?andreffs\.com',
+    # Dead links in data/cv.yaml, but I want to keep the highlights.
+    '^https?://blog\.unbabel\.com/2015/',
+    '^https?://fullstackfest\.com',
+]
+
+# Remember results in .lycheecache (gitignored; the workflow stores it with actions/cache).
+cache = true
+# Re-check a cached URL once its result is older than this.
+# 6d to be under the weekly schedule on Github Actions
+max_cache_age = "6d"
+
+# Report format. Markdown is what the workflow posts in the dead-links issue and job summary.
+format = "markdown"

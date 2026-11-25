@@ -1,4 +1,4 @@
-.PHONY: help serve build plotly post project
+.PHONY: help serve build plotly post project links
 SHELL := /bin/bash
 
 .DEFAULT_GOAL := help
@@ -11,6 +11,9 @@ help: ## Show this help
 
 serve: ## Start the Hugo dev server (with drafts) at http://localhost:1313
 	hugo server -D
+
+links: ## Check every external link with lychee (brew install lychee)
+	lychee --config lychee.toml content -vv hugo.toml 'data/*.yaml' assets/feedly.opml
 
 build: ## Build the myplotly Docker image
 	docker build -t myplotly -f plotly.Dockerfile . && \

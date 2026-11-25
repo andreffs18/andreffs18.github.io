@@ -102,10 +102,8 @@ if __name__ == "__main__":
 
 Below is a list of free tools that helped me analyze my website and see what could be improved:
 
-* [SEO for beginners - Free course](https://www.youtube.com/watch?v=_M7rAjznXFM&list=PLdN82lhRV2eJzgOrTTTmBhHrqR6kTEo07)
 * "put your url and we tell you what to do"
     * https://developers.google.com/speed/pagespeed/insights/ & https://web.dev/measure/ (mandatory)
-    * http://varvy.com
     * http://websiteoptimization.com/services/analyze/
     * https://gtmetrix.com/
 * https://www.xml-sitemaps.com/ - scrapes your website and builds a sitemap
