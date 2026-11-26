@@ -20,7 +20,7 @@
         - "Also developed backend API to serve as BFF for main products page."
 
     - name: "Vitopal Informatica Lda"
-      url: "http://vitopal.pt/"
+      url: "https://vitopal.pt/"
       timeframe: "June 2010 - August 2011"
       location: "@Samora Correia, Portugal"
       description:
@@ -31,7 +31,7 @@
 - name: "education"
   sections:
     - name: "Instituto Superior Tecnico"
-      url: "http://tecnico.ulisboa.pt/"
+      url: "https://tecnico.ulisboa.pt/pt"
       timeframe: "September 2012 - May 2017"
       location: "@Lisboa, Portugal"
       description:

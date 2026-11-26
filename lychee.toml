@@ -33,6 +33,10 @@ exclude = [
     # Dead links in data/cv.yaml, but I want to keep the highlights.
     '^https?://blog\.unbabel\.com/2015/',
     '^https?://fullstackfest\.com',
+    # Special cases in assets/feedly.opml: the website and the RSS feed still map to the old
+    # links, so the 404 here is expected. Keep the subscriptions as they are.
+    '^https?://davidgom\.es/rss',
+    '^https?://matthias-endler\.de/rss\.xml',
 ]
 
 # Remember results in .lycheecache (gitignored; the workflow stores it with actions/cache).
