@@ -1,0 +1,19 @@
+# Direct map with "Kinds" from Feedly OPML.
+# `name` must match a "Kind: <name>" folder in assets/feedly.opml; kinds not listed here are appended alphabetically.
+# `icon` is a Font Awesome 6 solid name without the prefix.
+- name: Person
+  title: People
+  icon: user
+  description: Individuals writing about their work and ideas.
+- name: Company
+  title: Companies
+  icon: building
+  description: Engineering blogs from the teams building the products.
+- name: Publication
+  title: Publications
+  icon: newspaper
+  description: Magazines, newsletters and communities.
+- name: Aggregator
+  title: Aggregators
+  icon: layer-group
+  description: High-volume link feeds. I skim these.

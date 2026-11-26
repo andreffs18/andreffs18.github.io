@@ -1,39 +1,99 @@
 {{ define "main" }}
 {{ $feeds := partial "things-parse-opml.html" . }}
 
-{{ $kinds := slice }}
-{{ range $feeds }}{{ $kinds = $kinds | append .kinds }}{{ end }}
+{{ $allKinds := slice }}
+{{ range $feeds }}{{ $allKinds = $allKinds | append .kinds }}{{ end }}
+{{ $allKinds = $allKinds | uniq }}
 
-<div class="container things">
+{{/* Kinds listed in data/things_i_follow.yaml come first, in that order; any other kind follows alphabetically */}}
+{{ $sections := slice }}
+{{ $known := slice }}
+{{ range hugo.Data.things_i_follow }}
+{{ $known = $known | append .name }}
+{{ if in $allKinds .name }}{{ $sections = $sections | append . }}{{ end }}
+{{ end }}
+{{ range sort (complement $known $allKinds) }}
+{{ $sections = $sections | append (dict "name" . "title" . "icon" "folder") }}
+{{ end }}
+
+{{/* The page has two views sharing one markup: "cards" (default) and "list" (compact rows). CSS switches on [data-view]; the script below stores the choice. */}}
+<div class="container things" data-view="cards">
     <h1>{{ .Title | markdownify }}</h1>
     {{ .Content }}
 
-    <h2 class="mt-4">Feeds <small class="text-muted">{{ len $feeds }}</small></h2>
-
-    {{ range sort ($kinds | uniq) }}
-    {{ $kind := . }}
-    {{ $kindFeeds := where $feeds "kinds" "intersect" (slice $kind) }}
-    <details class="things-section mt-3">
-        <summary class="things-kind">{{ $kind }} <small class="text-muted">{{ len $kindFeeds }}</small></summary>
-        {{ $currentLetter := "" }}
-        {{ range $kindFeeds }}
-        {{ $letter := cond (findRE `^\p{L}` .name) (upper (substr .name 0 1)) "#" }}
-        <div class="d-flex align-items-baseline mt-2 things-row">
-            <span class="things-letter flex-shrink-0">{{ if ne $letter $currentLetter }}{{ $letter }}{{ end }}</span>
-            <span class="things-favicon flex-shrink-0 me-2">{{ with partial "things-favicon.html" (urls.Parse .url).Host }}<img src="{{ . }}" width="16" height="16" alt="" loading="lazy">{{ end }}</span>
-            <div class="flex-grow-1 overflow-hidden">
-                <a class="text-body" href="{{ .url }}" target="_blank" rel="noopener"><strong>{{ .name }}</strong></a>
-                <a class="things-feed-link ms-1" href="{{ .feedUrl }}" target="_blank" rel="noopener" title="Feed"><i class="fa-solid fa-rss"></i></a>
-                {{ with .topics }}
-                <div class="things-topics mt-1">
-                    {{ range . }}<span class="badge">{{ . }}</span>{{ end }}
-                </div>
-                {{ end }}
-            </div>
+    <div class="things-toolbar">
+        <div class="things-view" role="group" aria-label="View as" hidden>
+            <span class="things-view-label">View as</span>
+            <button type="button" data-view="cards" aria-pressed="true" aria-label="Cards" title="Cards"><i class="fa-solid fa-table-cells-large"></i></button>
+            <button type="button" data-view="list" aria-pressed="false" aria-label="List" title="List"><i class="fa-solid fa-list"></i></button>
         </div>
-        {{ $currentLetter = $letter }}
-        {{ end }}
+    </div>
+
+    {{ range $index, $section := $sections }}
+    {{ $kindFeeds := where $feeds "kinds" "intersect" (slice $section.name) }}
+    <details class="things-section" id="{{ $section.name | urlize }}"{{ if eq (add $index 1) (len $sections) }} open{{ end }}>
+        <summary class="things-kind">
+            <i class="fa-solid fa-{{ $section.icon }} things-kind-icon"></i>
+            <span class="things-kind-title">{{ $section.title }}</span>
+            <span class="things-kind-count">{{ len $kindFeeds }}</span>
+            <i class="fa-solid fa-chevron-right things-chevron"></i>
+        </summary>
+        {{ with $section.description }}<p class="things-kind-description">{{ . }}</p>{{ end }}
+
+        <div class="things-grid">
+            {{ $currentLetter := "" }}
+            {{ range $kindFeeds }}
+            {{ $letter := cond (findRE `^\p{L}` .name) (upper (substr .name 0 1)) "#" }}
+            <div class="things-card">
+                <span class="things-letter">{{ if ne $letter $currentLetter }}{{ $letter }}{{ end }}</span>
+                <span class="things-favicon">{{ with partial "things-favicon.html" (urls.Parse .url).Host }}<img src="{{ . }}" width="20" height="20" alt="" loading="lazy">{{ end }}</span>
+                <div class="things-card-body">
+                    <div class="things-title">
+                        <a class="things-name text-body" href="{{ .url }}" title="{{ .name }}" target="_blank" rel="noopener"><strong>{{ .name }}</strong></a>
+                        <a class="things-feed-link" href="{{ .feedUrl }}" target="_blank" rel="noopener" title="Feed"><i class="fa-solid fa-rss"></i></a>
+                    </div>
+                    {{ with .topics }}
+                    <div class="things-topics">
+                        {{ range . }}<span class="badge">{{ . }}</span>{{ end }}
+                    </div>
+                    {{ end }}
+                </div>
+            </div>
+            {{ $currentLetter = $letter }}
+            {{ end }}
+        </div>
     </details>
     {{ end }}
+
+    {{ $opml := resources.Get "feedly.opml" | resources.Copy "things-i-follow.opml" }}
+    <p class="things-footer text-muted">
+        {{ len $feeds }} feeds, straight from my Feedly.
+        <a href="{{ $opml.RelPermalink }}" download><i class="fa-solid fa-download"></i> Download the OPML</a>
+    </p>
+
 </div>
+
+<script>
+(() => {
+    const STORAGE_KEY = "things-view";
+    const root = document.querySelector(".things");
+    const toggle = root.querySelector(".things-view");
+    const buttons = toggle.querySelectorAll("button");
+
+    const apply = (view) => {
+        root.dataset.view = view;
+        buttons.forEach((button) => button.setAttribute("aria-pressed", button.dataset.view === view));
+    };
+
+    let saved = null;
+    try { saved = localStorage.getItem(STORAGE_KEY); } catch { /* storage blocked: fall back to the default view */ }
+    apply(saved === "list" ? "list" : "cards");
+    toggle.hidden = false;
+
+    buttons.forEach((button) => button.addEventListener("click", () => {
+        apply(button.dataset.view);
+        try { localStorage.setItem(STORAGE_KEY, button.dataset.view); } catch { /* not persisted */ }
+    }));
+})();
+</script>
 {{ end }}

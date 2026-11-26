@@ -1,14 +1,188 @@
 /*	Things I follow Page style
 -------------------------------------------------- */
 
-.things-row {
-	padding: 4px 8px;
+// The page has two views sharing one markup, switched by `data-view` on .things:
+//   cards (default): icon headers, feeds as a grid of cards
+//   list:            compact rows with a letter gutter (only the feeds change)
+
+// ── Toolbar: "View as" toggle ──────────────────────────────────────────
+
+.things-toolbar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	gap: 1rem;
+	margin: 1.5rem 0 2rem;
+}
+
+.things-view {
+	display: flex;
+	align-items: center;
+	gap: 0.4rem;
+	margin-left: auto;
+
+	&[hidden] {
+		display: none;
+	}
+
+	button {
+		padding: 0.25rem 0.75rem;
+		font-size: 0.8rem;
+		color: $textMuted;
+		background: transparent;
+		border: 1px solid $border;
+		border-radius: 6px;
+
+		&[aria-pressed="true"] {
+			color: $white;
+			background: $accent;
+			border-color: $accent;
+		}
+	}
+}
+
+.things-view-label {
+	font-size: 0.7rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	color: $textLabel;
+}
+
+// ── Sections ──────────────────────────────────────────────────────────────────
+
+.things-section {
+	margin-bottom: 15px;
+	padding-bottom: 10px;
+
+	&:not(:last-child) {
+		border-bottom: 1px $border dashed;
+	}
+}
+
+.things-kind {
+	display: flex;
+	align-items: center;
+	gap: 0.6rem;
+	margin-bottom: 0.25rem;
+	cursor: pointer;
+	list-style: none;
+
+	&::-webkit-details-marker {
+		display: none;
+	}
+}
+
+.things-kind-icon {
+	width: 1.25rem;
+	color: $accent;
+	text-align: center;
+}
+
+.things-kind-title {
+	font-size: 1.25rem;
+	font-weight: 500;
+}
+
+.things-kind-count {
+	padding: 0 8px;
+	font-size: 0.75rem;
+	font-weight: 600;
+	color: $textMuted;
+	background: var(--surface);
+	border-radius: 10px;
+}
+
+.things-chevron {
+	margin-left: auto;
+	font-size: 0.75rem;
+	color: $textLabel;
+
+	details[open] > summary & {
+		transform: rotate(90deg);
+	}
+}
+
+.things-kind-description {
+	margin: 0 0 1rem 1.85rem;
+	font-size: 0.85rem;
+	color: $textMuted;
+}
+
+// ── Feeds ─────────────────────────────────────────────────────────────────────
+
+.things-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+	gap: 0.5rem;
+	margin-bottom: 0.5rem;
+}
+
+.things-card {
+	display: flex;
+	align-items: flex-start;
+	gap: 0.6rem;
+	padding: 0.6rem 0.75rem;
+	background: var(--surfaceSubtle);
+	border: 1px solid $border;
+	border-radius: 8px;
+}
+
+.things-letter {
+	display: none;
+	flex-shrink: 0;
+	width: 1.5rem;
+	font-size: 0.75rem;
+	font-weight: 600;
+	color: $textLabel;
+}
+
+.things-favicon {
+	flex-shrink: 0;
+	width: 20px;
+	height: 20px;
+	margin-top: 1px;
+
+	img {
+		display: block;
+		border-radius: 4px;
+	}
+}
+
+.things-card-body {
+	flex-grow: 1;
+	min-width: 0;
+}
+
+.things-title {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 0.25rem;
+}
+
+.things-name {
+	min-width: 0;
+	overflow: hidden;
+	text-decoration: none;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.things-feed-link {
+	flex-shrink: 0;
+	color: $textMuted;
+
+	&:hover {
+		color: $accent;
+	}
 }
 
 .things-topics {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 4px;
+	margin-top: 0.3rem;
 
 	.badge {
 		background-color: $border;
@@ -21,32 +195,53 @@
 	}
 }
 
-.things-feed-link {
-	color: $textMuted;
+// ── List view: the original page ──────────────────────────────────────────────
 
-	&:hover {
-		color: $accent;
-	}
-}
-
-.things-kind {
-	cursor: pointer;
-	font-size: 1.25rem;
-	font-weight: 500;
-}
-
-.things-letter {
-	width: 1.5rem;
-	font-size: 0.75rem;
-	font-weight: 600;
-	color: $textLabel;
-}
-
-.things-favicon {
-	width: 16px;
-	height: 16px;
-
-	img {
+.things[data-view="list"] {
+	// Toolbar, section headers and descriptions are identical in both views, so switching never shifts the page above the feeds
+	.things-grid {
 		display: block;
 	}
+
+	.things-card {
+		margin-top: 0.5rem;
+		padding: 4px 8px;
+		background: none;
+		border: 0;
+		border-radius: 0;
+	}
+
+	.things-letter {
+		display: block;
+	}
+
+	.things-favicon {
+		width: 16px;
+		height: 16px;
+
+		img {
+			width: 16px;
+			height: 16px;
+			border-radius: 0;
+		}
+	}
+
+	.things-title {
+		justify-content: flex-start;
+	}
+
+	.things-feed-link {
+		margin-left: 0;
+	}
+
+	.things-name {
+		overflow: visible;
+		text-decoration: underline;
+		white-space: normal;
+	}
+}
+
+.things-footer {
+	margin-top: 2rem;
+	font-size: 0.9rem;
 }
