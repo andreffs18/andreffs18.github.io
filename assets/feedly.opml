@@ -80,7 +80,6 @@
             <outline type="rss" text="Real Python" title="Real Python" xmlUrl="https://realpython.com/atom.xml" htmlUrl="https://realpython.com/"/>
             <outline type="rss" text="Better Practices" title="Better Practices" xmlUrl="https://medium.com/feed/better-practices" htmlUrl="https://medium.com/better-practices?source=rss----410f2fbc015d---4"/>
             <outline type="rss" text="Better Programming" title="Better Programming" xmlUrl="https://betterprogramming.pub/feed" htmlUrl="https://betterprogramming.pub?source=rss----d0b105d10f0a---4"/>
-            <outline type="rss" text="A List Apart: The Full Feed" title="A List Apart: The Full Feed" xmlUrl="http://www.alistapart.com/rss.xml" htmlUrl="https://alistapart.com"/>
             <outline type="rss" text="Documentary Heaven" title="Documentary Heaven" xmlUrl="http://feeds.feedburner.com/DocumentaryHeaven" htmlUrl="https://documentaryheaven.com/"/>
             <outline type="rss" text="Dicas de Treino" title="Dicas de Treino" xmlUrl="http://feeds.feedburner.com/DicasDeTreino" htmlUrl="https://www.dicasdetreino.com.br/"/>
             <outline type="rss" text="Visual Capitalist" title="Visual Capitalist" xmlUrl="http://feeds.feedburner.com/visualcapitalist" htmlUrl="https://www.visualcapitalist.com/"/>
@@ -267,7 +266,6 @@
             <outline type="rss" text="Ben McCormick" title="Ben McCormick" xmlUrl="https://benmccormick.org/feed.json" htmlUrl="https://benmccormick.org/"/>
             <outline type="rss" text="Articles on Smashing Magazine — For Web Designers And Developers" title="Articles on Smashing Magazine — For Web Designers And Developers" xmlUrl="http://www.smashingmagazine.com/feed/" htmlUrl="https://www.smashingmagazine.com/"/>
             <outline type="rss" text="Michael Hoffmann" title="Michael Hoffmann" xmlUrl="https://www.mokkapps.de/rss.xml" htmlUrl="https://mokkapps.de"/>
-            <outline type="rss" text="A List Apart: The Full Feed" title="A List Apart: The Full Feed" xmlUrl="http://www.alistapart.com/rss.xml" htmlUrl="https://alistapart.com"/>
         </outline>
         <outline text="Topic: Tutorials" title="Topic: Tutorials">
             <outline type="rss" text="DigitalOcean Community Tutorials" title="DigitalOcean Community Tutorials" xmlUrl="https://www.digitalocean.com/community/articles/feed.atom" htmlUrl="https://www.digitalocean.com/community/tutorials"/>
